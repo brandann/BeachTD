@@ -63,8 +63,8 @@
 			<integer>56</integer>
 			<key>Points</key>
 			<array>
-				<string>{271.67970597102197, 128.31463216970522}</string>
-				<string>{324.00975112374192, 170.68441756167067}</string>
+				<string>{310.07356276978794, 142.26713234386594}</string>
+				<string>{355.10933148895737, 170.73102598082238}</string>
 			</array>
 			<key>Style</key>
 			<dict>
@@ -93,7 +93,7 @@
 			<array>
 				<dict>
 					<key>Bounds</key>
-					<string>{{287.99998760223389, 171}, {90, 14}}</string>
+					<string>{{287.99998760223389, 171}, {157.00001525878906, 14}}</string>
 					<key>Class</key>
 					<string>ShapedGraphic</string>
 					<key>FitText</key>
@@ -129,7 +129,7 @@
 				</dict>
 				<dict>
 					<key>Bounds</key>
-					<string>{{287.99998760223389, 185}, {90, 28}}</string>
+					<string>{{287.99998760223389, 185}, {157.00001525878906, 14}}</string>
 					<key>Class</key>
 					<string>ShapedGraphic</string>
 					<key>FitText</key>
@@ -158,8 +158,7 @@
 {\colortbl;\red255\green255\blue255;}
 \pard\tx560\tx1120\tx1680\tx2240\tx2800\tx3360\tx3920\tx4480\tx5040\tx5600\tx6160\tx6720
 
-\f0\fs24 \cf0 Attribute\
-Attribute}</string>
+\f0\fs24 \cf0 - range:float}</string>
 						<key>VerticalPad</key>
 						<integer>0</integer>
 					</dict>
@@ -168,7 +167,7 @@ Attribute}</string>
 				</dict>
 				<dict>
 					<key>Bounds</key>
-					<string>{{287.99998760223389, 213}, {90, 28}}</string>
+					<string>{{287.99998760223389, 199}, {157.00001525878906, 14}}</string>
 					<key>Class</key>
 					<string>ShapedGraphic</string>
 					<key>FitText</key>
@@ -197,8 +196,7 @@ Attribute}</string>
 {\colortbl;\red255\green255\blue255;}
 \pard\tx560\tx1120\tx1680\tx2240\tx2800\tx3360\tx3920\tx4480\tx5040\tx5600\tx6160\tx6720
 
-\f0\fs24 \cf0 Operation\
-Operation}</string>
+\f0\fs24 \cf0 + getRange():float}</string>
 						<key>VerticalPad</key>
 						<integer>0</integer>
 					</dict>
@@ -228,8 +226,8 @@ Operation}</string>
 			<integer>51</integer>
 			<key>Points</key>
 			<array>
-				<string>{233.67340292325522, 128.28752626042453}</string>
-				<string>{173.3175876275732, 170.71151354912664}</string>
+				<string>{260.42078909198989, 142.23262234294623}</string>
+				<string>{206.13341687938322, 170.76563431394214}</string>
 			</array>
 			<key>Style</key>
 			<dict>
@@ -258,7 +256,7 @@ Operation}</string>
 			<array>
 				<dict>
 					<key>Bounds</key>
-					<string>{{118, 171}, {90, 14}}</string>
+					<string>{{118, 171}, {149, 14}}</string>
 					<key>Class</key>
 					<string>ShapedGraphic</string>
 					<key>FitText</key>
@@ -294,7 +292,7 @@ Operation}</string>
 				</dict>
 				<dict>
 					<key>Bounds</key>
-					<string>{{118, 185}, {90, 28}}</string>
+					<string>{{118, 185}, {149, 28}}</string>
 					<key>Class</key>
 					<string>ShapedGraphic</string>
 					<key>FitText</key>
@@ -323,8 +321,8 @@ Operation}</string>
 {\colortbl;\red255\green255\blue255;}
 \pard\tx560\tx1120\tx1680\tx2240\tx2800\tx3360\tx3920\tx4480\tx5040\tx5600\tx6160\tx6720
 
-\f0\fs24 \cf0 Attribute\
-Attribute}</string>
+\f0\fs24 \cf0 - speed:float\
+- destination: vector2}</string>
 						<key>VerticalPad</key>
 						<integer>0</integer>
 					</dict>
@@ -333,7 +331,7 @@ Attribute}</string>
 				</dict>
 				<dict>
 					<key>Bounds</key>
-					<string>{{118, 213}, {90, 28}}</string>
+					<string>{{118, 213}, {149, 28}}</string>
 					<key>Class</key>
 					<string>ShapedGraphic</string>
 					<key>FitText</key>
@@ -362,8 +360,8 @@ Attribute}</string>
 {\colortbl;\red255\green255\blue255;}
 \pard\tx560\tx1120\tx1680\tx2240\tx2800\tx3360\tx3920\tx4480\tx5040\tx5600\tx6160\tx6720
 
-\f0\fs24 \cf0 Operation\
-Operation}</string>
+\f0\fs24 \cf0 + getSpeed():float\
++ getDestination():vector2}</string>
 						<key>VerticalPad</key>
 						<integer>0</integer>
 					</dict>
@@ -388,7 +386,7 @@ Operation}</string>
 			<array>
 				<dict>
 					<key>Bounds</key>
-					<string>{{209, 58}, {90, 14}}</string>
+					<string>{{209, 58}, {157.00001525878906, 14}}</string>
 					<key>Class</key>
 					<string>ShapedGraphic</string>
 					<key>FitText</key>
@@ -424,7 +422,7 @@ Operation}</string>
 				</dict>
 				<dict>
 					<key>Bounds</key>
-					<string>{{209, 72}, {90, 28}}</string>
+					<string>{{209, 72}, {157.00001525878906, 42}}</string>
 					<key>Class</key>
 					<string>ShapedGraphic</string>
 					<key>FitText</key>
@@ -453,8 +451,8 @@ Operation}</string>
 {\colortbl;\red255\green255\blue255;}
 \pard\tx560\tx1120\tx1680\tx2240\tx2800\tx3360\tx3920\tx4480\tx5040\tx5600\tx6160\tx6720
 
-\f0\fs24 \cf0 Attribute\
-Attribute}</string>
+\f0\fs24 \cf0 - location:vector2\
+- combat:int // health/defense}</string>
 						<key>VerticalPad</key>
 						<integer>0</integer>
 					</dict>
@@ -463,7 +461,7 @@ Attribute}</string>
 				</dict>
 				<dict>
 					<key>Bounds</key>
-					<string>{{209, 100}, {90, 28}}</string>
+					<string>{{209, 114}, {157.00001525878906, 28}}</string>
 					<key>Class</key>
 					<string>ShapedGraphic</string>
 					<key>FitText</key>
@@ -492,8 +490,8 @@ Attribute}</string>
 {\colortbl;\red255\green255\blue255;}
 \pard\tx560\tx1120\tx1680\tx2240\tx2800\tx3360\tx3920\tx4480\tx5040\tx5600\tx6160\tx6720
 
-\f0\fs24 \cf0 Operation\
-Operation}</string>
+\f0\fs24 \cf0 + getLocation():vector2\
++ getCombat():int}</string>
 						<key>VerticalPad</key>
 						<integer>0</integer>
 					</dict>
@@ -559,7 +557,7 @@ Operation}</string>
 	<key>MasterSheets</key>
 	<array/>
 	<key>ModificationDate</key>
-	<string>2014-10-07 21:30:39 +0000</string>
+	<string>2014-10-07 21:37:45 +0000</string>
 	<key>Modifier</key>
 	<string>brandan haertel</string>
 	<key>NotesVisible</key>
