@@ -1,4 +1,4 @@
 BeachTD
 =======
 
-Beach themed TD games w/ cocos-2dx &amp; C++
+Beach themed TD games w/ Unity3d &amp; C#
