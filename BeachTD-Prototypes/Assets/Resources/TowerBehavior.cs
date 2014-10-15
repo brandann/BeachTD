@@ -5,7 +5,7 @@ public class TowerBehavior : MonoBehaviour {
 
 	// Use this for initialization
 	void Start () {
-	
+		Input.simulateMouseWithTouches = true;
 	}
 	
 	// Update is called once per frame
