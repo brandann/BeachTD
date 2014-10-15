@@ -14,7 +14,7 @@ public class TowerBehavior : MonoBehaviour {
 		// check for a selection event
 		if(Input.touchCount > 0 || Input.GetMouseButtonUp(0))
 		{
-			select();
+			//select();
 		}
 		
 	}
