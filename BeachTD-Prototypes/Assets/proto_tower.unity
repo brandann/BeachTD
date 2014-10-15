@@ -297,6 +297,7 @@ GameObject:
   - 124: {fileID: 1101648290}
   - 81: {fileID: 1101648289}
   - 114: {fileID: 1101648294}
+  - 114: {fileID: 1101648295}
   m_Layer: 0
   m_Name: Main Camera
   m_TagString: MainCamera
@@ -345,7 +346,7 @@ Camera:
   far clip plane: 1000
   field of view: 60
   orthographic: 1
-  orthographic size: 5
+  orthographic size: 10
   m_Depth: -1
   m_CullingMask:
     serializedVersion: 2
@@ -378,6 +379,17 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 23891e1c87b554cea9544c70653bec1c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!114 &1101648295
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1101648288}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2aff56ecbf99c1e4fb0ba00037dd20d3, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
 --- !u!1001 &1141608070
@@ -590,6 +602,7 @@ GameObject:
   - 114: {fileID: 1973841985}
   - 58: {fileID: 1973841984}
   - 114: {fileID: 1973841988}
+  - 50: {fileID: 1973841989}
   m_Layer: 0
   m_Name: ShockTowerYellow
   m_TagString: tower
@@ -656,7 +669,33 @@ Transform:
   m_Children: []
   m_Father: {fileID: 0}
   m_RootOrder: 4
-<<<<<<< HEAD
+--- !u!114 &1973841988
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 11400004, guid: d240a462692cdb04e89b45f732e41b6c,
+    type: 2}
+  m_PrefabInternal: {fileID: 124243715}
+  m_GameObject: {fileID: 1973841983}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: aa201ab951b7553458a0c7591104e6be, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!50 &1973841989
+Rigidbody2D:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1973841983}
+  m_Mass: 1
+  m_LinearDrag: 0
+  m_AngularDrag: .0500000007
+  m_GravityScale: 1
+  m_FixedAngle: 0
+  m_IsKinematic: 1
+  m_Interpolate: 0
+  m_SleepingMode: 1
+  m_CollisionDetection: 0
 --- !u!1 &1975828576
 GameObject:
   m_ObjectHideFlags: 0
@@ -696,17 +735,3 @@ Transform:
   m_Children: []
   m_Father: {fileID: 0}
   m_RootOrder: 5
-=======
---- !u!114 &1973841988
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 11400004, guid: d240a462692cdb04e89b45f732e41b6c,
-    type: 2}
-  m_PrefabInternal: {fileID: 124243715}
-  m_GameObject: {fileID: 1973841983}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: aa201ab951b7553458a0c7591104e6be, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
->>>>>>> 91d51b8b0eb8b608900bc8f031f8041c17066ebc
