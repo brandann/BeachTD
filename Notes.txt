@@ -13,9 +13,20 @@ Focus Subjects
 ————————————————————————————————————————————————————————————————————————
 Prototypes
 	GUI
+		Unity 4.5
+		Unity 4.6
 	Saving
+	Loading
 	Drag
-	hold(menu/place)
+	Tower attacks
+		Melee tower attack
+		Range Tower attack
+		slowdown tower attack
+	Menus
+		start menu
+		tower build menu
+		tower upgrade menu
+	
 		
 Erick
 	Wavepoint Curve path
