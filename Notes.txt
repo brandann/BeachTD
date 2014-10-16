@@ -12,12 +12,11 @@ Focus Subjects
 
 ————————————————————————————————————————————————————————————————————————
 Prototypes
-	GUI
-		Unity 4.5
-		Unity 4.6
 	Saving
 	Loading
+	IPHONE
 	Drag
+	Seagulls
 	Tower attacks
 		Melee tower attack
 		Range Tower attack
@@ -26,14 +25,20 @@ Prototypes
 		start menu
 		tower build menu
 		tower upgrade menu
+	GUI
+		Unity 4.5
+		Unity 4.6
+	
 	
 		
 Erick
 	Wavepoint Curve path
 
 Brandan
-	select tower
-	build tower
+	Audio	
+	Done
+		select tower
+		build tower
 
 ————————————————————————————————————————————————————————————————————————
 Enemies
