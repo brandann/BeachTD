@@ -23,4 +23,9 @@ public class TowerBehavior : MonoBehaviour {
 	{
 		Debug.Log("hit");
 	}
+	
+	void OnTouchDown()
+	{
+		Destroy(this.gameObject);
+	}
 }

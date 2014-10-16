@@ -50,6 +50,7 @@
      <Compile Include="Assets\Resources\GameManager.cs" />
      <Compile Include="Assets\Resources\TouchController.cs" />
      <Compile Include="Assets\Resources\TowerBehavior.cs" />
+     <Compile Include="Assets\TouchInput.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

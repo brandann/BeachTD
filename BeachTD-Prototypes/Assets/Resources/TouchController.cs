@@ -4,16 +4,25 @@ using System.Collections;
 public class TouchController : MonoBehaviour {
 
 	GameManager gameManager;
+	
+	public bool use;
 
 	// Use this for initialization
 	void Start () {
 		gameManager = GameObject.Find("Main Camera").GetComponent<GameManager>();
+		Input.simulateMouseWithTouches = true;
 	}
 	
 	// Update is called once per frame
 	void Update () {
 	
-	
+		if (!use)
+		{
+			return;
+		}
+		
+		Debug.Log("TouchController In Use");
+		
 		if(Input.touchCount > 0 || Input.GetMouseButtonUp(0))
 		{
 			// location vectors
@@ -33,7 +42,8 @@ public class TouchController : MonoBehaviour {
 				dp = Input.mousePosition;
 			}
 			
-			wp = Camera.main.ScreenToWorldPoint(dp);
+			if(dp != Vector3.zero)
+				wp = Camera.main.ScreenToWorldPoint(dp);
 			
 			// if selection is found, try to destroy object
 			if(wp != Vector3.zero)
@@ -50,11 +60,7 @@ public class TouchController : MonoBehaviour {
 					if(hit.collider.tag == "tower")
 					{
 						Debug.Log("Found Tower to Destroy");
-						TowerBehavior t = hit.collider.gameObject.GetComponent<TowerBehavior>();
-						if(t != null)
-						{
-							t.destroy();
-						}
+						hit.transform.gameObject.SendMessage("OnTouchDown", hit.point, SendMessageOptions.DontRequireReceiver);
 					}
 				}
 			}
