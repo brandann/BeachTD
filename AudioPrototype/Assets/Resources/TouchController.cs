@@ -123,7 +123,7 @@ public class TouchController : MonoBehaviour {
 			if (collider2D == Physics2D.OverlapPoint(touchPos))
 			{
 				// If no colliders are found
-				Debug.Log("Make Tower");
+				//Debug.Log("Make Tower");
 				if(message == touchDown)
 				{
 					gameManager.createTower(wp, Random.Range(0,3));
@@ -138,7 +138,7 @@ public class TouchController : MonoBehaviour {
 				// if tower tag is found
 				if(hit.transform.tag == "tower")
 				{
-					Debug.Log("Found Tower to Destroy");
+					//Debug.Log("Found Tower to Destroy");
 					if(message == touchDown)
 					{
 						hit.transform.gameObject.SendMessage("OnTouchDown", hit.point, SendMessageOptions.DontRequireReceiver);
