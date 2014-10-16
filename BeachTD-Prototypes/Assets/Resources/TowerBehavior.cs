@@ -19,11 +19,6 @@ public class TowerBehavior : MonoBehaviour {
 		Destroy(this.gameObject);
 	}
 	
-	void OnCollisionEnter2D(Collision2D col)
-	{
-		Debug.Log("hit");
-	}
-	
 	void OnTouchDown()
 	{
 		Destroy(this.gameObject);

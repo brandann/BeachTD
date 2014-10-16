@@ -1,12 +1,8 @@
 ﻿<Properties>
-  <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug" />
-  <MonoDevelop.Ide.Workbench ActiveDocument="Assets\Resources\TouchController.cs">
+  <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug" PreferredExecutionTarget="MonoDevelop.Default" />
+  <MonoDevelop.Ide.Workbench ActiveDocument="Assets/TouchInput.cs">
     <Files>
-      <File FileName="Assets\Resources\TouchController.cs" Line="63" Column="110" />
-      <File FileName="Assets\Resources\GameManager.cs" Line="1" Column="1" />
-      <File FileName="Assets\Resources\CameraBehavior.cs" Line="1" Column="1" />
-      <File FileName="Assets\Resources\TowerBehavior.cs" Line="29" Column="28" />
-      <File FileName="Assets\TouchInput.cs" Line="36" Column="5" />
+      <File FileName="Assets/TouchInput.cs" Line="1" Column="1" />
     </Files>
   </MonoDevelop.Ide.Workbench>
   <MonoDevelop.Ide.DebuggingService.Breakpoints>
