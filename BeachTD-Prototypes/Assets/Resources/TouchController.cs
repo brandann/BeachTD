@@ -22,7 +22,7 @@ public class TouchController : MonoBehaviour {
 			Vector3 dp = Vector3.zero;
 			
 			// find touch or click
-			if(Input.touchCount > 0)
+			if(Input.touchCount > 0 && Input.GetTouch(0).phase == TouchPhase.Began)
 			{
 				//Debug.Log("Touch Found");
 				dp = Input.GetTouch(0).position;
