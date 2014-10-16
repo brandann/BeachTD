@@ -1,0 +1,60 @@
+Notes
+————————————————————————————————————————————————————————————————————————
+
+Focus Subjects
+	Shaders
+	Scriptable Objects (tools)
+	Networking
+	Pathing
+	Organization / Asset Management
+	Memory
+	UI
+
+————————————————————————————————————————————————————————————————————————
+Prototypes
+	GUI
+	Saving
+	Drag
+	hold(menu/place)
+		
+Erick
+	Wavepoint Curve path
+
+Brandan
+	select tower
+	build tower
+
+————————————————————————————————————————————————————————————————————————
+Enemies
+	Melee
+		Rock Crab
+	Tank
+		Hermit Crab
+	Special
+		Horseshoe Crab
+
+Towers
+	Barnacle
+	Melee attack, cheap tower.
+		Level A: feeler whip
+		Level B:
+		Level C:
+
+	Sea Star
+	Melee attack
+		Level A:
+		Level B:
+		Level C:
+
+	Sea Urchin
+	Range attack
+		Level A: Shoots Thorns
+		Level B: Shoots Poison Thorns
+		Level C:
+
+	Sea anemone
+	Special attack
+		Level A: Slow Down
+		Level B:
+		Level C:
+
