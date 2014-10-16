@@ -41,7 +41,7 @@ PlayerSettings:
   captureSingleScreen: 0
   Override IPod Music: 0
   Prepare IOS For Recording: 0
-  enableHWStatistics: 1
+  enableHWStatistics: 0
   usePlayerLog: 1
   stripPhysics: 0
   forceSingleInstance: 0
@@ -83,8 +83,8 @@ PlayerSettings:
   CreateWallpaper: 0
   APKExpansionFiles: 0
   StripUnusedMeshComponents: 0
-  iPhoneSdkVersion: 988
-  iPhoneTargetOSVersion: 16
+  iPhoneSdkVersion: 989
+  iPhoneTargetOSVersion: 22
   uIPrerenderedIcon: 0
   uIRequiresPersistentWiFi: 0
   uIStatusBarHidden: 1

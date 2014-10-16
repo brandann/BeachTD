@@ -29,7 +29,7 @@ public class GameManager : MonoBehaviour {
 		else if (type == 3)
 			towerPrefab = Resources.Load("Prefabs/ShockTowerBlue") as GameObject;
 			
-		Debug.Log("Create Tower");
+		//Debug.Log("Create Tower");
 		
 		Vector3 newPos = getPos(pos);
 		if(newPos != BadVector)
@@ -71,7 +71,7 @@ public class GameManager : MonoBehaviour {
 			Debug.Log("no colliders");
 		else if(hit != null && hit.collider.tag == "tower")
 		{
-			Debug.Log("Found Tower where building");
+			//Debug.Log("Found Tower where building");
 			return BadVector;
 		}
 		

@@ -37,7 +37,6 @@ public class TouchController : MonoBehaviour {
 #if UNITY_EDITOR
 		
 		// use mouse for Unity Editor
-		Debug.Log("TouchController In Use");
 		if(Input.GetMouseButton(0) || Input.GetMouseButtonDown(0) || Input.GetMouseButtonUp(0))
 		{
 			// set dp to the mouse position
