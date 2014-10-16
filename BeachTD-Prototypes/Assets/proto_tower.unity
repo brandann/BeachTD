@@ -342,6 +342,7 @@ GameObject:
   - 81: {fileID: 1101648289}
   - 114: {fileID: 1101648294}
   - 114: {fileID: 1101648295}
+  - 114: {fileID: 1101648296}
   m_Layer: 0
   m_Name: Main Camera
   m_TagString: MainCamera
@@ -436,6 +437,21 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2aff56ecbf99c1e4fb0ba00037dd20d3, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!114 &1101648296
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1101648288}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 92991f6941ece1341aebc5b8f565642b, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  touchInputMask:
+    serializedVersion: 2
+    m_Bits: 0
+  use: 0
 --- !u!1 &1190746875
 GameObject:
   m_ObjectHideFlags: 0
@@ -723,6 +739,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 893c65ecab0d6c04ab6d00d36e52c9c9, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  use: 1
 --- !u!4 &1975828578
 Transform:
   m_ObjectHideFlags: 0
