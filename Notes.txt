@@ -1,4 +1,4 @@
-Notes
+﻿Notes
 ————————————————————————————————————————————————————————————————————————
 
 Focus Subjects
@@ -27,7 +27,6 @@ Prototypes
 		tower build menu
 		tower upgrade menu
 	GUI
-		
 		Unity 4.6
 	
 	
