@@ -17,6 +17,7 @@ Prototypes
 	IPHONE
 	Drag
 	Seagulls
+	Audio
 	Tower attacks
 		Melee tower attack
 		Range Tower attack
@@ -26,7 +27,7 @@ Prototypes
 		tower build menu
 		tower upgrade menu
 	GUI
-		Unity 4.5
+		
 		Unity 4.6
 	
 	
@@ -35,10 +36,10 @@ Erick
 	Wavepoint Curve path
 
 Brandan
-	Audio	
 	Done
-		select tower
-		build tower
+		select tower (BeachTD-Prototypes)
+		build tower (BeachTD-Prototypes)
+		Unity 4.5 (Menu4-5)
 
 ————————————————————————————————————————————————————————————————————————
 Enemies
