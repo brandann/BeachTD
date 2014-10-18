@@ -1,4 +1,4 @@
-﻿Notes
+Notes
 ————————————————————————————————————————————————————————————————————————
 
 Focus Subjects
@@ -15,7 +15,7 @@ Prototypes
 	Saving
 	Loading
 	IPHONE
-	Drag
+	
 	Seagulls
 	Audio
 	Tower attacks
@@ -33,6 +33,7 @@ Prototypes
 		
 Erick
 	Wavepoint Curve path
+	Drag
 
 Brandan
 	Done
