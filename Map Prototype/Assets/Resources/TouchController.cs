@@ -127,8 +127,9 @@ public class TouchController : MonoBehaviour {
 				Debug.Log("Make Tower");
 				if(message == touchDown)
 				{
-					gameManager.createTower(wp);
+					//gameManager.createTower(wp);
 				}
+				
 				
 			}
 			else
@@ -143,6 +144,20 @@ public class TouchController : MonoBehaviour {
 					if(message == touchDown)
 					{
 						hit.transform.gameObject.SendMessage("OnTouchDown", hit.point, SendMessageOptions.DontRequireReceiver);
+					}
+					
+				}
+				
+				RaycastHit2D hit2 = Physics2D.Raycast(Camera.main.ScreenToWorldPoint(dp), Vector2.zero);
+				// if tower tag is found
+				if(hit2.transform.tag == "open")
+				{
+					Debug.Log("Make Tower");
+					if(message == touchDown)
+					{
+						Vector3 loc = hit.transform.position;
+						hit.transform.gameObject.SendMessage("OnTouchDown", hit.point, SendMessageOptions.DontRequireReceiver);
+						gameManager.createTower(loc);
 					}
 					
 				}

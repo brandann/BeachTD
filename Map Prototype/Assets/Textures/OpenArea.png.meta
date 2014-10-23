@@ -1,8 +1,7 @@
 fileFormatVersion: 2
-guid: 5575f484ecce2834a878f2b878c520ac
+guid: 99d66c0da9f12d14f87906d3759eb42c
 TextureImporter:
-  fileIDToRecycleName:
-    21300000: ShockTowerBlue
+  fileIDToRecycleName: {}
   serializedVersion: 2
   mipmaps:
     mipMapMode: 0
@@ -38,7 +37,7 @@ TextureImporter:
   alignment: 0
   spritePivot: {x: .5, y: .5}
   spriteBorder: {x: 0, y: 0, z: 0, w: 0}
-  spritePixelsToUnits: 335
+  spritePixelsToUnits: 100
   alphaIsTransparency: 1
   textureType: 8
   buildTargetSettings: []

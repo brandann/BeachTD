@@ -16,6 +16,11 @@ public class GameManager : MonoBehaviour {
 	
 	}
 	
+	public float getScale()
+	{
+		return SnapGrid;
+	}
+	
 	public void createTower(Vector3 pos)
 	{
 		pos.z = 0f;
@@ -29,7 +34,7 @@ public class GameManager : MonoBehaviour {
 			GameObject e = Instantiate(towerPrefab) as GameObject;
 			TowerBehavior spawnedTower = e.GetComponent<TowerBehavior>();
 			if(spawnedTower != null) {
-				e.transform.position = newPos;
+				e.transform.position =pos;
 			}
 		}
 			
