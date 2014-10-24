@@ -15,7 +15,8 @@ Prototypes
 	Saving
 	Loading
 	IPHONE
-	
+	Shaders
+	Scriptable Objects (tools)
 	Seagulls
 	Audio
 	Tower attacks
