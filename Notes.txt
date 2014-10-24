@@ -1,4 +1,4 @@
-Notes
+﻿Notes
 ————————————————————————————————————————————————————————————————————————
 
 Focus Subjects
@@ -24,7 +24,6 @@ Prototypes
 		slowdown tower attack
 	Menus
 		start menu
-		tower build menu
 		tower upgrade menu
 	GUI
 		Unity 4.6
@@ -36,6 +35,7 @@ Erick
 	Drag
 
 Brandan
+	tower build menu
 	Done
 		select tower (BeachTD-Prototypes)
 		build tower (BeachTD-Prototypes)
