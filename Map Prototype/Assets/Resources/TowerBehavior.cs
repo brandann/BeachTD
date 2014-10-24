@@ -21,6 +21,9 @@ public class TowerBehavior : MonoBehaviour {
 	
 	void OnTouchDown()
 	{
+		GameObject towerPrefab = Resources.Load("Prefabs/OpenArea") as GameObject;
+		GameObject e = Instantiate(towerPrefab) as GameObject;
+		e.transform.position = this.transform.position;
 		Destroy(this.gameObject);
 	}
 }

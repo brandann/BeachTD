@@ -34,8 +34,9 @@ public class TouchController : MonoBehaviour {
 		Vector3 dp = Vector3.zero;
 		string message = "";
 		
-#if UNITY_EDITOR
 		
+#region touch/mouse
+#if UNITY_EDITOR
 		// use mouse for Unity Editor
 		Debug.Log("TouchController In Use");
 		if(Input.GetMouseButton(0) || Input.GetMouseButtonDown(0) || Input.GetMouseButtonUp(0))
@@ -110,6 +111,7 @@ public class TouchController : MonoBehaviour {
 			}
 			
 		}
+#endregion
 		
 		// if message is blank, then assume nothing has happened
 		// if selection is found, try to do something
@@ -120,48 +122,26 @@ public class TouchController : MonoBehaviour {
 			wp = Camera.main.ScreenToWorldPoint(dp);
 			touchPos = new Vector2(wp.x, wp.y);
 			
-			// check for colliders
-			if (collider2D == Physics2D.OverlapPoint(touchPos))
+			// If colliders are found at touchPos point
+			RaycastHit2D hit = Physics2D.Raycast(Camera.main.ScreenToWorldPoint(dp), Vector2.zero);
+			
+			if(message == touchDown)
 			{
-				// If no colliders are found
-				Debug.Log("Make Tower");
-				if(message == touchDown)
-				{
-					//gameManager.createTower(wp);
-				}
-				
-				
-			}
-			else
-			{
-				// If colliders are found at touchPos point
-				RaycastHit2D hit = Physics2D.Raycast(Camera.main.ScreenToWorldPoint(dp), Vector2.zero);
-				
 				// if tower tag is found
 				if(hit.transform.tag == "tower")
 				{
-					Debug.Log("Found Tower to Destroy");
-					if(message == touchDown)
-					{
-						hit.transform.gameObject.SendMessage("OnTouchDown", hit.point, SendMessageOptions.DontRequireReceiver);
-					}
-					
+					Debug.Log("Found Tower");
+					hit.transform.gameObject.SendMessage("OnTouchDown", hit.point, SendMessageOptions.DontRequireReceiver);
 				}
 				
-				RaycastHit2D hit2 = Physics2D.Raycast(Camera.main.ScreenToWorldPoint(dp), Vector2.zero);
 				// if tower tag is found
-				if(hit2.transform.tag == "open")
+				else if(hit.transform.tag == "open")
 				{
-					Debug.Log("Make Tower");
-					if(message == touchDown)
-					{
-						Vector3 loc = hit.transform.position;
-						hit.transform.gameObject.SendMessage("OnTouchDown", hit.point, SendMessageOptions.DontRequireReceiver);
-						gameManager.createTower(loc);
-					}
-					
+					Debug.Log("Found Open Space");
+					hit.transform.gameObject.SendMessage("OnTouchDown", hit.point, SendMessageOptions.DontRequireReceiver);
 				}
 			}
+			
 		}
 	}
 	

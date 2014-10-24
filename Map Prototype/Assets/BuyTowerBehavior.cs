@@ -1,10 +1,10 @@
 ﻿using UnityEngine;
 using System.Collections;
 
-public class GameManager : MonoBehaviour {
+public class BuyTowerBehavior : MonoBehaviour {
 
-	private float SnapGrid = .5f;
-
+	Vector3 BuildPosition;
+	
 	// Use this for initialization
 	void Start () {
 	
@@ -15,8 +15,13 @@ public class GameManager : MonoBehaviour {
 	
 	}
 	
-	public float getScale()
+	public void buildPosition(Vector3 pos)
 	{
-		return SnapGrid;
+		BuildPosition = pos;
+	}
+	
+	void OnTouch()
+	{
+	
 	}
 }
