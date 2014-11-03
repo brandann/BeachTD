@@ -3,7 +3,6 @@ using System.Collections;
 
 public class GameManager : MonoBehaviour {
 
-	private float SnapGrid = .5f;
 
 	// Use this for initialization
 	void Start () {
@@ -13,10 +12,5 @@ public class GameManager : MonoBehaviour {
 	// Update is called once per frame
 	void Update () {
 	
-	}
-	
-	public float getScale()
-	{
-		return SnapGrid;
 	}
 }
