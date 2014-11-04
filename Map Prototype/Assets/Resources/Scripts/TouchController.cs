@@ -3,10 +3,10 @@ using System.Collections;
 
 public class TouchController : MonoBehaviour {
 
+  // private refence to GameManager
 	GameManager gameManager;
 	
-	public bool use;
-	
+	// messages for handeling mouse conversion to touch
 	private string message = "";
 	private const string touchDown = "OnTouchDown";
 	private const string touchUp   = "OnTouchUp";
@@ -22,11 +22,6 @@ public class TouchController : MonoBehaviour {
 	
 	// Update is called once per frame
 	void Update () {
-	
-		if (!use)
-		{
-			return;
-		}
 		
 		// location vectors
 		Vector2 touchPos = Vector2.zero;
@@ -38,6 +33,9 @@ public class TouchController : MonoBehaviour {
 #region touch/mouse
 #if UNITY_EDITOR
 		// use mouse for Unity Editor
+    // turns mouse button actions into faux touch
+    // inputs only in Unity Editor
+    // can add for computer for PC/Mac port
 		Debug.Log("TouchController In Use");
 		if(Input.GetMouseButton(0) || Input.GetMouseButtonDown(0) || Input.GetMouseButtonUp(0))
 		{
@@ -67,6 +65,9 @@ public class TouchController : MonoBehaviour {
 		}
 #endif
 		
+    // Touch controller
+    // find the first touch instance, then find what kind of
+    // touch happened.
 		if(Input.touchCount > 0)
 		{
 			// get the first touch
@@ -144,6 +145,4 @@ public class TouchController : MonoBehaviour {
 			
 		}
 	}
-	
-
 }
