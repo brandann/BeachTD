@@ -18,24 +18,20 @@ Prototypes
 	Shaders
 	Scriptable Objects (tools)
 	Seagulls
-	Audio
-	Tower attacks
-		Melee tower attack
-		Range Tower attack
-		slowdown tower attack
-	Menus
-		start menu
-		tower upgrade menu
-	GUI
-		Unity 4.6
-	
-	
+	Audio	
 		
 Erick
 	Wavepoint Curve path
 	Drag
+	GUI
+		Unity 4.6
+	Tower attacks
+		Melee tower attack
+		Range Tower attack
+		slowdown tower attack
 
 Brandan
+	Enemies
 	tower build menu
 	Done
 		select tower (BeachTD-Prototypes)
