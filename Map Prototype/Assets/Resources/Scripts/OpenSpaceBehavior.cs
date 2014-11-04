@@ -1,6 +1,8 @@
 ﻿using UnityEngine;
 using System.Collections;
 
+// temp class, will be replaced by tower
+
 public class OpenSpaceBehavior : MonoBehaviour {
 
 	// Use this for initialization
