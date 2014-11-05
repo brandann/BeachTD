@@ -31,10 +31,9 @@ public class TowerBehavior : MonoBehaviour {
 		// menu system to: upgrade, sell, or build towers.
 		// pass this GameObject to manager to provide manager with a refrence to
 		// this for Destroying and replacing
-		GameObject towerPrefab = Resources.Load("Prefabs/OpenArea") as GameObject;
+		GameObject towerPrefab = Resources.Load("Prefabs/TowerManagerPrefab") as GameObject;
 		GameObject e = Instantiate(towerPrefab) as GameObject;
 		e.transform.position = this.transform.position;
-		Destroy(this.gameObject);
 	}
 	
 	// returns an array of available upgrades for this tower

@@ -36,7 +36,6 @@ public class TouchController : MonoBehaviour {
     // turns mouse button actions into faux touch
     // inputs only in Unity Editor
     // can add for computer for PC/Mac port
-		Debug.Log("TouchController In Use");
 		if(Input.GetMouseButton(0) || Input.GetMouseButtonDown(0) || Input.GetMouseButtonUp(0))
 		{
 			// set dp to the mouse position
@@ -131,14 +130,12 @@ public class TouchController : MonoBehaviour {
 				// if tower tag is found
 				if(hit.transform.tag == "tower")
 				{
-					Debug.Log("Found Tower");
 					hit.transform.gameObject.SendMessage("OnTouchDown", hit.point, SendMessageOptions.DontRequireReceiver);
 				}
 				
 				// if tower tag is found
 				else if(hit.transform.tag == "open")
 				{
-					Debug.Log("Found Open Space");
 					hit.transform.gameObject.SendMessage("OnTouchDown", hit.point, SendMessageOptions.DontRequireReceiver);
 				}
 			}
