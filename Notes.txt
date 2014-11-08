@@ -1,4 +1,4 @@
-Notes
+﻿Notes
 ————————————————————————————————————————————————————————————————————————
 
 Focus Subjects
@@ -12,28 +12,31 @@ Focus Subjects
 
 ————————————————————————————————————————————————————————————————————————
 Prototypes
-	GUI
-		Unity 4.5
-		Unity 4.6
 	Saving
 	Loading
+	IPHONE
+	Shaders
+	Scriptable Objects (tools)
+	Seagulls
+	Audio	
+		
+Erick
+	Wavepoint Curve path
 	Drag
+	GUI
+		Unity 4.6
 	Tower attacks
 		Melee tower attack
 		Range Tower attack
 		slowdown tower attack
-	Menus
-		start menu
-		tower build menu
-		tower upgrade menu
-	
-		
-Erick
-	Wavepoint Curve path
 
 Brandan
-	select tower
-	build tower
+	Enemies
+	tower build menu
+	Done
+		select tower (BeachTD-Prototypes)
+		build tower (BeachTD-Prototypes)
+		Unity 4.5 (Menu4-5)
 
 ————————————————————————————————————————————————————————————————————————
 Enemies
