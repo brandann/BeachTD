@@ -24,4 +24,10 @@ public class Map {
 		return mMap;
 	}
 	
+	// returns the vector2 array for the waypoints
+	public Vector2[] getWaypoints()
+	{
+		return mWaypoints;
+	}
+	
 }
