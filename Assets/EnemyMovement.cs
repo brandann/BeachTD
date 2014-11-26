@@ -3,21 +3,108 @@ using System.Collections;
 
 public class EnemyMovement : MonoBehaviour {
 
-	private Vector2[] waypoints;
+	private Vector3[] waypoints;
+	private Vector3 nextPoint; // the next waypoint the enemy is traveling to
+	private int listPos = 1; //current index of the array list
+	
+	public float speed;// = .5f; // enemy speed
+	public float distance;// = .1f; //distance enemy must be away from waypoint to got to next
+	public float rotateangle;// = 3; // rotation factor
+	
+	bool right = false; //should the enemy rotate right?
+	bool left = false; //should the enemy rotate left?
+	//private ArrayList waypointList;
 
 	// Use this for initialization
 	void Start () {
 	
 		Mapmanager mm = GameObject.Find("MapManager").GetComponent<Mapmanager>();
 		waypoints = mm.getWaypoints();
-		Vector3 firstposition = new Vector3(waypoints[0].x, waypoints[0].y, 0);
-		firstposition *= mm.getScale();
+		/*for(int i = 0; i < waypoints.GetLength(0); i++)
+		{
+			waypoints[i] *= mm.getScale();
+		}*/
+		Vector3 firstposition = waypoints[0];
+		//firstposition *= mm.getScale();
+		///firstposition.x += mm.getScale()/2;
+		//firstposition.y += mm.getScale()/2;
 		this.transform.position = firstposition;		
+		//waypointList = new ArrayList ();
+		nextPoint = waypoints[1];
+		transform.up = nextPoint - transform.position; //gets the first direction
 	}
 	
 	// Update is called once per frame
 	void Update () {
-	
+
+		float dot = 0;
+		Vector3 currentPos = nextPoint - transform.position; //how close am I to the next waypoint? 
+		
+		if (currentPos != transform.up)// no need to rotate, object is moving in a straight line
+		{
+			dot = transform.up.x * -currentPos.y + transform.up.y * currentPos.x; //how much more do I have to rotate? 
+		}
+		
+		//once enemy gets really close to the waypoint,
+		// go to the next waypoint until there are none left, then reverse
+		if (currentPos.magnitude < distance && listPos < waypoints.GetLength(0))
+		{
+			listPos++;
+			if(listPos == waypoints.GetLength(0))
+			{
+				GameManager gm = GameObject.Find ("Main Camera").GetComponent<GameManager>();
+				gm.enemyhitgoal();
+				Destroy(this.gameObject);
+			}
+			else
+			{
+				nextPoint = waypoints[listPos];
+			}
+			
+			Vector3 dir = nextPoint - transform.position; // the new vector to turn towards
+			
+			// by making dir.y negative we flip the angle 90 degrees. By doing that we can easily use to dot product to determine
+			// right or left. Normally, the dot product returns a - or + angle based on front or behind
+			dot = transform.up.x * -dir.y + transform.up.y * dir.x;
+			
+			if (dot > 0) //my next waypoint is to the right
+			{
+				//print ("b on the right of a");
+				right = true;
+			}
+			else if (dot < 0) // my next waypoint is to the left
+			{
+				left = true;
+				//print ("b on the left of a");
+			}
+			//else
+				//print ("b parallel/antiparallel to a");
+			
+		} 
+		else if (listPos == waypoints.GetLength(0)) //I'm out of waypoints, turn around
+		{
+//			listPos = 0;
+//			waypointList.Reverse ();
+		}
+
+		if (right && dot < 0) { //I want to turn right as long as the dot calculation doesn't go over zero (which means the object has 
+			// rotated past the waypoint it needs to go to)
+			right = false;
+			transform.up = currentPos; //makes sure we dont rotate past our destination 
+		} else if (right) {
+			transform.Rotate (Vector3.forward, -rotateangle * (120f * Time.smoothDeltaTime));
+		}
+		
+		
+		if (left && dot > 0) { //exactly the same as above, but inverted
+			left = false;
+			transform.up = currentPos;
+		} else if(left) {
+			transform.Rotate (Vector3.forward, rotateangle * (120f * Time.smoothDeltaTime));	
+		}
+		
+		//movement operation
+		transform.position += (speed * Time.smoothDeltaTime) * transform.up;
 	}
 }
 /*
@@ -28,40 +115,12 @@ using System.Collections;
 public class enemyMovement : MonoBehaviour {
 	
 	public GameObject[] waypoints;
-	
-	private Vector3 nextPoint; // the next waypoint the enemy is traveling to
-	private float speed = 2;
-	private int listPos = 1; //current index of the array list
-	bool right = false; //should the enemy rotate right?
-	bool left = false; //should the enemy rotate left?
-	
-	private ArrayList waypointList;
-	
-	
-	void Start ()
-	{
-		
-		waypointList = new ArrayList (); 
-		waypoints = GameObject.FindGameObjectsWithTag("waypoint"); //unsorted array of waypoints
-		
-		if (waypoints != null) //at least one waypoint in the array
-		{ 
-			sortWaypoints ();
-			transform.position = (Vector3)waypointList [0]; //starts at origin
-			nextPoint = (Vector3)waypointList [1]; //automatically queues up the first waypoint in the list
-			transform.up = nextPoint - transform.position; //gets the first direction
-		}
-	}
-	
+
 	void Update ()
 	{
-		float dot = 0;
-		Vector3 currentPos = nextPoint - transform.position; //how close am I to the next waypoint? 
 		
-		if (currentPos != transform.up)// no need to rotate, object is moving in a straight line
-		{
-			dot = transform.up.x * -currentPos.y + transform.up.y * currentPos.x; //how much more do I have to rotate? 
-		}
+		
+		
 		
 		//once enemy gets really close to the waypoint,
 		// go to the next waypoint until there are none left, then reverse

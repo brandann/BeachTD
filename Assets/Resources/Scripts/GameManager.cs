@@ -13,4 +13,10 @@ public class GameManager : MonoBehaviour {
 	void Update () {
 	
 	}
+	
+	public void enemyhitgoal()
+	{
+		Mapmanager mm = GameObject.Find("MapManager").GetComponent<Mapmanager>();
+		mm.enemyhitgoal();
+	}
 }
