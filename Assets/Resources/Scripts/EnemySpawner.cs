@@ -1,8 +1,7 @@
 ﻿using UnityEngine;
 using System.Collections;
 
-public class GameManager : MonoBehaviour {
-
+public class EnemySpawner : MonoBehaviour {
 
 	// Use this for initialization
 	void Start () {

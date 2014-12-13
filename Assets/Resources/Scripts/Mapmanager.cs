@@ -3,47 +3,25 @@ using System.Collections;
 
 public class Mapmanager : MonoBehaviour {
 
-	Map currentMap;
-	GameObject OpenSpace;
+	private LevelMap currentMap;
+	private GameObject OpenSpace;
 	private float scale = .5f;
-	
-	private int hits = 0;
-	
-	GUIText gt;
-	
-	
-	// Use this for initialization
+	private float spawnbuttoninterval = 0;
+	private float spawntimedinterval = 0;
+
 	void Start () {
-	
-		gt = GameObject.Find("LifeGUIText").GetComponent<GUIText>();
-		
-		
-		// load the OpenSpace prefab
 		OpenSpace = Resources.Load("Prefabs/OpenArea") as GameObject;
 		
-		// make level 1 on default
-		// this is for testing and should be
-		// removed later when we dont want a map created right away!
-		makeMap1();
+		currentMap = new Map000(scale);
+		//currentMap = new Map001(scale);
 		
 		// build the OpenSapces for Map1
 		// this is for testing and should be
 		// removed later when we dont want a map created right away!
 		makeOpenSpaces();
-		
-		gt.text = "Life: " + (currentMap.getHitsMax() - hits) + "/" + currentMap.getHitsMax();
-		
 	}
 	
-	private float spawnbuttoninterval = 0;
-	private float spawntimedinterval = 0;
-	
-	// Update is called once per frame
 	void Update () {
-	
-		
-		
-	
 		// manual input
 		if(Input.GetAxis("Fire1") > 0f)
 		{
@@ -60,30 +38,14 @@ public class Mapmanager : MonoBehaviour {
 			GameObject e = Instantiate(enemy) as GameObject;
 			spawntimedinterval = Time.realtimeSinceStartup;
 		}
-		
-		
-	}
-	
-	public void enemyhitgoal()
-	{
-		hits++;
-		gt.text = "Life: " + (currentMap.getHitsMax() - hits) + "/" + currentMap.getHitsMax();
 	}
 	
 	// Make OpenSpace traverses trough currentMap's boolean map to
 	// find locations for OpenSpace's
 	private void makeOpenSpaces()
 	{
-	/*
 		// get the currentMaps map to traverse
-		bool [,] map = currentMap.getMap();
-		
-		// get the camera for size's
-		Camera camera = GameObject.Find("Main Camera").GetComponent<Camera>();
-		*/
-	///*
-		// get the currentMaps map to traverse
-		bool [,] map = currentMap.getMap();
+		bool [,] map = currentMap.Map;
 		
 		// get the camera for size's
 		Camera camera = GameObject.Find("Main Camera").GetComponent<Camera>();
@@ -100,8 +62,6 @@ public class Mapmanager : MonoBehaviour {
 				}
 			}
 		}
-		
-		//*/
 	}
 	
 	// Make and set new OpenSpace
@@ -110,128 +70,23 @@ public class Mapmanager : MonoBehaviour {
 	// use camera to get the camera size and orthographicSize
 	private void makeSpace(int i, int j, Camera camera)
 	{
-	
-	
-		// get the camera width
 		float cameraWidth = camera.orthographicSize * camera.aspect;
-		
-		// use the camera size to set the openspace position
-		//float x = (0 - cameraWidth) + (i * scale) + (scale/2);
-		//float y = (0 - camera.orthographicSize) + (j * scale) + (scale/2);
-		
 		float x = (i * scale) + (scale/2);
 		float y = (j * scale) + (scale/2);
 		
-		// instantiate and set set position for new OpenSpace
 		GameObject e = Instantiate(OpenSpace) as GameObject;
 		e.transform.position = new Vector3(x, y, 0);
 	}
 	
 	// return the current maps waypoints for enemys to traverse
-	public Vector3[] getWaypoints() {
-		return currentMap.getWaypoints();
+	public Vector3[] WayPoints
+	{
+		get{ return currentMap.Waypoints; }
 	}
 	
 	// return the scale of the game
-	public float getScale()
+	public float Scale
 	{
-		return scale;
-	}
-	
-	//
-	// --------------------------------------------------------------------
-	// make hard coded maps
-	// --------------------------------------------------------------------
-	//
-	
-	private Vector3[] fixWaypoints(Vector3[] v)
-	{
-		for(int i = 0; i < v.GetLength(0); i++)
-		{
-			v[i].x = (v[i].x * scale) + (scale/2);
-			v[i].y = (v[i].y * scale) + (scale/2);
-		}
-		
-		return v;
-	}
-	
-	// Mirror the map verically so bool array matches
-	// screen map.
-	private bool[,] fixMap(bool[,] m)
-	{
-		for(int i = 0; i < m.GetLength(0); i++)
-		{
-			for (int j = 0; j < m.GetLength(1); j++)
-			{
-				bool temp = m[i,j];
-				m[i,j] = m[m.GetLength(0) -i -1, j];
-				m[i=m.GetLength(0) -i -1,j] = temp;
-			}
-			
-			// if i is >= m.getLength(0) -i -1 then the map has been mirrored to
-			// the half point and needs to be returned.
-			// if the map continues to mirror it will mirrow back to its
-			// origianl layout
-			if( (i >= m.GetLength(0) -i -1) )
-			{
-				return m;
-			}
-		}
-		
-		return m; // should never reach this
-	}
-	
-	
-	
-	// Make the Map class for Map level 1
-	// map is created with a 2d boolean array and corisponding
-	// way points. true spaces are where towers can be built,
-	// false are unbildable spaces/pathways
-	//
-	// could be changed to a text file for easyier change. hard code == bad
-	private void makeMap1()
-	{
-		// temp bool variables for readability only
-		// remove for final to minimize work
-		bool I = true;
-		bool O = false;
-		
-		// map array to make Map class with
-		bool[,] map = new bool[,]
-		{
-			{	I,	I,	I,	I,	I,	I,	I,	I,	I,	I,	I,	I	},
-			{	I,	I,	I,	I,	I,	I,	I,	I,	I,	I,	I,	I	},
-			{	I,	I,	I,	I,	I,	O,	O,	O,	O,	O,	O,	O	},
-			{	I,	I,	I,	I,	I,	O,	I,	I,	I,	I,	I,	I	},
-			{	O,	O,	O,	O,	O,	O,	I,	I,	I,	O,	O,	O	},
-			{	I,	I,	I,	I,	I,	I,	I,	I,	I,	O,	O,	O	},
-			{	I,	I,	I,	I,	I,	I,	I,	I,	I,	O,	O,	O	},
-		};
-		
-		// way points to be passed to enimies for map
-		// traversal. can be a different type for simplier
-		// reversal for journey back.
-		Vector3[] waypoints = new Vector3[]
-		{
-			new Vector3(0,2,0),
-			new Vector3(5,2,0),
-			new Vector3(5,4,0),
-            new Vector3(11,4,0)
-		};
-		
-		int hitsmax = 10;
-		
-		// call to mirror map so it matchs the array
-		map = fixMap(map);
-		
-		// call to scale down the map waypoints
-		waypoints = fixWaypoints(waypoints);
-		
-		// create new Map() and set to current map
-		currentMap = new Map();
-		
-		// give currentMap the map and waypoint information to be accessed
-		// for future use and enemy support
-		currentMap.setMap(map,waypoints, hitsmax);
+		get{ return currentMap.Scale; }
 	}
 }
