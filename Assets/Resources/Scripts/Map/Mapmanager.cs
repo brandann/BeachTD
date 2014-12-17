@@ -3,16 +3,22 @@ using System.Collections;
 
 public class Mapmanager : MonoBehaviour {
 
-	private LevelMap currentMap;
+	private LevelMap _currentMap;
 	private GameObject OpenSpace;
-	private float scale = .5f;
-	private float spawnbuttoninterval = 0;
-	private float spawntimedinterval = 0;
+	private EnemySpawner _enemySpawner;
+	private float _scale = .5f;
+	private float _spawnbuttoninterval = 0;
+	private float _spawntimedinterval = 0;
 
 	void Start () {
 		OpenSpace = Resources.Load("Prefabs/OpenArea") as GameObject;
+		//_enemySpawner = GameObject.Find("EnemySpawner").GetComponent<EnemySpawner>();
+		//if(_enemySpawner == null)
+		//{
+		//	throw new UnassignedReferenceException();
+		//}
 		
-		currentMap = new Map000(scale);
+		_currentMap = new Map000(_scale);
 		//currentMap = new Map001(scale);
 		
 		// build the OpenSapces for Map1
@@ -25,18 +31,20 @@ public class Mapmanager : MonoBehaviour {
 		// manual input
 		if(Input.GetAxis("Fire1") > 0f)
 		{
-			if ((Time.realtimeSinceStartup - spawnbuttoninterval) > .25f) {
+			if ((Time.realtimeSinceStartup - _spawnbuttoninterval) > .25f) {
+				//_enemySpawner.SpawnEnemy("Enemy", this.StartingPosition);
 				GameObject enemy = Resources.Load("Prefabs/Enemy") as GameObject;
 				GameObject e = Instantiate(enemy) as GameObject;
-				spawnbuttoninterval = Time.realtimeSinceStartup;
+				_spawnbuttoninterval = Time.realtimeSinceStartup;
 			}
 		}
 		
 		// automatic input
-		if ((Time.realtimeSinceStartup - spawntimedinterval) > 2) {
+		if ((Time.realtimeSinceStartup - _spawntimedinterval) > 2) {
+			//_enemySpawner.SpawnEnemy("Enemy", this.StartingPosition);
 			GameObject enemy = Resources.Load("Prefabs/Enemy") as GameObject;
 			GameObject e = Instantiate(enemy) as GameObject;
-			spawntimedinterval = Time.realtimeSinceStartup;
+			_spawntimedinterval = Time.realtimeSinceStartup;
 		}
 	}
 	
@@ -45,7 +53,7 @@ public class Mapmanager : MonoBehaviour {
 	private void makeOpenSpaces()
 	{
 		// get the currentMaps map to traverse
-		bool [,] map = currentMap.Map;
+		bool [,] map = _currentMap.Map;
 		
 		// get the camera for size's
 		Camera camera = GameObject.Find("Main Camera").GetComponent<Camera>();
@@ -71,22 +79,64 @@ public class Mapmanager : MonoBehaviour {
 	private void makeSpace(int i, int j, Camera camera)
 	{
 		float cameraWidth = camera.orthographicSize * camera.aspect;
-		float x = (i * scale) + (scale/2);
-		float y = (j * scale) + (scale/2);
+		float x = (i * _scale) + (_scale/2);
+		float y = (j * _scale) + (_scale/2);
 		
 		GameObject e = Instantiate(OpenSpace) as GameObject;
 		e.transform.position = new Vector3(x, y, 0);
 	}
 	
+	#region Public Accessors
+	
+	public void SetCurrentMap(int i)
+	{
+		string org_map = _currentMap.ToString();
+		switch(i)
+		{
+			case 0:
+			_currentMap = new Map000(_scale);
+			break;
+			case 1:
+			_currentMap = new Map001(_scale);
+			break;
+			default:
+			break;
+		}
+		if(org_map != _currentMap.ToString())
+		{
+			makeOpenSpaces();
+		}
+	}
+	
+	public LevelMap CurrentMap
+	{
+		get{ return _currentMap; }
+	}
+	
 	// return the current maps waypoints for enemys to traverse
 	public Vector3[] WayPoints
 	{
-		get{ return currentMap.Waypoints; }
+		get{ return _currentMap.Waypoints; }
 	}
 	
 	// return the scale of the game
 	public float Scale
 	{
-		get{ return currentMap.Scale; }
+		get{ return _scale; }
 	}
+	
+	public Vector3 StartingPosition
+	{
+		get{ 
+			Vector3 pos = _currentMap.Waypoints[0]; 
+			if(pos == null)
+			{
+				return Vector3.zero;
+			}
+				return pos;
+			
+		}
+	}
+	
+	#endregion
 }
