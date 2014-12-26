@@ -5,7 +5,7 @@ AnimatorController:
   m_ObjectHideFlags: 0
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
-  m_Name: StartButton
+  m_Name: CreditsButton
   serializedVersion: 2
   m_AnimatorParameters:
   - m_Name: Slide
@@ -17,7 +17,7 @@ AnimatorController:
   m_AnimatorLayers:
   - serializedVersion: 3
     m_Name: Base Layer
-    m_StateMachine: {fileID: 110775192}
+    m_StateMachine: {fileID: 110745572}
     m_Mask: {fileID: 0}
     m_BlendingMode: 0
     m_SyncedLayerIndex: -1
@@ -26,15 +26,15 @@ AnimatorController:
     m_IKPass: 0
     m_SyncedLayerAffectsTiming: 0
     m_Controller: {fileID: 9100000}
---- !u!1101 &110119946
+--- !u!1101 &110133562
 Transition:
   serializedVersion: 2
   m_ObjectHideFlags: 3
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
   m_Name: 
-  m_SrcState: {fileID: 110256774}
-  m_DstState: {fileID: 110275192}
+  m_SrcState: {fileID: 110245572}
+  m_DstState: {fileID: 110227938}
   m_TransitionDuration: .125
   m_TransitionOffset: 0
   m_Conditions:
@@ -46,15 +46,15 @@ Transition:
   m_Solo: 0
   m_Mute: 0
   m_CanTransitionToSelf: 0
---- !u!1101 &110186770
+--- !u!1101 &110155192
 Transition:
   serializedVersion: 2
   m_ObjectHideFlags: 3
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
   m_Name: 
-  m_SrcState: {fileID: 110275192}
-  m_DstState: {fileID: 110256774}
+  m_SrcState: {fileID: 110227938}
+  m_DstState: {fileID: 110245572}
   m_TransitionDuration: .125
   m_TransitionOffset: 0
   m_Conditions:
@@ -66,61 +66,58 @@ Transition:
   m_Solo: 0
   m_Mute: 0
   m_CanTransitionToSelf: 0
---- !u!1102 &110256774
+--- !u!1102 &110227938
 State:
   m_ObjectHideFlags: 3
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
-  m_Name: ButtonSlideInHorizontal
+  m_Name: SlideInRight
   m_Speed: -1
   m_CycleOffset: 0
   m_Motions:
-  - {fileID: 7400000, guid: 8d222021d8207444aa941016fa4ecd19, type: 2}
-  m_ParentStateMachine: {fileID: 110775192}
-  m_Position: {x: 336, y: 120, z: 0}
+  - {fileID: 7400000, guid: 434a062780068074cb52dbb167d35b15, type: 2}
+  m_ParentStateMachine: {fileID: 110745572}
+  m_Position: {x: -180, y: 48, z: 0}
   m_IKOnFeet: 0
   m_Mirror: 0
   m_Tag: 
---- !u!1102 &110275192
+--- !u!1102 &110245572
 State:
   m_ObjectHideFlags: 3
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
-  m_Name: ButtonSlideOutHorizontal
+  m_Name: SlideOutRight
   m_Speed: 1
   m_CycleOffset: 0
   m_Motions:
-  - {fileID: 7400000, guid: 8d222021d8207444aa941016fa4ecd19, type: 2}
-  m_ParentStateMachine: {fileID: 110775192}
-  m_Position: {x: 48, y: 120, z: 0}
+  - {fileID: 7400000, guid: 434a062780068074cb52dbb167d35b15, type: 2}
+  m_ParentStateMachine: {fileID: 110745572}
+  m_Position: {x: 120, y: 48, z: 0}
   m_IKOnFeet: 0
   m_Mirror: 0
   m_Tag: 
---- !u!1107 &110775192
+--- !u!1107 &110745572
 StateMachine:
   serializedVersion: 2
   m_ObjectHideFlags: 3
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
   m_Name: Base Layer
-  m_DefaultState: {fileID: 110256774}
+  m_DefaultState: {fileID: 110227938}
   m_States:
-  - {fileID: 110275192}
-  - {fileID: 110256774}
+  - {fileID: 110245572}
+  - {fileID: 110227938}
   m_ChildStateMachine: []
   m_ChildStateMachinePosition: []
   m_OrderedTransitions:
     data:
-      first: {fileID: 110256774}
+      first: {fileID: 110227938}
       second:
-      - {fileID: 110119946}
+      - {fileID: 110155192}
     data:
-      first: {fileID: 0}
-      second: []
-    data:
-      first: {fileID: 110275192}
+      first: {fileID: 110245572}
       second:
-      - {fileID: 110186770}
+      - {fileID: 110133562}
   m_MotionSetCount: 1
-  m_AnyStatePosition: {x: 168, y: 36, z: 0}
+  m_AnyStatePosition: {x: 48, y: -36, z: 0}
   m_ParentStateMachinePosition: {x: 800, y: 20, z: 0}
