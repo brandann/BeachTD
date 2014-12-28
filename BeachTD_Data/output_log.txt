@@ -12,9 +12,19 @@ Platform assembly: C:\Users\mixco\Documents\UnityProjects\BeachTD\BeachTD_Data\M
 Loading C:\Users\mixco\Documents\UnityProjects\BeachTD\BeachTD_Data\Managed\Assembly-CSharp.dll into Unity Child Domain
 Platform assembly: C:\Users\mixco\Documents\UnityProjects\BeachTD\BeachTD_Data\Managed\UnityEngine.UI.dll (this message is harmless)
 Loading C:\Users\mixco\Documents\UnityProjects\BeachTD\BeachTD_Data\Managed\UnityEngine.UI.dll into Unity Child Domain
-- Completed reload, in  0.473 seconds
+- Completed reload, in  0.469 seconds
 desktop: 1366x768 60Hz; virtual: 1366x768 at 0,0
 <RI> Initializing input.
 <RI> Input initialized.
 Platform assembly: C:\Users\mixco\Documents\UnityProjects\BeachTD\BeachTD_Data\Managed\System.Core.dll (this message is harmless)
 Platform assembly: C:\Users\mixco\Documents\UnityProjects\BeachTD\BeachTD_Data\Managed\System.dll (this message is harmless)
+UnloadTime: 11.895964 ms
+Unloading 4 Unused Serialized files (Serialized files now loaded: 0 / Dirty serialized files: 0)
+
+Unloading 14 unused Assets to reduce memory usage. Loaded Objects now: 147.
+Total: 2.037490 ms (FindLiveObjects: 0.014585 ms CreateObjectMapping: 0.023903 ms MarkObjects: 0.230934 ms  DeleteObjects: 0.299404 ms)
+
+Prefabs/Enemy
+ 
+(Filename: C:/BuildAgent/work/d63dfc6385190b60/artifacts/StandalonePlayerGenerated/UnityEngineDebug.cpp Line: 49)
+
