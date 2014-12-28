@@ -53,6 +53,10 @@ public class TowerManager : MonoBehaviour {
 		btn2 = setButton(upgrades[1], btn2pos);
 		btn3 = setButton(upgrades[2], btn3pos);
 		btn4 = setButton(upgrades[3], btn4pos);
+		
+		GameObject tower = Resources.Load("Prefabs/TowerA") as GameObject;
+		GameObject e = Instantiate(tower) as GameObject;
+		//e.transform.position = this.transform.position;
 	}
 	
   // setUpgradeTower to the tower to be built
