@@ -31,19 +31,30 @@ public class Mapmanager : MonoBehaviour {
 		// manual input
 		if(Input.GetAxis("Fire1") > 0f)
 		{
-			if ((Time.realtimeSinceStartup - _spawnbuttoninterval) > .25f) {
+			if ((Time.realtimeSinceStartup - _spawnbuttoninterval) > .25f) 
+			{
 				//_enemySpawner.SpawnEnemy("Enemy", this.StartingPosition);
-				GameObject enemy = Resources.Load("Prefabs/Enemy") as GameObject;
+				GameObject enemy = Resources.Load("Prefabs/EnemyA0") as GameObject;
 				GameObject e = Instantiate(enemy) as GameObject;
 				_spawnbuttoninterval = Time.realtimeSinceStartup;
 			}
 		}
 		
 		// automatic input
-		if ((Time.realtimeSinceStartup - _spawntimedinterval) > 2) {
+		if ((Time.realtimeSinceStartup - _spawntimedinterval) > 2) 
+		{
+			
 			//_enemySpawner.SpawnEnemy("Enemy", this.StartingPosition);
-			GameObject enemy = Resources.Load("Prefabs/Enemy") as GameObject;
-			GameObject e = Instantiate(enemy) as GameObject;
+			int r = Random.Range(0,3);
+			GameObject enemy = Resources.Load("Prefabs/EnemyA0") as GameObject;
+			if (r == 1)
+				enemy = Resources.Load("Prefabs/EnemyB0") as GameObject;
+			else if (r == 2)
+				enemy = Resources.Load("Prefabs/EnemyC0") as GameObject;
+			if(enemy != null)
+			{
+				GameObject e = Instantiate(enemy) as GameObject;
+			}
 			_spawntimedinterval = Time.realtimeSinceStartup;
 		}
 	}
