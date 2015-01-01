@@ -41,10 +41,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2089aa39540af4ed09e37b273fb2fcab, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  Boss: 0
   HasEgg: 0
   Health: 1
-  Speed: 0
   CurrentEnemyState: 0
   NormalSpriteRenderer: {fileID: 0}
   BossSpriteRenderer: {fileID: 0}
@@ -82,7 +80,7 @@ SpriteRenderer:
   m_ScaleInLightmap: 1
   m_SortingLayerID: 0
   m_SortingOrder: 0
-  m_Sprite: {fileID: 21300000, guid: a750abcb032d94494a048f57a375cbdc, type: 3}
+  m_Sprite: {fileID: 21300000, guid: 6430b8fa651da463e99f5a04a00cec92, type: 3}
   m_Color: {r: .381487876, g: .926470578, b: .452899456, a: 1}
 --- !u!1001 &100100000
 Prefab:
