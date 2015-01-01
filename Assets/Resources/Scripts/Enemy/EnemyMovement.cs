@@ -6,6 +6,7 @@ public class EnemyMovement : MonoBehaviour {
 	private Vector3[] waypoints;
 	private Vector3 nextPoint; // the next waypoint the enemy is traveling to
 	private int listPos = 1; //current index of the array list
+	private float _originalSpeed;
 	
 	public float speed;// = .5f; // enemy speed
 	public float distance;// = .1f; //distance enemy must be away from waypoint to got to next
@@ -18,8 +19,8 @@ public class EnemyMovement : MonoBehaviour {
 	// Use this for initialization
 	void Start () {
 	
-		Mapmanager mm = GameObject.Find("MapManager").GetComponent<Mapmanager>();
-		waypoints = mm.WayPoints;
+		Global global = GameObject.Find("Global").GetComponent<Global>();
+		waypoints = global.MapManager.WayPoints;
 		/*for(int i = 0; i < waypoints.GetLength(0); i++)
 		{
 			waypoints[i] *= mm.getScale();
@@ -32,10 +33,16 @@ public class EnemyMovement : MonoBehaviour {
 		//waypointList = new ArrayList ();
 		nextPoint = waypoints[1];
 		transform.up = nextPoint - transform.position; //gets the first direction
+		_originalSpeed = speed;
 	}
 	
 	// Update is called once per frame
 	void Update () {
+	
+		if(Global.CurrentGameState != Global.GameState.Game)
+		{
+			return; // early out for not in playmode
+		}
 
 		float dot = 0;
 		Vector3 currentPos = nextPoint - transform.position; //how close am I to the next waypoint? 

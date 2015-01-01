@@ -55,10 +55,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2089aa39540af4ed09e37b273fb2fcab, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  Boss: 0
   HasEgg: 0
   Health: 1
-  Speed: 0
   CurrentEnemyState: 0
   NormalSpriteRenderer: {fileID: 0}
   BossSpriteRenderer: {fileID: 0}

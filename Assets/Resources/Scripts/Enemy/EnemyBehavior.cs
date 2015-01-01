@@ -7,7 +7,7 @@ public class EnemyBehavior : MonoBehaviour {
 
 	void Awake () 
 	{
-		Speed = this.GetComponent<EnemyMovement>().speed;
+		CurrentEnemyState = EnemyState.Active;
 	}
 	
 	void Update () 
@@ -17,10 +17,8 @@ public class EnemyBehavior : MonoBehaviour {
 	#endregion
 	
 	#region Public Members
-	public bool Boss;
 	public bool HasEgg = false;
 	public float Health;
-	public float Speed;
 	public enum EnemyState { Active, Stunned, Dying }
 	public EnemyState CurrentEnemyState;
 	public SpriteRenderer NormalSpriteRenderer;

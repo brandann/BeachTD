@@ -1,70 +1,31 @@
 ﻿using UnityEngine;
 using System.Collections;
 
-public class Mapmanager : MonoBehaviour {
+public class Mapmanager{
 
-	private LevelMap _currentMap;
 	private GameObject OpenSpace;
-	private EnemySpawner _enemySpawner;
-	private float _scale = .5f;
-	private float _spawnbuttoninterval = 0;
-	private float _spawntimedinterval = 0;
+	private Global global;
+	private float _scale;
+	private LevelMap _currentMap;
 
-	void Start () {
-		OpenSpace = Resources.Load("Prefabs/OpenArea") as GameObject;
-		//_enemySpawner = GameObject.Find("EnemySpawner").GetComponent<EnemySpawner>();
-		//if(_enemySpawner == null)
-		//{
-		//	throw new UnassignedReferenceException();
-		//}
-		
-		_currentMap = new Map000(_scale);
-		//currentMap = new Map001(scale);
-		
-		// build the OpenSapces for Map1
-		// this is for testing and should be
-		// removed later when we dont want a map created right away!
-		makeOpenSpaces();
-	}
 	
-	void Update () {
-		// manual input
-		if(Input.GetAxis("Fire1") > 0f)
-		{
-			if ((Time.realtimeSinceStartup - _spawnbuttoninterval) > .25f) 
-			{
-				//_enemySpawner.SpawnEnemy("Enemy", this.StartingPosition);
-				GameObject enemy = Resources.Load("Prefabs/EnemyA0") as GameObject;
-				GameObject e = Instantiate(enemy) as GameObject;
-				_spawnbuttoninterval = Time.realtimeSinceStartup;
-			}
-		}
-		
-		// automatic input
-		if ((Time.realtimeSinceStartup - _spawntimedinterval) > 2) 
-		{
-			
-			//_enemySpawner.SpawnEnemy("Enemy", this.StartingPosition);
-			int r = Random.Range(0,3);
-			GameObject enemy = Resources.Load("Prefabs/EnemyA0") as GameObject;
-			if (r == 1)
-				enemy = Resources.Load("Prefabs/EnemyB0") as GameObject;
-			else if (r == 2)
-				enemy = Resources.Load("Prefabs/EnemyC0") as GameObject;
-			if(enemy != null)
-			{
-				GameObject e = Instantiate(enemy) as GameObject;
-			}
-			_spawntimedinterval = Time.realtimeSinceStartup;
-		}
+	public Mapmanager()
+	{
+		OpenSpace = Resources.Load("Prefabs/OpenArea") as GameObject;
+		global = GameObject.Find("Global").GetComponent<Global>();
+	}
+
+	public void initilize(float scale)
+	{
+		_scale = scale;
 	}
 	
 	// Make OpenSpace traverses trough currentMap's boolean map to
 	// find locations for OpenSpace's
-	private void makeOpenSpaces()
+	public void InitilizeMap(LevelMap loadMap)
 	{
-		// get the currentMaps map to traverse
-		bool [,] map = _currentMap.Map;
+		_currentMap = loadMap;
+		bool [,] map = loadMap.Map;
 		
 		// get the camera for size's
 		Camera camera = GameObject.Find("Main Camera").GetComponent<Camera>();
@@ -93,37 +54,10 @@ public class Mapmanager : MonoBehaviour {
 		float x = (i * _scale) + (_scale/2);
 		float y = (j * _scale) + (_scale/2);
 		
-		GameObject e = Instantiate(OpenSpace) as GameObject;
-		e.transform.position = new Vector3(x, y, 0);
+		global.SpawnTower(OpenSpace, new Vector3(x, y, 0));
 	}
 	
 	#region Public Accessors
-	
-	public void SetCurrentMap(int i)
-	{
-		string org_map = _currentMap.ToString();
-		switch(i)
-		{
-			case 0:
-			_currentMap = new Map000(_scale);
-			break;
-			case 1:
-			_currentMap = new Map001(_scale);
-			break;
-			default:
-			break;
-		}
-		if(org_map != _currentMap.ToString())
-		{
-			makeOpenSpaces();
-		}
-	}
-	
-	public LevelMap CurrentMap
-	{
-		get{ return _currentMap; }
-	}
-	
 	// return the current maps waypoints for enemys to traverse
 	public Vector3[] WayPoints
 	{
@@ -138,16 +72,15 @@ public class Mapmanager : MonoBehaviour {
 	
 	public Vector3 StartingPosition
 	{
-		get{ 
+		get
+		{ 
 			Vector3 pos = _currentMap.Waypoints[0]; 
 			if(pos == null)
 			{
 				return Vector3.zero;
 			}
-				return pos;
-			
+			return pos;
 		}
 	}
-	
 	#endregion
 }
