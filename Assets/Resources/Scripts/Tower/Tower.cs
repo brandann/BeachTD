@@ -16,21 +16,23 @@ public abstract class Tower : MonoBehaviour {
     public enum TowerState { Active, InActive };
 
     //Cost of building 
-    public int Cost { public get; private set; }
+    public int Cost { get; private set; }
 
     //Time between firing
-    public float CoolDownTime { public get; private set; }
+    public float CoolDownTime { get; private set; }
     
     //Current state of the tower
-    public TowerState State { public get; private set;}
+    public TowerState State { get; private set;}
 
     //Store possible targets
     private List<Enemy> Targets;
 
     //Decide which target to attack
-    private abstract void PrioritizeTargets();
+    protected abstract void PrioritizeTargets();
 
     //Take relevant action (attack, slow etc, deploy troops etc)
-    private abstract void Act(); 
+    protected abstract void Act();
+ 
+
     
 }
