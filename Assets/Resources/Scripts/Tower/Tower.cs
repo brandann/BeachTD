@@ -43,6 +43,7 @@ public abstract class Tower : MonoBehaviour {
         if(mAnim == null)
             Debug.LogError("Missing animator");
 
+        Targets = new List<Enemy>();
     }
  
 
