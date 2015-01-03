@@ -24,8 +24,8 @@ public abstract class Tower : MonoBehaviour {
     //Current state of the tower
     public TowerState State { get; private set;}
 
-    //Store possible targets
-    protected List<Enemy> Targets;
+    //Store possible targets  
+    protected List<GameObject> Targets; //todo collection should be of enemy base class
 
     //Decide which target to attack
     protected abstract void PrioritizeTargets();
@@ -43,7 +43,7 @@ public abstract class Tower : MonoBehaviour {
         if(mAnim == null)
             Debug.LogError("Missing animator");
 
-        Targets = new List<Enemy>();
+        Targets = new List<GameObject>();
     }
  
 
