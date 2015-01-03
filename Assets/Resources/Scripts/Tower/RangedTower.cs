@@ -3,9 +3,30 @@ using System.Collections;
 
 public class RangedTower : Tower {
 
-    protected override void Act()
+    protected override void Start()
     {
-        throw new System.NotImplementedException();
+        base.Start();
+        mFlashHash = Animator.StringToHash("Flash");
+        mStopHash = Animator.StringToHash("Stop");
+        StartCoroutine(Act());
+    }
+
+    void Update()
+    {
+       
+    }
+
+ 
+
+    protected override IEnumerator Act()
+    {
+        while (State == TowerState.Active)
+        {
+            mAnim.SetTrigger(mFlashHash);
+            yield return new WaitForSeconds(CoolDownTime);
+        }
+
+        mAnim.SetTrigger(mStopHash);
     }
 
     protected override void PrioritizeTargets()
@@ -15,7 +36,9 @@ public class RangedTower : Tower {
 
     void OnTriggerEnter2D(Collider2D other)
     {
-        EnemyMovement em = other.gameObject.GetComponent<EnemyMovement>();
+        EnemyBehavior em = other.gameObject.GetComponent<EnemyBehavior>();
+        
+        //Ignore collisions with non-enemies
         if (em == null)
             return;
 
@@ -33,5 +56,7 @@ public class RangedTower : Tower {
         Debug.Log("Removed Enemy from targets");
     }
 
+    private int mFlashHash;
+    private int mStopHash;
 	
 }

@@ -19,10 +19,10 @@ public abstract class Tower : MonoBehaviour {
     public int Cost { get; private set; }
 
     //Time between firing
-    public float CoolDownTime { get; private set; }
+    public float CoolDownTime { get; protected set; }
     
     //Current state of the tower
-    public TowerState State { get; private set;}
+    public TowerState State { get; protected set;}
 
     //Store possible targets  
     protected List<GameObject> Targets; //todo collection should be of enemy base class
@@ -31,7 +31,7 @@ public abstract class Tower : MonoBehaviour {
     protected abstract void PrioritizeTargets();
 
     //Take relevant action (attack, slow etc, deploy troops etc)
-    protected abstract void Act();
+    protected abstract IEnumerator Act();
 
     //Animator Controller
     protected Animator mAnim;
@@ -45,6 +45,9 @@ public abstract class Tower : MonoBehaviour {
 
         Targets = new List<GameObject>();
     }
+
+    //Timestamp of last action
+    protected float LastActionTime;
  
 
     
