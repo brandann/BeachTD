@@ -32,6 +32,18 @@ public abstract class Tower : MonoBehaviour {
 
     //Take relevant action (attack, slow etc, deploy troops etc)
     protected abstract void Act();
+
+    //Animator Controller
+    protected Animator mAnim;
+
+    protected virtual void Start()
+    {
+        mAnim = gameObject.GetComponent<Animator>();
+        
+        if(mAnim == null)
+            Debug.LogError("Missing animator");
+
+    }
  
 
     
