@@ -13,7 +13,7 @@ public class Enemy{}
 
 public abstract class Tower : MonoBehaviour {
 
-    public enum TowerState { Active, InActive };
+    public enum TowerState { Idle, Acting, Disabled };
 
     //Cost of building 
     public int Cost { get; private set; }
@@ -31,7 +31,7 @@ public abstract class Tower : MonoBehaviour {
     protected abstract void PrioritizeTargets();
 
     //Take relevant action (attack, slow etc, deploy troops etc)
-    protected abstract IEnumerator Act();
+    protected abstract void Act();
 
     //Animator Controller
     protected Animator mAnim;
