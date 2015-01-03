@@ -13,9 +13,10 @@ public class RangedTower : Tower {
         throw new System.NotImplementedException();
     }
 
-    void OnTriggerEnter()
+    void OnTriggerEnter2D(Collider2D other)
     {
         Debug.Log("Enemy detected");
     }
+
 	
 }

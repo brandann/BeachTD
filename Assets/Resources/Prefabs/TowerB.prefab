@@ -12,6 +12,7 @@ GameObject:
   - 114: {fileID: 11400000}
   - 58: {fileID: 5898070}
   - 95: {fileID: 9598070}
+  - 50: {fileID: 5045318}
   m_Layer: 0
   m_Name: TowerB
   m_TagString: Untagged
@@ -31,6 +32,21 @@ Transform:
   m_Children: []
   m_Father: {fileID: 0}
   m_RootOrder: 0
+--- !u!50 &5045318
+Rigidbody2D:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 100000}
+  m_Mass: 1
+  m_LinearDrag: 0
+  m_AngularDrag: .0500000007
+  m_GravityScale: 1
+  m_FixedAngle: 0
+  m_IsKinematic: 1
+  m_Interpolate: 0
+  m_SleepingMode: 1
+  m_CollisionDetection: 0
 --- !u!58 &5898070
 CircleCollider2D:
   m_ObjectHideFlags: 1
