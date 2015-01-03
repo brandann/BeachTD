@@ -25,7 +25,7 @@ public abstract class Tower : MonoBehaviour {
     public TowerState State { get; private set;}
 
     //Store possible targets
-    private List<Enemy> Targets;
+    protected List<Enemy> Targets;
 
     //Decide which target to attack
     protected abstract void PrioritizeTargets();
