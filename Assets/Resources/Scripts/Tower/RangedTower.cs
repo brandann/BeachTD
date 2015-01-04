@@ -22,7 +22,8 @@ public class RangedTower : Tower {
 
     protected override void PrioritizeTargets()
     {
-        throw new System.NotImplementedException();
+        //Need to sort by distance to eggs
+        //Targets.Sort( delegate (EnemyBehavior
     }
 
     void OnTriggerEnter2D(Collider2D other)
@@ -33,7 +34,9 @@ public class RangedTower : Tower {
         if (eb == null)
             return;
 
-        Targets.Add(other.gameObject);
+        Targets.Add(eb);
+
+        PrioritizeTargets();
 
         Debug.Log("Added Enemy to targets");
     }
@@ -44,7 +47,7 @@ public class RangedTower : Tower {
         if (eb == null)
             return;
 
-        Targets.Remove(eb.gameObject);
+        Targets.Remove(eb);
         Debug.Log("Removed Enemy from targets");
 
         switch (State)
