@@ -7,8 +7,9 @@ using UnityEngine;
 using System.Collections;
 using System.Collections.Generic;
 
-public abstract class Tower : MonoBehaviour {
-
+public abstract class Tower : MonoBehaviour
+{
+    #region public inteface
     public enum TowerState { Idle, Acting, Disabled };
 
     //Cost of building 
@@ -18,35 +19,76 @@ public abstract class Tower : MonoBehaviour {
     public float CoolDownTime { get; protected set; }
     
     //Current state of the tower
-    public TowerState State { get; protected set;}
+    public TowerState CurrentState {
+        get
+        {
+            return _currentState;
+        }
+        protected set
+        {
+            _previousState = _currentState;
+            _currentState = value;
+        }
+    }
+
+    /// <summary>
+    /// Change state to Disabled
+    /// </summary>
+    public abstract void DisableTower();
+
+    /// <summary>
+    /// Changes state from Disabled to either Idle or Acting
+    /// </summary>
+    public abstract void EnableTower();
+
+    #endregion
+
+    protected abstract void TransitionToState(TowerState toState);
+
+    protected abstract void UpdateAnimator();
+       
+    //Timestamp of last action
+    protected float _lastActionTime;
+
+    //Time available to act again
+    protected float _nextActionTime;
+
+    //Animator Controller
+    protected Animator _anim;
 
     //Store possible targets  
     protected List<EnemyBehavior> Targets; //todo collection should be of enemy base class
 
-    //Decide which target to attack
+    /// <summary>
+    /// CurrentState of tower before last state transition
+    /// </summary>
+    protected TowerState _previousState;
+
+    protected TowerState _currentState;
+
+    /// <summary>
+    /// Decide which target to attack
+    /// </summary>
     protected abstract void PrioritizeTargets();
 
-    //Take relevant action (attack, slow etc, deploy troops etc)
-    protected abstract void Act();
-
-    //Animator Controller
-    protected Animator mAnim;
+    /// <summary>
+    /// Take relevant action (attack, slow etc, deploy troops etc)
+    /// </summary>
+    protected abstract void Act();      
 
     protected virtual void Start()
     {
-        mAnim = gameObject.GetComponent<Animator>();
+        _anim = gameObject.GetComponent<Animator>();
         
-        if(mAnim == null)
+        if(_anim == null)
             Debug.LogError("Missing animator");
 
         Targets = new List<EnemyBehavior>();
     }
 
-    //Timestamp of last action
-    protected float LastActionTime;
     
-    //Time available to act again
-    protected float NextActionTime;
+
+   
 
     
 }

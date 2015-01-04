@@ -1,24 +1,78 @@
 ﻿using UnityEngine;
 using System.Collections;
 
-public class RangedTower : Tower {
+public class RangedTower : Tower
+{
+
+    public GameObject ProjectilePrefab;
+
+    public override void DisableTower()
+    {
+        TransitionToState(TowerState.Disabled);
+    }
+
+    public override void EnableTower()
+    {
+        TransitionToState(_previousState);
+    }
+
+    protected override void TransitionToState(Tower.TowerState toState)
+    {           
+        CurrentState = toState;
+       
+        UpdateAnimator();  
+    }
+
+    protected override void UpdateAnimator()
+    {
+        switch (CurrentState)
+        {
+            case TowerState.Disabled:
+            case TowerState.Idle:
+                _anim.SetTrigger(_stopHash);
+                break;
+        }
+    }
 
     protected override void Start()
     {
         base.Start();
-        mFlashHash = Animator.StringToHash("Flash");
-        mStopHash = Animator.StringToHash("Stop");
+        _flashHash = Animator.StringToHash("Flash");
+        _stopHash = Animator.StringToHash("Stop");
     }
 
     void Update()
     {
-       
+        if (CurrentState != TowerState.Acting)
+            return;
+
+        if (Time.time >= _nextActionTime)
+            Act();
     }
 
+    /// <summary>
+    /// Fire Tower Action creates a projectile and sends it toward the highest priority target. 
+    /// Updates timer for next action. If no targets exist transitions tower to Idle
+    /// </summary>
     protected override void Act()
-    {       
-        mAnim.SetTrigger(mFlashHash);            
+    {
+        if (Targets.Count == 0)
+        {
+
+            _anim.SetTrigger(_stopHash);
+
+
+        }
+
+
+
+        _anim.SetTrigger(_flashHash);
+
+
     }
+
+
+
 
     protected override void PrioritizeTargets()
     {
@@ -29,7 +83,7 @@ public class RangedTower : Tower {
     void OnTriggerEnter2D(Collider2D other)
     {
         EnemyBehavior eb = other.gameObject.GetComponent<EnemyBehavior>();
-        
+
         //Ignore collisions with non-enemies
         if (eb == null)
             return;
@@ -50,24 +104,12 @@ public class RangedTower : Tower {
         Targets.Remove(eb);
         Debug.Log("Removed Enemy from targets");
 
-        switch (State)
-        {
-            case TowerState.Disabled:
-                return;
-            case TowerState.Idle:
-            case TowerState.Acting:
-                PrioritizeTargets();
-                break;
-            default:
-                Debug.LogError("What state are you in?");
-                break;
-        }
     }
 
-    //Animator Triggers
-    private int mFlashHash;
-    private int mStopHash;
 
-    //Indicates ranged tower is firing or waiting to fire at a target used to start and stop coroutine
-    private bool mFiring;
+
+    //Animator Triggers
+    private int _flashHash;
+    private int _stopHash;
 }
+

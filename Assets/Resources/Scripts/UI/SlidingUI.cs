@@ -12,7 +12,7 @@ public class SlidingUI : MonoBehaviour {
         //Trigger between states
 		mSlideHash = Animator.StringToHash ("Slide");
         
-        //State with button on screen 
+        //CurrentState with button on screen 
         mSlideInState = Animator.StringToHash("SlideInRight");
 	}
 	

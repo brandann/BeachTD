@@ -11,7 +11,7 @@ public class EnemyMovement : MonoBehaviour {
 	private Vector3[] waypoints;
 	private Vector3 nextPoint; // the next waypoint the enemy is traveling to
 
-	private int listPos = 1; //current index of the array list
+	
 	public int direction = 1;
 	
 	private float _originalSpeed;
