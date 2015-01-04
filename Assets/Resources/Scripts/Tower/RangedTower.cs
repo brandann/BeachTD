@@ -39,6 +39,7 @@ public class RangedTower : Tower
         base.Start();
         _flashHash = Animator.StringToHash("Flash");
         _stopHash = Animator.StringToHash("Stop");
+        CoolDownTime = 0.5f;
     }
 
     void Update()
@@ -63,10 +64,12 @@ public class RangedTower : Tower
             return;
         }
 
+        
         _lastActionTime = Time.time;
         _nextActionTime = _lastActionTime + CoolDownTime;
 
         _anim.SetTrigger(_flashHash);
+        Debug.Log("Act");
     }
 
     protected override void PrioritizeTargets()
