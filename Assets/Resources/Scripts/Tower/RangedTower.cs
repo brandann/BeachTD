@@ -69,6 +69,16 @@ public class RangedTower : Tower
         _nextActionTime = _lastActionTime + CoolDownTime;
 
         _anim.SetTrigger(_flashHash);
+
+        GameObject target = Targets[0].gameObject;
+
+        GameObject projectile = GameObject.Instantiate(ProjectilePrefab,gameObject.transform.position, Quaternion.identity) as GameObject;
+
+        Vector3 targDirection = target.transform.position - projectile.transform.position;
+
+        projectile.transform.Rotate(Vector3.forward, Vector3.Angle(targDirection, projectile.transform.position) );
+
+        
         Debug.Log("Act");
     }
 
