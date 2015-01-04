@@ -7,10 +7,6 @@ using UnityEngine;
 using System.Collections;
 using System.Collections.Generic;
 
-//Place holder for Enemy base class
-public class Enemy{}
-
-
 public abstract class Tower : MonoBehaviour {
 
     public enum TowerState { Idle, Acting, Disabled };
@@ -25,7 +21,7 @@ public abstract class Tower : MonoBehaviour {
     public TowerState State { get; protected set;}
 
     //Store possible targets  
-    protected List<GameObject> Targets; //todo collection should be of enemy base class
+    protected List<EnemyBehavior> Targets; //todo collection should be of enemy base class
 
     //Decide which target to attack
     protected abstract void PrioritizeTargets();
@@ -43,12 +39,14 @@ public abstract class Tower : MonoBehaviour {
         if(mAnim == null)
             Debug.LogError("Missing animator");
 
-        Targets = new List<GameObject>();
+        Targets = new List<EnemyBehavior>();
     }
 
     //Timestamp of last action
     protected float LastActionTime;
- 
+    
+    //Time available to act again
+    protected float NextActionTime;
 
     
 }
