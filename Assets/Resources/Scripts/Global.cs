@@ -11,6 +11,8 @@ public class Global : MonoBehaviour {
 	private float _spawntimedinterval = 0;
 	private Dictionary<int, GameObject> _enemies;
 	private Dictionary<int, GameObject> _towers;
+	private Dictionary<int, Wave> _waves;
+	private Dictionary<int, GameObject> _enemieSchedule;
 	
 	public enum GameState{Menu, Game, Pause, Credits, GameOver, Saving, Loading}
 	static public GameState CurrentGameState;
@@ -20,6 +22,8 @@ public class Global : MonoBehaviour {
 		CurrentGameState = GameState.Game; // TODO set this someplace else!
 		_enemies = new Dictionary<int, GameObject>();
 		_towers = new Dictionary<int, GameObject>();
+		_waves = new Dictionary<int, Wave>();
+		_enemieSchedule = new Dictionary<int, GameObject>();
 		_mapManager = new Mapmanager();
 		_mapManager.initilize(_scale);
 		_currentMap = new Map000(_scale);
@@ -51,6 +55,18 @@ public class Global : MonoBehaviour {
 		SpawnedPrefab.transform.position = pos;
 		return SpawnedPrefab;
 	}
+	
+	public void AddWave(int index, Wave wave)
+	{
+		_waves.Add(index, wave);
+	}
+	
+	public void AddEnemySchedule(int index, GameObject schedule)
+	{
+		_enemieSchedule.Add(index, schedule);
+	}
+	
+	
 	
 	#region RandomEnemySpawner
 	private void RandomEnemySpawner()

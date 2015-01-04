@@ -3,8 +3,16 @@ using System.Collections;
 
 public class EnemyMovement : MonoBehaviour {
 
+	public enum EnemyMovementSpeed {Paused = 0, Slow = 1, Normal = 2, Fast = 3}
+	public EnemyMovementSpeed CurrentMovement;
+	private float[] SpeedMods = {0f, .5f, 1f, 2f};
+	private float SpeedMod;
+
 	private Vector3[] waypoints;
 	private Vector3 nextPoint; // the next waypoint the enemy is traveling to
+
+	private int listPos = 1; //current index of the array list
+	public int direction = 1;
 	
 	private float _originalSpeed;
 
@@ -20,6 +28,9 @@ public class EnemyMovement : MonoBehaviour {
 	// Use this for initialization
 	void Start () {
 	
+		CurrentMovement = EnemyMovementSpeed.Normal;
+		SpeedMod = SpeedMods[(int) CurrentMovement];
+	
 		Global global = GameObject.Find("Global").GetComponent<Global>();
 		waypoints = global.MapManager.WayPoints;
 		/*for(int i = 0; i < waypoints.GetLength(0); i++)
@@ -34,12 +45,16 @@ public class EnemyMovement : MonoBehaviour {
 		//waypointList = new ArrayList ();
 		nextPoint = waypoints[1];
 		transform.up = nextPoint - transform.position; //gets the first direction
+
 		_originalSpeed = speed;
         listPos = 1;
+
 	}
 	
 	// Update is called once per frame
 	void Update () {
+	
+		SpeedMod = SpeedMods[(int) CurrentMovement];
 	
 		if(Global.CurrentGameState != Global.GameState.Game)
 		{
@@ -58,8 +73,20 @@ public class EnemyMovement : MonoBehaviour {
 		// go to the next waypoint until there are none left, then reverse
 		if (currentPos.magnitude < distance && listPos < waypoints.GetLength(0))
 		{
-			listPos++;
+			listPos += direction;
 			if(listPos == waypoints.GetLength(0))
+			{
+				if(direction > 0)
+				{
+					ReverseWaypoints();
+					listPos--;
+				}
+				else
+				{
+					
+				}
+			}
+			if(listPos == -1)
 			{
 				Destroy(this.gameObject);
 			}
@@ -111,6 +138,17 @@ public class EnemyMovement : MonoBehaviour {
 		}
 		
 		//movement operation
-		transform.position += (speed * Time.smoothDeltaTime) * transform.up;
+		transform.position += (speed * SpeedMod * Time.smoothDeltaTime) * transform.up;
+	}
+	
+	public void ReverseWaypoints()
+	{
+		direction *= -1;
+	}
+	
+	public void UpdateSpeedMod(EnemyMovementSpeed mod)
+	{
+		CurrentMovement = mod;
+		SpeedMod = SpeedMods[(int) CurrentMovement];
 	}
 }

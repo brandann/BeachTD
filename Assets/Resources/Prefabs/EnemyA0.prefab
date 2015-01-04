@@ -53,6 +53,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2f6b812207d754a97a2bbfe12a6e40e6, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  CurrentMovement: 0
+  direction: 1
   speed: 1
   distance: .100000001
   rotateangle: 5
@@ -70,8 +72,6 @@ MonoBehaviour:
   HasEgg: 0
   Health: 1
   CurrentEnemyState: 0
-  NormalSpriteRenderer: {fileID: 0}
-  BossSpriteRenderer: {fileID: 0}
 --- !u!212 &21200000
 SpriteRenderer:
   m_ObjectHideFlags: 1
