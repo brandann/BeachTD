@@ -5,9 +5,10 @@ public class EnemyMovement : MonoBehaviour {
 
 	private Vector3[] waypoints;
 	private Vector3 nextPoint; // the next waypoint the enemy is traveling to
-	private int listPos = 1; //current index of the array list
-	private float _originalSpeed;
 	
+	private float _originalSpeed;
+
+    public int listPos{get; private set;} //current index of the array list
 	public float speed;// = .5f; // enemy speed
 	public float distance;// = .1f; //distance enemy must be away from waypoint to got to next
 	public float rotateangle;// = 3; // rotation factor
@@ -34,6 +35,7 @@ public class EnemyMovement : MonoBehaviour {
 		nextPoint = waypoints[1];
 		transform.up = nextPoint - transform.position; //gets the first direction
 		_originalSpeed = speed;
+        listPos = 1;
 	}
 	
 	// Update is called once per frame
