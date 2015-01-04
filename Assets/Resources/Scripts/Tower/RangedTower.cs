@@ -59,20 +59,15 @@ public class RangedTower : Tower
         if (Targets.Count == 0)
         {
 
-            _anim.SetTrigger(_stopHash);
-
-
+            TransitionToState(TowerState.Idle);
+            return;
         }
 
-
+        _lastActionTime = Time.time;
+        _nextActionTime = _lastActionTime + CoolDownTime;
 
         _anim.SetTrigger(_flashHash);
-
-
     }
-
-
-
 
     protected override void PrioritizeTargets()
     {
@@ -92,7 +87,10 @@ public class RangedTower : Tower
 
         PrioritizeTargets();
 
-        Debug.Log("Added Enemy to targets");
+        if (CurrentState == TowerState.Idle)
+            TransitionToState(TowerState.Acting);
+
+        //Debug.Log("Added Enemy to targets");
     }
 
     void OnTriggerExit2D(Collider2D other)
@@ -105,8 +103,6 @@ public class RangedTower : Tower
         Debug.Log("Removed Enemy from targets");
 
     }
-
-
 
     //Animator Triggers
     private int _flashHash;
