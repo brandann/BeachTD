@@ -444,7 +444,7 @@ Transform:
   - {fileID: 1920727158}
   - {fileID: 1811629965}
   m_Father: {fileID: 0}
-  m_RootOrder: 5
+  m_RootOrder: 6
 --- !u!1001 &333811670
 Prefab:
   m_ObjectHideFlags: 0
@@ -735,7 +735,7 @@ Transform:
   m_LocalScale: {x: .5, y: .5, z: .5}
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 4
+  m_RootOrder: 5
 --- !u!1 &635244886
 GameObject:
   m_ObjectHideFlags: 0
@@ -2037,6 +2037,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a6edc99eac263b248a1c40836da32476, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  ProjectilePrefab: {fileID: 0}
 --- !u!212 &2050268171
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -2067,7 +2068,7 @@ Transform:
   m_PrefabInternal: {fileID: 2139439506}
   m_GameObject: {fileID: 2050268168}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 4.01999998, y: 1.20000005, z: 0}
+  m_LocalPosition: {x: 7.90999985, y: 1.20000005, z: 0}
   m_LocalScale: {x: .5, y: .5, z: .5}
   m_Children: []
   m_Father: {fileID: 0}
@@ -2157,7 +2158,7 @@ Prefab:
     m_Modifications:
     - target: {fileID: 400000, guid: 77f5f423a6f6244019589da343170d08, type: 2}
       propertyPath: m_LocalPosition.x
-      value: 4.01999998
+      value: 7.90999985
       objectReference: {fileID: 0}
     - target: {fileID: 400000, guid: 77f5f423a6f6244019589da343170d08, type: 2}
       propertyPath: m_LocalPosition.y
