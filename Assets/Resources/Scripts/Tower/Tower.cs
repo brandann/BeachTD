@@ -57,7 +57,7 @@ public abstract class Tower : MonoBehaviour
     protected Animator _anim;
 
     //Store possible targets  
-    protected List<EnemyBehavior> Targets; //todo collection should be of enemy base class
+    protected List<Enemy> Targets; //todo collection should be of enemy base class
 
     /// <summary>
     /// CurrentState of tower before last state transition
@@ -83,7 +83,7 @@ public abstract class Tower : MonoBehaviour
         if(_anim == null)
             Debug.LogError("Missing animator");
 
-        Targets = new List<EnemyBehavior>();
+        Targets = new List<Enemy>();
     }
 
     

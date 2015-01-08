@@ -77,7 +77,7 @@ public class RangedTower : Tower
 
     void OnTriggerEnter2D(Collider2D other)
     {
-        EnemyBehavior eb = other.gameObject.GetComponent<EnemyBehavior>();
+        Enemy eb = other.gameObject.GetComponent<Enemy>();
 
         //Ignore collisions with non-enemies
         if (eb == null)
@@ -95,7 +95,7 @@ public class RangedTower : Tower
 
     void OnTriggerExit2D(Collider2D other)
     {
-        EnemyBehavior eb = other.gameObject.GetComponent<EnemyBehavior>();
+        Enemy eb = other.gameObject.GetComponent<Enemy>();
         if (eb == null)
             return;
 
