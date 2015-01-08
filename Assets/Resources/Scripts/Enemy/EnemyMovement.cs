@@ -13,8 +13,6 @@ public class EnemyMovement : MonoBehaviour {
 
 	
 	public int direction = 1;
-	
-	private float _originalSpeed;
 
     public int listPos{get; private set;} //current index of the array list
 	public float speed;// = .5f; // enemy speed
@@ -45,10 +43,8 @@ public class EnemyMovement : MonoBehaviour {
 		//waypointList = new ArrayList ();
 		nextPoint = waypoints[1];
 		transform.up = nextPoint - transform.position; //gets the first direction
-
-		_originalSpeed = speed;
+		
         listPos = 1;
-
 	}
 	
 	// Update is called once per frame

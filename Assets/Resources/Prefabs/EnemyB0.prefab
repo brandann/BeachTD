@@ -9,10 +9,10 @@ GameObject:
   m_Component:
   - 4: {fileID: 400000}
   - 114: {fileID: 11400000}
-  - 114: {fileID: 11400002}
   - 212: {fileID: 21200000}
   - 58: {fileID: 5868162}
   - 111: {fileID: 11100000}
+  - 114: {fileID: 11400002}
   m_Layer: 0
   m_Name: EnemyB0
   m_TagString: Untagged
@@ -82,11 +82,11 @@ MonoBehaviour:
   m_GameObject: {fileID: 100000}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 2089aa39540af4ed09e37b273fb2fcab, type: 3}
+  m_Script: {fileID: 11500000, guid: 591f9784fb9a64ddc9d412e11e175dc0, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   HasEgg: 0
-  Health: 1
+  Health: 0
   CurrentEnemyState: 0
 --- !u!212 &21200000
 SpriteRenderer:

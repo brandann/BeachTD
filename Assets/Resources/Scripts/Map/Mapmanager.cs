@@ -50,7 +50,7 @@ public class Mapmanager{
 	// use camera to get the camera size and orthographicSize
 	private void makeSpace(int i, int j, Camera camera)
 	{
-		float cameraWidth = camera.orthographicSize * camera.aspect;
+		//float cameraWidth = camera.orthographicSize * camera.aspect;
 		float x = (i * _scale) + (_scale/2);
 		float y = (j * _scale) + (_scale/2);
 		
@@ -74,12 +74,7 @@ public class Mapmanager{
 	{
 		get
 		{ 
-			Vector3 pos = _currentMap.Waypoints[0]; 
-			if(pos == null)
-			{
-				return Vector3.zero;
-			}
-			return pos;
+			return _currentMap.Waypoints[0];
 		}
 	}
 	#endregion

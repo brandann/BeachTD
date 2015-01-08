@@ -53,7 +53,6 @@ public class LevelMap {
 	public void SetMap(int[,] m)
 	{
 		bool[,] tempmap = new bool[m.GetLength(0), m.GetLength(1)];
-		Vector3 StartPos, EndPos;
 		Dictionary<int, Vector3> DictWayPoints = new Dictionary<int, Vector3>();
 		for(int i = 0; i < tempmap.GetLength(0); i++)
 		{
@@ -83,12 +82,13 @@ public class LevelMap {
 					{
 						index = m[i,j];
 					}
-					DictWayPoints.Add(index, new Vector3(i, j));
+					DictWayPoints.Add(index, new Vector3(i, j, 0));
 					tempmap[i,j] = false;
 				}
 				
 			}
 		}
+		
 	}
 	#endregion
 	

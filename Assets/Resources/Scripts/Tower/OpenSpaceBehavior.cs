@@ -12,17 +12,12 @@ public class OpenSpaceBehavior : MonoBehaviour {
 	
 	// Update is called once per frame
 	void Update () {
-	
+
 	}
 	
 	void OnTouchDown()
-	{
-		string prefab;
-		if(Random.Range(0,2) == 0)
-			prefab = "Prefabs/TowerA";
-		else
-			prefab = "Prefabs/TowerB";
-			
+	{		
+		/*
 		float offset = .5f;
 		
 		//GameObject towerPrefab = Resources.Load(prefab) as GameObject;
@@ -42,7 +37,7 @@ public class OpenSpaceBehavior : MonoBehaviour {
 		BBe.transform.position = BBp;
 		
 		Destroy(this.gameObject);
-		
+		*/
 	}
 	
 	void destroy()

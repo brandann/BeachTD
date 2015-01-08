@@ -7,7 +7,6 @@ public class Global : MonoBehaviour {
 	private LevelMap _currentMap;
 	private Mapmanager _mapManager;
 	private float _scale = .5f;
-	private float _spawnbuttoninterval = 0;
 	private float _spawntimedinterval = 0;
 	private Dictionary<int, GameObject> _enemies;
 	private Dictionary<int, GameObject> _towers;
@@ -46,7 +45,7 @@ public class Global : MonoBehaviour {
 	public void SpawnTower(GameObject TowerPrefab, Vector3 pos)
 	{
 		GameObject go = SpawnPrefab(TowerPrefab, pos);
-		_enemies.Add(go.GetInstanceID(), go);
+		_towers.Add(go.GetInstanceID(), go);
 	}
 	
 	private GameObject SpawnPrefab(GameObject Prefab, Vector3 pos)
