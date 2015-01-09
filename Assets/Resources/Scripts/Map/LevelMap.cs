@@ -8,7 +8,6 @@ public class LevelMap {
 	private bool[,] 	_map;		// bool array of tower accessable objects
 	private Vector3[] 	_waypoints;	// enemys path for map
 	private int			_hitpoints;	// "lives" for level
-	private float		_scale;		// level scale
 	protected int 		_hitpointsmax;
 	protected const bool I = true;	// for ease of reading
 	protected const bool O = false;	// for ease of reading
@@ -35,12 +34,6 @@ public class LevelMap {
 	{
 		get{ return _hitpoints; }
 		set{ _hitpoints = value; }
-	}
-	
-	public float Scale
-	{
-		get{ return _scale; }
-		set{ _scale = value; }
 	}
 	
 	public int HIT_POINTS_MAX

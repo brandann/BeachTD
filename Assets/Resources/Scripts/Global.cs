@@ -6,8 +6,8 @@ public class Global : MonoBehaviour {
 
 	private LevelMap _currentMap;
 	private Mapmanager _mapManager;
-	private float _scale = .5f;
 	private float _spawntimedinterval = 0;
+	private float randomSpawnTime = 0;
 	private Dictionary<int, GameObject> _enemies;
 	private Dictionary<int, GameObject> _towers;
 	private Dictionary<int, Wave> _waves;
@@ -24,8 +24,8 @@ public class Global : MonoBehaviour {
 		_waves = new Dictionary<int, Wave>();
 		_enemieSchedule = new Dictionary<int, GameObject>();
 		_mapManager = new Mapmanager();
-		_mapManager.initilize(_scale);
-		_currentMap = new Map000(_scale);
+		_mapManager.initilize();
+		_currentMap = new Map001();
 		_mapManager.InitilizeMap(_currentMap);
 	}
 	
@@ -70,7 +70,7 @@ public class Global : MonoBehaviour {
 	#region RandomEnemySpawner
 	private void RandomEnemySpawner()
 	{
-		if ((Time.realtimeSinceStartup - _spawntimedinterval) > 2) 
+		if ((Time.realtimeSinceStartup - _spawntimedinterval) > randomSpawnTime) 
 		{
 			int r = Random.Range(0,3);
 			GameObject enemy = Resources.Load("Prefabs/EnemyA0") as GameObject;
@@ -83,6 +83,7 @@ public class Global : MonoBehaviour {
 				SpawnEnemy(enemy);
 			}
 			_spawntimedinterval = Time.realtimeSinceStartup;
+			randomSpawnTime = Random.Range(1, 5);
 		}
 	}
 	#endregion

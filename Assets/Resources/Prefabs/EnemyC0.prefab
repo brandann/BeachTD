@@ -13,6 +13,7 @@ GameObject:
   - 212: {fileID: 21200000}
   - 58: {fileID: 5869938}
   - 111: {fileID: 11100000}
+  - 114: {fileID: 11400004}
   m_Layer: 0
   m_Name: EnemyC0
   m_TagString: Untagged
@@ -49,7 +50,7 @@ Animation:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 100000}
-  m_Enabled: 1
+  m_Enabled: 0
   serializedVersion: 3
   m_Animation: {fileID: 7400000, guid: b409e6f76aeaa4fa28f9d10659fd8e12, type: 2}
   m_Animations:
@@ -88,6 +89,18 @@ MonoBehaviour:
   speed: 1
   distance: .100000001
   rotateangle: 5
+--- !u!114 &11400004
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 100000}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b01aae4e13ae441b7ad7e00dd35f2e87, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  TransformScale: 1.39999998
 --- !u!212 &21200000
 SpriteRenderer:
   m_ObjectHideFlags: 1
@@ -108,7 +121,7 @@ SpriteRenderer:
   m_ScaleInLightmap: 1
   m_SortingLayerID: 0
   m_SortingOrder: 0
-  m_Sprite: {fileID: 0}
+  m_Sprite: {fileID: 21300000, guid: 6430b8fa651da463e99f5a04a00cec92, type: 3}
   m_Color: {r: .381487876, g: .926470578, b: .452899456, a: 1}
 --- !u!1001 &100100000
 Prefab:
