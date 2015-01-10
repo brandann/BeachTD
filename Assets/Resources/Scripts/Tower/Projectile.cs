@@ -4,7 +4,7 @@ using System.Collections;
 public class Projectile : MonoBehaviour {
 
     public Transform Target { get; private set; }
-    public float Speed = 0.5f;
+    public float Speed = 1.5f;
 	
 	// Update is called once per frame
 	void FixedUpdate () {
@@ -16,6 +16,7 @@ public class Projectile : MonoBehaviour {
         }
 
         transform.LookAt(transform.position + new Vector3(0,0,1), Target.position - transform.position);
+        transform.position += transform.up * Speed * Time.deltaTime;
 	}
 
     public void setTarget(Transform targ){
@@ -24,11 +25,14 @@ public class Projectile : MonoBehaviour {
 
     void OnTriggerEnter2D(Collider2D other)
     {
+        //Debug.Log("Hit");
         Enemy en = other.gameObject.GetComponent<Enemy>();
-        
-        if(en != null)
-            Destroy(gameObject);
 
+        if (en == null)
+            return;
+
+        en.TakeDamage(5);
+        Destroy(gameObject);
     }
 
     //Straight line between current position and target's position

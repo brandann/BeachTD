@@ -72,7 +72,7 @@ public class RangedTower : Tower
 
         GameObject target = Targets[0].gameObject;
 
-        GameObject arrow = GameObject.Instantiate(ProjectilePrefab) as GameObject; //, gameObject.transform.position, Quaternion.identity) as GameObject;
+        GameObject arrow = GameObject.Instantiate(ProjectilePrefab, gameObject.transform.position, Quaternion.identity) as GameObject;
 
         Projectile projectile = arrow.GetComponent<Projectile>();
 
