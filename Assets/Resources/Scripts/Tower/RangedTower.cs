@@ -39,7 +39,7 @@ public class RangedTower : Tower
         base.Start();
         _flashHash = Animator.StringToHash("Flash");
         _stopHash = Animator.StringToHash("Stop");
-        CoolDownTime = 0.5f;
+        CoolDownTime = 1f;
     }
 
     void Update()
@@ -83,8 +83,12 @@ public class RangedTower : Tower
 
     protected override void PrioritizeTargets()
     {
-        //Need to sort by distance to eggs
-        //_targets.Sort( delegate (EnemyBehavior
+        _targets.Sort(
+            delegate(Enemy e1, Enemy e2)
+            {
+                return e1.gameObject.GetComponent<EnemyMovement>().DistanceTraveled.CompareTo(e2.gameObject.GetComponent<EnemyMovement>().DistanceTraveled);
+            }
+        );
     }
 
     protected void OnEnemyDeath(Enemy enemy)
