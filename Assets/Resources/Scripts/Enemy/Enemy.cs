@@ -3,6 +3,9 @@ using System.Collections;
 
 public class Enemy : MonoBehaviour {
 
+    public delegate void EnemyDied(Enemy enemy);
+    public event EnemyDied OnEnemyDied;
+
 	#region Public Members
 	public bool HasEgg = false;
 	public float Health;
@@ -44,6 +47,9 @@ public class Enemy : MonoBehaviour {
 			//dead
 			Debug.Log("Enemy Dead");
 			Destroy(this.gameObject);
+            if (OnEnemyDied != null)
+                OnEnemyDied(this);
+
 		}
 	}
 }
