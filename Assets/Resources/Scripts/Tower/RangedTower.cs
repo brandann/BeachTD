@@ -57,7 +57,7 @@ public class RangedTower : Tower
     /// </summary>
     protected override void Act()
     {
-        if (Targets.Count == 0)
+        if (_targets.Count == 0)
         {
 
             TransitionToState(TowerState.Idle);
@@ -70,7 +70,7 @@ public class RangedTower : Tower
 
         _anim.SetTrigger(_flashHash);
 
-        GameObject target = Targets[0].gameObject;
+        GameObject target = _targets[0].gameObject;
 
         GameObject arrow = GameObject.Instantiate(ProjectilePrefab, gameObject.transform.position, Quaternion.identity) as GameObject;
 
@@ -84,7 +84,13 @@ public class RangedTower : Tower
     protected override void PrioritizeTargets()
     {
         //Need to sort by distance to eggs
-        //Targets.Sort( delegate (EnemyBehavior
+        //_targets.Sort( delegate (EnemyBehavior
+    }
+
+    protected void OnEnemyDeath(Enemy enemy)
+    {
+        //_targets.Remove(enemy);
+        
     }
 
     void OnTriggerEnter2D(Collider2D other)
@@ -95,7 +101,16 @@ public class RangedTower : Tower
         if (eb == null)
             return;
 
-        Targets.Add(eb);
+        //If we are not already targeting enemy
+        if (_targets.Contains(eb) == false)
+        {
+            _targets.Add(eb);            
+        }
+        else
+        {
+            //Enemy is already being targeted;
+            return;
+        }
 
         PrioritizeTargets();
 
@@ -111,9 +126,8 @@ public class RangedTower : Tower
         if (eb == null)
             return;
 
-        Targets.Remove(eb);
+        _targets.Remove(eb);
         Debug.Log("Removed Enemy from targets");
-
     }
 
     //Animator Triggers
