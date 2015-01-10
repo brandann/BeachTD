@@ -104,7 +104,8 @@ public class RangedTower : Tower
         //If we are not already targeting enemy
         if (_targets.Contains(eb) == false)
         {
-            _targets.Add(eb);            
+            _targets.Add(eb);
+            eb.OnEnemyDied += HandleEnemyDeath;
         }
         else
         {
@@ -118,6 +119,16 @@ public class RangedTower : Tower
             TransitionToState(TowerState.Acting);
 
         //Debug.Log("Added Enemy to targets");
+    }
+
+    /// <summary>
+    /// Handles EnemyDied events by removing them from target list
+    /// </summary>
+    /// <param name="enemy">enemy that just died</param>
+    void HandleEnemyDeath(Enemy enemy)
+    {
+        _targets.Remove(enemy);
+        enemy.OnEnemyDied -= HandleEnemyDeath;
     }
 
     void OnTriggerExit2D(Collider2D other)
