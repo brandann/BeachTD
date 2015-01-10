@@ -52,7 +52,7 @@ public class RangedTower : Tower
     }
 
     /// <summary>
-    /// Fire Tower Action creates a projectile and sends it toward the highest priority target. 
+    /// Fire Tower Action creates a arrow and sends it toward the highest priority target. 
     /// Updates timer for next action. If no targets exist transitions tower to Idle
     /// </summary>
     protected override void Act()
@@ -72,12 +72,11 @@ public class RangedTower : Tower
 
         GameObject target = Targets[0].gameObject;
 
-        GameObject projectile = GameObject.Instantiate(ProjectilePrefab,gameObject.transform.position, Quaternion.identity) as GameObject;
+        GameObject arrow = GameObject.Instantiate(ProjectilePrefab) as GameObject; //, gameObject.transform.position, Quaternion.identity) as GameObject;
 
-        Vector3 targDirection = target.transform.position - projectile.transform.position;
+        Projectile projectile = arrow.GetComponent<Projectile>();
 
-        projectile.transform.Rotate(Vector3.forward, Vector3.Angle(targDirection, projectile.transform.position) );
-
+        projectile.setTarget(target.transform);
         
         Debug.Log("Act");
     }
@@ -90,7 +89,7 @@ public class RangedTower : Tower
 
     void OnTriggerEnter2D(Collider2D other)
     {
-        EnemyBehavior eb = other.gameObject.GetComponent<EnemyBehavior>();
+        Enemy eb = other.gameObject.GetComponent<Enemy>();
 
         //Ignore collisions with non-enemies
         if (eb == null)
@@ -108,7 +107,7 @@ public class RangedTower : Tower
 
     void OnTriggerExit2D(Collider2D other)
     {
-        EnemyBehavior eb = other.gameObject.GetComponent<EnemyBehavior>();
+        Enemy eb = other.gameObject.GetComponent<Enemy>();
         if (eb == null)
             return;
 

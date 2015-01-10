@@ -2,12 +2,8 @@
 using System.Collections;
 
 public class TouchController : MonoBehaviour {
-
-  // private refence to GameManager
-	GameManager gameManager;
 	
 	// messages for handeling mouse conversion to touch
-	private string message = "";
 	private const string touchDown = "OnTouchDown";
 	private const string touchUp   = "OnTouchUp";
 	private const string touchStay = "OnTouchStay";
@@ -16,7 +12,6 @@ public class TouchController : MonoBehaviour {
 
 	// Use this for initialization
 	void Start () {
-		gameManager = GameObject.Find("Main Camera").GetComponent<GameManager>();
 		//Input.simulateMouseWithTouches = true;
 	}
 	
@@ -24,8 +19,8 @@ public class TouchController : MonoBehaviour {
 	void Update () {
 		
 		// location vectors
-		Vector2 touchPos = Vector2.zero;
-		Vector3 wp = Vector3.zero;
+		//Vector2 touchPos = Vector2.zero;
+		//Vector3 wp = Vector3.zero;
 		Vector3 dp = Vector3.zero;
 		string message = "";
 		
@@ -119,8 +114,8 @@ public class TouchController : MonoBehaviour {
 		{
 			// set world point
 			// set vector2 world point
-			wp = Camera.main.ScreenToWorldPoint(dp);
-			touchPos = new Vector2(wp.x, wp.y);
+			//wp = Camera.main.ScreenToWorldPoint(dp);
+			//touchPos = new Vector2(wp.x, wp.y);
 			
 			// If colliders are found at touchPos point
 			RaycastHit2D hit = Physics2D.Raycast(Camera.main.ScreenToWorldPoint(dp), Vector2.zero);

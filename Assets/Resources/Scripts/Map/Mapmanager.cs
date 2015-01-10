@@ -5,7 +5,6 @@ public class Mapmanager{
 
 	private GameObject OpenSpace;
 	private Global global;
-	private float _scale;
 	private LevelMap _currentMap;
 
 	
@@ -15,9 +14,9 @@ public class Mapmanager{
 		global = GameObject.Find("Global").GetComponent<Global>();
 	}
 
-	public void initilize(float scale)
+	public void initilize()
 	{
-		_scale = scale;
+		
 	}
 	
 	// Make OpenSpace traverses trough currentMap's boolean map to
@@ -50,11 +49,11 @@ public class Mapmanager{
 	// use camera to get the camera size and orthographicSize
 	private void makeSpace(int i, int j, Camera camera)
 	{
-		float cameraWidth = camera.orthographicSize * camera.aspect;
-		float x = (i * _scale) + (_scale/2);
-		float y = (j * _scale) + (_scale/2);
+		//float cameraWidth = camera.orthographicSize * camera.aspect;
+		//float x = (i * _scale) + (_scale/2);
+		//float y = (j * _scale) + (_scale/2);
 		
-		global.SpawnTower(OpenSpace, new Vector3(x, y, 0));
+		global.SpawnTower(OpenSpace, new Vector3(i + .5f, j + .5f, 0));
 	}
 	
 	#region Public Accessors
@@ -63,23 +62,12 @@ public class Mapmanager{
 	{
 		get{ return _currentMap.Waypoints; }
 	}
-	
-	// return the scale of the game
-	public float Scale
-	{
-		get{ return _scale; }
-	}
-	
+
 	public Vector3 StartingPosition
 	{
 		get
 		{ 
-			Vector3 pos = _currentMap.Waypoints[0]; 
-			if(pos == null)
-			{
-				return Vector3.zero;
-			}
-			return pos;
+			return _currentMap.Waypoints[0];
 		}
 	}
 	#endregion

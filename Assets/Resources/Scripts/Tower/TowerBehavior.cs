@@ -35,7 +35,7 @@ public class TowerBehavior : MonoBehaviour {
 		//GameObject e = Instantiate(towerPrefab) as GameObject;
 		//e.transform.position = this.transform.position;
 		
-		GameObject tower = Resources.Load("Prefabs/TowerA") as GameObject;
+		GameObject tower = Resources.Load("Prefabs/TowerB") as GameObject;
 		GameObject e = Instantiate(tower) as GameObject;
 		e.transform.position = this.transform.position;
 		
