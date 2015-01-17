@@ -4,7 +4,7 @@ using System.Collections.Generic;
 
 public class Global : MonoBehaviour {
 
-	private LevelMap _currentMap;
+	private GameMaps _currentMap;
 	private Mapmanager _mapManager;
 	private float _spawntimedinterval = 0;
 	private float randomSpawnTime = 0;
@@ -12,6 +12,11 @@ public class Global : MonoBehaviour {
 	private Dictionary<int, GameObject> _towers;
 	private Dictionary<int, Wave> _waves;
 	private Dictionary<int, GameObject> _enemieSchedule;
+	private List<GameObject> _eggs;
+	
+	public GameObject EggPrefab;
+	
+	public enum MapToken {Tower = -2, Path = -1, Start = 0}
 	
 	public enum GameState{Menu, Game, Pause, Credits, GameOver, Saving, Loading}
 	static public GameState CurrentGameState;
@@ -23,10 +28,10 @@ public class Global : MonoBehaviour {
 		_towers = new Dictionary<int, GameObject>();
 		_waves = new Dictionary<int, Wave>();
 		_enemieSchedule = new Dictionary<int, GameObject>();
+		_eggs = new List<GameObject>();
 		_mapManager = new Mapmanager();
-		_mapManager.initilize();
-		_currentMap = new Map001();
-		_mapManager.InitilizeMap(_currentMap);
+		_mapManager.LoadMap(5);
+		SpawnEgg();
 	}
 	
 	// Update is called once per frame
@@ -38,7 +43,7 @@ public class Global : MonoBehaviour {
 	
 	public void SpawnEnemy(GameObject EnemyPrefab)
 	{
-		GameObject go = SpawnPrefab(EnemyPrefab, _currentMap.Waypoints[0]);
+		GameObject go = SpawnPrefab(EnemyPrefab, _mapManager.CurrentMap.Waypoints[0]);
 		_enemies.Add(go.GetInstanceID(), go);
 	}
 	
@@ -48,7 +53,35 @@ public class Global : MonoBehaviour {
 		_towers.Add(go.GetInstanceID(), go);
 	}
 	
-	private GameObject SpawnPrefab(GameObject Prefab, Vector3 pos)
+	public void SpawnEgg()
+	{
+		GameObject EggPrefab = Resources.Load("Prefabs/egg") as GameObject;
+		for(int i = 0; i < 5; i++)
+		{
+			GameObject egg = SpawnPrefab(EggPrefab, new Vector3(Random.Range(12, 12.5f),Random.Range(4f,4.5f), 0));
+			_eggs.Add(egg);
+		}
+	}
+	
+	private int eggindex = 0;
+	
+	public void GiveEggToEnemy(GameObject go)
+	{
+		if(_eggs.Count > 0)
+		{
+			GameObject egg = _eggs[0];
+			_eggs.RemoveAt(0);
+			//egg.transform.position = new Vector3(0,.5f,0);
+			egg.transform.localScale = new Vector3(.5f, .5f, .5f);
+			egg.transform.parent = go.transform;
+			egg.transform.position = go.transform.position;
+			egg.transform.position = new Vector3(go.transform.position.x, go.transform.position.y, -1);
+			go.GetComponent<Enemy>().HasEgg = true;
+			
+		}
+	}
+	
+	public GameObject SpawnPrefab(GameObject Prefab, Vector3 pos)
 	{
 		GameObject SpawnedPrefab = Instantiate(Prefab) as GameObject;
 		SpawnedPrefab.transform.position = pos;
@@ -63,6 +96,11 @@ public class Global : MonoBehaviour {
 	public void AddEnemySchedule(int index, GameObject schedule)
 	{
 		_enemieSchedule.Add(index, schedule);
+	}
+	
+	public Map CurrentMap
+	{
+		get { return MapManager.CurrentMap; }
 	}
 	
 	
@@ -83,7 +121,7 @@ public class Global : MonoBehaviour {
 				SpawnEnemy(enemy);
 			}
 			_spawntimedinterval = Time.realtimeSinceStartup;
-			randomSpawnTime = Random.Range(1, 5);
+			randomSpawnTime = Random.Range(1, 20);
 		}
 	}
 	#endregion

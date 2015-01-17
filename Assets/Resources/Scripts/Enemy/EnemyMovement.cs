@@ -11,7 +11,7 @@ public class EnemyMovement : MonoBehaviour {
 	private Vector3[] waypoints;
 	private Vector3 nextPoint; // the next waypoint the enemy is traveling to
 
-	
+	Global global;
 	public int direction = 1;
 
     public int listPos{get; private set;} //current index of the array list
@@ -29,8 +29,8 @@ public class EnemyMovement : MonoBehaviour {
 		CurrentMovement = EnemyMovementSpeed.Normal;
 		SpeedMod = SpeedMods[(int) CurrentMovement];
 	
-		Global global = GameObject.Find("Global").GetComponent<Global>();
-		waypoints = global.MapManager.WayPoints;
+		global = GameObject.Find("Global").GetComponent<Global>();
+		waypoints = global.MapManager.CurrentMap.Waypoints;
 		/*for(int i = 0; i < waypoints.GetLength(0); i++)
 		{
 			waypoints[i] *= mm.getScale();
@@ -75,6 +75,7 @@ public class EnemyMovement : MonoBehaviour {
 				if(direction > 0)
 				{
 					ReverseWaypoints();
+					global.GiveEggToEnemy(this.gameObject);
 					listPos--;
 				}
 				else
