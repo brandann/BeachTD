@@ -30,22 +30,48 @@ public abstract class Tower : MonoBehaviour
             _currentState = value;
         }
     }
+    
 
     /// <summary>
-    /// Change state to Disabled
+    /// Change State to Disabled
     /// </summary>
-    public abstract void DisableTower();
+    public virtual void DisableTower()
+    {
+        TransitionToState(TowerState.Disabled);
+    }
 
     /// <summary>
     /// Changes state from Disabled to either Idle or Acting
     /// </summary>
-    public abstract void EnableTower();
+    public virtual void EnableTower()
+    {
+        TransitionToState(_previousState);
+    }
 
     #endregion
 
-    protected abstract void TransitionToState(TowerState toState);
+    //Animator Triggers
+    protected readonly int _flashHash = Animator.StringToHash("Flash");
+    protected readonly int _stopHash = Animator.StringToHash("Stop");
 
-    protected abstract void UpdateAnimator();
+
+    protected virtual void TransitionToState(Tower.TowerState toState)
+    {
+        CurrentState = toState;
+
+        UpdateAnimator();
+    }
+
+    protected virtual void UpdateAnimator()
+    {
+        switch (CurrentState)
+        {
+            case TowerState.Disabled:
+            case TowerState.Idle:
+                _anim.SetTrigger(_stopHash);
+                break;
+        }
+    }
        
     //Timestamp of last action
     protected float _lastActionTime;
@@ -67,9 +93,19 @@ public abstract class Tower : MonoBehaviour
     protected TowerState _currentState;
 
     /// <summary>
-    /// Decide which target to attack
+    /// Decide which target to attack; Default behavior is to target enemy that has traveled the furthest
     /// </summary>
-    protected abstract void PrioritizeTargets();
+    protected virtual void PrioritizeTargets()
+    {
+        _targets.Sort(
+            delegate(Enemy e1, Enemy e2)
+            {
+                float e1Dist = e1.gameObject.GetComponent<EnemyMovement>().DistanceTraveled;
+                float e2Dist = e2.gameObject.GetComponent<EnemyMovement>().DistanceTraveled;
+                return e2Dist.CompareTo(e1Dist);
+            }
+        );
+    }
 
     /// <summary>
     /// Take relevant action (attack, slow etc, deploy troops etc)

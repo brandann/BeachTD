@@ -5,40 +5,11 @@ public class RangedTower : Tower
 {
 
     public GameObject ProjectilePrefab;
-
-    public override void DisableTower()
-    {
-        TransitionToState(TowerState.Disabled);
-    }
-
-    public override void EnableTower()
-    {
-        TransitionToState(_previousState);
-    }
-
-    protected override void TransitionToState(Tower.TowerState toState)
-    {           
-        CurrentState = toState;
-       
-        UpdateAnimator();  
-    }
-
-    protected override void UpdateAnimator()
-    {
-        switch (CurrentState)
-        {
-            case TowerState.Disabled:
-            case TowerState.Idle:
-                _anim.SetTrigger(_stopHash);
-                break;
-        }
-    }
+    
 
     protected override void Start()
     {
-        base.Start();
-        _flashHash = Animator.StringToHash("Flash");
-        _stopHash = Animator.StringToHash("Stop");
+        base.Start(); 
         CoolDownTime = 1f;
     }
 
@@ -81,15 +52,7 @@ public class RangedTower : Tower
         Debug.Log("Act");
     }
 
-    protected override void PrioritizeTargets()
-    {
-        _targets.Sort(
-            delegate(Enemy e1, Enemy e2)
-            {
-                return e2.gameObject.GetComponent<EnemyMovement>().DistanceTraveled.CompareTo(e1.gameObject.GetComponent<EnemyMovement>().DistanceTraveled);
-            }
-        );
-    }
+    
 
     protected void OnEnemyDeath(Enemy enemy)
     {
@@ -144,9 +107,6 @@ public class RangedTower : Tower
         _targets.Remove(eb);
         Debug.Log("Removed Enemy from targets");
     }
-
-    //Animator Triggers
-    private int _flashHash;
-    private int _stopHash;
+    
 }
 

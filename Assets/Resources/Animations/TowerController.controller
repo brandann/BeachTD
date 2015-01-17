@@ -5,7 +5,7 @@ AnimatorController:
   m_ObjectHideFlags: 0
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
-  m_Name: TowerB
+  m_Name: TowerController
   serializedVersion: 2
   m_AnimatorParameters:
   - m_Name: Flash
@@ -137,17 +137,17 @@ StateMachine:
   m_ChildStateMachinePosition: []
   m_OrderedTransitions:
     data:
+      first: {fileID: 0}
+      second:
+      - {fileID: 110114352}
+      - {fileID: 110175638}
+    data:
       first: {fileID: 110216754}
       second: []
     data:
       first: {fileID: 110243642}
       second:
       - {fileID: 110191574}
-    data:
-      first: {fileID: 0}
-      second:
-      - {fileID: 110114352}
-      - {fileID: 110175638}
   m_MotionSetCount: 1
   m_AnyStatePosition: {x: -120, y: 24, z: 0}
   m_ParentStateMachinePosition: {x: 800, y: 20, z: 0}
