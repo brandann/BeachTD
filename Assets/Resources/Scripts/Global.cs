@@ -15,6 +15,9 @@ public class Global : MonoBehaviour {
 	private List<GameObject> _eggs;
 	
 	public GameObject EggPrefab;
+	public GameObject EnemyA0Prefab;
+	public GameObject EnemyB0Prefab;
+	public GameObject EnemyC0Prefab;
 	
 	public enum MapToken {Tower = -2, Path = -1, Start = 0}
 	
@@ -32,11 +35,18 @@ public class Global : MonoBehaviour {
 		_mapManager = new Mapmanager();
 		_mapManager.LoadMap(5);
 		SpawnEgg();
+		EnemyA0Prefab = Resources.Load("Prefabs/EnemyA0") as GameObject;
+		EnemyB0Prefab = Resources.Load("Prefabs/EnemyB0") as GameObject;
+		EnemyC0Prefab = Resources.Load("Prefabs/EnemyC0") as GameObject;
 	}
 	
 	// Update is called once per frame
 	void Update () {
-		RandomEnemySpawner();
+		//RandomEnemySpawner();
+		
+		if(Input.GetKeyUp(KeyCode.Alpha1)) { SpawnEnemy(EnemyA0Prefab); }
+		else if(Input.GetKeyUp(KeyCode.Alpha2)) { SpawnEnemy(EnemyB0Prefab); }
+		else if(Input.GetKeyUp(KeyCode.Alpha3)) { SpawnEnemy(EnemyC0Prefab); }
 	}
 	
 	public Mapmanager MapManager{ get { return _mapManager; } }
