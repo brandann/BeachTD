@@ -71,7 +71,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   HasEgg: 0
-  Health: 1
+  Health: 15
   CurrentEnemyState: 0
 --- !u!114 &11400002
 MonoBehaviour:

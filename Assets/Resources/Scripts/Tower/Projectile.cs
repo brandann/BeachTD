@@ -28,10 +28,11 @@ public class Projectile : MonoBehaviour {
         //Debug.Log("Hit");
         Enemy en = other.gameObject.GetComponent<Enemy>();
 
-        if (en == null)
+        //Ignore non-enemies and non-targets
+        if (en == null || other.transform != Target)
             return;
 
-        en.TakeDamage(5);
+        en.TakeDamage(1);
         Destroy(gameObject);
     }
 

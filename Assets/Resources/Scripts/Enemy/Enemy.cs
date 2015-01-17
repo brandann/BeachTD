@@ -3,6 +3,9 @@ using System.Collections;
 
 public class Enemy : MonoBehaviour {
 
+    public delegate void EnemyDied(Enemy enemy);
+    public event EnemyDied OnEnemyDied;
+
 	#region Public Members
 	public float Health;
 	public enum EnemyState { Active, Stunned, Dying }
@@ -52,13 +55,7 @@ public class Enemy : MonoBehaviour {
 		
 		if(_hasegg)
 		{
-			//GameObject Prefab = this.transform.FindChild("egg").gameObject;
-			//GameObject SpawnedPrefab = Instantiate(global.EggPrefab) as GameObject;
-			//SpawnedPrefab.transform.position = this.transform.position;
 			global.SpawnPrefab(global.EggPrefab, this.transform.position);
-/*			egg.transform.parent = GameObject.Find("Global").transform;
-			egg.transform.position = this.transform.position;
-			egg.transform.localScale = new Vector3(1,1,1);*/
 		}
 		Destroy(this.gameObject);
 	}
@@ -69,6 +66,11 @@ public class Enemy : MonoBehaviour {
 		if(Health <= 0)
 		{
 			Dead();
+			//dead
+			Debug.Log("Enemy Dead");
+			Destroy(this.gameObject);
+            if (OnEnemyDied != null)
+                OnEnemyDied(this);
 		}
 	}
 }

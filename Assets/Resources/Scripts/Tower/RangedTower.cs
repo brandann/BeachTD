@@ -39,7 +39,7 @@ public class RangedTower : Tower
         base.Start();
         _flashHash = Animator.StringToHash("Flash");
         _stopHash = Animator.StringToHash("Stop");
-        CoolDownTime = 0.5f;
+        CoolDownTime = 1f;
     }
 
     void Update()
@@ -57,7 +57,7 @@ public class RangedTower : Tower
     /// </summary>
     protected override void Act()
     {
-        if (Targets.Count == 0)
+        if (_targets.Count == 0)
         {
 
             TransitionToState(TowerState.Idle);
@@ -70,7 +70,7 @@ public class RangedTower : Tower
 
         _anim.SetTrigger(_flashHash);
 
-        GameObject target = Targets[0].gameObject;
+        GameObject target = _targets[0].gameObject;
 
         GameObject arrow = GameObject.Instantiate(ProjectilePrefab, gameObject.transform.position, Quaternion.identity) as GameObject;
 
@@ -83,8 +83,18 @@ public class RangedTower : Tower
 
     protected override void PrioritizeTargets()
     {
-        //Need to sort by distance to eggs
-        //Targets.Sort( delegate (EnemyBehavior
+        _targets.Sort(
+            delegate(Enemy e1, Enemy e2)
+            {
+                return e1.gameObject.GetComponent<EnemyMovement>().DistanceTraveled.CompareTo(e2.gameObject.GetComponent<EnemyMovement>().DistanceTraveled);
+            }
+        );
+    }
+
+    protected void OnEnemyDeath(Enemy enemy)
+    {
+        //_targets.Remove(enemy);
+        
     }
 
     void OnTriggerEnter2D(Collider2D other)
@@ -95,7 +105,17 @@ public class RangedTower : Tower
         if (eb == null)
             return;
 
-        Targets.Add(eb);
+        //If we are not already targeting enemy
+        if (_targets.Contains(eb) == false)
+        {
+            _targets.Add(eb);
+            eb.OnEnemyDied += HandleEnemyDeath;
+        }
+        else
+        {
+            //Enemy is already being targeted;
+            return;
+        }
 
         PrioritizeTargets();
 
@@ -105,15 +125,24 @@ public class RangedTower : Tower
         //Debug.Log("Added Enemy to targets");
     }
 
+    /// <summary>
+    /// Handles EnemyDied events by removing them from target list
+    /// </summary>
+    /// <param name="enemy">enemy that just died</param>
+    void HandleEnemyDeath(Enemy enemy)
+    {
+        _targets.Remove(enemy);
+        enemy.OnEnemyDied -= HandleEnemyDeath;
+    }
+
     void OnTriggerExit2D(Collider2D other)
     {
         Enemy eb = other.gameObject.GetComponent<Enemy>();
         if (eb == null)
             return;
 
-        Targets.Remove(eb);
+        _targets.Remove(eb);
         Debug.Log("Removed Enemy from targets");
-
     }
 
     //Animator Triggers

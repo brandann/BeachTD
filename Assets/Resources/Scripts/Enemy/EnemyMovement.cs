@@ -7,6 +7,7 @@ public class EnemyMovement : MonoBehaviour {
 	public EnemyMovementSpeed CurrentMovement;
 	private float[] SpeedMods = {0f, .5f, 1f, 2f};
 	private float SpeedMod;
+    public float DistanceTraveled { get; protected set; }
 
 	private Vector3[] waypoints;
 	private Vector3 nextPoint; // the next waypoint the enemy is traveling to
@@ -135,7 +136,9 @@ public class EnemyMovement : MonoBehaviour {
 		}
 		
 		//movement operation
-		transform.position += (speed * SpeedMod * Time.smoothDeltaTime) * transform.up;
+        Vector3 moveDelta = (speed * SpeedMod * Time.smoothDeltaTime) * transform.up;
+        transform.position += moveDelta;
+        DistanceTraveled += moveDelta.magnitude;
 	}
 	
 	public void ReverseWaypoints()
