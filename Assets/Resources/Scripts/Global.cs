@@ -56,9 +56,12 @@ public class Global : MonoBehaviour {
 	public void SpawnEgg()
 	{
 		GameObject EggPrefab = Resources.Load("Prefabs/egg") as GameObject;
-		for(int i = 0; i < 5; i++)
+		for(int i = 0; i < 10; i++)
 		{
-			GameObject egg = SpawnPrefab(EggPrefab, new Vector3(Random.Range(12, 12.5f),Random.Range(4f,4.5f), 0));
+			Vector3 endloc = MapManager.CurrentMap.Waypoints[MapManager.CurrentMap.Waypoints.Length - 1];
+			Vector3 randloc = new Vector3(Random.Range(-0.5f, 0.5f),Random.Range(-1.5f,1.5f), 0);
+			Vector3 offset = new Vector3(1,0,0);
+			GameObject egg = SpawnPrefab(EggPrefab, endloc + randloc + offset);
 			_eggs.Add(egg);
 		}
 	}
