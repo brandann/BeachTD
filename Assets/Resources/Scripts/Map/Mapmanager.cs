@@ -1,74 +1,66 @@
 ﻿using UnityEngine;
 using System.Collections;
+using System.Collections.Generic;
 
 public class Mapmanager{
 
-	private GameObject OpenSpace;
-	private Global global;
-	private LevelMap _currentMap;
-
+	#region Public Accessors
+	public Map CurrentMap
+	{
+		get{ return _currentMap; }
+	}
+	#endregion
 	
+	#region Public Methods
 	public Mapmanager()
 	{
 		OpenSpace = Resources.Load("Prefabs/OpenArea") as GameObject;
 		global = GameObject.Find("Global").GetComponent<Global>();
-	}
-
-	public void initilize()
-	{
-		
+		InitilizeMaps();
 	}
 	
-	// Make OpenSpace traverses trough currentMap's boolean map to
-	// find locations for OpenSpace's
-	public void InitilizeMap(LevelMap loadMap)
+	public void LoadMap(int i)
+	{
+		LoadInitialTowerSpaces(_maps[i]);
+		_currentMap = _maps[i];
+	}
+	#endregion
+	
+	#region Private Members
+	private GameObject OpenSpace;
+	private Global global;
+	private Map _currentMap;
+	private Dictionary<int, Map> _maps;
+	#endregion
+	
+	#region Private Methods
+	private void LoadInitialTowerSpaces(Map loadMap)
 	{
 		_currentMap = loadMap;
-		bool [,] map = loadMap.Map;
+		bool[,] map = loadMap.BoolMap;
 		
-		// get the camera for size's
-		Camera camera = GameObject.Find("Main Camera").GetComponent<Camera>();
-		
-		// traverse the map and call 'makeSpace()' to create all OpenSpaces
-		// at applicailbe locations
 		for (int i = 0; i < map.GetLength(0); i++)
 		{
 			for (int j = 0; j < map.GetLength(1); j++)
 			{
 				if (map[i,j])
 				{
-					makeSpace(j, i, camera);
+					makeSpace(j, i);
 				}
 			}
 		}
 	}
 	
-	// Make and set new OpenSpace
-	// Openspaces are used to make a buildable area for a tower
-	// use i and j to find the position of the Openspace to be built.
-	// use camera to get the camera size and orthographicSize
-	private void makeSpace(int i, int j, Camera camera)
+	private void makeSpace(int i, int j)
 	{
-		//float cameraWidth = camera.orthographicSize * camera.aspect;
-		//float x = (i * _scale) + (_scale/2);
-		//float y = (j * _scale) + (_scale/2);
-		
 		global.SpawnTower(OpenSpace, new Vector3(i + .5f, j + .5f, 0));
 	}
-	
-	#region Public Accessors
-	// return the current maps waypoints for enemys to traverse
-	public Vector3[] WayPoints
-	{
-		get{ return _currentMap.Waypoints; }
-	}
+	#endregion
 
-	public Vector3 StartingPosition
+	#region Maps
+	private void InitilizeMaps()
 	{
-		get
-		{ 
-			return _currentMap.Waypoints[0];
-		}
+		_maps = GameMaps.GetGameMaps();
 	}
 	#endregion
 }
