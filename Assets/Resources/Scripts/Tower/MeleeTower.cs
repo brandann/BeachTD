@@ -7,7 +7,8 @@ public class MeleeTower : Tower {
 
 	// Use this for initialization
 	void Start () {
-        CoolDownTime = 3;	
+        CoolDownTime = 4;
+        _tip = GetComponentInChildren<TipBarnacle>();
 	}
 
     protected override void Act()
@@ -24,6 +25,8 @@ public class MeleeTower : Tower {
     {
         TransitionToState(_previousState);
     }
+
+    private TipBarnacle _tip;
 
 
 }

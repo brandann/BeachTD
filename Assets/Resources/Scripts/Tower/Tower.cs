@@ -110,7 +110,13 @@ public abstract class Tower : MonoBehaviour
     /// <summary>
     /// Take relevant action (attack, slow etc, deploy troops etc)
     /// </summary>
-    protected abstract void Act();      
+    protected virtual void Act()
+    {
+        _lastActionTime = Time.time;
+        _nextActionTime = _lastActionTime + CoolDownTime;
+
+        _anim.SetTrigger(_flashHash);
+    }
 
     protected virtual void Start()
     {

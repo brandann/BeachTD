@@ -28,18 +28,13 @@ public class RangedTower : Tower
     /// </summary>
     protected override void Act()
     {
+        base.Act();
+
         if (_targets.Count == 0)
         {
-
             TransitionToState(TowerState.Idle);
             return;
-        }
-
-        
-        _lastActionTime = Time.time;
-        _nextActionTime = _lastActionTime + CoolDownTime;
-
-        _anim.SetTrigger(_flashHash);
+        }       
 
         GameObject target = _targets[0].gameObject;
 
@@ -49,7 +44,7 @@ public class RangedTower : Tower
 
         projectile.setTarget(target.transform);
         
-        Debug.Log("Act");
+        //Debug.Log("Act");
     }
 
     
