@@ -10,12 +10,11 @@ GameObject:
   - 4: {fileID: 400000}
   - 212: {fileID: 21200000}
   - 114: {fileID: 11400000}
-  - 58: {fileID: 5898070}
-  - 95: {fileID: 9598070}
-  - 50: {fileID: 5045318}
+  - 95: {fileID: 9525654}
+  - 58: {fileID: 5825654}
   m_Layer: 0
-  m_Name: TowerB
-  m_TagString: Untagged
+  m_Name: SpecialTower
+  m_TagString: tower
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -27,27 +26,12 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 100000}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 5.55000019, y: 1.72000003, z: 0}
+  m_LocalPosition: {x: 3.68000007, y: 1.54999995, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
   m_RootOrder: 0
---- !u!50 &5045318
-Rigidbody2D:
-  m_ObjectHideFlags: 1
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 100000}
-  m_Mass: 1
-  m_LinearDrag: 0
-  m_AngularDrag: .0500000007
-  m_GravityScale: 1
-  m_FixedAngle: 0
-  m_IsKinematic: 1
-  m_Interpolate: 0
-  m_SleepingMode: 1
-  m_CollisionDetection: 0
---- !u!58 &5898070
+--- !u!58 &5825654
 CircleCollider2D:
   m_ObjectHideFlags: 1
   m_PrefabParentObject: {fileID: 0}
@@ -55,10 +39,10 @@ CircleCollider2D:
   m_GameObject: {fileID: 100000}
   m_Enabled: 1
   m_Material: {fileID: 0}
-  m_IsTrigger: 1
-  m_Radius: 3
+  m_IsTrigger: 0
+  m_Radius: 2
   m_Center: {x: 0, y: 0}
---- !u!95 &9598070
+--- !u!95 &9525654
 Animator:
   serializedVersion: 3
   m_ObjectHideFlags: 1
@@ -84,7 +68,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a6edc99eac263b248a1c40836da32476, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  ProjectilePrefab: {fileID: 100000, guid: afa6c9dfdbffa4d4f86fe8b4362deee4, type: 2}
+  ProjectilePrefab: {fileID: 129612, guid: 528cf842538d61e45b21f8bb5c979a05, type: 2}
 --- !u!212 &21200000
 SpriteRenderer:
   m_ObjectHideFlags: 1
@@ -104,7 +88,7 @@ SpriteRenderer:
   m_LightProbeAnchor: {fileID: 0}
   m_ScaleInLightmap: 1
   m_SortingLayerID: 0
-  m_SortingOrder: 1
+  m_SortingOrder: 0
   m_Sprite: {fileID: 21300000, guid: 39d987334fa15469686f2d7c8abbb8b2, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
 --- !u!1001 &100100000

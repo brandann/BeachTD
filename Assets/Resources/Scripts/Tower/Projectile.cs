@@ -3,8 +3,9 @@ using System.Collections;
 
 public class Projectile : MonoBehaviour {
 
-    public Transform Target { get; private set; }
+    public Transform Target { get; protected set; }
     public float Speed = 1.5f;
+    public float Damage = 1;
 	
 	// Update is called once per frame
 	void FixedUpdate () {
@@ -23,7 +24,8 @@ public class Projectile : MonoBehaviour {
         Target = targ;
     }
 
-    void OnTriggerEnter2D(Collider2D other)
+
+    public virtual void OnTriggerEnter2D(Collider2D other)
     {
         //Debug.Log("Hit");
         Enemy en = other.gameObject.GetComponent<Enemy>();
@@ -32,7 +34,7 @@ public class Projectile : MonoBehaviour {
         if (en == null || other.transform != Target)
             return;
 
-        en.TakeDamage(1);
+        en.TakeDamage(Damage);
         Destroy(gameObject);
     }
 

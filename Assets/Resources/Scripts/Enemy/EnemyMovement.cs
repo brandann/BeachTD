@@ -11,7 +11,9 @@ public class EnemyMovement : MonoBehaviour {
 
 	private Vector3[] waypoints;
 	private Vector3 nextPoint; // the next waypoint the enemy is traveling to
-
+    
+    //Time.time when the current modification should be removed and normal speed should be set
+    private float endModificationTime;
 	
 	public int direction = 1;
 
@@ -50,6 +52,12 @@ public class EnemyMovement : MonoBehaviour {
 	
 	// Update is called once per frame
 	void Update () {
+
+        //Remove modification after it has expired
+        if (CurrentMovement != EnemyMovementSpeed.Normal && Time.time >= endModificationTime)
+        {
+            CurrentMovement = EnemyMovementSpeed.Normal;
+        }
 	
 		SpeedMod = SpeedMods[(int) CurrentMovement];
 	
@@ -145,9 +153,15 @@ public class EnemyMovement : MonoBehaviour {
 		direction *= -1;
 	}
 	
-	public void UpdateSpeedMod(EnemyMovementSpeed mod)
+    /// <summary>
+    /// Modify the speed of enemy
+    /// </summary>
+    /// <param name="mod">Type of modification to be applied</param>
+    /// <param name="duration">Lenght in seconds the modification should last</param>
+	public void UpdateSpeedMod(EnemyMovementSpeed mod, float duration)
 	{
 		CurrentMovement = mod;
 		SpeedMod = SpeedMods[(int) CurrentMovement];
+        endModificationTime = Time.time + duration;
 	}
 }
