@@ -86,7 +86,7 @@ public class RangedTower : Tower
         _targets.Sort(
             delegate(Enemy e1, Enemy e2)
             {
-                return e1.gameObject.GetComponent<EnemyMovement>().DistanceTraveled.CompareTo(e2.gameObject.GetComponent<EnemyMovement>().DistanceTraveled);
+                return e2.gameObject.GetComponent<EnemyMovement>().DistanceTraveled.CompareTo(e1.gameObject.GetComponent<EnemyMovement>().DistanceTraveled);
             }
         );
     }
