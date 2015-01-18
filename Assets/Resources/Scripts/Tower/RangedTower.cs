@@ -11,16 +11,7 @@ public class RangedTower : Tower
     {
         base.Start(); 
         CoolDownTime = 1f;
-    }
-
-    void Update()
-    {
-        if (CurrentState != TowerState.Acting)
-            return;
-
-        if (Time.time >= _nextActionTime)
-            Act();
-    }
+    }    
 
     /// <summary>
     /// Fire Tower Action creates a arrow and sends it toward the highest priority target. 
@@ -28,13 +19,7 @@ public class RangedTower : Tower
     /// </summary>
     protected override void Act()
     {
-        base.Act();
-
-        if (_targets.Count == 0)
-        {
-            TransitionToState(TowerState.Idle);
-            return;
-        }       
+        base.Act();              
 
         GameObject target = _targets[0].gameObject;
 
@@ -45,63 +30,7 @@ public class RangedTower : Tower
         projectile.setTarget(target.transform);
         
         //Debug.Log("Act");
-    }
-
-    
-
-    protected void OnEnemyDeath(Enemy enemy)
-    {
-        //_targets.Remove(enemy);
-        
-    }
-
-    void OnTriggerEnter2D(Collider2D other)
-    {
-        Enemy eb = other.gameObject.GetComponent<Enemy>();
-
-        //Ignore collisions with non-enemies
-        if (eb == null)
-            return;
-
-        //If we are not already targeting enemy
-        if (_targets.Contains(eb) == false)
-        {
-            _targets.Add(eb);
-            eb.OnEnemyDied += HandleEnemyDeath;
-        }
-        else
-        {
-            //Enemy is already being targeted;
-            return;
-        }
-
-        PrioritizeTargets();
-
-        if (CurrentState == TowerState.Idle)
-            TransitionToState(TowerState.Acting);
-
-        //Debug.Log("Added Enemy to targets");
-    }
-
-    /// <summary>
-    /// Handles EnemyDied events by removing them from target list
-    /// </summary>
-    /// <param name="enemy">enemy that just died</param>
-    void HandleEnemyDeath(Enemy enemy)
-    {
-        _targets.Remove(enemy);
-        enemy.OnEnemyDied -= HandleEnemyDeath;
-    }
-
-    void OnTriggerExit2D(Collider2D other)
-    {
-        Enemy eb = other.gameObject.GetComponent<Enemy>();
-        if (eb == null)
-            return;
-
-        _targets.Remove(eb);
-        Debug.Log("Removed Enemy from targets");
-    }
+    }    
     
 }
 

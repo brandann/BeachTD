@@ -54,6 +54,17 @@ public abstract class Tower : MonoBehaviour
     protected readonly int _flashHash = Animator.StringToHash("Flash");
     protected readonly int _stopHash = Animator.StringToHash("Stop");
 
+    void Update()
+    {
+        if (CurrentState != TowerState.Acting)
+            return;
+
+        if (Time.time >= _nextActionTime)
+            Act();
+        else
+            TransitionToState(TowerState.Idle);
+    }
+
 
     protected virtual void TransitionToState(Tower.TowerState toState)
     {
@@ -92,6 +103,58 @@ public abstract class Tower : MonoBehaviour
 
     protected TowerState _currentState;
 
+    protected virtual void OnTriggerEnter2D(Collider2D other)
+    {
+        Enemy eb = other.gameObject.GetComponent<Enemy>();
+
+        //Ignore collisions with non-enemies
+        if (eb == null)
+            return;
+        
+
+        //If we are not already targeting enemy
+        if (_targets.Contains(eb) == false)
+        {
+            _targets.Add(eb);
+            eb.OnEnemyDied += HandleEnemyDeath;
+        }
+        else
+        {
+            //Enemy is already being targeted;
+            return;
+        }
+
+        PrioritizeTargets();
+
+        if (CurrentState == TowerState.Idle)
+            TransitionToState(TowerState.Acting);
+
+    }
+
+    /// <summary>
+    /// Handles EnemyDied events by removing them from target list
+    /// </summary>
+    /// <param name="enemy">enemy that just died</param>
+    void HandleEnemyDeath(Enemy enemy)
+    {
+        _targets.Remove(enemy);
+        enemy.OnEnemyDied -= HandleEnemyDeath;
+    }
+
+    protected virtual void OnTriggerExit2D(Collider2D other)
+    {
+        Enemy eb = other.gameObject.GetComponent<Enemy>();
+        if (eb == null)
+            return;
+
+        _targets.Remove(eb);
+        Debug.Log("Removed Enemy from targets");
+    }
+
+
+
+
+
     /// <summary>
     /// Decide which target to attack; Default behavior is to target enemy that has traveled the furthest
     /// </summary>
@@ -112,10 +175,20 @@ public abstract class Tower : MonoBehaviour
     /// </summary>
     protected virtual void Act()
     {
+        if (_targets.Count == 0){
+            TransitionToState(TowerState.Idle);
+            return;
+        }
+ 
         _lastActionTime = Time.time;
         _nextActionTime = _lastActionTime + CoolDownTime;
 
         _anim.SetTrigger(_flashHash);
+    }
+
+    protected bool AreTargetsAvailable()
+    {
+        return (_targets.Count > 0);
     }
 
     protected virtual void Start()
