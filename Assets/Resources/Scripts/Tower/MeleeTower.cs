@@ -22,6 +22,7 @@ public class MeleeTower : Tower {
         dir2Targ.Normalize();
         dir2Targ *= 1000;
         Debug.Log("Appling " + dir2Targ + " to tip");
+        _tip.rigidbody2D.isKinematic = false;
         _tip.rigidbody2D.velocity = Vector2.zero;
         _tip.rigidbody2D.AddForce(dir2Targ);
         _tip.Target = target.transform;

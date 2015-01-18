@@ -5,14 +5,16 @@ public class TipBarnacle : MonoBehaviour {
 
     public Transform Target;
     private Transform _base;
-    private float _locationEpsilon = 0.1f;
+    private float _locationEpsilon = 0.15f;
     private bool _retracting;
+    private Rigidbody2D[] _links;
 
 	// Use this for initialization
 	void Start () {
         _base = gameObject.GetComponentInParent<Tower>().gameObject.transform;
         if (_base == null)
             Debug.Log("Missing base");
+        
 	}
 	
 	// Update is called once per frame
@@ -21,7 +23,9 @@ public class TipBarnacle : MonoBehaviour {
         {
             Debug.Log("Retraction complete");
             gameObject.rigidbody2D.velocity = Vector2.zero;
+            gameObject.rigidbody2D.isKinematic = true;
             _retracting = false;
+
         }
 	        
 	}
@@ -32,7 +36,7 @@ public class TipBarnacle : MonoBehaviour {
             return;
 
         Enemy enemy = other.gameObject.GetComponent<Enemy>();
-        enemy.TakeDamage(5);
+        enemy.TakeDamage(7);
 
         gameObject.rigidbody2D.velocity = Vector2.zero;
         Vector2 dir2Base = _base.position - transform.position;
