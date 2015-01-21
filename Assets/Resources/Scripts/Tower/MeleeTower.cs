@@ -3,6 +3,7 @@ using System.Collections;
 
 public class MeleeTower : Tower {
     public float Damage = 5;
+
     
 
 
@@ -16,17 +17,13 @@ public class MeleeTower : Tower {
     protected override void Act()
     {
         base.Act();
-
-        GameObject target = _targets[0].gameObject;
-        Vector2 dir2Targ = target.transform.position - _tip.transform.position;
-        dir2Targ.Normalize();
-        dir2Targ *= 1000;
-        Debug.Log("Appling " + dir2Targ + " to tip");
-        _tip.rigidbody2D.isKinematic = false;
-        _tip.rigidbody2D.velocity = Vector2.zero;
-        _tip.rigidbody2D.AddForce(dir2Targ);
-        _tip.Target = target.transform;
+        _tip.Target = _targets[0].transform;
+        _tip.PhysicsJumpTowardTarget();
+        //_tip.KinematicMoveTowardTarget();
+        
     }
+
+    
 
     public override void DisableTower()
     {
