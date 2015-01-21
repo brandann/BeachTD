@@ -33,7 +33,7 @@ public class Global : MonoBehaviour {
 		_enemieSchedule = new Dictionary<int, GameObject>();
 		_eggs = new List<GameObject>();
 		_mapManager = new Mapmanager();
-		_mapManager.LoadMap(5);
+		_mapManager.LoadMap(3);
 		SpawnEgg();
 		EnemyA0Prefab = Resources.Load("Prefabs/EnemyA0") as GameObject;
 		EnemyB0Prefab = Resources.Load("Prefabs/EnemyB0") as GameObject;
@@ -42,7 +42,7 @@ public class Global : MonoBehaviour {
 	
 	// Update is called once per frame
 	void Update () {
-		//RandomEnemySpawner();
+		RandomEnemySpawner();
 		
 		if(Input.GetKeyUp(KeyCode.Alpha1)) { SpawnEnemy(EnemyA0Prefab); }
 		else if(Input.GetKeyUp(KeyCode.Alpha2)) { SpawnEnemy(EnemyB0Prefab); }
@@ -134,7 +134,7 @@ public class Global : MonoBehaviour {
 				SpawnEnemy(enemy);
 			}
 			_spawntimedinterval = Time.realtimeSinceStartup;
-			randomSpawnTime = Random.Range(1, 20);
+			randomSpawnTime = Random.Range(.8f, 1.2f);
 		}
 	}
 	#endregion
