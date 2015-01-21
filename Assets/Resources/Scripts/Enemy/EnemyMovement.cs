@@ -35,11 +35,15 @@ public class EnemyMovement : MonoBehaviour {
 		SpeedMod = SpeedMods[(int) CurrentMovement];
 	
 		global = GameObject.Find("Global").GetComponent<Global>();
-		waypoints = global.MapManager.CurrentMap.Waypoints;
-		/*for(int i = 0; i < waypoints.GetLength(0); i++)
+		waypoints = new Vector3[global.MapManager.CurrentMap.Waypoints.Length];
+		Vector3 MoveOffset = new Vector3(Random.Range(-0.5f, 0.5f), Random.Range(-0.5f, 0.5f), 0);
+		Vector3[] Mapwaypoints = global.MapManager.CurrentMap.Waypoints;
+		for (int i = 0; i < waypoints.Length; i++)
 		{
-			waypoints[i] *= mm.getScale();
-		}*/
+			waypoints[i] = MoveOffset + Mapwaypoints[i];
+		}
+		
+		
 		Vector3 firstposition = waypoints[0];
 		//firstposition *= mm.getScale();
 		///firstposition.x += mm.getScale()/2;

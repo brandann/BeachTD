@@ -57,6 +57,9 @@ public class Enemy : MonoBehaviour {
 		{
 			global.SpawnPrefab(global.EggPrefab, this.transform.position);
 		}
+		GameObject prefab = Resources.Load("Prefabs/temp-pow") as GameObject;
+		GameObject SpawnedPrefab = Instantiate(prefab) as GameObject;
+		SpawnedPrefab.transform.position = this.transform.position;
 		Destroy(this.gameObject);
 	}
 	
