@@ -5,8 +5,6 @@ public class MeleeTower : Tower {
     public float Damage = 5;
 
     
-
-
 	// Use this for initialization
 	void Start () {
         base.Start();
