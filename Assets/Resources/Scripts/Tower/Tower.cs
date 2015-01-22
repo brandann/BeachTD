@@ -135,7 +135,7 @@ public abstract class Tower : MonoBehaviour
     /// Handles EnemyDied events by removing them from target list
     /// </summary>
     /// <param name="enemy">enemy that just died</param>
-    void HandleEnemyDeath(Enemy enemy)
+    protected virtual void HandleEnemyDeath(Enemy enemy)
     {
         _targets.Remove(enemy);
         enemy.OnEnemyDied -= HandleEnemyDeath;

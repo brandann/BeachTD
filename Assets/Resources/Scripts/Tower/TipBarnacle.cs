@@ -5,18 +5,20 @@ public class TipBarnacle : MonoBehaviour {
 
     private enum TipState { Idle, Attacking, Retracting };
     private TipState State;
-
+    public float Damage { get; protected set; }
     public Transform Target { get; protected set; }
     private Transform _base;
     private float _locationEpsilon = 0.15f;
     private float _kinematicSpeed = 2.0f;
     private Rigidbody2D[] _links;
+    private bool _hitTarget;
 
 	// Use this for initialization
 	void Start () {
         _base = gameObject.GetComponentInParent<Tower>().gameObject.transform;
         if (_base == null)
-            Debug.Log("Missing base");      
+            Debug.LogWarning("Missing base");
+        State = TipState.Retracting;
 	}
 	
 	// Update is called once per frame
@@ -39,22 +41,40 @@ public class TipBarnacle : MonoBehaviour {
     {
         State = TipState.Attacking;
         Target = targ;
+        _hitTarget = false;
     }
 
     private void PhysicsFinishRetracting()
     {
-        if (State == TipState.Retracting && 
+        if (State == TipState.Retracting &&
            (transform.position - _base.position).magnitude <= _locationEpsilon)
         {
-            Debug.Log("Retraction complete");
+            //Debug.Log("Retraction complete");
             gameObject.rigidbody2D.velocity = Vector2.zero;
             gameObject.rigidbody2D.isKinematic = true;
             State = TipState.Idle;
         }
+        else
+        {
+            rigidbody2D.AddForce(_base.position - transform.position);
+        }
+        
+
+        
 
     }
 
-    public void KinematicMoveTowardTarget()
+    /// <summary>
+    /// 
+    /// </summary>
+    /// <param name="damage">Damage applied to Target's Enemy. Negative values floored at 0.</param>
+    public void SetDamage(float damage)
+    {
+        Damage = Mathf.Min(0,damage);
+
+    }
+
+    protected void KinematicMoveTowardTarget()
     {
         
         if (!rigidbody2D.isKinematic)
@@ -68,26 +88,26 @@ public class TipBarnacle : MonoBehaviour {
 
     }
 
+    public void ClearTarget()
+    {
+        Target = null;
+        PhysicsRetract();
+    }
+
     public void PhysicsJumpTowardTarget()
     {
         
         Vector2 dir2Targ = Target.position - transform.position;
         dir2Targ.Normalize();
         dir2Targ *= 1000;
-        Debug.Log("Appling " + dir2Targ + " to tip");
+        //Debug.Log("Appling " + dir2Targ + " to tip");
         rigidbody2D.isKinematic = false;
         rigidbody2D.velocity = Vector2.zero;
         rigidbody2D.AddForce(dir2Targ);
     }
 
-
-    void OnTriggerEnter2D(Collider2D other)
+    private void PhysicsRetract()
     {
-        if (other.transform != Target)
-            return;
-
-        Enemy enemy = other.gameObject.GetComponent<Enemy>();
-        enemy.TakeDamage(7);
 
         if (rigidbody2D.isKinematic)
         {
@@ -99,6 +119,18 @@ public class TipBarnacle : MonoBehaviour {
         dir2Base *= 1000;
         gameObject.rigidbody2D.AddForce(dir2Base);
         State = TipState.Retracting;
-        //Debug.Log("Retracting");
+    }
+
+
+    void OnTriggerEnter2D(Collider2D other)
+    {
+        if (other.transform != Target || _hitTarget)
+            return;
+
+        _hitTarget = true;
+        Enemy enemy = other.gameObject.GetComponent<Enemy>();
+        enemy.TakeDamage(7);
+
+        PhysicsRetract();
     }
 }

@@ -10,6 +10,7 @@ public class MeleeTower : Tower {
         base.Start();
         CoolDownTime = 5;
         _tip = GetComponentInChildren<TipBarnacle>();
+        _tip.SetDamage(Damage);
 	}
 
     protected override void Act()
@@ -28,6 +29,12 @@ public class MeleeTower : Tower {
     public override void EnableTower()
     {
         TransitionToState(_previousState);
+    }
+
+    protected override void HandleEnemyDeath(Enemy enemy)
+    {
+        base.HandleEnemyDeath(enemy);
+        _tip.ClearTarget();
     }
 
     private TipBarnacle _tip;
