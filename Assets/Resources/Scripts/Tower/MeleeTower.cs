@@ -15,10 +15,7 @@ public class MeleeTower : Tower {
     protected override void Act()
     {
         base.Act();
-        _tip.Target = _targets[0].transform;
-        _tip.PhysicsJumpTowardTarget();
-        //_tip.KinematicMoveTowardTarget();
-        
+        _tip.Attack(_targets[0].transform);        
     }
 
     

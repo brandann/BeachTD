@@ -148,7 +148,7 @@ public abstract class Tower : MonoBehaviour
             return;
 
         _targets.Remove(eb);
-        Debug.Log("Removed Enemy from targets");
+        //Debug.Log("Removed Enemy from targets");
     }
 
 
