@@ -10,6 +10,11 @@ using System.Collections.Generic;
 public abstract class Tower : MonoBehaviour
 {
     #region public inteface
+
+    public delegate void TowerEventHandler(Tower t);
+
+    public static event TowerEventHandler onTowerTouched;
+
     public enum TowerState { Idle, Acting, Disabled };
 
     //Cost of building 
