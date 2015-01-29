@@ -18,6 +18,10 @@ public class Global : MonoBehaviour {
 	public GameObject EnemyA0Prefab;
 	public GameObject EnemyB0Prefab;
 	public GameObject EnemyC0Prefab;
+	[Range (0, 10)]
+	public int StartingLevel;
+	public float RandomEnemySpawnLow;
+	public float RandomEnemySpawnHigh;
 	
 	public enum MapToken {Tower = -2, Path = -1, Start = 0}
 	
@@ -33,7 +37,7 @@ public class Global : MonoBehaviour {
 		_enemieSchedule = new Dictionary<int, GameObject>();
 		_eggs = new List<GameObject>();
 		_mapManager = new Mapmanager();
-		_mapManager.LoadMap(3);
+		_mapManager.LoadMap(StartingLevel);
 		SpawnEgg();
 		EnemyA0Prefab = Resources.Load("Prefabs/EnemyA0") as GameObject;
 		EnemyB0Prefab = Resources.Load("Prefabs/EnemyB0") as GameObject;
@@ -134,7 +138,7 @@ public class Global : MonoBehaviour {
 				SpawnEnemy(enemy);
 			}
 			_spawntimedinterval = Time.realtimeSinceStartup;
-			randomSpawnTime = Random.Range(.8f, 1.2f);
+			randomSpawnTime = Random.Range(RandomEnemySpawnLow, RandomEnemySpawnHigh);
 		}
 	}
 	#endregion

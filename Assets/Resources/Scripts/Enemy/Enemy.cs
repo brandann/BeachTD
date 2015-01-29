@@ -70,10 +70,14 @@ public class Enemy : MonoBehaviour {
 		{
 			Dead();
 			//dead
-			Debug.Log("Enemy Dead");
 			Destroy(this.gameObject);
             if (OnEnemyDied != null)
                 OnEnemyDied(this);
 		}
+	}
+	
+	public void OnTouchDown()
+	{
+		Dead();
 	}
 }

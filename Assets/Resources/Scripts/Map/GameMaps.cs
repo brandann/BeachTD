@@ -70,18 +70,18 @@ public class GameMaps {
 		Map m5 = new Map();
 		m5.SetMap(new int[,]
 		          { 
-			{T,P,P,P,P,P,P,P,P,P,P,P,P,P,P,P,P,P,T},
-			{T,P,P,P,P,P,P,P,P,P,P,P,P,P,P,P,P,P,T},
-			{T,P,P,P,P,P,P,P,P,P,P,P,P,P,P,P,P,P,T},
-			{T,P,P,P,P,P,P,P,P,P,P,P,P,P,P,P,P,P,T},
-			{T,P,P,P,P,P,P,P,T,T,P,P,P,P,P,P,P,P,T},
-			{0,P,P,P,P,P,P,P,P,P,P,P,P,P,P,P,P,P,1},
-			{T,P,P,P,P,P,P,P,P,P,P,P,P,P,P,P,P,P,T},
-			{T,P,P,P,P,P,P,P,P,P,P,P,P,P,P,P,P,P,T},
-			{T,P,P,P,P,P,P,P,P,P,P,P,P,P,P,P,P,P,T},
-			{T,P,P,P,P,P,P,P,P,P,P,P,P,P,P,P,P,P,T},
-			{T,P,P,P,P,P,P,P,P,P,P,P,P,P,P,P,P,P,T},
-			{T,P,P,P,P,P,P,P,P,P,P,P,P,P,P,P,P,P,T}
+			{T,P,P,P,P,P,P,P,P,P,P,P,P,P,P,P,P,P,T},//0
+			{T,P,P,P,P,P,P,P,P,P,P,P,P,P,P,P,P,P,T},//1
+			{T,P,P,P,P,P,P,P,P,P,P,P,P,P,P,P,P,P,T},//2
+			{T,P,P,P,P,P,P,P,P,P,P,P,P,P,P,P,P,P,T},//3
+			{T,P,P,P,T,T,P,P,P,P,P,P,P,P,P,P,P,P,T},//4
+			{0,P,P,P,P,P,P,P,P,P,P,P,P,P,P,P,P,P,1},//5
+			{T,P,P,P,P,P,P,P,P,P,P,P,P,P,P,P,P,P,T},//6
+			{T,P,P,P,P,P,P,P,P,P,P,P,P,P,P,P,P,P,T},//7
+			{T,P,P,P,P,P,P,P,P,P,P,P,P,P,P,P,P,P,T},//8
+			{T,P,P,P,P,P,P,P,P,P,P,P,P,P,P,P,P,P,T},//9
+			{T,P,P,P,P,P,P,P,P,P,P,P,P,P,P,P,P,P,T},//10
+			{T,P,P,P,P,P,P,P,P,P,P,P,P,P,P,P,P,P,T}//11
 			
 		});
 		

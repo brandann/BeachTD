@@ -1,5 +1,5 @@
 ﻿using UnityEngine;
-using System.Collections;
+using System.Collections.Generic;
 
 public class TouchController : MonoBehaviour {
 	
@@ -9,6 +9,8 @@ public class TouchController : MonoBehaviour {
 	private const string touchStay = "OnTouchStay";
 	private const string touchMove = "OnTouchMove";
 	private const string touchExit = "OnTouchExit";
+	
+	public List<string> TouchableTags; // filled in on inspector
 
 	// Use this for initialization
 	void Start () {
@@ -123,13 +125,7 @@ public class TouchController : MonoBehaviour {
 			if(message == touchDown)
 			{
 				// if tower tag is found
-				if(hit.transform.tag == "tower")
-				{
-					hit.transform.gameObject.SendMessage("OnTouchDown", hit.point, SendMessageOptions.DontRequireReceiver);
-				}
-				
-				// if tower tag is found
-				else if(hit.transform.tag == "open")
+				if(TouchableTags.Contains(hit.transform.tag))
 				{
 					hit.transform.gameObject.SendMessage("OnTouchDown", hit.point, SendMessageOptions.DontRequireReceiver);
 				}

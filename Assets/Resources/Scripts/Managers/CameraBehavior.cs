@@ -5,6 +5,8 @@ public class CameraBehavior : MonoBehaviour {
 
 	private bool zoom = false;
 	Global global;
+	float speed = .0001f;
+	Vector2 lasttouch;
 
 	// Use this for initialization
 	void Start () 
@@ -19,6 +21,22 @@ public class CameraBehavior : MonoBehaviour {
 		{
 			zoom = true;
 		}	
+		
+		if (Input.touchCount > 0 && Input.GetTouch(0).phase == TouchPhase.Moved) {
+			Vector2 trans = Input.GetTouch(0).deltaPosition - lasttouch;
+			trans = trans * speed * Time.deltaTime;
+			lasttouch = Input.GetTouch(0).deltaPosition;
+			transform.Translate(trans.x, trans.y * speed, 0);
+		}
+		else if (Input.GetMouseButton(0)) {
+			Vector2 pos = Input.mousePosition;
+			Vector2 trans = pos - lasttouch;
+			trans = trans * speed * Time.deltaTime;
+			lasttouch = Input.mousePosition;
+			transform.Translate(-trans.x, -trans.y * speed, 0);
+			//Vector2 touchDeltaPosition = Input.mousePosition;
+			//transform.Translate(-touchDeltaPosition.x * speed, -touchDeltaPosition.y * speed, 0);
+		}
 		
 		if(zoom)
 		{

@@ -7,9 +7,20 @@ public class Map {
 	#region Public Methods
 	public void SetMap(int[,] m) 
 	{
-		_mapi = FixMap(m);
+		_mapi = new int[m.GetLength(0),m.GetLength(1)];
+		for(int i = 0; i < m.GetLength(0); i++)
+		{
+			for(int j = 0; j < m.GetLength(1); j++)
+			{
+				_mapi[i,j] = m[i,j];
+			}
+		}
+
+		_mapi = FixMap(_mapi);
 		_waypoints = FindWayPoints(_mapi);
 		_mapb = IntMapToBool(_mapi);
+		//_mapi = FixMap(m);
+		
 	}
 	#endregion
 	
@@ -86,6 +97,22 @@ public class Map {
 		return FoundWaypoints;
 	}
 	
+	private void printMap(int[,] m)
+	{
+		string line = "";
+		for(int i = 0; i < m.GetLength(0); i++)
+		{
+			for(int j = 0; j < m.GetLength(1); j++)
+			{
+				line += m[i,j].ToString();
+			}
+			Debug.Log("\n" + line);
+			line = "";
+			
+		}
+		Debug.Log("***************************");
+	}
+	
 	private Vector3 FindPointByIndex(int index, int[,] m)
 	{
 		for(int i = 0; i < m.GetLength(0); i++)
@@ -105,6 +132,9 @@ public class Map {
 	// screen map.
 	private int[,] FixMap(int[,] m)
 	{
+		printMap(m);
+		int w = m.GetLength(0);
+		int h = m.GetLength(1);
 		for(int i = 0; i < m.GetLength(0); i++)
 		{
 			for (int j = 0; j < m.GetLength(1); j++)
@@ -118,8 +148,9 @@ public class Map {
 			// the half point and needs to be returned.
 			// if the map continues to mirror it will mirrow back to its
 			// origianl layout
-			if( (i >= m.GetLength(0) -i -1) )
+			if( (i >= m.GetLength(0) -i) )
 			{
+				printMap (m);
 				return m;
 			}
 		}
