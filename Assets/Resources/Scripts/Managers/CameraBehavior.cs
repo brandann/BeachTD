@@ -19,7 +19,7 @@ public class CameraBehavior : MonoBehaviour {
 	{
 		if(Input.GetKey(KeyCode.E))
 		{
-			zoom = true;
+			//zoom = true;
 		}	
 		
 		if (Input.touchCount > 0 && Input.GetTouch(0).phase == TouchPhase.Moved) {
