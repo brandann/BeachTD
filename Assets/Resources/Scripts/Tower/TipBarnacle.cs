@@ -15,10 +15,12 @@ public class TipBarnacle : MonoBehaviour {
 
 	// Use this for initialization
 	void Start () {
+        
         _base = gameObject.GetComponentInParent<Tower>().gameObject.transform;
+        
         if (_base == null)
             Debug.LogWarning("Missing base");
-        State = TipState.Retracting;
+        rigidbody2D.isKinematic = true;
 	}
 	
 	// Update is called once per frame
@@ -56,11 +58,11 @@ public class TipBarnacle : MonoBehaviour {
         }
         else
         {
-            rigidbody2D.AddForce(_base.position - transform.position);
-        }
-        
-
-        
+            Vector2 dir2Target = _base.position - transform.position;
+            dir2Target.Normalize();
+            rigidbody2D.AddForce(dir2Target * 10, ForceMode2D.Impulse);
+            Debug.Log("retracting force: " + dir2Target * 10);
+        }       
 
     }
 
@@ -108,6 +110,7 @@ public class TipBarnacle : MonoBehaviour {
 
     private void PhysicsRetract()
     {
+        Debug.Log("PhysicsRetract");
 
         if (rigidbody2D.isKinematic)
         {
@@ -115,8 +118,10 @@ public class TipBarnacle : MonoBehaviour {
         }
 
         gameObject.rigidbody2D.velocity = Vector2.zero;
-        Vector2 dir2Base = _base.position - transform.position;
-        dir2Base *= 1000;
+        Vector2 dir2Base =  _base.position - transform.position;
+        dir2Base.Normalize();
+        dir2Base *= 100;
+        Debug.Log("Rectract Apply: " + dir2Base); 
         gameObject.rigidbody2D.AddForce(dir2Base);
         State = TipState.Retracting;
     }
