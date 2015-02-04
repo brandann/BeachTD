@@ -14,7 +14,7 @@ GameObject:
   - 58: {fileID: 5825654}
   - 50: {fileID: 5084248}
   m_Layer: 0
-  m_Name: SpecialTower
+  m_Name: SlowlTower
   m_TagString: tower
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -81,7 +81,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 100000}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: a6edc99eac263b248a1c40836da32476, type: 3}
+  m_Script: {fileID: 11500000, guid: e48539c47e7c12d40a47f1e0cffc628f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   ProjectilePrefab: {fileID: 129612, guid: 528cf842538d61e45b21f8bb5c979a05, type: 2}

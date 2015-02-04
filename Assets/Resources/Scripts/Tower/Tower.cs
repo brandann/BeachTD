@@ -10,13 +10,32 @@ using System.Collections.Generic;
 public abstract class Tower : MonoBehaviour
 {
     #region public inteface
-    public enum TowerState { Idle, Acting, Disabled };
+
+    public delegate void TowerEventHandler(Tower t);
+
+    public static event TowerEventHandler onTowerTouched;
+
+    /// <summary>
+    /// Used to modify Towers real numbers are precentages but no limits are appled. Integers are "levels" defined by derived clasess
+    /// </summary>
+    public struct Upgrade
+    {
+        public float Range;
+        public float Speed;
+        public float Damage;
+        public int Special;
+    }    
 
     //Cost of building 
-    public int Cost { get; private set; }
+    public int Cost { get; protected set; }
 
-    //Time between firing
+    //Damage done per hit
+    public float Damage { get; protected set; }
+
+    //Time between firing in seconds, higher number == slower firing
     public float CoolDownTime { get; protected set; }
+
+    public enum TowerState { Idle, Acting, Disabled };
     
     //Current state of the tower
     public TowerState CurrentState {
@@ -48,12 +67,21 @@ public abstract class Tower : MonoBehaviour
         TransitionToState(_previousState);
     }
 
+    public virtual void UpgradeTower(Upgrade upgrade)
+    {
+        _collider.radius *= (1 + upgrade.Range);
+        CoolDownTime *= -(1 + upgrade.Speed);
+        Damage *= (1 + upgrade.Damage);
+        UpgradeSpecial(upgrade.Special);
+    }
+
     #endregion
 
     //Animator Triggers
     protected readonly int _flashHash = Animator.StringToHash("Flash");
     protected readonly int _stopHash = Animator.StringToHash("Stop");
-
+    protected CircleCollider2D _collider;    
+    
     void Update()
     {
         if (CurrentState != TowerState.Acting)
@@ -64,6 +92,10 @@ public abstract class Tower : MonoBehaviour
         else
             TransitionToState(TowerState.Idle);
     }
+
+
+    //Used to upgrade special abilities in derived classes
+    protected abstract void UpgradeSpecial(int level);
 
 
     protected virtual void TransitionToState(Tower.TowerState toState)
@@ -194,6 +226,8 @@ public abstract class Tower : MonoBehaviour
     protected virtual void Start()
     {
         _anim = gameObject.GetComponent<Animator>();
+
+        _collider = (CircleCollider2D)gameObject.collider2D;
         
         if(_anim == null)
             Debug.LogError("Missing animator");
@@ -201,10 +235,5 @@ public abstract class Tower : MonoBehaviour
         _targets = new List<Enemy>();
         
     }
-
-    
-
-   
-
     
 }
