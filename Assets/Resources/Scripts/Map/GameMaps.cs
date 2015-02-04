@@ -24,25 +24,25 @@ public class GameMaps {
 		
 		Map m1 = new Map();
 		m1.SetMap(new int[,]
-           {{T,P,P,P,P,P,P,P,P,P,P,P,P,P,T},//0
-			{T,P,P,P,P,P,P,P,P,P,P,P,P,P,P},//1
-			{T,P,P,P,P,P,P,P,P,P,P,P,P,P,P},//2
-			{T,P,P,P,P,P,P,P,P,P,P,P,P,P,P},//3
+           {{T,T,T,T,T,T,T,T,T,T,T,T,T,T,T},//0
+			{T,T,T,T,T,T,T,T,T,T,T,T,T,T,T},//1
+			{T,T,T,T,T,T,T,T,T,T,T,T,T,T,T},//2
+			{T,T,T,T,T,T,T,T,T,T,T,T,T,T,T},//3
 			{0,P,P,P,P,P,P,P,P,P,P,P,P,P,1},//4
-			{P,P,P,P,P,P,P,P,P,P,P,P,P,P,P},//5
-			{T,P,P,P,P,P,P,P,P,P,P,P,P,P,P},//6
-			{T,P,P,P,P,P,P,P,P,P,P,P,P,P,T}});
+			{T,T,T,T,T,T,T,T,T,T,T,T,T,T,T},//5
+			{T,T,T,T,T,T,T,T,T,T,T,T,T,T,T},//6
+			{T,T,T,T,T,T,T,T,T,T,T,T,T,T,T}});
 		
 		Map m2 = new Map();
 		m2.SetMap(new int[,]
-           {{T,P,P,P,P,P,P,P,P,P,P,P,P,P,T},//0
-			{T,P,P,P,P,P,P,P,P,P,P,P,P,P,P},//1
-			{T,P,P,P,P,P,P,P,P,P,P,P,P,P,P},//2
-			{T,P,P,P,P,P,P,P,P,P,P,P,P,P,P},//3
-			{0,P,P,P,P,P,P,P,P,P,P,P,P,P,1},//4
-			{P,P,P,P,P,P,P,P,P,P,P,P,P,P,P},//5
-			{T,P,P,P,P,P,P,P,P,P,P,P,P,P,P},//6
-			{T,P,P,P,P,P,P,P,P,P,P,P,P,P,T}});
+           {{T,T,T,T,T,T,T,T,T,T,T,T,T,T,T},//0
+			{0,P,P,P,P,P,P,1,T,T,T,T,T,T,T},//1
+			{T,T,T,T,T,T,T,P,T,T,T,T,T,T,T},//2
+			{T,T,T,T,T,T,T,P,T,T,T,T,T,T,T},//3
+			{T,T,T,T,T,T,T,P,T,T,T,T,T,T,T},//4
+			{T,T,T,T,T,T,T,P,T,T,T,T,T,T,T},//5
+			{T,T,T,T,T,T,T,2,P,P,P,P,P,P,3},//6
+			{T,T,T,T,T,T,T,T,T,T,T,T,T,T,T}});
 		
 		Map m3 = new Map();
 		m3.SetMap(new int[,]
