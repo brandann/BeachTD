@@ -11,7 +11,7 @@ public class SlowHelper : MonoBehaviour
     }
 
     /// <summary>
-    /// Pases colliders up to slow projectile in parent for processing
+    /// Pases colliders up to slow slowPro in parent for processing
     /// </summary>
     /// <param name="other"></param>
     public void OnTriggerEnter2D(Collider2D other)

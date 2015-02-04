@@ -2,8 +2,6 @@
 using System.Collections;
 
 public class MeleeTower : Tower {
-    public float Damage = 5;
-
     
 	// Use this for initialization
 	void Start () {
@@ -11,6 +9,7 @@ public class MeleeTower : Tower {
         CoolDownTime = 5;
         _tip = GetComponentInChildren<TipBarnacle>();
         _tip.SetDamage(Damage);
+        Damage = 5;
 	}
 
     protected override void Act()
@@ -18,7 +17,6 @@ public class MeleeTower : Tower {
         base.Act();
         _tip.Attack(_targets[0].transform);        
     }
-
     
 
     public override void DisableTower()
@@ -36,6 +34,12 @@ public class MeleeTower : Tower {
         base.HandleEnemyDeath(enemy);
         _tip.ClearTarget();
     }
+
+    protected override void UpgradeSpecial(int level)
+    {
+        Debug.LogWarning("Barnacle has no special to upgrade yet");
+    }
+    
 
     private TipBarnacle _tip;
 

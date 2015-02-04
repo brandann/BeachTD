@@ -5,12 +5,14 @@ public class RangedTower : Tower
 {
 
     public GameObject ProjectilePrefab;
-    
+
+    protected int _spinesPerShot;
 
     protected override void Start()
     {
         base.Start(); 
         CoolDownTime = 1f;
+        _spinesPerShot = 1;
     }    
 
     /// <summary>
@@ -19,18 +21,29 @@ public class RangedTower : Tower
     /// </summary>
     protected override void Act()
     {
-        base.Act();              
+        base.Act();
 
-        GameObject target = _targets[0].gameObject;
+        //Create a spine for each enemy in rane up to spines per shot
+        int spinesToCreate = Mathf.Min(_targets.Count, _spinesPerShot);
 
-        GameObject arrow = GameObject.Instantiate(ProjectilePrefab, gameObject.transform.position, Quaternion.identity) as GameObject;
+        for(int i = 0; i < spinesToCreate; ++i)
+        {
+            GameObject target = _targets[i].gameObject;
 
-        Projectile projectile = arrow.GetComponent<Projectile>();
+            GameObject arrow = GameObject.Instantiate(ProjectilePrefab, gameObject.transform.position, Quaternion.identity) as GameObject;
 
-        projectile.setTarget(target.transform);
+            Projectile projectile = arrow.GetComponent<Projectile>();
+
+            projectile.setTarget(target.transform);
+        }        
         
         //Debug.Log("Act");
-    }    
+    }
+
+    protected override void UpgradeSpecial(int level)
+    {
+        _spinesPerShot = level;        
+    }
     
 }
 

@@ -2,7 +2,7 @@
 using System.Collections;
 
 /// <summary>
-/// Slow projectile is designed to work with a "helper" child game object. The child holds the sprite and colliders and passes
+/// Slow slowPro is designed to work with a "helper" child game object. The child holds the sprite and colliders and passes
 /// collisions up. 
 /// </summary>
 public class SlowProjectile : Projectile {

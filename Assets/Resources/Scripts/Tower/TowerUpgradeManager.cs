@@ -7,11 +7,11 @@ using System.Collections;
 /// Determines the availabilty of upgrades based on tower selection and funds available etc.
 /// Controls the presentation of the upgrade UI elements and handles the user selection thereof.
 /// </summary>
-public class TowerUpgradeManager : MonoBehaviour {
-
+public class TowerUpgradeManager : MonoBehaviour
+{
     public GameObject MeleePrefab;
     public GameObject RangedPrefab;
-    public GameObject SlowPrefab;
+    public GameObject SlowPrefab;   
 
     private Tower _touchedTower;
     private Button _meleeUpButton;
@@ -22,6 +22,14 @@ public class TowerUpgradeManager : MonoBehaviour {
 
     public void MeleeUpgrade()
     {
+        if (_touchedTower == null)
+        {
+            Debug.Log("No tower to upgrade");
+            return;
+        }
+
+        //Instantiate.
+        Destroy(_touchedTower.gameObject);        
        
     }
 
