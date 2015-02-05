@@ -48,6 +48,29 @@ public class Enemy : MonoBehaviour {
 	
 	}
 	
+	public void PickUpEgg(GameObject go = null)
+	{
+		GameObject egg = null;
+		if(go == null)
+		{
+			egg = global.GetEggFromGoal();
+		}
+		else
+		{
+			egg = go;
+		}
+		
+		if(egg != null)
+		{
+			egg.transform.localScale = new Vector3(.5f, .5f, .5f);
+			egg.transform.parent = transform;
+			egg.transform.position = transform.position;
+			egg.transform.position = new Vector3(transform.position.x, transform.position.y, -1);
+			HasEgg = true;
+			egg.GetComponent<CircleCollider2D>().enabled = false;
+		}
+	}
+	
 	private void Dead()
 	{
 		//dead
@@ -55,7 +78,7 @@ public class Enemy : MonoBehaviour {
 		
 		if(_hasegg)
 		{
-			global.SpawnPrefab(global.EggPrefab, this.transform.position);
+			global.DestroyEgg();
 		}
 		GameObject prefab = Resources.Load("Prefabs/temp-pow") as GameObject;
 		GameObject SpawnedPrefab = Instantiate(prefab) as GameObject;
@@ -79,5 +102,19 @@ public class Enemy : MonoBehaviour {
 	public void OnTouchDown()
 	{
 		Dead();
+	}
+	
+	void OnCollisionEnter2D(Collision2D collision)
+	{
+		if(collision.gameObject.tag == "egg")
+		{
+			if(HasEgg)
+			{
+				return;
+			}
+			Debug.Log("here");
+			//this.gameObject.GetComponent<EnemyMovement>().ReverseDirection();
+			PickUpEgg(collision.gameObject);
+		}
 	}
 }

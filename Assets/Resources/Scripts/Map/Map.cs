@@ -97,22 +97,6 @@ public class Map {
 		return FoundWaypoints;
 	}
 	
-	private void printMap(int[,] m)
-	{
-		string line = "";
-		for(int i = 0; i < m.GetLength(0); i++)
-		{
-			for(int j = 0; j < m.GetLength(1); j++)
-			{
-				line += m[i,j].ToString();
-			}
-			Debug.Log("\n" + line);
-			line = "";
-			
-		}
-		Debug.Log("***************************");
-	}
-	
 	private Vector3 FindPointByIndex(int index, int[,] m)
 	{
 		for(int i = 0; i < m.GetLength(0); i++)
@@ -132,7 +116,6 @@ public class Map {
 	// screen map.
 	private int[,] FixMap(int[,] m)
 	{
-		printMap(m);
 		int w = m.GetLength(0);
 		int h = m.GetLength(1);
 		for(int i = 0; i < m.GetLength(0); i++)
@@ -150,7 +133,6 @@ public class Map {
 			// origianl layout
 			if( (i >= m.GetLength(0) -i) )
 			{
-				printMap (m);
 				return m;
 			}
 		}

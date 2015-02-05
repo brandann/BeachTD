@@ -1,4 +1,4 @@
-﻿using UnityEngine;
+using UnityEngine;
 using System.Collections;
 
 public class EnemyMovement : MonoBehaviour {
@@ -20,7 +20,7 @@ public class EnemyMovement : MonoBehaviour {
 	public int direction = 1;
 
     public int listPos{get; private set;} //current index of the array list
-	public float speed;// = .5f; // enemy speed
+	private float speed = .5f; // enemy speed
 	public float distance;// = .1f; //distance enemy must be away from waypoint to got to next
 	public float rotateangle;// = 3; // rotation factor
 	
@@ -36,7 +36,8 @@ public class EnemyMovement : MonoBehaviour {
 	
 		global = GameObject.Find("Global").GetComponent<Global>();
 		waypoints = new Vector3[global.MapManager.CurrentMap.Waypoints.Length];
-		Vector3 MoveOffset = new Vector3(Random.Range(-0.5f, 0.5f), Random.Range(-0.5f, 0.5f), 0);
+		//Vector3 MoveOffset = new Vector3(Random.Range(-0.5f, 0.5f), Random.Range(-0.5f, 0.5f), 0);
+		Vector3 MoveOffset = Vector3.zero;
 		Vector3[] Mapwaypoints = global.MapManager.CurrentMap.Waypoints;
 		for (int i = 0; i < waypoints.Length; i++)
 		{
@@ -90,7 +91,7 @@ public class EnemyMovement : MonoBehaviour {
 				if(direction > 0)
 				{
 					ReverseWaypoints();
-					global.GiveEggToEnemy(this.gameObject);
+					GetComponent<Enemy>().PickUpEgg();
 					listPos--;
 				}
 				else
@@ -158,6 +159,17 @@ public class EnemyMovement : MonoBehaviour {
 	public void ReverseWaypoints()
 	{
 		direction *= -1;
+	}
+	
+	public void ReverseDirection()
+	{
+		if(direction > 0)
+		{
+			direction *= -1;
+			listPos -= 1;
+			nextPoint = waypoints[listPos];
+		}
+		
 	}
 	
     /// <summary>
