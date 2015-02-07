@@ -6,16 +6,22 @@ public class Global : MonoBehaviour {
 
 	#region Private Memebers
 	private const int STARTING_EGG_COUNT = 10;
-	private GameMaps _currentMap;
+	private List<GameObject> _eggsAtGoal;
+	private int _eggsStillActive;
+	
 	private Mapmanager _mapManager;
+	private Map _currentMap;
+	private Dictionary<int, Map> _maps;
+	
 	private float _spawntimedinterval = 0;
 	private float randomSpawnTime = 0;
+	
 	private Dictionary<int, GameObject> _enemies;
 	private Dictionary<int, GameObject> _towers;
 	private Dictionary<int, Wave> _waves;
 	private Dictionary<int, GameObject> _enemieSchedule;
-	private List<GameObject> _eggsAtGoal;
-	private int _eggsStillActive;
+	
+	private bool _mapLoaded = false;
 	#endregion
 	
 	#region Public Memebers
@@ -37,11 +43,12 @@ public class Global : MonoBehaviour {
 	// Use this for initialization
 	void Start () {
 		Initilize();
+		LoadMap(2);
 	}
 	
 	// Update is called once per frame
 	void Update () {
-		RandomEnemySpawner();
+		RandomEnemySpawner(_mapLoaded);
 		
 		if(Input.GetKeyUp(KeyCode.Alpha1)) { SpawnEnemy(EnemyA0Prefab); }
 		else if(Input.GetKeyUp(KeyCode.Alpha2)) { SpawnEnemy(EnemyB0Prefab); }
@@ -53,8 +60,6 @@ public class Global : MonoBehaviour {
 	private void InitEggs()
 	{
 		_eggsAtGoal = new List<GameObject>();
-		
-		SpawnEgg();
 	}
 	
 	public void SpawnEgg()
@@ -62,7 +67,7 @@ public class Global : MonoBehaviour {
 		GameObject EggPrefab = Resources.Load("Prefabs/egg") as GameObject;
 		for(int i = 0; i < STARTING_EGG_COUNT; i++)
 		{
-			Vector3 endloc = MapManager.CurrentMap.Waypoints[MapManager.CurrentMap.Waypoints.Length - 1];
+			Vector3 endloc = _currentMap.Waypoints[_currentMap.Waypoints.Length - 1];
 			Vector3 randloc = new Vector3(Random.Range(-0.5f, 0.5f),Random.Range(-1.5f,1.5f), 0);
 			Vector3 offset = new Vector3(1,0,0);
 			GameObject egg = SpawnPrefab(EggPrefab, endloc + randloc + offset);
@@ -87,9 +92,12 @@ public class Global : MonoBehaviour {
 		return null;
 	}
 	
-	public void DropEgg()
+	public void DropEgg(Vector3 pos)
 	{
-		
+		Debug.Log("Dropegg");
+		GameObject EggPrefab = Resources.Load("Prefabs/egg") as GameObject;
+		GameObject egg = SpawnPrefab(EggPrefab, pos);
+		egg.GetComponent<CircleCollider2D>().enabled = true;
 	}
 	
 	public void DestroyEgg()
@@ -125,7 +133,7 @@ public class Global : MonoBehaviour {
 	
 	public void SpawnEnemy(GameObject EnemyPrefab)
 	{
-		GameObject go = SpawnPrefab(EnemyPrefab, _mapManager.CurrentMap.Waypoints[0]);
+		GameObject go = SpawnPrefab(EnemyPrefab, CurrentMap.Waypoints[0]);
 		_enemies.Add(go.GetInstanceID(), go);
 	}
 	
@@ -140,8 +148,10 @@ public class Global : MonoBehaviour {
 	}
 	
 	#region RandomEnemySpawner
-	private void RandomEnemySpawner()
+	private void RandomEnemySpawner(bool go)
 	{
+		if(!go) return;
+		
 		if ((Time.realtimeSinceStartup - _spawntimedinterval) > randomSpawnTime) 
 		{
 			int r = Random.Range(0,3);
@@ -164,18 +174,25 @@ public class Global : MonoBehaviour {
 	#region Map
 	private void InitMap()
 	{
+		Dictionary<int, int[,]> m = new GameMaps().GetGameMaps();
+		if(_maps != null)
+		{
+			_maps.Clear();
+		}
+		_maps = new Dictionary<int, Map>();
+		
+		for(int i = 0; i < m.Count; i++)
+		{
+			_maps.Add(i, new Map(m[i]));
+		}
+		
 		_mapManager = new Mapmanager();
-		_mapManager.LoadMap(StartingLevel);
 	}
-	
-	public Mapmanager MapManager
-	{ 
-		get { return _mapManager; }
-	}
+
 	
 	public Map CurrentMap
 	{
-		get { return MapManager.CurrentMap; }
+		get{ return _currentMap; }
 	}
 	#endregion
 	
@@ -189,9 +206,22 @@ public class Global : MonoBehaviour {
 	#endregion
 	
 	#region Private Methods
+	private void LoadMap(int index)
+	{
+		_mapManager.LoadMap(_maps[index]);
+		_currentMap = _maps[index];
+		SpawnEgg();
+		_mapLoaded = true;
+	}
+	
 	private void Initilize()
 	{
-		Reset();
+		CurrentGameState = GameState.Game; // TODO set this someplace else!
+		InitTowers();
+		InitMap();
+		InitEnemies();
+		InitEggs();
+		_eggsStillActive = STARTING_EGG_COUNT;
 	}
 	
 	private void Reset()
@@ -227,14 +257,6 @@ public class Global : MonoBehaviour {
 				Destroy(_waves[i]);
 			}
 		}
-		
-		
-		CurrentGameState = GameState.Game; // TODO set this someplace else!
-		InitTowers();
-		InitMap();
-		InitEnemies();
-		InitEggs();
-		_eggsStillActive = STARTING_EGG_COUNT;
 	}
 	#endregion
 	

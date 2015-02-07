@@ -40,8 +40,8 @@ public class CameraBehavior : MonoBehaviour {
 		
 		if(zoom)
 		{
-			float m_height = global.CurrentMap.Height + 1;
-			float m_width = global.CurrentMap.Width + 1;
+			float m_height = 9;
+			float m_width = 9 * 1.77f;
 			float c_height = camera.orthographicSize;
 			float c_width = c_height * camera.aspect;
 			float p_height = m_height;
@@ -66,11 +66,14 @@ public class CameraBehavior : MonoBehaviour {
 			
 			//this.transform.position = new Vector3(transform.position.x, this.camera.orthographicSize, -10);
 			//Debug.Log(camera.aspect);
-			/*this.transform.position = new Vector3(
+			/*
+			this.transform.position = new Vector3(
 				(this.camera.orthographic * 2 * this.camera.aspect) / 2,
 				this.camera.orthographicSize,
-				-10f);*/
+				-10f);
+			*/
 			zoom = !zoom;
+
 		}
 		
 	}

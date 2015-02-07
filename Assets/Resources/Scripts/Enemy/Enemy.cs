@@ -11,10 +11,10 @@ public class Enemy : MonoBehaviour {
 	public enum EnemyState { Active, Stunned, Dying }
 	public EnemyState CurrentEnemyState;
 	public Global global;
+	private GameObject Egg;
 	#endregion
 	
 	#region Private Members
-	private bool _hasegg = false;
 	#endregion
 	
 	#region Unity
@@ -39,8 +39,7 @@ public class Enemy : MonoBehaviour {
 	
 	public bool HasEgg
 	{
-		get{return _hasegg;}
-		set{_hasegg = value;}
+		get{return Egg != null;}
 	}
 	
 	public void updateWaypoints(Vector3[] waypoints)
@@ -50,24 +49,22 @@ public class Enemy : MonoBehaviour {
 	
 	public void PickUpEgg(GameObject go = null)
 	{
-		GameObject egg = null;
 		if(go == null)
 		{
-			egg = global.GetEggFromGoal();
+			Egg = global.GetEggFromGoal();
 		}
 		else
 		{
-			egg = go;
+			Egg = go;
 		}
 		
-		if(egg != null)
+		if(Egg != null)
 		{
-			egg.transform.localScale = new Vector3(.5f, .5f, .5f);
-			egg.transform.parent = transform;
-			egg.transform.position = transform.position;
-			egg.transform.position = new Vector3(transform.position.x, transform.position.y, -1);
-			HasEgg = true;
-			egg.GetComponent<CircleCollider2D>().enabled = false;
+			Egg.transform.localScale = new Vector3(.5f, .5f, .5f);
+			Egg.transform.parent = transform;
+			Egg.transform.position = transform.position;
+			Egg.transform.position = new Vector3(transform.position.x, transform.position.y, -1);
+			Egg.GetComponent<CircleCollider2D>().enabled = false;
 		}
 	}
 	
@@ -76,9 +73,9 @@ public class Enemy : MonoBehaviour {
 		//dead
 		Debug.Log("Enemy Dead");
 		
-		if(_hasegg)
+		if(HasEgg)
 		{
-			global.DestroyEgg();
+			global.DropEgg(this.transform.position);
 		}
 		GameObject prefab = Resources.Load("Prefabs/temp-pow") as GameObject;
 		GameObject SpawnedPrefab = Instantiate(prefab) as GameObject;
@@ -108,13 +105,12 @@ public class Enemy : MonoBehaviour {
 	{
 		if(collision.gameObject.tag == "egg")
 		{
-			if(HasEgg)
+			if(!HasEgg)
 			{
-				return;
+				//this.gameObject.GetComponent<EnemyMovement>().ReverseDirection();
+				PickUpEgg(collision.gameObject);
 			}
-			Debug.Log("here");
-			//this.gameObject.GetComponent<EnemyMovement>().ReverseDirection();
-			PickUpEgg(collision.gameObject);
+			
 		}
 	}
 }

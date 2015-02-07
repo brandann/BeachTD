@@ -5,34 +5,30 @@ using System.Collections.Generic;
 public class Map {
 
 	#region Public Methods
-	public void SetMap(int[,] m) 
+	public Map(int[,] map)
 	{
-		_mapi = new int[m.GetLength(0),m.GetLength(1)];
-		for(int i = 0; i < m.GetLength(0); i++)
+		_map = FixMap(map);
+		_waypoints = FindWayPoints(_map);
+	}
+	
+	public bool[,] TowerLocations()
+	{
+		bool[,] b = new bool[_map.GetLength(0), _map.GetLength(1)];
+		for(int i = 0; i < _map.GetLength(0); i++)
 		{
-			for(int j = 0; j < m.GetLength(1); j++)
+			for(int j = 0; j < _map.GetLength(1); j++)
 			{
-				_mapi[i,j] = m[i,j];
+				b[i,j] = _map[i,j] == (int) Global.MapToken.Tower;
 			}
 		}
-
-		_mapi = FixMap(_mapi);
-		_waypoints = FindWayPoints(_mapi);
-		_mapb = IntMapToBool(_mapi);
-		//_mapi = FixMap(m);
-		
+		return b;
 	}
 	#endregion
 	
 	#region public accessors
-	public bool[,] BoolMap
+	public int[,] MapArray
 	{
-		get{ return _mapb; }
-	}
-	
-	public int[,] IntMap
-	{
-		get{ return _mapi; }
+		get{ return _map; }
 	}
 	
 	public Vector3[] Waypoints
@@ -44,29 +40,12 @@ public class Map {
 	{
 		get{ return _hitpoints; }
 	}
-	
-	public int HIT_POINTS_MAX
-	{
-		get{ return _hitpointsmax; }
-	}
-	
-	public float Height
-	{
-		get { return (float) _mapi.GetLength(0); }
-	}
-	
-	public float Width
-	{
-		get { return (float) _mapi.GetLength(1); }
-	}
 	#endregion
 	
 	#region private members
-	protected int[,]		_mapi;		// int array of map w/ paths
-	protected bool[,] 	_mapb;		// bool array of tower accessable objects
+	protected int[,]		_map;		// int array of map w/ paths
 	protected Vector3[] 	_waypoints;	// enemys path for map
 	protected int			_hitpoints;	// "lives" for level
-	protected int 		_hitpointsmax;
 	#endregion
 	
 	#region Private Methods
@@ -136,29 +115,8 @@ public class Map {
 				return m;
 			}
 		}
+		Debug.Log("Map Fixed incorrectly");
 		return m; // should never reach this
 	}
-	
-	private bool[,] IntMapToBool(int[,] m)
-	{
-		bool[,] b = new bool[m.GetLength(0), m.GetLength(1)];
-		for(int i = 0; i < m.GetLength(0); i++)
-		{
-			for(int j = 0; j < m.GetLength(1); j++)
-			{
-				b[i,j] = m[i,j] == (int) Global.MapToken.Tower;
-			}
-		}
-		return b;
-	}
 	#endregion
-
-
-
-	
-
-	
-
-	
-
 }
