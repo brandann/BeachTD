@@ -12,6 +12,7 @@ public class TowerUpgradeManager : MonoBehaviour
     public GameObject MeleePrefab;
     public GameObject RangedPrefab;
     public GameObject SlowPrefab;
+    public GameObject OpenAreaPrefab;
 
     public Button BuildMeleeButton;
     public Button BuildRangedButton;
@@ -20,6 +21,7 @@ public class TowerUpgradeManager : MonoBehaviour
     public Button RangeUpButton;
     public Button DamageUpButton;
     public Button SpecialUpButton;
+    public Button SellButton;
 
     private Tower _touchedTower;
     private OpenAreaBehavior _touchedArea;
@@ -67,10 +69,25 @@ public class TowerUpgradeManager : MonoBehaviour
         UpgradeTower(_specialUpgrade);
     }
 
+    public void SellTower()
+    {
+        if (_touchedTower == null)
+        {
+            Debug.LogWarning("Missing tower");
+            return;
+        }
+
+        Instantiate(OpenAreaPrefab, _touchedTower.transform.position, Quaternion.identity);
+        TowerFactory.Instance.RecycleTower(_touchedTower);
+
+
+        
+    }
+
     void Awake()
     {
         //Assign buttons
-        _buttons = new Button[7];
+        _buttons = new Button[8];
         _buttons[0] = BuildMeleeButton;
         _buttons[1] = BuildRangedButton;
         _buttons[2] = BuildSlowButton;
@@ -78,6 +95,7 @@ public class TowerUpgradeManager : MonoBehaviour
         _buttons[4] = RangeUpButton;
         _buttons[5] = DamageUpButton;
         _buttons[6] = SpecialUpButton;
+        _buttons[7] = SellButton;
 
         //with no params actually hides all buttons
         ShowBuildButtons();
@@ -142,7 +160,9 @@ public class TowerUpgradeManager : MonoBehaviour
         bool showRange = CanUpgradeRange();
         bool showDamage = CanUpgradeDamage();
         bool showSpecial = CanUpgradeSpecial();
-        ShowUpgradeButtons(showSpeed, showRange, showDamage, showSpecial);          
+        bool showSell = CanSellTower();
+
+        ShowUpgradeButtons(showSpeed, showRange, showDamage, showSpecial, showSell);          
     }
 
     private void OpenAreaTouched(OpenAreaBehavior area)
@@ -193,6 +213,11 @@ public class TowerUpgradeManager : MonoBehaviour
         return true;
     }
 
+    private bool CanSellTower()
+    {
+        return true;
+    }
+
     /// <summary>
     /// Displays the appropriate UI buttons to the user.
     /// </summary>
@@ -216,11 +241,12 @@ public class TowerUpgradeManager : MonoBehaviour
 
     }
 
-    private void ShowUpgradeButtons(bool speed = false, bool range = false, bool damage = false, bool special = false)
+    private void ShowUpgradeButtons(bool speed = false, bool range = false, bool damage = false, bool special = false, bool sell = false)
     {
         _buttons[3].gameObject.SetActive(speed);
         _buttons[4].gameObject.SetActive(range);
         _buttons[5].gameObject.SetActive(damage);
         _buttons[6].gameObject.SetActive(special);
+        _buttons[7].gameObject.SetActive(sell);
     }
 }

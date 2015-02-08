@@ -16,10 +16,11 @@ public class SlowTower : Tower
     {
         base.Initialize(); 
         CoolDownTime = SlowCoolDownTime;
+        gameObject.SetActive(false);
     }    
 
     /// <summary>
-    /// Fire Tower Action creates a arrow and sends it toward the highest priority target. 
+    /// Fire Tower Action creates a go and sends it toward the highest priority target. 
     /// Updates timer for next action. If no targets exist transitions tower to Idle
     /// </summary>
     protected override void Act()
@@ -28,9 +29,9 @@ public class SlowTower : Tower
 
         GameObject target = _targets[0].gameObject;
 
-        GameObject arrow = GameObject.Instantiate(ProjectilePrefab, gameObject.transform.position, Quaternion.identity) as GameObject;
+        GameObject go = GameObject.Instantiate(ProjectilePrefab, gameObject.transform.position, Quaternion.identity) as GameObject;
 
-        SlowProjectile slowPro = arrow.GetComponent<SlowProjectile>();
+        SlowProjectile slowPro = go.GetComponent<SlowProjectile>();
 
         slowPro.setTarget(target.transform);
 

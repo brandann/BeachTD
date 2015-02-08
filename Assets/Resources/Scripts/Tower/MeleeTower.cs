@@ -10,6 +10,7 @@ public class MeleeTower : Tower {
         _tip = GetComponentInChildren<TipBarnacle>();
         _tip.SetDamage(Damage);
         Damage = 5;
+        gameObject.SetActive(false);
 	}
 
     protected override void Act()

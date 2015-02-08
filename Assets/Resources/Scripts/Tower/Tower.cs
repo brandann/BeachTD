@@ -76,10 +76,10 @@ public abstract class Tower : MonoBehaviour, IUpgradeable
 
     public virtual void UpgradeTower(Upgrade upgrade)
     {
-        _collider.radius *= (1 + upgrade.Range);
-        CoolDownTime *= -(1 + upgrade.Speed);
-        Damage *= (1 + upgrade.Damage);
-        UpgradeSpecial(upgrade.Special);
+        if(upgrade.Range != 0) _collider.radius *= (1 + upgrade.Range);
+        if(upgrade.Speed != 0) CoolDownTime *= -(1 + upgrade.Speed);
+        if(upgrade.Damage != 0) Damage *= (1 + upgrade.Damage);
+        if(upgrade.Special != 0) UpgradeSpecial(upgrade.Special);
     }
 
     #endregion
@@ -155,7 +155,7 @@ public abstract class Tower : MonoBehaviour, IUpgradeable
 
         _targets = new List<Enemy>();
 
-        gameObject.SetActive(false);
+       
     }
        
     //Timestamp of last action

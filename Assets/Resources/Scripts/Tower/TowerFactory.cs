@@ -26,8 +26,8 @@ public class TowerFactory : MonoBehaviour
     /// <summary>
     /// Recycles the tower.
     /// </summary>
-    /// <param name="enemy">Tower type to be returned to the factory</param>
-    public void RecycleEnemy(Tower tower)
+    /// <param name="tower">Tower type to be returned to the factory</param>
+    public void RecycleTower(Tower tower)
     {
         if (tower == null)
         {

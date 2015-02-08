@@ -13,10 +13,11 @@ public class RangedTower : Tower
         base.Initialize(); 
         CoolDownTime = 1f;
         _spinesPerShot = 1;
+        gameObject.SetActive(false);
     }    
 
     /// <summary>
-    /// Fire Tower Action creates a arrow and sends it toward the highest priority target. 
+    /// Fire Tower Action creates a go and sends it toward the highest priority target. 
     /// Updates timer for next action. If no targets exist transitions tower to Idle
     /// </summary>
     protected override void Act()
@@ -42,7 +43,7 @@ public class RangedTower : Tower
 
     protected override void UpgradeSpecial(int level)
     {
-        _spinesPerShot = level;        
+        _spinesPerShot += level;        
     }
     
 }
