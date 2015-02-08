@@ -6,6 +6,7 @@ TagManager:
   - tower
   - open
   - enemy
+  - helper
   - 
   Builtin Layer 0: Default
   Builtin Layer 1: TransparentFX

@@ -6,7 +6,7 @@ public class Global : MonoBehaviour {
 
 	private GameMaps _currentMap;
 	private Mapmanager _mapManager;
-	private float _spawntimedinterval = 0;
+	private float _spawntimedinterval = 5;
 	private float randomSpawnTime = 0;
 	private Dictionary<int, GameObject> _enemies;
 	private Dictionary<int, GameObject> _towers;

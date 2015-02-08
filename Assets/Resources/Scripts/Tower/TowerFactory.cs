@@ -84,6 +84,11 @@ public class TowerFactory : MonoBehaviour
         return towerToReturn;
     }
 
+    void Awake()
+    {
+        InitializeFactory();
+    }
+
 
 
     private static TowerFactory mInstance;
@@ -104,9 +109,9 @@ public class TowerFactory : MonoBehaviour
     public void InitializeFactory()
     {
         _Prefabs = new List<GameObject>(3);
-        _Prefabs[0] = MeleePrefab;
-        _Prefabs[1] = RangedPrefab;
-        _Prefabs[2] = SlowPrefab;
+        _Prefabs.Add( MeleePrefab);
+        _Prefabs.Add( RangedPrefab );
+        _Prefabs.Add( SlowPrefab );
 
         mAvailableEnemyIndicies = new List<int>();
     

@@ -115,6 +115,16 @@ public abstract class Tower : MonoBehaviour
                 break;
         }
     }
+
+    public virtual void OnTouchDown()
+    {
+        //Debug.Log("OnTouchDown from tower");
+
+        if (onTowerTouched != null)
+            onTowerTouched(this);
+        else
+            Debug.Log("No subscribers");
+    }
        
     //Timestamp of last action
     protected float _lastActionTime;

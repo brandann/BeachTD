@@ -25,7 +25,7 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 100000}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalPosition: {x: 6.44775581, y: 5.24044418, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
@@ -49,16 +49,9 @@ MonoBehaviour:
   m_GameObject: {fileID: 100000}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: aa201ab951b7553458a0c7591104e6be, type: 3}
+  m_Script: {fileID: 11500000, guid: 8dbf30b3fb83dac4593586248e2e0001, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  TowerUpgrades:
-  - {fileID: 100000, guid: 6d09211c7bf4c4ebdb8554d2fc33585d, type: 2}
-  - {fileID: 100000, guid: 77f5f423a6f6244019589da343170d08, type: 2}
-  - {fileID: 0}
-  - {fileID: 0}
-  TowerIcon: {fileID: 100000}
-  Cost: 0
 --- !u!212 &21200000
 SpriteRenderer:
   m_ObjectHideFlags: 1

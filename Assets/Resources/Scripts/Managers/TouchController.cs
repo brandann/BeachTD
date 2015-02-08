@@ -120,15 +120,18 @@ public class TouchController : MonoBehaviour {
 			//touchPos = new Vector2(wp.x, wp.y);
 			
 			// If colliders are found at touchPos point
-			RaycastHit2D hit = Physics2D.Raycast(Camera.main.ScreenToWorldPoint(dp), Vector2.zero);
+            RaycastHit2D[] hits = Physics2D.RaycastAll(Camera.main.ScreenToWorldPoint(dp), Vector2.zero);
 			
 			if(message == touchDown)
 			{
-				// if tower tag is found
-				if(TouchableTags.Contains(hit.transform.tag))
-				{
-					hit.transform.gameObject.SendMessage("OnTouchDown", hit.point, SendMessageOptions.DontRequireReceiver);
-				}
+                foreach(RaycastHit2D h in hits){
+                    
+				    if(TouchableTags.Contains(h.collider.tag))
+				    {
+                        Debug.Log("sending message");
+					    h.transform.gameObject.SendMessage("OnTouchDown", h.point, SendMessageOptions.DontRequireReceiver);
+				    }
+                }
 			}
 			
 		}

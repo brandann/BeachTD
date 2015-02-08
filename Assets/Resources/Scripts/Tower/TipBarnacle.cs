@@ -61,7 +61,7 @@ public class TipBarnacle : MonoBehaviour {
             Vector2 dir2Target = _base.position - transform.position;
             dir2Target.Normalize();
             rigidbody2D.AddForce(dir2Target * 10, ForceMode2D.Impulse);
-            Debug.Log("retracting force: " + dir2Target * 10);
+            //Debug.Log("retracting force: " + dir2Target * 10);
         }       
 
     }
@@ -110,7 +110,7 @@ public class TipBarnacle : MonoBehaviour {
 
     private void PhysicsRetract()
     {
-        Debug.Log("PhysicsRetract");
+        //Debug.Log("PhysicsRetract");
 
         if (rigidbody2D.isKinematic)
         {
@@ -121,7 +121,7 @@ public class TipBarnacle : MonoBehaviour {
         Vector2 dir2Base =  _base.position - transform.position;
         dir2Base.Normalize();
         dir2Base *= 100;
-        Debug.Log("Rectract Apply: " + dir2Base); 
+        //Debug.Log("Rectract Apply: " + dir2Base); 
         gameObject.rigidbody2D.AddForce(dir2Base);
         State = TipState.Retracting;
     }
