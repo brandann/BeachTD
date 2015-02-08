@@ -7,9 +7,9 @@ using UnityEngine;
 using System.Collections;
 using System.Collections.Generic;
 
-public abstract class Tower : MonoBehaviour
+public abstract class Tower : MonoBehaviour, IUpgradeable
 {
-    #region public inteface
+    #region Public Region
 
     public delegate void TowerEventHandler(Tower t);
 
@@ -24,6 +24,14 @@ public abstract class Tower : MonoBehaviour
         public float Speed;
         public float Damage;
         public int Special;
+
+        public Upgrade(float range = 0, float speed = 0, float damage = 0, int special = 0)
+        {
+            Range = range;
+            Speed = speed;
+            Damage = damage;
+            Special = special;
+        }
     }    
 
     //Cost of building 
@@ -48,8 +56,7 @@ public abstract class Tower : MonoBehaviour
             _previousState = _currentState;
             _currentState = value;
         }
-    }
-    
+    }    
 
     /// <summary>
     /// Change State to Disabled
@@ -80,8 +87,9 @@ public abstract class Tower : MonoBehaviour
     //Animator Triggers
     protected readonly int _flashHash = Animator.StringToHash("Flash");
     protected readonly int _stopHash = Animator.StringToHash("Stop");
-    protected CircleCollider2D _collider;    
-    
+    protected CircleCollider2D _collider;
+
+    #region MonoBehaviour Region
     void Update()
     {
         if (CurrentState != TowerState.Acting)
@@ -93,6 +101,12 @@ public abstract class Tower : MonoBehaviour
             TransitionToState(TowerState.Idle);
     }
 
+    void Awake()
+    {
+        Initialize();
+    }
+
+    #endregion
 
     //Used to upgrade special abilities in derived classes
     protected abstract void UpgradeSpecial(int level);
@@ -124,6 +138,24 @@ public abstract class Tower : MonoBehaviour
             onTowerTouched(this);
         else
             Debug.Log("No subscribers");
+    }
+
+    virtual public void Initialize()
+    {
+        _anim = gameObject.GetComponent<Animator>();
+
+        _collider = (CircleCollider2D)gameObject.collider2D;
+
+        _previousState = TowerState.Idle;
+
+        _currentState = TowerState.Idle;
+
+        if (_anim == null)
+            Debug.LogError("Missing animator");
+
+        _targets = new List<Enemy>();
+
+        gameObject.SetActive(false);
     }
        
     //Timestamp of last action
@@ -233,17 +265,4 @@ public abstract class Tower : MonoBehaviour
         return (_targets.Count > 0);
     }
 
-    protected virtual void Start()
-    {
-        _anim = gameObject.GetComponent<Animator>();
-
-        _collider = (CircleCollider2D)gameObject.collider2D;
-        
-        if(_anim == null)
-            Debug.LogError("Missing animator");
-
-        _targets = new List<Enemy>();
-        
-    }
-    
 }

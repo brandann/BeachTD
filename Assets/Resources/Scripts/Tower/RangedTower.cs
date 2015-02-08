@@ -8,9 +8,9 @@ public class RangedTower : Tower
 
     protected int _spinesPerShot;
 
-    protected override void Start()
+    public override void Initialize()
     {
-        base.Start(); 
+        base.Initialize(); 
         CoolDownTime = 1f;
         _spinesPerShot = 1;
     }    

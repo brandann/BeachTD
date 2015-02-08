@@ -3,9 +3,10 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 
-namespace Assets.Resources.Scripts.Tower
+
+public interface IUpgradeable
 {
-    interface Upgradeable
-    {
-    }
+    void UpgradeTower(Tower.Upgrade upgrade);
+
 }
+

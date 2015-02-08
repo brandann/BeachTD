@@ -5,16 +5,17 @@ public class SlowTower : Tower
 {
 
     public GameObject ProjectilePrefab;
+    public readonly float SlowCoolDownTime = 1;
 
     public float BaseDuration { get; protected set; }
 
     protected float _durationMultiplier = 1;
     
 
-    protected override void Start()
+    public override void Initialize()
     {
-        base.Start(); 
-        CoolDownTime = 1f;
+        base.Initialize(); 
+        CoolDownTime = SlowCoolDownTime;
     }    
 
     /// <summary>

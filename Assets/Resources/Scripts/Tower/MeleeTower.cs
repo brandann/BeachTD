@@ -4,8 +4,8 @@ using System.Collections;
 public class MeleeTower : Tower {
     
 	// Use this for initialization
-	void Start () {
-        base.Start();
+	public override void Initialize() {
+        base.Initialize();
         CoolDownTime = 5;
         _tip = GetComponentInChildren<TipBarnacle>();
         _tip.SetDamage(Damage);

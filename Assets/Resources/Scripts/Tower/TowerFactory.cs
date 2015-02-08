@@ -33,9 +33,9 @@ public class TowerFactory : MonoBehaviour
         {
             Debug.LogError("Invalid enemy parameter");
             return;
-        }        
+        }   
 
-        //tower.Initialize();
+        tower.Initialize();
 
         int eIndex = -1;
         _TypeIndex.TryGetValue(tower.GetType(), out eIndex);
@@ -78,8 +78,7 @@ public class TowerFactory : MonoBehaviour
             }
         }
 
-        towerToReturn.renderer.enabled = true;
-        towerToReturn.collider2D.enabled = true;
+        towerToReturn.gameObject.SetActive(true);        
 		TowersDispensed++;
         return towerToReturn;
     }
@@ -89,19 +88,15 @@ public class TowerFactory : MonoBehaviour
         InitializeFactory();
     }
 
-
-
-    private static TowerFactory mInstance;
-    
+    private static TowerFactory mInstance;    
     private static Queue<GameObject>[] _Pool;     
     private static int _PoolSize = 15;             //# no reason use profiler to experiment if needed
     private static Dictionary<System.Type,int> _TypeIndex;    
     private static float mHighestEnemyFrequency = -1f;
     private static List<int> mAvailableEnemyIndicies;
     private List<GameObject> _Prefabs;
-       
 
-    //public 
+
 
     /// <summary>
     /// Fill enemy pools with new enemies.
