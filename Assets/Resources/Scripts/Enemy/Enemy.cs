@@ -11,10 +11,10 @@ public class Enemy : MonoBehaviour {
 	public enum EnemyState { Active, Stunned, Dying }
 	public EnemyState CurrentEnemyState;
 	public Global global;
+	private GameObject Egg;
 	#endregion
 	
 	#region Private Members
-	private bool _hasegg = false;
 	#endregion
 	
 	#region Unity
@@ -39,8 +39,7 @@ public class Enemy : MonoBehaviour {
 	
 	public bool HasEgg
 	{
-		get{return _hasegg;}
-		set{_hasegg = value;}
+		get{return Egg != null;}
 	}
 	
 	public void updateWaypoints(Vector3[] waypoints)
@@ -48,14 +47,35 @@ public class Enemy : MonoBehaviour {
 	
 	}
 	
+	public void PickUpEgg(GameObject go = null)
+	{
+		if(go == null)
+		{
+			Egg = global.GetEggFromGoal();
+		}
+		else
+		{
+			Egg = go;
+		}
+		
+		if(Egg != null)
+		{
+			Egg.transform.localScale = new Vector3(.5f, .5f, .5f);
+			Egg.transform.parent = transform;
+			Egg.transform.position = transform.position;
+			Egg.transform.position = new Vector3(transform.position.x, transform.position.y, -1);
+			Egg.GetComponent<CircleCollider2D>().enabled = false;
+		}
+	}
+	
 	private void Dead()
 	{
 		//dead
 		Debug.Log("Enemy Dead");
 		
-		if(_hasegg)
+		if(HasEgg)
 		{
-			global.SpawnPrefab(global.EggPrefab, this.transform.position);
+			global.DropEgg(this.transform.position);
 		}
 		GameObject prefab = Resources.Load("Prefabs/temp-pow") as GameObject;
 		GameObject SpawnedPrefab = Instantiate(prefab) as GameObject;
@@ -79,5 +99,18 @@ public class Enemy : MonoBehaviour {
 	public void OnTouchDown()
 	{
 		Dead();
+	}
+	
+	void OnCollisionEnter2D(Collision2D collision)
+	{
+		if(collision.gameObject.tag == "egg")
+		{
+			if(!HasEgg)
+			{
+				//this.gameObject.GetComponent<EnemyMovement>().ReverseDirection();
+				PickUpEgg(collision.gameObject);
+			}
+			
+		}
 	}
 }

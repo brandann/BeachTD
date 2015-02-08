@@ -5,10 +5,7 @@ using System.Collections.Generic;
 public class Mapmanager{
 
 	#region Public Accessors
-	public Map CurrentMap
-	{
-		get{ return _currentMap; }
-	}
+
 	#endregion
 	
 	#region Public Methods
@@ -16,28 +13,23 @@ public class Mapmanager{
 	{
 		OpenSpace = Resources.Load("Prefabs/OpenArea") as GameObject;
 		global = GameObject.Find("Global").GetComponent<Global>();
-		InitilizeMaps();
 	}
 	
-	public void LoadMap(int i)
+	public void LoadMap(Map map)
 	{
-		LoadInitialTowerSpaces(_maps[i]);
-		_currentMap = _maps[i];
+		LoadInitialTowerSpaces(map);
 	}
 	#endregion
 	
 	#region Private Members
 	private GameObject OpenSpace;
 	private Global global;
-	private Map _currentMap;
-	private Dictionary<int, Map> _maps;
 	#endregion
 	
 	#region Private Methods
 	private void LoadInitialTowerSpaces(Map loadMap)
 	{
-		_currentMap = loadMap;
-		bool[,] map = loadMap.BoolMap;
+		bool[,] map = loadMap.TowerLocations();
 		
 		for (int i = 0; i < map.GetLength(0); i++)
 		{
@@ -58,9 +50,6 @@ public class Mapmanager{
 	#endregion
 
 	#region Maps
-	private void InitilizeMaps()
-	{
-		_maps = GameMaps.GetGameMaps();
-	}
+
 	#endregion
 }
