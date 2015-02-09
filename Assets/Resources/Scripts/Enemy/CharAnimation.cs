@@ -37,7 +37,6 @@ public class CharAnimation : MonoBehaviour {
 		if ((Time.realtimeSinceStartup - interval) > timebuffer) 
 		{
 			interval = Time.realtimeSinceStartup;
-			Vector3 transformScale = transform.localScale;
 			float x = transform.localScale.x;
 			float y = transform.localScale.y;
 			

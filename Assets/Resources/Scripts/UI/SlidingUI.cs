@@ -5,7 +5,7 @@ public class SlidingUI : MonoBehaviour {
 
 	public Animator ButtonAnimController;
 	private int mSlideHash;
-    private int mSlideInState;
+    //private int mSlideInState;
 
 	public virtual void Start(){
 		
@@ -13,7 +13,8 @@ public class SlidingUI : MonoBehaviour {
 		mSlideHash = Animator.StringToHash ("Slide");
         
         //CurrentState with button on screen 
-        mSlideInState = Animator.StringToHash("SlideInRight");
+        //mSlideInState = Animator.StringToHash("SlideInRight");
+        Animator.StringToHash("SlideInRight");
 	}
 	
 	public void Slide(){
