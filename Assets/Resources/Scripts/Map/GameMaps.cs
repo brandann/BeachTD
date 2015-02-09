@@ -4,15 +4,14 @@ using System.Collections.Generic;
 
 public class GameMaps {
 
-	public static Dictionary<int, Map> GetGameMaps()
+	public Dictionary<int, int[,]> GetGameMaps()
 	{
 		int P = (int) Global.MapToken.Path; 			// pathtile
 		int T = (int) Global.MapToken.Tower;				// tower tile
 		
-		Dictionary<int, Map> _maps = new Dictionary<int, Map>();
+		Dictionary<int, int[,]> _maps = new Dictionary<int, int[,]>();
 		
-		Map m0 = new Map();
-		m0.SetMap(new int[,]
+		int[,] m0 = new int[,]
 		   {{T,P,P,P,P,P,P,P,P,P,P,P,P,P,T},//0
 			{T,P,P,P,P,P,P,P,P,P,P,P,P,P,P},//1
 			{T,P,P,P,P,P,P,P,P,P,P,P,P,P,P},//2
@@ -20,10 +19,9 @@ public class GameMaps {
 			{0,P,P,P,P,P,P,P,P,P,P,P,P,P,1},//4
 			{P,P,P,P,P,P,P,P,P,P,P,P,P,P,P},//5
 			{T,P,P,P,P,P,P,P,P,P,P,P,P,P,P},//6
-			{T,P,P,P,P,P,P,P,P,P,P,P,P,P,T}});
+			{T,P,P,P,P,P,P,P,P,P,P,P,P,P,T}};
 		
-		Map m1 = new Map();
-		m1.SetMap(new int[,]
+		int[,] m1 = new int[,]
            {{T,T,T,T,T,T,T,T,T,T,T,T,T,T,T},//0
 			{T,T,T,T,T,T,T,T,T,T,T,T,T,T,T},//1
 			{T,T,T,T,T,T,T,T,T,T,T,T,T,T,T},//2
@@ -31,10 +29,9 @@ public class GameMaps {
 			{0,P,P,P,P,P,P,P,P,P,P,P,P,P,1},//4
 			{T,T,T,T,T,T,T,T,T,T,T,T,T,T,T},//5
 			{T,T,T,T,T,T,T,T,T,T,T,T,T,T,T},//6
-			{T,T,T,T,T,T,T,T,T,T,T,T,T,T,T}});
+			{T,T,T,T,T,T,T,T,T,T,T,T,T,T,T}};
 		
-		Map m2 = new Map();
-		m2.SetMap(new int[,]
+		int[,] m2 = new int[,]
            {{T,T,T,T,T,T,T,T,T,T,T,T,T,T,T},//0
 			{0,P,P,P,P,P,P,1,T,T,T,T,T,T,T},//1
 			{T,T,T,T,T,T,T,P,T,T,T,T,T,T,T},//2
@@ -42,10 +39,9 @@ public class GameMaps {
 			{T,T,T,T,T,T,T,P,T,T,T,T,T,T,T},//4
 			{T,T,T,T,T,T,T,P,T,T,T,T,T,T,T},//5
 			{T,T,T,T,T,T,T,2,P,P,P,P,P,P,3},//6
-			{T,T,T,T,T,T,T,T,T,T,T,T,T,T,T}});
+			{T,T,T,T,T,T,T,T,T,T,T,T,T,T,T}};
 		
-		Map m3 = new Map();
-		m3.SetMap(new int[,]
+		int[,] m3 = new int[,]
            {{T,P,P,P,P,P,P,P,P,P,P,P,P,P,T},//0
 			{T,P,P,P,P,P,P,P,P,P,P,P,P,P,P},//1
 			{T,P,P,P,P,P,P,P,P,P,P,P,P,P,P},//2
@@ -53,10 +49,9 @@ public class GameMaps {
 			{0,P,P,P,P,P,P,P,P,P,P,P,P,P,1},//4
 			{P,P,P,P,P,P,P,P,P,P,P,P,P,P,P},//5
 			{T,P,P,P,P,P,P,P,P,P,P,P,P,P,P},//6
-			{T,P,P,P,P,P,P,P,P,P,P,P,P,P,T}});
+			{T,P,P,P,P,P,P,P,P,P,P,P,P,P,T}};
 		
-		Map m4 = new Map();
-		m4.SetMap(new int[,]
+		int[,] m4 = new int[,]
            {{T,P,P,P,P,P,P,P,P,P,P,P,P,P,T},//0
 			{T,P,P,P,P,P,P,P,P,P,P,P,P,P,P},//1
 			{T,P,P,P,P,P,P,P,P,P,P,P,P,P,P},//2
@@ -64,10 +59,9 @@ public class GameMaps {
 			{0,P,P,P,P,P,P,P,P,P,P,P,P,P,1},//4
 			{P,P,P,P,P,P,P,P,P,P,P,P,P,P,P},//5
 			{T,P,P,P,P,P,P,P,P,P,P,P,P,P,P},//6
-			{T,P,P,P,P,P,P,P,P,P,P,P,P,P,T}});
+			{T,P,P,P,P,P,P,P,P,P,P,P,P,P,T}};
 		
-		Map m5 = new Map();
-		m5.SetMap(new int[,]
+		int[,] m5 = new int[,]
            {{T,P,P,P,P,P,P,P,P,P,P,P,P,P,T},//0
 			{T,P,P,P,P,P,P,P,P,P,P,P,P,P,P},//1
 			{T,P,P,P,P,P,P,P,P,P,P,P,P,P,P},//2
@@ -75,10 +69,9 @@ public class GameMaps {
 			{0,P,P,P,P,P,P,P,P,P,P,P,P,P,1},//4
 			{P,P,P,P,P,P,P,P,P,P,P,P,P,P,P},//5
 			{T,P,P,P,P,P,P,P,P,P,P,P,P,P,P},//6
-			{T,P,P,P,P,P,P,P,P,P,P,P,P,P,T}});
+			{T,P,P,P,P,P,P,P,P,P,P,P,P,P,T}};
 		
-		Map m6 = new Map();
-		m6.SetMap(new int[,]
+		int[,] m6 = new int[,]
            {{T,P,P,P,P,P,P,P,P,P,P,P,P,P,T},//0
 			{T,P,P,P,P,P,P,P,P,P,P,P,P,P,P},//1
 			{T,P,P,P,P,P,P,P,P,P,P,P,P,P,P},//2
@@ -86,10 +79,9 @@ public class GameMaps {
 			{0,P,P,P,P,P,P,P,P,P,P,P,P,P,1},//4
 			{P,P,P,P,P,P,P,P,P,P,P,P,P,P,P},//5
 			{T,P,P,P,P,P,P,P,P,P,P,P,P,P,P},//6
-			{T,P,P,P,P,P,P,P,P,P,P,P,P,P,T}});
+			{T,P,P,P,P,P,P,P,P,P,P,P,P,P,T}};
 		
-		Map m7 = new Map();
-		m7.SetMap(new int[,]
+		int[,] m7 = new int[,]
            {{T,P,P,P,P,P,P,P,P,P,P,P,P,P,T},//0
 			{T,P,P,P,P,P,P,P,P,P,P,P,P,P,P},//1
 			{T,P,P,P,P,P,P,P,P,P,P,P,P,P,P},//2
@@ -97,10 +89,9 @@ public class GameMaps {
 			{0,P,P,P,P,P,P,P,P,P,P,P,P,P,1},//4
 			{P,P,P,P,P,P,P,P,P,P,P,P,P,P,P},//5
 			{T,P,P,P,P,P,P,P,P,P,P,P,P,P,P},//6
-			{T,P,P,P,P,P,P,P,P,P,P,P,P,P,T}});
+			{T,P,P,P,P,P,P,P,P,P,P,P,P,P,T}};
 		
-		Map m8 = new Map();
-		m8.SetMap(new int[,]
+		int[,] m8 = new int[,]
            {{T,P,P,P,P,P,P,P,P,P,P,P,P,P,T},//0
 			{T,P,P,P,P,P,P,P,P,P,P,P,P,P,P},//1
 			{T,P,P,P,P,P,P,P,P,P,P,P,P,P,P},//2
@@ -108,10 +99,9 @@ public class GameMaps {
 			{0,P,P,P,P,P,P,P,P,P,P,P,P,P,1},//4
 			{P,P,P,P,P,P,P,P,P,P,P,P,P,P,P},//5
 			{T,P,P,P,P,P,P,P,P,P,P,P,P,P,P},//6
-			{T,P,P,P,P,P,P,P,P,P,P,P,P,P,T}});
+			{T,P,P,P,P,P,P,P,P,P,P,P,P,P,T}};
 		
-		Map m9 = new Map();
-		m9.SetMap(new int[,]
+		int[,] m9 = new int[,]
            {{T,P,P,P,P,P,P,P,P,P,P,P,P,P,T},//0
 			{T,P,P,P,P,P,P,P,P,P,P,P,P,P,P},//1
 			{T,P,P,P,P,P,P,P,P,P,P,P,P,P,P},//2
@@ -119,10 +109,9 @@ public class GameMaps {
 			{0,P,P,P,P,P,P,P,P,P,P,P,P,P,1},//4
 			{P,P,P,P,P,P,P,P,P,P,P,P,P,P,P},//5
 			{T,P,P,P,P,P,P,P,P,P,P,P,P,P,P},//6
-			{T,P,P,P,P,P,P,P,P,P,P,P,P,P,T}});
+			{T,P,P,P,P,P,P,P,P,P,P,P,P,P,T}};
 		
-		Map m10 = new Map();
-		m10.SetMap(new int[,]
+		int[,] m10 = new int[,]
            {{T,P,P,P,P,P,P,P,P,P,P,P,P,P,T},//0
 			{T,P,P,P,P,P,P,P,P,P,P,P,P,P,P},//1
 			{T,P,P,P,P,P,P,P,P,P,P,P,P,P,P},//2
@@ -130,7 +119,7 @@ public class GameMaps {
 			{0,P,P,P,P,P,P,P,P,P,P,P,P,P,1},//4
 			{P,P,P,P,P,P,P,P,P,P,P,P,P,P,P},//5
 			{T,P,P,P,P,P,P,P,P,P,P,P,P,P,P},//6
-			{T,P,P,P,P,P,P,P,P,P,P,P,P,P,T}});
+			{T,P,P,P,P,P,P,P,P,P,P,P,P,P,T}};
 			
 		
 		
