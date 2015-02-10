@@ -13,6 +13,13 @@ public class TouchController : MonoBehaviour {
 
     public TowerUpgradeManager UpgradeManager;	
 	public List<string> TouchableTags; // filled in on inspector
+	
+	private bool active;
+	public bool OpenSpaceEnabled
+	{
+		get { return active; }
+		set { active = value; }
+	}
 
 	// Use this for initialization
 	void Start () {
@@ -123,18 +130,50 @@ public class TouchController : MonoBehaviour {
 
 			if(message == touchDown)
 			{
+				if(UpgradeManager.enabled)
+				{
+					Debug.Log("Upgrade");
+					//return;
+				}
+				
                 // If colliders are found at touchPos point
-                RaycastHit2D[] hits = Physics2D.RaycastAll(Camera.main.ScreenToWorldPoint(dp), Vector2.zero);               
-
-
-                foreach(RaycastHit2D h in hits){
-                    
-				    if(TouchableTags.Contains(h.collider.tag))
-				    {
-                        //Debug.Log("sending message");
-					    h.transform.gameObject.SendMessage("OnTouchDown", h.point, SendMessageOptions.DontRequireReceiver);
-				    }
-                }
+                RaycastHit2D[] hits = Physics2D.RaycastAll(Camera.main.ScreenToWorldPoint(dp), Vector2.zero);
+                
+                 if(hits.GetLength(0) == 0)
+                 {
+                 	return;
+                 } 
+                
+                string HitTag = hits[0].collider.tag;
+                bool kill = false;
+                          
+				
+				foreach(RaycastHit2D h in hits)
+				{
+					if(h.collider.tag == "open")
+					{
+						if(!UpgradeManager.Active)
+						{
+							h.transform.gameObject.SendMessage("OnTouchDown", h.point, SendMessageOptions.DontRequireReceiver);
+						}
+						return;
+					}
+					else if(h.collider.tag == "enemy")
+					{
+						h.transform.gameObject.SendMessage("OnTouchDown", h.point, SendMessageOptions.DontRequireReceiver);
+						return;
+					}
+				}
+				
+				foreach(RaycastHit2D h in hits)
+				{
+					if(h.collider.tag == "tower")
+					{
+						h.transform.gameObject.SendMessage("OnTouchDown", h.point, SendMessageOptions.DontRequireReceiver);
+						kill = true;
+					}
+				}
+				
 			}
 			
 		}

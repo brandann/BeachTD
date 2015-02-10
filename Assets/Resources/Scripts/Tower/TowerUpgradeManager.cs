@@ -40,9 +40,8 @@ public class TowerUpgradeManager : MonoBehaviour
     public int MaxSlowSpeed = 2;
     public int MaxSlowDamage = 2;
     public int MaxSlowSpecial = 2;
-
-
-    public bool Active { get; protected set; }
+    
+    private bool _active = false;
 
     private Tower _touchedTower;
     private OpenAreaBehavior _touchedArea;
@@ -331,7 +330,6 @@ public class TowerUpgradeManager : MonoBehaviour
         }
 
         //CheckActive();
-
     }
 
     private void ShowUpgradeButtons(bool speed = false, bool range = false, bool damage = false, bool special = false, bool sell = false)
@@ -345,7 +343,7 @@ public class TowerUpgradeManager : MonoBehaviour
         //CheckActive();
     }
 
-    /// <summary>
+/*    /// <summary>
     /// If any of the buttons are active the manager is considered active
     /// </summary>
     private void  CheckActive()
@@ -360,8 +358,20 @@ public class TowerUpgradeManager : MonoBehaviour
         }
 
         Active = false;
-    }
-
-
-
+    }*/
+    
+	public bool Active 
+	{ 
+		get
+		{
+			foreach (Button b in _buttons)
+			{
+				if (b.gameObject.activeSelf == true)
+				{
+					return true;
+				}
+			}
+			return false;
+		} 
+	}
 }
