@@ -1,15 +1,17 @@
 ﻿using UnityEngine;
 using System.Collections.Generic;
+using UnityEngine.UI;
 
 public class TouchController : MonoBehaviour {
-	
+
 	// messages for handeling mouse conversion to touch
 	private const string touchDown = "OnTouchDown";
 	private const string touchUp   = "OnTouchUp";
 	private const string touchStay = "OnTouchStay";
 	private const string touchMove = "OnTouchMove";
-	private const string touchExit = "OnTouchExit";
-	
+    private const string touchExit = "OnTouchExit";
+
+    public TowerUpgradeManager UpgradeManager;	
 	public List<string> TouchableTags; // filled in on inspector
 
 	// Use this for initialization
@@ -118,17 +120,18 @@ public class TouchController : MonoBehaviour {
 			// set vector2 world point
 			//wp = Camera.main.ScreenToWorldPoint(dp);
 			//touchPos = new Vector2(wp.x, wp.y);
-			
-			// If colliders are found at touchPos point
-            RaycastHit2D[] hits = Physics2D.RaycastAll(Camera.main.ScreenToWorldPoint(dp), Vector2.zero);
-			
+
 			if(message == touchDown)
 			{
+                // If colliders are found at touchPos point
+                RaycastHit2D[] hits = Physics2D.RaycastAll(Camera.main.ScreenToWorldPoint(dp), Vector2.zero);               
+
+
                 foreach(RaycastHit2D h in hits){
                     
 				    if(TouchableTags.Contains(h.collider.tag))
 				    {
-                        Debug.Log("sending message");
+                        //Debug.Log("sending message");
 					    h.transform.gameObject.SendMessage("OnTouchDown", h.point, SendMessageOptions.DontRequireReceiver);
 				    }
                 }

@@ -1,6 +1,7 @@
 ﻿using UnityEngine;
 using UnityEngine.UI;
 using System.Collections;
+using System.Collections.Generic;
 
 
 /// <summary>
@@ -23,6 +24,26 @@ public class TowerUpgradeManager : MonoBehaviour
     public Button SpecialUpButton;
     public Button SellButton;
 
+
+    //Maximum number of upgrades available to each type of tower
+    public int MaxMeleeRange = 2;
+    public int MaxMeleeSpeed = 2;
+    public int MaxMeleeDamage = 2;
+    public int MaxMeleeSpecial = 2;
+
+    public int MaxRangedRange = 2;
+    public int MaxRangedSpeed = 2;
+    public int MaxRangedDamage = 2;
+    public int MaxRangedSpecial = 2;
+
+    public int MaxSlowRange = 2;
+    public int MaxSlowSpeed = 2;
+    public int MaxSlowDamage = 2;
+    public int MaxSlowSpecial = 2;
+
+
+    public bool Active { get; protected set; }
+
     private Tower _touchedTower;
     private OpenAreaBehavior _touchedArea;
     
@@ -30,6 +51,44 @@ public class TowerUpgradeManager : MonoBehaviour
     private readonly Tower.Upgrade _10percentSpeed = new Tower.Upgrade(0,.1f);
     private readonly Tower.Upgrade _10percentDamage = new Tower.Upgrade(0,0,0.1f);
     private readonly Tower.Upgrade _10percentRange = new Tower.Upgrade(0.1f);
+    
+    private Dictionary<Tower, int> _towerLookup;
+
+    private int[,] _maxUpgrades;
+    private readonly int RANGEINDEX = 0;
+    private readonly int SPEEDINDEX = 1;
+    private readonly int DAMAGEINDEX = 2;
+    private readonly int SPECIALINDEX = 3;
+    
+
+    /// <summary>
+    /// Makes it a bit easier to look up the max upgrade level of tower by attribute
+    /// </summary>
+    private void FillLookups()
+    {
+        _towerLookup = new Dictionary<Tower, int>();
+
+        _towerLookup.Add(MeleePrefab.GetComponent<Tower>(), 0);
+        _towerLookup.Add(RangedPrefab.GetComponent<Tower>(), 1);
+        _towerLookup.Add(SlowPrefab.GetComponent<Tower>(), 2);
+
+        _maxUpgrades = new int [3,4];
+        _maxUpgrades[0, RANGEINDEX] = MaxMeleeRange;
+        _maxUpgrades[0, SPEEDINDEX] = MaxMeleeSpeed;
+        _maxUpgrades[0, DAMAGEINDEX] = MaxMeleeDamage;
+        _maxUpgrades[0, SPECIALINDEX] = MaxMeleeSpecial;
+
+        _maxUpgrades[1, RANGEINDEX] = MaxRangedRange;
+        _maxUpgrades[1, SPEEDINDEX] = MaxRangedSpeed;
+        _maxUpgrades[1, DAMAGEINDEX] = MaxRangedDamage;
+        _maxUpgrades[1, SPECIALINDEX] = MaxRangedSpecial;
+
+        _maxUpgrades[2, RANGEINDEX] = MaxSlowRange;
+        _maxUpgrades[2, SPEEDINDEX] = MaxSlowSpeed;
+        _maxUpgrades[2, DAMAGEINDEX] = MaxSlowDamage;
+        _maxUpgrades[2, SPECIALINDEX] = MaxSlowSpecial;      
+        
+    }
 
 
     private Button[] _buttons;
@@ -51,7 +110,9 @@ public class TowerUpgradeManager : MonoBehaviour
 
     public void UpgradeSpeed()
     {
-        UpgradeTower(_10percentSpeed);
+        
+            UpgradeTower(_10percentSpeed);
+
     }
 
     public void UpgradeRange()
@@ -79,9 +140,7 @@ public class TowerUpgradeManager : MonoBehaviour
 
         Instantiate(OpenAreaPrefab, _touchedTower.transform.position, Quaternion.identity);
         TowerFactory.Instance.RecycleTower(_touchedTower);
-
-
-        
+        ShowUpgradeButtons();       
     }
 
     void Awake()
@@ -96,6 +155,9 @@ public class TowerUpgradeManager : MonoBehaviour
         _buttons[5] = DamageUpButton;
         _buttons[6] = SpecialUpButton;
         _buttons[7] = SellButton;
+
+        FillLookups();
+
 
         //with no params actually hides all buttons
         ShowBuildButtons();
@@ -167,10 +229,12 @@ public class TowerUpgradeManager : MonoBehaviour
 
     private void OpenAreaTouched(OpenAreaBehavior area)
     {
+        //Debug.Log("open area touched");
+
         _touchedArea = area;
 
         //Move to tower that was touched
-        transform.position = _touchedArea.transform.position;
+        transform.position = _touchedArea.transform.position;        
 
         bool showMelee = CanBuildMelee();
         bool showRanged = CanBuildRanged();
@@ -193,24 +257,50 @@ public class TowerUpgradeManager : MonoBehaviour
         return true;
     }
 
+    /// <summary>
+    /// Determines if _touched tower's speed attribute can be upgraded further
+    /// </summary>
+    /// <returns></returns>
     private bool CanUpgradeSpeed()
     {
-        return true;
+        int index = -1, max = -1;
+        _towerLookup.TryGetValue(_touchedTower, out index);
+
+        
+        max = _maxUpgrades[index, SPEEDINDEX];
+
+        return _touchedTower.SpeedUpgrades < max;
+        
     }
 
     private bool CanUpgradeRange()
     {
-        return true;
+        int index = -1, max = -1;
+        _towerLookup.TryGetValue(_touchedTower, out index);
+
+      
+        max = _maxUpgrades[index, RANGEINDEX];
+        return _touchedTower.RangeUpgrades < max;
     }
 
     private bool CanUpgradeDamage()
     {
-        return true;
+        int index = -1, max = -1;
+        _towerLookup.TryGetValue(_touchedTower, out index);
+
+        
+        max = _maxUpgrades[index, DAMAGEINDEX];
+
+        return _touchedTower.DamageUpgrades < max;        
     }
 
     private bool CanUpgradeSpecial()
     {
-        return true;
+        int index = -1, max = -1;
+        _towerLookup.TryGetValue(_touchedTower, out index);
+        
+        max = _maxUpgrades[index, SPECIALINDEX];
+        return _touchedTower.SpecialUpgrades < max;
     }
 
     private bool CanSellTower()
@@ -223,6 +313,7 @@ public class TowerUpgradeManager : MonoBehaviour
     /// </summary>
     private void ShowBuildButtons(bool melee = false, bool ranged = false, bool slow = false)
     {
+        //Debug.Log("show buttons");
         
         if (_buttons[0].gameObject != null)
         {
@@ -239,6 +330,8 @@ public class TowerUpgradeManager : MonoBehaviour
             _buttons[2].gameObject.SetActive(slow);
         }
 
+        //CheckActive();
+
     }
 
     private void ShowUpgradeButtons(bool speed = false, bool range = false, bool damage = false, bool special = false, bool sell = false)
@@ -248,5 +341,27 @@ public class TowerUpgradeManager : MonoBehaviour
         _buttons[5].gameObject.SetActive(damage);
         _buttons[6].gameObject.SetActive(special);
         _buttons[7].gameObject.SetActive(sell);
+
+        //CheckActive();
     }
+
+    /// <summary>
+    /// If any of the buttons are active the manager is considered active
+    /// </summary>
+    private void  CheckActive()
+    {
+        foreach (Button b in _buttons)
+        {
+            if (b.gameObject.activeSelf == true)
+            {
+                Active = true;
+                return;
+            }
+        }
+
+        Active = false;
+    }
+
+
+
 }

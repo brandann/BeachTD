@@ -4497,6 +4497,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 893c65ecab0d6c04ab6d00d36e52c9c9, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  UpgradeManager: {fileID: 0}
   TouchableTags:
   - helper
   - open
@@ -4800,7 +4801,7 @@ Canvas:
   m_OverrideSorting: 0
   m_OverridePixelPerfect: 0
   m_SortingLayerID: 0
-  m_SortingOrder: 0
+  m_SortingOrder: 3
 --- !u!224 &2104527636
 RectTransform:
   m_ObjectHideFlags: 0
@@ -4809,7 +4810,7 @@ RectTransform:
   m_GameObject: {fileID: 2104527632}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: .00499999989, y: .00499999989, z: 1}
+  m_LocalScale: {x: .00600000005, y: .00600000005, z: 1}
   m_Children:
   - {fileID: 1204488347}
   - {fileID: 1984530999}
@@ -4823,8 +4824,8 @@ RectTransform:
   m_RootOrder: 11
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 0, y: 0}
-  m_AnchoredPosition: {x: 4.51999998, y: 3.41000009}
-  m_SizeDelta: {x: 640, y: 384}
+  m_AnchoredPosition: {x: 4.88000011, y: 3.50999999}
+  m_SizeDelta: {x: 600, y: 400}
   m_Pivot: {x: .5, y: .5}
 --- !u!114 &2104527637
 MonoBehaviour:
@@ -4849,3 +4850,15 @@ MonoBehaviour:
   DamageUpButton: {fileID: 1022333325}
   SpecialUpButton: {fileID: 1348181207}
   SellButton: {fileID: 639764744}
+  MaxMeleeRange: 2
+  MaxMeleeSpeed: 2
+  MaxMeleeDamage: 2
+  MaxMeleeSpecial: 2
+  MaxRangedRange: 2
+  MaxRangedSpeed: 2
+  MaxRangedDamage: 2
+  MaxRangedSpecial: 2
+  MaxSlowRange: 2
+  MaxSlowSpeed: 2
+  MaxSlowDamage: 2
+  MaxSlowSpecial: 2

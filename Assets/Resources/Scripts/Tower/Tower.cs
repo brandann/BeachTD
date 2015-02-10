@@ -7,7 +7,7 @@ using UnityEngine;
 using System.Collections;
 using System.Collections.Generic;
 
-public abstract class Tower : MonoBehaviour, IUpgradeable
+public abstract class Tower : MonoBehaviour
 {
     #region Public Region
 
@@ -32,7 +32,7 @@ public abstract class Tower : MonoBehaviour, IUpgradeable
             Damage = damage;
             Special = special;
         }
-    }    
+    }
 
     //Cost of building 
     public int Cost { get; protected set; }
@@ -74,13 +74,45 @@ public abstract class Tower : MonoBehaviour, IUpgradeable
         TransitionToState(_previousState);
     }
 
+    /// <summary>
+    /// UpgradeTower some characteristics of a tower. No upgrade limits exits on tower those are made by caller.
+    /// </summary>
+    /// <param name="upgrade">Attributes of upgrade == 0 will not be applied</param>
     public virtual void UpgradeTower(Upgrade upgrade)
     {
-        if(upgrade.Range != 0) _collider.radius *= (1 + upgrade.Range);
-        if(upgrade.Speed != 0) CoolDownTime *= -(1 + upgrade.Speed);
-        if(upgrade.Damage != 0) Damage *= (1 + upgrade.Damage);
-        if(upgrade.Special != 0) UpgradeSpecial(upgrade.Special);
+        if (upgrade.Range != 0)
+        {
+            _collider.radius *= (1 + upgrade.Range);
+            RangeUpgrades++;
+        }
+
+        if (upgrade.Speed != 0)
+        {
+            //Debug.Log("Change cooldown from: " + CoolDownTime);
+            CoolDownTime -= (CoolDownTime * upgrade.Speed)  ;
+            //Debug.Log("Change cooldown to: " + CoolDownTime);
+            SpeedUpgrades++;
+        }
+
+        if (upgrade.Damage != 0)
+        {
+            Damage *= (1 + upgrade.Damage);
+            DamageUpgrades++;
+        }
+
+        if(upgrade.Special != 0){
+            UpgradeSpecial(upgrade.Special);
+            SpecialUpgrades++;
+        }
     }
+
+    public int RangeUpgrades { get; protected set; }
+
+    public int SpeedUpgrades { get; protected set; }
+
+    public int DamageUpgrades { get; protected set; }
+
+    public int SpecialUpgrades { get; protected set; }
 
     #endregion
 
@@ -88,6 +120,10 @@ public abstract class Tower : MonoBehaviour, IUpgradeable
     protected readonly int _flashHash = Animator.StringToHash("Flash");
     protected readonly int _stopHash = Animator.StringToHash("Stop");
     protected CircleCollider2D _collider;
+    protected int _speedUpgrades;
+    protected int _rangeUpgrades;
+    protected int _damageUpgrades;
+    protected int _specialUpgrades;
 
     #region MonoBehaviour Region
     void Update()
@@ -154,6 +190,12 @@ public abstract class Tower : MonoBehaviour, IUpgradeable
             Debug.LogError("Missing animator");
 
         _targets = new List<Enemy>();
+
+        //Reset upgrade counters
+        SpeedUpgrades = 0;
+        DamageUpgrades = 0;
+        RangeUpgrades = 0;
+        SpecialUpgrades = 0;
 
        
     }
