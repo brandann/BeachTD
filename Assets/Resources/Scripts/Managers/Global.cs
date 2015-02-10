@@ -5,6 +5,7 @@ using System.Collections.Generic;
 public class Global : MonoBehaviour {
 
 	#region Private Memebers
+    private EnemyManager enemyManager;
 	private const int STARTING_EGG_COUNT = 10;
 	private List<GameObject> _eggsAtGoal;
 	private int _eggsStillActive;
@@ -18,18 +19,14 @@ public class Global : MonoBehaviour {
 	private float randomSpawnTime = 0;
 	
 	private Dictionary<int, GameObject> _enemies;
+
 	private Dictionary<int, GameObject> _towers;
-	private Dictionary<int, Wave> _waves;
-	private Dictionary<int, GameObject> _enemieSchedule;
 	
 	private bool _mapLoaded = false;
 	#endregion
 	
 	#region Public Memebers
 	public GameObject EggPrefab;
-	public GameObject EnemyA0Prefab;
-	public GameObject EnemyB0Prefab;
-	public GameObject EnemyC0Prefab;
 	
 	[Range (0, 10)]
 	public int StartingLevel;
@@ -49,11 +46,10 @@ public class Global : MonoBehaviour {
 	
 	// Update is called once per frame
 	void Update () {
-		RandomEnemySpawner(_mapLoaded);
-		
-		if(Input.GetKeyUp(KeyCode.Alpha1)) { SpawnEnemy(EnemyA0Prefab); }
-		else if(Input.GetKeyUp(KeyCode.Alpha2)) { SpawnEnemy(EnemyB0Prefab); }
-		else if(Input.GetKeyUp(KeyCode.Alpha3)) { SpawnEnemy(EnemyC0Prefab); }
+        if (_mapLoaded) 
+        {
+            enemyManager.StartRandomEnemySpawner();
+        }
 	}
 	#endregion
 	
@@ -120,58 +116,6 @@ public class Global : MonoBehaviour {
 	}
 	#endregion
 	
-	#region Enemies
-	private void InitEnemies()
-	{
-		_enemies = new Dictionary<int, GameObject>();
-		_waves = new Dictionary<int, Wave>();
-		_enemieSchedule = new Dictionary<int, GameObject>();
-		
-		EnemyA0Prefab = Resources.Load("Prefabs/EnemyA0") as GameObject;
-		EnemyB0Prefab = Resources.Load("Prefabs/EnemyB0") as GameObject;
-		EnemyC0Prefab = Resources.Load("Prefabs/EnemyC0") as GameObject;
-	}
-	
-	public void SpawnEnemy(GameObject EnemyPrefab)
-	{
-		GameObject go = SpawnPrefab(EnemyPrefab, CurrentMap.Waypoints[0]);
-		_enemies.Add(go.GetInstanceID(), go);
-	}
-	
-	public void AddEnemySchedule(int index, GameObject schedule)
-	{
-		_enemieSchedule.Add(index, schedule);
-	}
-	
-	public void AddWave(int index, Wave wave)
-	{
-		_waves.Add(index, wave);
-	}
-	
-	#region RandomEnemySpawner
-	private void RandomEnemySpawner(bool go)
-	{
-		if(!go) return;
-		
-		if ((Time.realtimeSinceStartup - _spawntimedinterval) > randomSpawnTime) 
-		{
-			int r = Random.Range(0,3);
-			GameObject enemy = Resources.Load("Prefabs/EnemyA0") as GameObject;
-			if (r == 1)
-				enemy = Resources.Load("Prefabs/EnemyB0") as GameObject;
-			else if (r == 2)
-				enemy = Resources.Load("Prefabs/EnemyC0") as GameObject;
-			if(enemy != null)
-			{
-				SpawnEnemy(enemy);
-			}
-			_spawntimedinterval = Time.realtimeSinceStartup;
-			randomSpawnTime = Random.Range(RandomEnemySpawnLow, RandomEnemySpawnHigh);
-		}
-	}
-	#endregion
-	#endregion
-	
 	#region Map
 	private void InitMap()
 	{
@@ -218,9 +162,9 @@ public class Global : MonoBehaviour {
 	private void Initilize()
 	{
 		CurrentGameState = GameState.Game; // TODO set this someplace else!
+        enemyManager = GetComponent<EnemyManager>();
 		InitTowers();
 		InitMap();
-		InitEnemies();
 		InitEggs();
 		_eggsStillActive = STARTING_EGG_COUNT;
 	}
@@ -235,27 +179,11 @@ public class Global : MonoBehaviour {
 			}
 		}
 		
-		if(_enemies != null)
-		{
-			for(int i = 0; i < _enemies.Count; i++)
-			{
-				Destroy(_enemies[i]);
-			}
-		}
-		
 		if(_towers != null)
 		{
 			for(int i = 0; i < _towers.Count; i++)
 			{
 				Destroy(_towers[i]);
-			}
-		}
-		
-		if(_waves != null)
-		{
-			for(int i = 0; i < _waves.Count; i++)
-			{
-				Destroy(_waves[i]);
 			}
 		}
 	}

@@ -6,6 +6,7 @@ public class MeleeTower : Tower {
 	// Use this for initialization
 	public override void Initialize() {
         base.Initialize();
+
         CoolDownTime = 5;
         _tip = GetComponentInChildren<TipBarnacle>();
         _tip.SetDamage(Damage);

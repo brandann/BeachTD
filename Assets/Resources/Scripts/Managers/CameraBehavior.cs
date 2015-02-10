@@ -4,14 +4,14 @@ using System.Collections;
 public class CameraBehavior : MonoBehaviour {
 
 	private bool zoom = false;
-	Global global;
+	//Global global;
 	float speed = .0001f;
 	Vector2 lasttouch;
 
 	// Use this for initialization
 	void Start () 
 	{
-		global = GameObject.Find("Global").GetComponent<Global>();
+		//global = GameObject.Find("Global").GetComponent<Global>();
 	}
 	
 	// Update is called once per frame
@@ -42,8 +42,8 @@ public class CameraBehavior : MonoBehaviour {
 		{
 			float m_height = 9;
 			float m_width = 9 * 1.77f;
-			float c_height = camera.orthographicSize;
-			float c_width = c_height * camera.aspect;
+			//float c_height = camera.orthographicSize;
+			//float c_width = c_height * camera.aspect;
 			float p_height = m_height;
 			float p_width = p_height * camera.aspect;
 			

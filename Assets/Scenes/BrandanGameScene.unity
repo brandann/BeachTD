@@ -235,11 +235,11 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 11400000, guid: d928fea4b3cce4f21adf979d1bfc7528, type: 2}
       propertyPath: RandomEnemySpawnLow
-      value: 1.5
+      value: 4
       objectReference: {fileID: 0}
     - target: {fileID: 11400000, guid: d928fea4b3cce4f21adf979d1bfc7528, type: 2}
       propertyPath: RandomEnemySpawnHigh
-      value: 1.5
+      value: 4
       objectReference: {fileID: 0}
     - target: {fileID: 11400002, guid: d928fea4b3cce4f21adf979d1bfc7528, type: 2}
       propertyPath: TouchableTags.Array.data[0]
@@ -441,8 +441,8 @@ MonoBehaviour:
   EnemyB0Prefab: {fileID: 100000, guid: 02c4278369d55491eabe4becf7d57508, type: 2}
   EnemyC0Prefab: {fileID: 100000, guid: 83bd0c3093bdd47739e957e23bc3e524, type: 2}
   StartingLevel: 2
-  RandomEnemySpawnLow: 1.5
-  RandomEnemySpawnHigh: 1.5
+  RandomEnemySpawnLow: 4
+  RandomEnemySpawnHigh: 4
 --- !u!1 &376614793
 GameObject:
   m_ObjectHideFlags: 0
