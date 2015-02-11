@@ -40,57 +40,52 @@ public class TowerUpgradeManager : MonoBehaviour
     public int MaxSlowSpeed = 2;
     public int MaxSlowDamage = 2;
     public int MaxSlowSpecial = 2;
-    
-    private bool _active = false;
 
-    private Tower _touchedTower;
-    private OpenAreaBehavior _touchedArea;
-    
-    private readonly Tower.Upgrade _specialUpgrade = new Tower.Upgrade(0,0,0,1);
-    private readonly Tower.Upgrade _10percentSpeed = new Tower.Upgrade(0,.1f);
-    private readonly Tower.Upgrade _10percentDamage = new Tower.Upgrade(0,0,0.1f);
-    private readonly Tower.Upgrade _10percentRange = new Tower.Upgrade(0.1f);
-    
-    private Dictionary<Tower, int> _towerLookup;
-
-    private int[,] _maxUpgrades;
-    private readonly int RANGEINDEX = 0;
-    private readonly int SPEEDINDEX = 1;
-    private readonly int DAMAGEINDEX = 2;
-    private readonly int SPECIALINDEX = 3;
+    public bool MenuActive { get; private set; }
     
 
-    /// <summary>
-    /// Makes it a bit easier to look up the max upgrade level of tower by attribute
-    /// </summary>
-    private void FillLookups()
+    #region MonoBehaviour
+    void Awake()
     {
-        _towerLookup = new Dictionary<Tower, int>();
+        //Assign buttons
+        _buttons = new Button[8];
+        _buttons[0] = BuildMeleeButton;
+        _buttons[1] = BuildRangedButton;
+        _buttons[2] = BuildSlowButton;
+        _buttons[3] = SpeedUpButton;
+        _buttons[4] = RangeUpButton;
+        _buttons[5] = DamageUpButton;
+        _buttons[6] = SpecialUpButton;
+        _buttons[7] = SellButton;
 
-        _towerLookup.Add(MeleePrefab.GetComponent<Tower>(), 0);
-        _towerLookup.Add(RangedPrefab.GetComponent<Tower>(), 1);
-        _towerLookup.Add(SlowPrefab.GetComponent<Tower>(), 2);
+        //Ensure all buttons have been added in the inspector
+        foreach (Button b in _buttons)
+            if (b.gameObject == null)
+                Debug.LogError("Missing button");
 
-        _maxUpgrades = new int [3,4];
-        _maxUpgrades[0, RANGEINDEX] = MaxMeleeRange;
-        _maxUpgrades[0, SPEEDINDEX] = MaxMeleeSpeed;
-        _maxUpgrades[0, DAMAGEINDEX] = MaxMeleeDamage;
-        _maxUpgrades[0, SPECIALINDEX] = MaxMeleeSpecial;
+        FillLookups();
 
-        _maxUpgrades[1, RANGEINDEX] = MaxRangedRange;
-        _maxUpgrades[1, SPEEDINDEX] = MaxRangedSpeed;
-        _maxUpgrades[1, DAMAGEINDEX] = MaxRangedDamage;
-        _maxUpgrades[1, SPECIALINDEX] = MaxRangedSpecial;
 
-        _maxUpgrades[2, RANGEINDEX] = MaxSlowRange;
-        _maxUpgrades[2, SPEEDINDEX] = MaxSlowSpeed;
-        _maxUpgrades[2, DAMAGEINDEX] = MaxSlowDamage;
-        _maxUpgrades[2, SPECIALINDEX] = MaxSlowSpecial;      
-        
+        //with no params actually hides all buttons
+        ShowBuildButtons();
+        ShowUpgradeButtons();
     }
 
+    void OnEnable()
+    {
+        Tower.onTowerTouched += TowerTouched;
+        OpenAreaBehavior.onAreaTouched += OpenAreaTouched;
+    }
 
-    private Button[] _buttons;
+    void OnDisable()
+    {
+        Tower.onTowerTouched -= TowerTouched;
+        OpenAreaBehavior.onAreaTouched -= OpenAreaTouched;
+    }
+
+    #endregion
+
+    #region Buttons
 
     public void BuildMelee()
     {
@@ -109,9 +104,7 @@ public class TowerUpgradeManager : MonoBehaviour
 
     public void UpgradeSpeed()
     {
-        
-            UpgradeTower(_10percentSpeed);
-
+        UpgradeTower(_10percentSpeed);
     }
 
     public void UpgradeRange()
@@ -139,41 +132,58 @@ public class TowerUpgradeManager : MonoBehaviour
 
         Instantiate(OpenAreaPrefab, _touchedTower.transform.position, Quaternion.identity);
         TowerFactory.Instance.RecycleTower(_touchedTower);
-        ShowUpgradeButtons();       
-    }
-
-    void Awake()
-    {
-        //Assign buttons
-        _buttons = new Button[8];
-        _buttons[0] = BuildMeleeButton;
-        _buttons[1] = BuildRangedButton;
-        _buttons[2] = BuildSlowButton;
-        _buttons[3] = SpeedUpButton;
-        _buttons[4] = RangeUpButton;
-        _buttons[5] = DamageUpButton;
-        _buttons[6] = SpecialUpButton;
-        _buttons[7] = SellButton;
-
-        FillLookups();
-
-
-        //with no params actually hides all buttons
-        ShowBuildButtons();
         ShowUpgradeButtons();
     }
 
-    void OnEnable()
-    {
-        Tower.onTowerTouched += TowerTouched;
-        OpenAreaBehavior.onAreaTouched += OpenAreaTouched;
-    }
+    #endregion
 
-    void OnDisable()
+    //Last tower that fired touch event
+    private Tower _touchedTower;
+
+    //Last open area that fired touch event
+    private OpenAreaBehavior _touchedArea;
+
+    private readonly Tower.Upgrade _specialUpgrade = new Tower.Upgrade(0, 0, 0, 1);
+    private readonly Tower.Upgrade _10percentSpeed = new Tower.Upgrade(0, .1f);
+    private readonly Tower.Upgrade _10percentDamage = new Tower.Upgrade(0, 0, 0.1f);
+    private readonly Tower.Upgrade _10percentRange = new Tower.Upgrade(0.1f);
+
+    private Dictionary<Tower, int> _towerLookup;
+
+    private int[,] _maxUpgrades;
+    private readonly int RANGEINDEX = 0;
+    private readonly int SPEEDINDEX = 1;
+    private readonly int DAMAGEINDEX = 2;
+    private readonly int SPECIALINDEX = 3;
+    private Button[] _buttons;
+
+    /// <summary>
+    /// Makes it a bit easier to look up the max upgrade level of tower by attribute
+    /// </summary>
+    private void FillLookups()
     {
-        Tower.onTowerTouched -= TowerTouched;
-        OpenAreaBehavior.onAreaTouched -= OpenAreaTouched;
-    }
+        _towerLookup = new Dictionary<Tower, int>();
+
+        _towerLookup.Add(MeleePrefab.GetComponent<Tower>(), 0);
+        _towerLookup.Add(RangedPrefab.GetComponent<Tower>(), 1);
+        _towerLookup.Add(SlowPrefab.GetComponent<Tower>(), 2);
+
+        _maxUpgrades = new int[3, 4];
+        _maxUpgrades[0, RANGEINDEX] = MaxMeleeRange;
+        _maxUpgrades[0, SPEEDINDEX] = MaxMeleeSpeed;
+        _maxUpgrades[0, DAMAGEINDEX] = MaxMeleeDamage;
+        _maxUpgrades[0, SPECIALINDEX] = MaxMeleeSpecial;
+
+        _maxUpgrades[1, RANGEINDEX] = MaxRangedRange;
+        _maxUpgrades[1, SPEEDINDEX] = MaxRangedSpeed;
+        _maxUpgrades[1, DAMAGEINDEX] = MaxRangedDamage;
+        _maxUpgrades[1, SPECIALINDEX] = MaxRangedSpecial;
+
+        _maxUpgrades[2, RANGEINDEX] = MaxSlowRange;
+        _maxUpgrades[2, SPEEDINDEX] = MaxSlowSpeed;
+        _maxUpgrades[2, DAMAGEINDEX] = MaxSlowDamage;
+        _maxUpgrades[2, SPECIALINDEX] = MaxSlowSpecial;
+    }   
 
     private void UpgradeTower(Tower.Upgrade up)
     {
@@ -313,23 +323,12 @@ public class TowerUpgradeManager : MonoBehaviour
     private void ShowBuildButtons(bool melee = false, bool ranged = false, bool slow = false)
     {
         //Debug.Log("show buttons");
-        
-        if (_buttons[0].gameObject != null)
-        {
-            _buttons[0].gameObject.SetActive(melee);
-        }
 
-        if (_buttons[1].gameObject != null)
-        {
-            _buttons[1].gameObject.SetActive(ranged);
-        }
+        _buttons[0].gameObject.SetActive(melee);
+        _buttons[1].gameObject.SetActive(ranged);
+        _buttons[2].gameObject.SetActive(slow);
 
-        if(_buttons[2].gameObject != null)
-        {
-            _buttons[2].gameObject.SetActive(slow);
-        }
-
-        
+        CheckMenuActive();
     }
 
     private void ShowUpgradeButtons(bool speed = false, bool range = false, bool damage = false, bool special = false, bool sell = false)
@@ -340,9 +339,22 @@ public class TowerUpgradeManager : MonoBehaviour
         _buttons[6].gameObject.SetActive(special);
         _buttons[7].gameObject.SetActive(sell);
 
-        
+        CheckMenuActive();
     }
 
+    private void CheckMenuActive()
+    {
+        foreach (Button b in _buttons)
+        {
+            if (b.gameObject.activeSelf)
+            {
+                MenuActive = true;
+                return;
+            }
+        }
+
+        MenuActive = false;
+    }
     
 	
 }

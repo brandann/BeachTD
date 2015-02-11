@@ -275,16 +275,19 @@ public abstract class Tower : MonoBehaviour
     /// Decide which target to attack; Default behavior is to target enemy that has traveled the furthest
     /// </summary>
     protected virtual void PrioritizeTargets()
-    {
+    { 
+
         _targets.Sort(
             delegate(Enemy e1, Enemy e2)
             {
-                float e1Dist = e1.gameObject.GetComponent<EnemyMovement>().DistanceTraveled;
-                float e2Dist = e2.gameObject.GetComponent<EnemyMovement>().DistanceTraveled;
+                //Null check enemies in case they have been killed but not yet removed
+                float e1Dist = (e1 != null) ? e1.gameObject.GetComponent<EnemyMovement>().DistanceTraveled : 0;
+                float e2Dist = (e2 != null) ? e2.gameObject.GetComponent<EnemyMovement>().DistanceTraveled : 0;
                 return e2Dist.CompareTo(e1Dist);
             }
         );
     }
+
 
     /// <summary>
     /// Take relevant action (attack, slow etc, deploy troops etc)

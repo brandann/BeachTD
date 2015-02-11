@@ -11,7 +11,6 @@ public class TouchController : MonoBehaviour {
 	private const string touchMove = "OnTouchMove";
     private const string touchExit = "OnTouchExit";
 
-    public TowerUpgradeManager UpgradeManager;	
 	public List<string> TouchableTags; // filled in on inspector
 	
 	private bool active;
@@ -129,53 +128,19 @@ public class TouchController : MonoBehaviour {
 			//touchPos = new Vector2(wp.x, wp.y);
 
 			if(message == touchDown)
-			{
-				if(UpgradeManager.enabled)
-				{
-					Debug.Log("Upgrade");
-					//return;
-				}
-				
+			{				
                 // If colliders are found at touchPos point
-                RaycastHit2D[] hits = Physics2D.RaycastAll(Camera.main.ScreenToWorldPoint(dp), Vector2.zero);
-                
-                 if(hits.GetLength(0) == 0)
-                 {
-                 	return;
-                 } 
-                
-                string HitTag = hits[0].collider.tag;
-                bool kill = false;
-                          
+                RaycastHit2D[] hits = Physics2D.RaycastAll(Camera.main.ScreenToWorldPoint(dp), Vector2.zero);                   
+              
 				
 				foreach(RaycastHit2D h in hits)
 				{
-					if(h.collider.tag == "open")
+					if(TouchableTags.Contains( h.collider.tag ) )
 					{
-						if(!UpgradeManager.Active)
-						{
-							h.transform.gameObject.SendMessage("OnTouchDown", h.point, SendMessageOptions.DontRequireReceiver);
-						}
-						return;
-					}
-					else if(h.collider.tag == "enemy")
-					{
-						h.transform.gameObject.SendMessage("OnTouchDown", h.point, SendMessageOptions.DontRequireReceiver);
-						return;
-					}
-				}
-				
-				foreach(RaycastHit2D h in hits)
-				{
-					if(h.collider.tag == "tower")
-					{
-						h.transform.gameObject.SendMessage("OnTouchDown", h.point, SendMessageOptions.DontRequireReceiver);
-						kill = true;
-					}
-				}
-				
-			}
-			
+                        h.transform.gameObject.SendMessage("OnTouchDown", h.point, SendMessageOptions.DontRequireReceiver);
+                    }
+                }				
+			}			
 		}
 	}
 }
