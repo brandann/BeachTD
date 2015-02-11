@@ -2,10 +2,10 @@
 using System.Collections;
 using System.Collections.Generic;
 
-public class EnemyManager : MonoBehaviour {
+public class EnemyManager : ManagerBase {
 
-    Global global;
-    private Dictionary<int, GameObject> _enemies;
+    
+    
     private GameObject EnemyA0Prefab;
     private GameObject EnemyB0Prefab;
     private GameObject EnemyC0Prefab;
@@ -16,44 +16,25 @@ public class EnemyManager : MonoBehaviour {
     private bool _mapLoaded = false;
 
 	// Use this for initialization
-	void Start ()
+    public EnemyManager() : base()
     {
-        global = GetComponent<Global>();
-        _enemies = new Dictionary<int, GameObject>();
-        EnemyA0Prefab = Resources.Load("Prefabs/EnemyA0") as GameObject;
-        EnemyB0Prefab = Resources.Load("Prefabs/EnemyB0") as GameObject;
-        EnemyC0Prefab = Resources.Load("Prefabs/EnemyC0") as GameObject;
+		EnemyA0Prefab = Resources.Load("Prefabs/EnemyA0") as GameObject;
+		EnemyB0Prefab = Resources.Load("Prefabs/EnemyB0") as GameObject;
+		EnemyC0Prefab = Resources.Load("Prefabs/EnemyC0") as GameObject;
     }
 	
 	// Update is called once per frame
-	void Update () {
+	public void Update () {
         RandomEnemySpawner(_mapLoaded);
 
-        if (Input.GetKeyUp(KeyCode.Alpha1)) { SpawnEnemy(EnemyA0Prefab); }
-        else if (Input.GetKeyUp(KeyCode.Alpha2)) { SpawnEnemy(EnemyB0Prefab); }
-        else if (Input.GetKeyUp(KeyCode.Alpha3)) { SpawnEnemy(EnemyC0Prefab); }
+        if (Input.GetKeyUp(KeyCode.Alpha1)) { Create(EnemyA0Prefab, _startingPosition); }
+     	else if (Input.GetKeyUp(KeyCode.Alpha2)) { Create(EnemyB0Prefab, _startingPosition); }
+  		else if (Input.GetKeyUp(KeyCode.Alpha3)) { Create(EnemyC0Prefab, _startingPosition); }
 	}
 
     public void StartRandomEnemySpawner()
     {
         _mapLoaded = true;
-    }
-
-    public void SpawnEnemy(GameObject EnemyPrefab)
-    {
-        GameObject go = global.SpawnPrefab(EnemyPrefab, global.CurrentMap.Waypoints[0]);
-        _enemies.Add(go.GetInstanceID(), go);
-    }
-
-    public void Reset()
-    {
-        if (_enemies != null)
-        {
-            for (int i = 0; i < _enemies.Count; i++)
-            {
-                Destroy(_enemies[i]);
-            }
-        }
     }
 
     private void RandomEnemySpawner(bool go)
@@ -70,7 +51,7 @@ public class EnemyManager : MonoBehaviour {
                 enemy = Resources.Load("Prefabs/EnemyC0") as GameObject;
             if (enemy != null)
             {
-                SpawnEnemy(enemy);
+                Create(enemy, _startingPosition);
             }
             _spawntimedinterval = Time.realtimeSinceStartup;
             //randomSpawnTime = Random.Range(RandomEnemySpawnLow, RandomEnemySpawnHigh);
