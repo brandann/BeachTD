@@ -329,7 +329,7 @@ public class TowerUpgradeManager : MonoBehaviour
             _buttons[2].gameObject.SetActive(slow);
         }
 
-        //CheckActive();
+        
     }
 
     private void ShowUpgradeButtons(bool speed = false, bool range = false, bool damage = false, bool special = false, bool sell = false)
@@ -340,38 +340,9 @@ public class TowerUpgradeManager : MonoBehaviour
         _buttons[6].gameObject.SetActive(special);
         _buttons[7].gameObject.SetActive(sell);
 
-        //CheckActive();
+        
     }
 
-/*    /// <summary>
-    /// If any of the buttons are active the manager is considered active
-    /// </summary>
-    private void  CheckActive()
-    {
-        foreach (Button b in _buttons)
-        {
-            if (b.gameObject.activeSelf == true)
-            {
-                Active = true;
-                return;
-            }
-        }
-
-        Active = false;
-    }*/
     
-	public bool Active 
-	{ 
-		get
-		{
-			foreach (Button b in _buttons)
-			{
-				if (b.gameObject.activeSelf == true)
-				{
-					return true;
-				}
-			}
-			return false;
-		} 
-	}
+	
 }

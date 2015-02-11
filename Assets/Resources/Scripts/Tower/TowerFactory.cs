@@ -82,20 +82,25 @@ public class TowerFactory : MonoBehaviour
 		TowersDispensed++;
         return towerToReturn;
     }
-
+    
     void Awake()
     {
         InitializeFactory();
     }
 
-    private static TowerFactory mInstance;    
-    private static Queue<GameObject>[] _Pool;     
-    private static int _PoolSize = 15;             //# no reason use profiler to experiment if needed
-    private static Dictionary<System.Type,int> _TypeIndex;    
-    private static float mHighestEnemyFrequency = -1f;
-    private static List<int> mAvailableEnemyIndicies;
-    private List<GameObject> _Prefabs;
+    //The towerfactory singleton
+    private static TowerFactory mInstance;
 
+    //Cached towers ready to be deployed
+    private static Queue<GameObject>[] _Pool;
+
+    //# no reason use profiler to experiment if needed
+    private static int _PoolSize = 15;
+    
+    //Used as indexes for the pool     
+    private static Dictionary<System.Type,int> _TypeIndex;    
+   
+    private List<GameObject> _Prefabs;
 
 
     /// <summary>
@@ -108,7 +113,7 @@ public class TowerFactory : MonoBehaviour
         _Prefabs.Add( RangedPrefab );
         _Prefabs.Add( SlowPrefab );
 
-        mAvailableEnemyIndicies = new List<int>();
+       
     
         _TypeIndex = new Dictionary<Type, int>();
         
