@@ -5,7 +5,7 @@ using System.Collections.Generic;
 public class Global : MonoBehaviour {
 
 	#region Private Memebers
-    private EnemyManager enemyManager;
+    //private EnemyManager enemyManager;
 	private const int STARTING_EGG_COUNT = 10;
 	private List<GameObject> _eggsAtGoal;
 	private int _eggsStillActive;
@@ -27,6 +27,7 @@ public class Global : MonoBehaviour {
 	
 	#region Public Memebers
 	public GameObject EggPrefab;
+	public EnemyManager enemyManager;
 	
 	[Range (0, 10)]
 	public int StartingLevel;
@@ -46,6 +47,10 @@ public class Global : MonoBehaviour {
 	
 	// Update is called once per frame
 	void Update () {
+		if(enemyManager != null)
+		{
+			enemyManager.Update();
+		}
         if (_mapLoaded) 
         {
             enemyManager.StartRandomEnemySpawner();
@@ -157,16 +162,18 @@ public class Global : MonoBehaviour {
 		_currentMap = _maps[index];
 		SpawnEgg();
 		_mapLoaded = true;
+		enemyManager.SetStartingPosition(CurrentMap.Waypoints[0]);
 	}
 	
 	private void Initilize()
 	{
 		CurrentGameState = GameState.Game; // TODO set this someplace else!
-        enemyManager = GetComponent<EnemyManager>();
+        
 		InitTowers();
 		InitMap();
 		InitEggs();
 		_eggsStillActive = STARTING_EGG_COUNT;
+		enemyManager = new EnemyManager();
 	}
 	
 	private void Reset()
