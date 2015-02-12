@@ -2,12 +2,18 @@
 using System.Collections;
 using System.Collections.Generic;
 
-public class GameMaps {
+public class GameMap {
+
+	protected int P = (int) Global.MapToken.Path;
+	protected int T = (int) Global.MapToken.Tower;
+	
+	public virtual Map GetMap()
+	{
+		return null;
+	}
 
 	public Dictionary<int, int[,]> GetGameMaps()
 	{
-		int P = (int) Global.MapToken.Path; 			// pathtile
-		int T = (int) Global.MapToken.Tower;				// tower tile
 		
 		Dictionary<int, int[,]> _maps = new Dictionary<int, int[,]>();
 		

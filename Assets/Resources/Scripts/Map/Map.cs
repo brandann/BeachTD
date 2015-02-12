@@ -9,6 +9,7 @@ public class Map {
 	{
 		_map = FixMap(map);
 		_waypoints = FindWayPoints(_map);
+		waves = new List<Wave>();
 	}
 	
 	public bool[,] TowerLocations()
@@ -22,6 +23,25 @@ public class Map {
 			}
 		}
 		return b;
+	}
+	
+	public void AddWave(Wave wave)
+	{
+		waves.Add(wave);
+	}
+	
+	public List<Wave> GetWaves()
+	{
+		return waves;
+	}
+	
+	public Wave GetWaveByIndex(int index)
+	{
+		if(index < 0 || index > waves.Count)
+		{
+			return null;
+		}
+		return waves[index];
 	}
 	#endregion
 	
@@ -43,6 +63,7 @@ public class Map {
 	#endregion
 	
 	#region private members
+	protected List<Wave>	waves;
 	protected int[,]		_map;		// int array of map w/ paths
 	protected Vector3[] 	_waypoints;	// enemys path for map
 	protected int			_hitpoints;	// "lives" for level

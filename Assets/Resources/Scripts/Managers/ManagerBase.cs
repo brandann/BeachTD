@@ -26,7 +26,6 @@ public abstract class ManagerBase {
 		}
 	}
 	
-	
 	public virtual GameObject Create(GameObject go, Vector3 position)
 	{
 		if(go != null)
@@ -50,5 +49,10 @@ public abstract class ManagerBase {
 	public void SetStartingPosition(Vector3 position)
 	{
 		_startingPosition = position;
+	}
+	
+	public int GetActiveCount()
+	{
+		return _managerObjects.Count;
 	}
 }

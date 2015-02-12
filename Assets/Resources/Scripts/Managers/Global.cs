@@ -1,4 +1,4 @@
-﻿using UnityEngine;
+using UnityEngine;
 using System.Collections;
 using System.Collections.Generic;
 
@@ -47,6 +47,9 @@ public class Global : MonoBehaviour {
 	
 	// Update is called once per frame
 	void Update () {
+		int EnemyCount;
+		int WaveCount;	
+		
 		if(enemyManager != null)
 		{
 			enemyManager.Update();
@@ -124,7 +127,7 @@ public class Global : MonoBehaviour {
 	#region Map
 	private void InitMap()
 	{
-		Dictionary<int, int[,]> m = new GameMaps().GetGameMaps();
+		Dictionary<int, int[,]> m = new GameMap().GetGameMaps();
 		if(_maps != null)
 		{
 			_maps.Clear();

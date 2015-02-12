@@ -1,7 +1,7 @@
 ﻿using UnityEngine;
 using System.Collections;
 
-public class EnemySchedule : MonoBehaviour {
+public class EggManager : MonoBehaviour {
 
 	// Use this for initialization
 	void Start () {

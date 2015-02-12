@@ -48,8 +48,4 @@ public class Mapmanager{
 		global.SpawnTower(OpenSpace, new Vector3(i + .5f, j + .5f, 0));
 	}
 	#endregion
-
-	#region Maps
-
-	#endregion
 }

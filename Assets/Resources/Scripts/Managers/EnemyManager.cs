@@ -4,7 +4,10 @@ using System.Collections.Generic;
 
 public class EnemyManager : ManagerBase {
 
-    
+	#region Private memebers
+    private Wave _currentWave;
+    private int _currentWaveIndex;
+    private float delay;
     
     private GameObject EnemyA0Prefab;
     private GameObject EnemyB0Prefab;
@@ -14,7 +17,9 @@ public class EnemyManager : ManagerBase {
     private float randomSpawnTime = 0;
 
     private bool _mapLoaded = false;
-
+    #endregion
+	
+	#region Public methods
 	// Use this for initialization
     public EnemyManager() : base()
     {
@@ -36,7 +41,48 @@ public class EnemyManager : ManagerBase {
     {
         _mapLoaded = true;
     }
-
+    
+    public void SetCurrentWave(Wave wave)
+    {
+    	_currentWave = wave;
+    }
+	#endregion
+	
+	#region Private Methods
+	private void LoadWaveEnemy()
+	{
+		if(_currentWave == null)
+		{
+			return;
+		}
+		
+		if ((Time.realtimeSinceStartup - _spawntimedinterval) > delay)
+		{
+			switch(_currentWave.GetScheduleItem(_currentWaveIndex).token)
+			{
+				case(EnemySchedule.Token.WAIT):
+					break;
+				case(EnemySchedule.Token.A0):
+					Create(EnemyA0Prefab, _startingPosition);
+					break;
+				case(EnemySchedule.Token.A1):
+					break;
+				case(EnemySchedule.Token.B0):
+					Create(EnemyB0Prefab, _startingPosition);
+					break;
+				case(EnemySchedule.Token.B1):
+					break;
+				case(EnemySchedule.Token.C0):
+					Create(EnemyC0Prefab, _startingPosition);
+					break;
+				case(EnemySchedule.Token.C1):
+					break;
+			}
+			delay = _currentWave.GetScheduleItem(_currentWaveIndex++).time;
+			_spawntimedinterval = Time.realtimeSinceStartup;
+		}
+	}
+	
     private void RandomEnemySpawner(bool go)
     {
         if (!go) return;
@@ -58,4 +104,5 @@ public class EnemyManager : ManagerBase {
             randomSpawnTime = 3;
         }
     }
+    #endregion
 }
