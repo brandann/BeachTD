@@ -215,52 +215,83 @@ public class TowerUpgradeManager : MonoBehaviour
         ShowBuildButtons();
     }
 
-    private void TowerTouched(Tower tower)
+    private void DeselectAndHide()
     {
-        //Debug.Log("Received touch in manager");
+        ShowBuildButtons();
+        ShowUpgradeButtons();
+        _touchedTower = null;
+        _touchedArea = null;
+    }
 
-        if (MenuActive)
-            return;
-
-        //Ignore disabled towers
-        if (tower.CurrentState == Tower.TowerState.Disabled)
-            return;
-
+    private void SelectAndShow(Tower t)
+    {
         //Cache reference to tower 
-        _touchedTower = tower;
+        _touchedTower = t;
 
         //Move to tower that was touched
-        transform.position = tower.transform.position;
+        transform.position = t.transform.position;
 
         bool showSpeed = CanUpgradeSpeed();
         bool showRange = CanUpgradeRange();
         bool showDamage = CanUpgradeDamage();
         bool showSpecial = CanUpgradeSpecial();
         bool showSell = CanSellTower();
-        
 
-        ShowUpgradeButtons(showSpeed, showRange, showDamage, showSpecial, showSell);          
+
+        ShowUpgradeButtons(showSpeed, showRange, showDamage, showSpecial, showSell);
+
     }
 
-    private void OpenAreaTouched(OpenAreaBehavior area)
+    private void SelectAndShow(OpenAreaBehavior a)
     {
-        if (MenuActive && IsBelowButton(area.gameObject))
-        {
-            Debug.Log("Ignore selection");
-            return;
-        }
-
-        Debug.Log("open area touched");
-
-        _touchedArea = area;
+        _touchedArea = a;
 
         //Move to open area that was touched
-        transform.position = _touchedArea.transform.position;        
+        transform.position = _touchedArea.transform.position;
 
         bool showMelee = CanBuildMelee();
         bool showRanged = CanBuildRanged();
         bool showSlow = CanBuildSlow();
         ShowBuildButtons(showMelee, showRanged, showSlow);
+    }
+
+    private void TowerTouched(Tower tower)
+    {
+
+        //Ignore disabled towers
+        if (tower.CurrentState == Tower.TowerState.Disabled)
+            return;        
+
+        if(MenuActive)
+        {           
+            //Tower was touched when user was clicking on an active button
+            if ( IsBelowButton(tower.gameObject) )
+                return;
+            else                         //Menu up but user chose something else
+            {
+                DeselectAndHide();               
+            }
+
+            return;
+        }
+        else
+            SelectAndShow(tower);
+                  
+    }
+
+    private void OpenAreaTouched(OpenAreaBehavior area)
+    {
+        if (MenuActive)
+        {
+            if (IsBelowButton(area.gameObject))
+                return;
+            else
+                DeselectAndHide();
+        }
+        else
+            SelectAndShow(area);
+        
+        //Debug.Log("open area touched");      
     }
 
     /// <summary>
