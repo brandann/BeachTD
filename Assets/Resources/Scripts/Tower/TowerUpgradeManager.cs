@@ -156,6 +156,8 @@ public class TowerUpgradeManager : MonoBehaviour
     private readonly int DAMAGEINDEX = 2;
     private readonly int SPECIALINDEX = 3;
     private Button[] _buttons;
+    private Vector2 _buttonSizeRect = new Vector2(0.5f, 0.5f);
+    private Collider2D[] _hitByButtons;
 
     /// <summary>
     /// Makes it a bit easier to look up the max upgrade level of tower by attribute
@@ -217,6 +219,9 @@ public class TowerUpgradeManager : MonoBehaviour
     {
         //Debug.Log("Received touch in manager");
 
+        if (MenuActive)
+            return;
+
         //Ignore disabled towers
         if (tower.CurrentState == Tower.TowerState.Disabled)
             return;
@@ -232,23 +237,70 @@ public class TowerUpgradeManager : MonoBehaviour
         bool showDamage = CanUpgradeDamage();
         bool showSpecial = CanUpgradeSpecial();
         bool showSell = CanSellTower();
+        
 
         ShowUpgradeButtons(showSpeed, showRange, showDamage, showSpecial, showSell);          
     }
 
     private void OpenAreaTouched(OpenAreaBehavior area)
     {
-        //Debug.Log("open area touched");
+        if (MenuActive && IsBelowButton(area.gameObject))
+        {
+            Debug.Log("Ignore selection");
+            return;
+        }
+
+        Debug.Log("open area touched");
 
         _touchedArea = area;
 
-        //Move to tower that was touched
+        //Move to open area that was touched
         transform.position = _touchedArea.transform.position;        
 
         bool showMelee = CanBuildMelee();
         bool showRanged = CanBuildRanged();
         bool showSlow = CanBuildSlow();
         ShowBuildButtons(showMelee, showRanged, showSlow);
+    }
+
+    /// <summary>
+    /// Checks worldspace below each active button for passed in gameobject
+    /// </summary>
+    /// <param name="go"></param>
+    /// <returns>true if object is below any active button false otherwise</returns>
+    private bool IsBelowButton(GameObject go)
+    {
+        foreach (Button b in _buttons)
+        {
+            //Ignore buttons that aren't active
+            if (!b.gameObject.activeSelf)
+                continue;
+
+                        
+            if (b.collider2D.bounds.Intersects(go.renderer.bounds))
+            {
+                Debug.Log("found intersection");
+                return true;
+            }
+
+            /*
+            int hits = Physics2D.OverlapAreaNonAlloc();
+            
+            for (int i = 0; i < hits; ++i)
+            {
+                if (_hitByButtons[i].transform.renderer != null)
+                {
+                    SpriteRenderer spriteRenderer = (SpriteRenderer)h.transform.renderer;
+                    spriteRenderer.color = Color.red;
+                }
+
+                if (h.transform == go.transform)
+                    return true;
+            }
+            */
+        }
+
+        return false;
     }
 
     private  bool CanBuildMelee()
