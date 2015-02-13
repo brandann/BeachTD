@@ -4,25 +4,33 @@ using System.Collections;
 public class SlidingUI : MonoBehaviour {
 
 	public Animator ButtonAnimController;
-	private int mSlideHash;
-    //private int mSlideInState;
+	private int _SlideHash;
+    
 
 	public virtual void Start(){
 		
         //Trigger between states
-		mSlideHash = Animator.StringToHash ("Slide");
+		_SlideHash = Animator.StringToHash ("Slide");        
+
+        //public AnimationInfo[] GetCurrentAnimationClipState(int layerIndex);
+
+        //Speed up animation in debug mode
+        if (Debug.isDebugBuild)
+        {
+            ButtonAnimController.speed = 5;
+        }
+        else
+        {
+            Animator.StringToHash("SlideInRight");
+        }
         
-        //CurrentState with button on screen 
-        //mSlideInState = Animator.StringToHash("SlideInRight");
-        Animator.StringToHash("SlideInRight");
 	}
 	
 	public void Slide(){
-		ButtonAnimController.SetTrigger (mSlideHash);
+		ButtonAnimController.SetTrigger (_SlideHash);
 	}
 
 	public virtual void Clicked(){
-
 		Slide ();
 	}
 }
