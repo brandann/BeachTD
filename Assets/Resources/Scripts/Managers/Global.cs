@@ -35,6 +35,7 @@ public class Global : MonoBehaviour {
 	public enum MapToken {Tower = -2, Path = -1, Start = 0}
 	public enum GameState{Menu, Game, Pause, Credits, GameOver, Saving, Loading}
 	static public GameState CurrentGameState;
+	public Map CurrentMap { get{ return _currentMap; } }
 	#endregion
 	
 	#region Unity
@@ -76,19 +77,6 @@ public class Global : MonoBehaviour {
 	}
 	#endregion
 	
-	#region Map
-	private void InitMap()
-	{
-		
-	}
-
-	
-	public Map CurrentMap
-	{
-		get{ return _currentMap; }
-	}
-	#endregion
-	
 	#region Public Methods
 	public GameObject SpawnPrefab(GameObject Prefab, Vector3 pos)
 	{
@@ -116,16 +104,12 @@ public class Global : MonoBehaviour {
 		InitTowers();
 		
 		// Maps ------------------------------------------------------------
-		Dictionary<int, int[,]> m = new GameMap().GetGameMaps();
-		if(_maps != null)
-		{
-			_maps.Clear();
-		}
 		_maps = new Dictionary<int, Map>();
+		List<Map> tempMaps = LoadMaps();
 		
-		for(int i = 0; i < m.Count; i++)
+		for(int i = 0; i < tempMaps.Count; i++)
 		{
-			_maps.Add(i, new Map(m[i]));
+			_maps.Add(i, tempMaps[i]);
 		}
 		
 		_mapManager = new Mapmanager();
@@ -152,6 +136,19 @@ public class Global : MonoBehaviour {
 	private void Pause(bool pause)
 	{
 		gameObject.SetActive(pause);
+	}
+	
+	private List<Map> LoadMaps()
+	{
+		List<Map> m = new List<Map>();
+		
+		m.Add(new Map01().GetMap());
+		m.Add(new Map02().GetMap());
+		m.Add(new Map03().GetMap());
+		m.Add(new Map04().GetMap());
+		m.Add(new Map05().GetMap());
+		
+		return m;
 	}
 	#endregion
 }
