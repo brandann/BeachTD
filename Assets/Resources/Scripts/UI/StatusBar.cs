@@ -5,7 +5,19 @@ using System.Collections;
 public class StatusBar : MonoBehaviour {
 
     public Text DollarDisplay;
-    public Text EggDisplay;    
+    public Text EggDisplay;
+
+    void OnEnable()
+    {
+        EggManager.OnEggCountChanged += SetEggs;
+        TowerUpgradeManager.OnSandDollarsChanged += SetDollars;
+    }
+
+    void OnDisable()
+    {
+        EggManager.OnEggCountChanged -= SetEggs;
+        TowerUpgradeManager.OnSandDollarsChanged -= SetDollars;
+    }
 
     void Start()
     {
@@ -13,7 +25,7 @@ public class StatusBar : MonoBehaviour {
             Debug.LogError("Missing UI elements");
     }
 
-    public void SetDollars(int dollars)
+    private void SetDollars(int dollars)
     {
         DollarDisplay.text = dollars.ToString();
     }

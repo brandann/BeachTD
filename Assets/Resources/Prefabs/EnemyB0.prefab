@@ -104,6 +104,7 @@ MonoBehaviour:
   Health: 10
   CurrentEnemyState: 0
   global: {fileID: 0}
+  EnemyKillValue: 30
 --- !u!114 &11400004
 MonoBehaviour:
   m_ObjectHideFlags: 1

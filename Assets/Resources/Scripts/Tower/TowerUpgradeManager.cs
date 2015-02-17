@@ -10,6 +10,13 @@ using System.Collections.Generic;
 /// </summary>
 public class TowerUpgradeManager : MonoBehaviour
 {
+    #region Events
+    public delegate void SandDollarsChanged(int dollars);
+    public static event SandDollarsChanged OnSandDollarsChanged;
+
+    #endregion
+
+    #region InspectorAssigned
     public GameObject MeleePrefab;
     public GameObject RangedPrefab;
     public GameObject SlowPrefab;
@@ -22,7 +29,7 @@ public class TowerUpgradeManager : MonoBehaviour
     public Button RangeUpButton;
     public Button DamageUpButton;
     public Button SpecialUpButton;
-    public Button SellButton;
+    public Button SellButton;   
 
 
     //Maximum number of upgrades available to each type of tower
@@ -41,46 +48,60 @@ public class TowerUpgradeManager : MonoBehaviour
     public int MaxSlowDamage = 2;
     public int MaxSlowSpecial = 2;
 
+    public int MeleeTowerCost = -1;
+    public int RangedTowerCost = -1;
+    public int SlowTowerCost = -1;
+
+    #endregion
+
     public bool MenuActive { get; private set; }
+
+    public int SandDollars
+    {
+        get
+        {
+            return _sandDollars;
+        }
+
+        set
+        {
+            _sandDollars = value;
+            if (OnSandDollarsChanged != null)
+                OnSandDollarsChanged(_sandDollars);
+        }
+    }
     
 
     #region MonoBehaviour
     void Awake()
     {
-        //Assign buttons
-        _buttons = new Button[8];
-        _buttons[0] = BuildMeleeButton;
-        _buttons[1] = BuildRangedButton;
-        _buttons[2] = BuildSlowButton;
-        _buttons[3] = SpeedUpButton;
-        _buttons[4] = RangeUpButton;
-        _buttons[5] = DamageUpButton;
-        _buttons[6] = SpecialUpButton;
-        _buttons[7] = SellButton;
+        SandDollars = 100; //Todo Set this by the level logic
 
-        //Ensure all buttons have been added in the inspector
-        foreach (Button b in _buttons)
-            if (b.gameObject == null)
-                Debug.LogError("Missing button");
-
+        AssignButtons();
         FillLookups();
 
+        if (MeleeTowerCost < 0 || RangedTowerCost < 0 || SlowTowerCost < 0)
+            Debug.LogWarning("Forgot to set costs in upgrade manager?");
 
         //with no params actually hides all buttons
         ShowBuildButtons();
         ShowUpgradeButtons();
+
+
     }
 
     void OnEnable()
     {
         Tower.onTowerTouched += TowerTouched;
         OpenAreaBehavior.onAreaTouched += OpenAreaTouched;
+        Enemy.SomeEnemyDied += AddMoneyUponEnemyDeath;
     }
 
     void OnDisable()
     {
         Tower.onTowerTouched -= TowerTouched;
         OpenAreaBehavior.onAreaTouched -= OpenAreaTouched;
+        Enemy.SomeEnemyDied -= AddMoneyUponEnemyDeath;
     }
 
     #endregion
@@ -90,16 +111,19 @@ public class TowerUpgradeManager : MonoBehaviour
     public void BuildMelee()
     {
         BuildTower(MeleePrefab.GetComponent<MeleeTower>());
+        SandDollars -= MeleeTowerCost;
     }
 
     public void BuildRanged()
     {
         BuildTower(RangedPrefab.GetComponent<RangedTower>());
+        SandDollars -= RangedTowerCost;
     }
 
     public void BuildSlow()
     {
         BuildTower(SlowPrefab.GetComponent<SlowTower>());
+        SandDollars -= SlowTowerCost;
     }
 
     public void UpgradeSpeed()
@@ -158,6 +182,26 @@ public class TowerUpgradeManager : MonoBehaviour
     private Button[] _buttons;
     private Vector2 _buttonSizeRect = new Vector2(0.5f, 0.5f);
     private Collider2D[] _hitByButtons;
+    private int _sandDollars;
+
+    private void AssignButtons()
+    {
+        //Assign buttons
+        _buttons = new Button[8];
+        _buttons[0] = BuildMeleeButton;
+        _buttons[1] = BuildRangedButton;
+        _buttons[2] = BuildSlowButton;
+        _buttons[3] = SpeedUpButton;
+        _buttons[4] = RangeUpButton;
+        _buttons[5] = DamageUpButton;
+        _buttons[6] = SpecialUpButton;
+        _buttons[7] = SellButton;
+
+        //Ensure all buttons have been added in the inspector
+        foreach (Button b in _buttons)
+            if (b.gameObject == null)
+                Debug.LogError("Missing button");
+    }
 
     /// <summary>
     /// Makes it a bit easier to look up the max upgrade level of tower by attribute
@@ -237,9 +281,7 @@ public class TowerUpgradeManager : MonoBehaviour
         bool showSpecial = CanUpgradeSpecial();
         bool showSell = CanSellTower();
 
-
         ShowUpgradeButtons(showSpeed, showRange, showDamage, showSpecial, showSell);
-
     }
 
     private void SelectAndShow(OpenAreaBehavior a)
@@ -306,29 +348,12 @@ public class TowerUpgradeManager : MonoBehaviour
             //Ignore buttons that aren't active
             if (!b.gameObject.activeSelf)
                 continue;
-
                         
             if (b.collider2D.bounds.Intersects(go.renderer.bounds))
             {
                 Debug.Log("found intersection");
                 return true;
-            }
-
-            /*
-            int hits = Physics2D.OverlapAreaNonAlloc();
-            
-            for (int i = 0; i < hits; ++i)
-            {
-                if (_hitByButtons[i].transform.renderer != null)
-                {
-                    SpriteRenderer spriteRenderer = (SpriteRenderer)h.transform.renderer;
-                    spriteRenderer.color = Color.red;
-                }
-
-                if (h.transform == go.transform)
-                    return true;
-            }
-            */
+            }         
         }
 
         return false;
@@ -336,17 +361,17 @@ public class TowerUpgradeManager : MonoBehaviour
 
     private  bool CanBuildMelee()
     {
-        return true;
+        return SandDollars >= MeleeTowerCost;
     }
 
     private bool CanBuildRanged()
     {
-        return true;
+        return SandDollars >= RangedTowerCost;
     }
 
     private bool CanBuildSlow()
     {
-        return true;
+        return SandDollars >= SlowTowerCost;
     }
 
     /// <summary>
@@ -361,8 +386,7 @@ public class TowerUpgradeManager : MonoBehaviour
         
         max = _maxUpgrades[index, SPEEDINDEX];
 
-        return _touchedTower.SpeedUpgrades < max;
-        
+        return _touchedTower.SpeedUpgrades < max;        
     }
 
     private bool CanUpgradeRange()
@@ -437,6 +461,12 @@ public class TowerUpgradeManager : MonoBehaviour
         }
 
         MenuActive = false;
+    }
+
+    private void AddMoneyUponEnemyDeath(Enemy enemy)
+    {
+        Debug.Log("Add money: " + enemy.EnemyKillValue.ToString());
+        SandDollars += enemy.EnemyKillValue;
     }
     
 	
