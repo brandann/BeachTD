@@ -53,8 +53,6 @@ public class TowerUpgradeManager : MonoBehaviour
     public int RangeUpgradeCost = -1;
     public int DamageUpgradeCost = -1;
     public int SpecialUpgradeCost = -1;
-    
-
     #endregion
 
     public bool MenuActive { get; private set; }
@@ -384,7 +382,9 @@ public class TowerUpgradeManager : MonoBehaviour
         
         max = _maxUpgrades[index, SPEEDINDEX];
 
+
         return (_touchedTower.SpeedUpgrades < max) && (SpeedUpgradeCost <= Bank.SandDollars);        
+
     }
 
     private bool CanUpgradeRange()

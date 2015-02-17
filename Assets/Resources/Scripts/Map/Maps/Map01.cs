@@ -17,17 +17,19 @@ public class Map01 : GameMap {
 	{
 		int[,] intmap = new int[,]
 		{
-			{T,P,P,P,P,P,P,P,P,P,P,P,P,P,T},
-			{T,P,P,P,P,P,P,P,P,P,P,P,P,P,P},
-			{T,P,P,P,P,P,P,P,P,P,P,P,P,P,P},
-			{T,P,P,P,P,P,P,P,P,P,P,P,P,P,P},
-			{0,P,P,P,P,P,P,P,P,P,P,P,P,P,1},
-			{P,P,P,P,P,P,P,P,P,P,P,P,P,P,P},
-			{T,P,P,P,P,P,P,P,P,P,P,P,P,P,P},
-			{T,P,P,P,P,P,P,P,P,P,P,P,P,P,T}
+			{T,P,P,P,P,P,P,P,P,P,P,P,P,P,T},//1
+			{P,P,P,P,P,P,P,P,P,P,P,P,P,P,P},//2
+			{P,P,P,P,P,P,P,P,P,P,P,P,P,P,P},//3
+			{P,P,P,P,P,P,P,P,P,T,T,T,T,T,P},//4
+			{P,P,P,P,P,P,P,P,0,P,P,P,P,P,1},//5
+			{P,P,P,P,P,P,P,P,P,P,P,P,P,P,P},//6
+			{P,P,P,P,P,P,P,P,P,P,P,P,P,P,P},//7
+			{T,P,P,P,P,P,P,P,P,P,P,P,P,P,T} //8
 		};
 		
-		Map map = new Map(intmap);
+		int[,] tempmap = FixMap(intmap);
+		
+		Map map = new Map(tempmap);
 		
 		Wave wave01 = new Wave();
 		wave01.AddScheduleItem(new EnemySchedule(EnemySchedule.Token.A0, .75f));
