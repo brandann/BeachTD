@@ -52,6 +52,10 @@ public class TowerUpgradeManager : MonoBehaviour
     public int RangedTowerCost = -1;
     public int SlowTowerCost = -1;
 
+    public int SpeedUpgradeCost = -1;
+    public int RangeUpgradeCost = -1;
+    public int DamageUpgradeCost = -1;
+    public int SpecialUpgradeCost = -1;
     #endregion
 
     public bool MenuActive { get; private set; }
@@ -81,7 +85,10 @@ public class TowerUpgradeManager : MonoBehaviour
         FillLookups();
 
         if (MeleeTowerCost < 0 || RangedTowerCost < 0 || SlowTowerCost < 0)
-            Debug.LogWarning("Forgot to set costs in upgrade manager?");
+            Debug.LogWarning("Forgot to set build costs in upgrade manager?");
+
+        if (RangeUpgradeCost < 0 || SpeedUpgradeCost < 0 || DamageUpgradeCost < 0 || SpecialUpgradeCost < 0)
+            Debug.LogWarning("Forgot to set upgrade costs in upgrade manager?");
 
         //with no params actually hides all buttons
         ShowBuildButtons();
@@ -129,21 +136,25 @@ public class TowerUpgradeManager : MonoBehaviour
     public void UpgradeSpeed()
     {
         UpgradeTower(_10percentSpeed);
+        SandDollars -= SpeedUpgradeCost;
     }
 
     public void UpgradeRange()
     {
         UpgradeTower(_10percentRange);
+        SandDollars -= RangeUpgradeCost;
     }
 
     public void UpgradeDamage()
     {
         UpgradeTower(_10percentDamage);
+        SandDollars -= DamageUpgradeCost;
     }
 
     public void UpgradeSpecial()
     {
         UpgradeTower(_specialUpgrade);
+        SandDollars -= SpecialUpgradeCost;
     }
 
     public void SellTower()
@@ -374,6 +385,7 @@ public class TowerUpgradeManager : MonoBehaviour
         return SandDollars >= SlowTowerCost;
     }
 
+
     /// <summary>
     /// Determines if _touched tower's speed attribute can be upgraded further
     /// </summary>
@@ -382,11 +394,10 @@ public class TowerUpgradeManager : MonoBehaviour
     {
         int index = -1, max = -1;
         _towerLookup.TryGetValue(_touchedTower, out index);
-
         
         max = _maxUpgrades[index, SPEEDINDEX];
 
-        return _touchedTower.SpeedUpgrades < max;        
+        return ( _touchedTower.SpeedUpgrades < max ) && (SpeedUpgradeCost <= SandDollars);
     }
 
     private bool CanUpgradeRange()
@@ -396,7 +407,8 @@ public class TowerUpgradeManager : MonoBehaviour
 
       
         max = _maxUpgrades[index, RANGEINDEX];
-        return _touchedTower.RangeUpgrades < max;
+
+        return (_touchedTower.RangeUpgrades < max) && ( RangeUpgradeCost <= SandDollars );
     }
 
     private bool CanUpgradeDamage()
@@ -407,7 +419,7 @@ public class TowerUpgradeManager : MonoBehaviour
         
         max = _maxUpgrades[index, DAMAGEINDEX];
 
-        return _touchedTower.DamageUpgrades < max;        
+        return ( _touchedTower.DamageUpgrades < max ) && ( DamageUpgradeCost <= SandDollars );    
     }
 
     private bool CanUpgradeSpecial()
@@ -416,7 +428,8 @@ public class TowerUpgradeManager : MonoBehaviour
         _towerLookup.TryGetValue(_touchedTower, out index);
         
         max = _maxUpgrades[index, SPECIALINDEX];
-        return _touchedTower.SpecialUpgrades < max;
+
+        return ( _touchedTower.SpecialUpgrades < max ) && ( SpeedUpgradeCost <= SandDollars );
     }
 
     private bool CanSellTower()
