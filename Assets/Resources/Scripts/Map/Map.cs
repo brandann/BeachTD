@@ -7,13 +7,15 @@ public class Map {
 	#region Public Methods
 	public Map(int[,] map)
 	{
-		_map = FixMap(map);
+		//_map = FixMap(map);
+		_map = map;
 		_waypoints = FindWayPoints(_map);
 		waves = new List<Wave>();
 	}
 	
 	public bool[,] TowerLocations()
 	{
+		Debug.Log("tower locations");
 		bool[,] b = new bool[_map.GetLength(0), _map.GetLength(1)];
 		for(int i = 0; i < _map.GetLength(0); i++)
 		{
@@ -134,7 +136,7 @@ public class Map {
 				return m;
 			}
 		}
-		Debug.Log("Map Fixed incorrectly");
+		Debug.LogError("Map Fix is Bad");
 		return m; // should never reach this
 	}
 	#endregion

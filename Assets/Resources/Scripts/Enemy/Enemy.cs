@@ -170,5 +170,10 @@ public class Enemy : MonoBehaviour {
 			PickUpEgg(collision.gameObject);
 		}
 	}
+	
+	private void Pause(bool pause)
+	{
+		gameObject.SetActive(pause);
+	}
 	#endregion
 }

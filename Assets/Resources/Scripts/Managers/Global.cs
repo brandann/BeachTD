@@ -3,7 +3,7 @@ using System.Collections;
 using System.Collections.Generic;
 
 public class Global : MonoBehaviour {
-
+	
     public StatusBar StatBar;
 
 	#region Private Memebers
@@ -147,7 +147,11 @@ public class Global : MonoBehaviour {
 			}
 		}
 	}
-	#endregion
 	
-
+	// this will be the pause delegate at some point...
+	private void Pause(bool pause)
+	{
+		gameObject.SetActive(pause);
+	}
+	#endregion
 }
