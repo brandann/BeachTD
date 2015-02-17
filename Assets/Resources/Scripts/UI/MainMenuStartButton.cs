@@ -4,8 +4,7 @@ using System.Collections;
 public class MainMenuStartButton : SlidingUI{
 
 	public MainMenuCreditsButton Credits;
-    public AnimationClip SlideAnimation;
-    
+    public AnimationClip SlideAnimation;    
     
     private float _slideTime;    
 

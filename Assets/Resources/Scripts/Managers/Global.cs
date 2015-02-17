@@ -4,7 +4,16 @@ using System.Collections.Generic;
 
 public class Global : MonoBehaviour {
 
+    public StatusBar StatBar;
+
 	#region Private Memebers
+    //private EnemyManager enemyManager;
+/*	private const int STARTING_EGG_COUNT = 10;
+	private List<GameObject> _eggsAtGoal;
+
+
+	private int _eggsStillActive;*/
+	
 	private Mapmanager _mapManager;
 	private Map _currentMap;
 	private Dictionary<int, Map> _maps;
@@ -33,6 +42,9 @@ public class Global : MonoBehaviour {
 	void Start () {
 		Initilize();
 		LoadMap(StartingLevel);
+
+        if (StatBar == null)
+            Debug.LogError("missing status Bar ref");
 	}
 	
 	// Update is called once per frame
