@@ -35,7 +35,7 @@ public class SlowTower : Tower
 
         slowPro.setTarget(target.transform);
 
-        slowPro.Duration = BaseDuration * _durationMultiplier;        
+        //slowPro.Duration = BaseDuration * _durationMultiplier;        
         
         //Debug.Log("Act");
     }

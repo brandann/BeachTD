@@ -19,12 +19,12 @@ public class GameMap {
 		
 		int[,] m0 = new int[,]
 		   {{T,P,P,P,P,P,P,P,P,P,P,P,P,P,T},//0
-			{T,P,P,P,P,P,P,P,P,P,P,P,P,P,P},//1
-			{T,P,P,P,P,P,P,P,P,P,P,P,P,P,P},//2
-			{T,P,P,P,P,P,P,P,P,P,P,P,P,P,P},//3
-			{0,P,P,P,P,P,P,P,P,P,P,P,P,P,1},//4
+			{P,P,P,P,P,P,P,P,P,P,P,P,P,P,P},//1
+			{P,P,P,P,P,P,P,P,P,P,P,P,P,P,P},//2
+			{P,P,P,P,P,P,P,P,P,T,T,T,T,T,P},//3
+			{P,P,P,P,P,P,P,P,0,P,P,P,P,P,1},//4
 			{P,P,P,P,P,P,P,P,P,P,P,P,P,P,P},//5
-			{T,P,P,P,P,P,P,P,P,P,P,P,P,P,P},//6
+			{P,P,P,P,P,P,P,P,P,P,P,P,P,P,P},//6
 			{T,P,P,P,P,P,P,P,P,P,P,P,P,P,T}};
 		
 		int[,] m1 = new int[,]

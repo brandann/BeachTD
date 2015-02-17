@@ -5,20 +5,9 @@ using System.Collections.Generic;
 public class Global : MonoBehaviour {
 
 	#region Private Memebers
-    //private EnemyManager enemyManager;
-	private const int STARTING_EGG_COUNT = 10;
-	private List<GameObject> _eggsAtGoal;
-	private int _eggsStillActive;
-	
 	private Mapmanager _mapManager;
 	private Map _currentMap;
 	private Dictionary<int, Map> _maps;
-	
-	private float _spawntimedinterval = 5;
-
-	private float randomSpawnTime = 0;
-	
-	private Dictionary<int, GameObject> _enemies;
 
 	private Dictionary<int, GameObject> _towers;
 	
@@ -28,6 +17,7 @@ public class Global : MonoBehaviour {
 	#region Public Memebers
 	public GameObject EggPrefab;
 	public EnemyManager enemyManager;
+	public EggManager eggManager;
 	
 	[Range (0, 10)]
 	public int StartingLevel;
@@ -42,7 +32,7 @@ public class Global : MonoBehaviour {
 	// Use this for initialization
 	void Start () {
 		Initilize();
-		LoadMap(2);
+		LoadMap(StartingLevel);
 	}
 	
 	// Update is called once per frame
@@ -58,56 +48,6 @@ public class Global : MonoBehaviour {
         {
             enemyManager.StartRandomEnemySpawner();
         }
-	}
-	#endregion
-	
-	#region Eggs
-	private void InitEggs()
-	{
-		_eggsAtGoal = new List<GameObject>();
-	}
-	
-	public void SpawnEgg()
-	{
-		GameObject EggPrefab = Resources.Load("Prefabs/egg") as GameObject;
-		for(int i = 0; i < STARTING_EGG_COUNT; i++)
-		{
-			Vector3 endloc = _currentMap.Waypoints[_currentMap.Waypoints.Length - 1];
-			Vector3 randloc = new Vector3(Random.Range(-0.5f, 0.5f),Random.Range(-1.5f,1.5f), 0);
-			Vector3 offset = new Vector3(1,0,0);
-			GameObject egg = SpawnPrefab(EggPrefab, endloc + randloc + offset);
-			_eggsAtGoal.Add(egg);
-		}
-	}
-	
-	public void GetEggFromPath()
-	{
-			
-	}
-	
-	public GameObject GetEggFromGoal()
-	{
-		if(_eggsAtGoal.Count > 0)
-		{
-			GameObject egg = _eggsAtGoal[0];
-			_eggsAtGoal.RemoveAt(0);
-			
-			return egg;
-		}
-		return null;
-	}
-	
-	public void DropEgg(Vector3 pos)
-	{
-		Debug.Log("Dropegg");
-		GameObject EggPrefab = Resources.Load("Prefabs/egg") as GameObject;
-		GameObject egg = SpawnPrefab(EggPrefab, pos);
-		egg.GetComponent<CircleCollider2D>().enabled = true;
-	}
-	
-	public void DestroyEgg()
-	{
-		_eggsStillActive--;
 	}
 	#endregion
 	
@@ -127,19 +67,7 @@ public class Global : MonoBehaviour {
 	#region Map
 	private void InitMap()
 	{
-		Dictionary<int, int[,]> m = new GameMap().GetGameMaps();
-		if(_maps != null)
-		{
-			_maps.Clear();
-		}
-		_maps = new Dictionary<int, Map>();
 		
-		for(int i = 0; i < m.Count; i++)
-		{
-			_maps.Add(i, new Map(m[i]));
-		}
-		
-		_mapManager = new Mapmanager();
 	}
 
 	
@@ -163,7 +91,7 @@ public class Global : MonoBehaviour {
 	{
 		_mapManager.LoadMap(_maps[index]);
 		_currentMap = _maps[index];
-		SpawnEgg();
+		eggManager.SpawnEgg();
 		_mapLoaded = true;
 		enemyManager.SetStartingPosition(CurrentMap.Waypoints[0]);
 	}
@@ -172,23 +100,33 @@ public class Global : MonoBehaviour {
 	{
 		CurrentGameState = GameState.Game; // TODO set this someplace else!
         
+		// Towers ------------------------------------------------------------
 		InitTowers();
-		InitMap();
-		InitEggs();
-		_eggsStillActive = STARTING_EGG_COUNT;
+		
+		// Maps ------------------------------------------------------------
+		Dictionary<int, int[,]> m = new GameMap().GetGameMaps();
+		if(_maps != null)
+		{
+			_maps.Clear();
+		}
+		_maps = new Dictionary<int, Map>();
+		
+		for(int i = 0; i < m.Count; i++)
+		{
+			_maps.Add(i, new Map(m[i]));
+		}
+		
+		_mapManager = new Mapmanager();
+		
+		// Enemies ------------------------------------------------------------
 		enemyManager = new EnemyManager();
+		
+		// Eggs ------------------------------------------------------------
+		eggManager = new EggManager();
 	}
 	
 	private void Reset()
 	{
-		if(_eggsAtGoal != null)
-		{
-			for(int i = 0; i < _eggsAtGoal.Count; i++)
-			{
-				Destroy(_eggsAtGoal[i]);
-			}
-		}
-		
 		if(_towers != null)
 		{
 			for(int i = 0; i < _towers.Count; i++)

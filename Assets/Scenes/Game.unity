@@ -436,7 +436,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   EggPrefab: {fileID: 100000, guid: 60120948cf0bd439da6e22f973d49f3e, type: 2}
-  StartingLevel: 5
+  StartingLevel: 0
   RandomEnemySpawnLow: 1.5
   RandomEnemySpawnHigh: 1.5
 --- !u!114 &339233116
@@ -754,6 +754,10 @@ Prefab:
     - target: {fileID: 13200004, guid: d928fea4b3cce4f21adf979d1bfc7528, type: 2}
       propertyPath: m_FontSize
       value: 20
+      objectReference: {fileID: 0}
+    - target: {fileID: 11400000, guid: d928fea4b3cce4f21adf979d1bfc7528, type: 2}
+      propertyPath: StartingLevel
+      value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: d928fea4b3cce4f21adf979d1bfc7528, type: 2}

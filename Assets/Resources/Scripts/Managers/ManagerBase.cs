@@ -5,12 +5,12 @@ using System.Collections.Generic;
 public abstract class ManagerBase {
 
 	protected Global _global;
-	protected Dictionary<int, GameObject> _managerObjects;
+	protected List<GameObject> _managerObjects;
 	protected Vector3 _startingPosition = Vector3.zero;
 	
 	public ManagerBase()
 	{
-		_managerObjects = new Dictionary<int, GameObject>();
+		_managerObjects = new List<GameObject>();
 		_global = GameObject.Find("Global").GetComponent<Global>();
 		//_startingPosition = _global.CurrentMap.Waypoints[0];
 	}
@@ -31,18 +31,28 @@ public abstract class ManagerBase {
 		if(go != null)
 		{
 			GameObject spawned = GameObject.Instantiate(go) as GameObject;
-			_managerObjects.Add(spawned.GetInstanceID(), spawned);
+			_managerObjects.Add(spawned);
 			spawned.transform.position = position;
 			return go;
 		}
 		return null;
 	}
 	
-	public virtual void Remove(GameObject go)
+	public virtual void Remove(GameObject go = null)
 	{
-		if(_managerObjects.ContainsKey(go.GetInstanceID()))
+		if(go == null)
 		{
-			_managerObjects.Remove(go.GetInstanceID());
+			if(_managerObjects.Count > 0)
+			{
+				GameObject foo = _managerObjects[0];
+				_managerObjects.RemoveAt(0);
+				GameObject.Destroy(foo);
+			}
+		}
+		else if(_managerObjects.Contains(go))
+		{
+			_managerObjects.Remove(go);
+			GameObject.Destroy(go.gameObject);
 		}
 	}
 	
@@ -51,7 +61,7 @@ public abstract class ManagerBase {
 		_startingPosition = position;
 	}
 	
-	public int GetActiveCount()
+	public virtual int GetActiveCount()
 	{
 		return _managerObjects.Count;
 	}
