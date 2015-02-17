@@ -195,9 +195,7 @@ public abstract class Tower : MonoBehaviour
         SpeedUpgrades = 0;
         DamageUpgrades = 0;
         RangeUpgrades = 0;
-        SpecialUpgrades = 0;
-
-       
+        SpecialUpgrades = 0;      
     }
        
     //Timestamp of last action
@@ -232,7 +230,7 @@ public abstract class Tower : MonoBehaviour
         if (_targets.Contains(eb) == false)
         {
             _targets.Add(eb);
-            eb.OnEnemyDied += HandleEnemyDeath;
+            eb.ThisEnemyDied += HandleEnemyDeath;
         }
         else
         {
@@ -244,7 +242,6 @@ public abstract class Tower : MonoBehaviour
 
         if (CurrentState == TowerState.Idle)
             TransitionToState(TowerState.Acting);
-
     }
 
     /// <summary>
@@ -254,7 +251,7 @@ public abstract class Tower : MonoBehaviour
     protected virtual void HandleEnemyDeath(Enemy enemy)
     {
         _targets.Remove(enemy);
-        enemy.OnEnemyDied -= HandleEnemyDeath;
+        enemy.ThisEnemyDied -= HandleEnemyDeath;
     }
 
     protected virtual void OnTriggerExit2D(Collider2D other)

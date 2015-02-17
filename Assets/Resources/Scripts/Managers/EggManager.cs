@@ -3,6 +3,10 @@ using System.Collections.Generic;
 
 public class EggManager : ManagerBase {
 
+    public delegate void EggCountChanged(int count);
+    public static event EggCountChanged OnEggCountChanged;
+
+
 	#region Private Memebers
 	private const int STARTING_EGG_COUNT = 3;
 	private int _eggsOnPath;
@@ -56,6 +60,9 @@ public class EggManager : ManagerBase {
 			Vector3 offset = new Vector3(1,0,0);
 			GameObject egg = Create(EggPrefab, endloc + randloc + offset);
 		}
+
+        if (OnEggCountChanged != null)
+            OnEggCountChanged(STARTING_EGG_COUNT);
 	}
 	
 	public override void Remove (GameObject go)
@@ -81,10 +88,17 @@ public class EggManager : ManagerBase {
 				break;
 		}
 		int activeEggs = GetActiveCount() + _eggsOnPath + _eggsWithEnemy;
+
+        //Inform subscribers of change in number of eggs
+        if (OnEggCountChanged != null)
+            OnEggCountChanged(activeEggs);
+
 		if(activeEggs == 0)
 		{
 			Debug.LogWarning("Game Over");
 		}
+
+       
 	}
 	#endregion
 }

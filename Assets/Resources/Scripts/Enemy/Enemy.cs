@@ -1,16 +1,23 @@
 ﻿using UnityEngine;
 using System.Collections;
 
-public class Enemy : MonoBehaviour {
+public class Enemy : MonoBehaviour
+{
 
+    #region Events
     public delegate void EnemyDied(Enemy enemy);
-    public event EnemyDied OnEnemyDied;
+    public event EnemyDied ThisEnemyDied;
 
-	#region Public Members
-	public float Health;
+    public static event EnemyDied SomeEnemyDied;
+
+    #endregion
+
+    #region Public Members
+    public float Health;
 	public enum EnemyState { Active, Stunned, Dying }
 	public EnemyState CurrentEnemyState;
 	public Global global;
+    public int EnemyKillValue;
 	private GameObject Egg;
 	
 	public bool HasEgg
@@ -122,9 +129,7 @@ public class Enemy : MonoBehaviour {
 		{
 			Dead();
 			//dead
-			Destroy(this.gameObject);
-			if (OnEnemyDied != null)
-				OnEnemyDied(this);
+			Destroy(this.gameObject);			
 		}
 	}
 	
@@ -160,6 +165,13 @@ public class Enemy : MonoBehaviour {
 		GameObject prefab = Resources.Load("Prefabs/temp-pow") as GameObject;
 		GameObject SpawnedPrefab = Instantiate(prefab) as GameObject;
 		SpawnedPrefab.transform.position = this.transform.position;
+
+        if (ThisEnemyDied != null)
+            ThisEnemyDied(this);
+
+        if (SomeEnemyDied != null)
+            SomeEnemyDied(this);
+
 		Destroy(this.gameObject);
 	}
 	
