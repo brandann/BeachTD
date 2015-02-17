@@ -1137,6 +1137,10 @@ MonoBehaviour:
   MeleeTowerCost: 20
   RangedTowerCost: 50
   SlowTowerCost: 60
+  SpeedUpgradeCost: 10
+  RangeUpgradeCost: 10
+  DamageUpgradeCost: 10
+  SpecialUpgradeCost: 10
 --- !u!114 &1408285814
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1311,6 +1315,22 @@ Prefab:
     - target: {fileID: 11400036, guid: 2b89ff16d2a468b46a2e6e89680c8e73, type: 2}
       propertyPath: SlowTowerCost
       value: 60
+      objectReference: {fileID: 0}
+    - target: {fileID: 11400036, guid: 2b89ff16d2a468b46a2e6e89680c8e73, type: 2}
+      propertyPath: SpeedUpgradeCost
+      value: 10
+      objectReference: {fileID: 0}
+    - target: {fileID: 11400036, guid: 2b89ff16d2a468b46a2e6e89680c8e73, type: 2}
+      propertyPath: RangeUpgradeCost
+      value: 10
+      objectReference: {fileID: 0}
+    - target: {fileID: 11400036, guid: 2b89ff16d2a468b46a2e6e89680c8e73, type: 2}
+      propertyPath: DamageUpgradeCost
+      value: 10
+      objectReference: {fileID: 0}
+    - target: {fileID: 11400036, guid: 2b89ff16d2a468b46a2e6e89680c8e73, type: 2}
+      propertyPath: SpecialUpgradeCost
+      value: 10
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 2b89ff16d2a468b46a2e6e89680c8e73, type: 2}
