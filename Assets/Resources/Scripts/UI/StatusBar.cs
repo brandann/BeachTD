@@ -10,13 +10,13 @@ public class StatusBar : MonoBehaviour {
     void OnEnable()
     {
         EggManager.OnEggCountChanged += SetEggs;
-        TowerUpgradeManager.OnSandDollarsChanged += SetDollars;
+        SandDollarBank.OnSandDollarsChanged += SetDollars;
     }
 
     void OnDisable()
     {
         EggManager.OnEggCountChanged -= SetEggs;
-        TowerUpgradeManager.OnSandDollarsChanged -= SetDollars;
+        SandDollarBank.OnSandDollarsChanged -= SetDollars;
     }
 
     void Start()

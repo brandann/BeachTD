@@ -200,6 +200,7 @@ GameObject:
   - 114: {fileID: 339233117}
   - 114: {fileID: 339233116}
   - 114: {fileID: 339233118}
+  - 114: {fileID: 339233119}
   m_Layer: 0
   m_Name: Global
   m_TagString: Untagged
@@ -280,6 +281,18 @@ MonoBehaviour:
   MeleePrefab: {fileID: 188216, guid: 16759b14245e82c459d24e20f90a4a0d, type: 2}
   RangedPrefab: {fileID: 100000, guid: 77f5f423a6f6244019589da343170d08, type: 2}
   SlowPrefab: {fileID: 100000, guid: 16cd5ec2a267bbe46add22942a75c962, type: 2}
+--- !u!114 &339233119
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 339233113}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e5a281ba410cc594a8de50961a732436, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  StartingDollars: 100
 --- !u!1 &349363780
 GameObject:
   m_ObjectHideFlags: 0
@@ -1122,6 +1135,7 @@ MonoBehaviour:
   DamageUpButton: {fileID: 663558142}
   SpecialUpButton: {fileID: 1415679385}
   SellButton: {fileID: 885424978}
+  Bank: {fileID: 339233119}
   MaxMeleeRange: 2
   MaxMeleeSpeed: 2
   MaxMeleeDamage: 2
@@ -1332,6 +1346,10 @@ Prefab:
       propertyPath: SpecialUpgradeCost
       value: 10
       objectReference: {fileID: 0}
+    - target: {fileID: 11400036, guid: 2b89ff16d2a468b46a2e6e89680c8e73, type: 2}
+      propertyPath: Bank
+      value: 
+      objectReference: {fileID: 339233119}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 2b89ff16d2a468b46a2e6e89680c8e73, type: 2}
   m_RootGameObject: {fileID: 1408285812}

@@ -9,12 +9,7 @@ using System.Collections.Generic;
 /// Controls the presentation of the upgrade UI elements and handles the user selection thereof.
 /// </summary>
 public class TowerUpgradeManager : MonoBehaviour
-{
-    #region Events
-    public delegate void SandDollarsChanged(int dollars);
-    public static event SandDollarsChanged OnSandDollarsChanged;
-
-    #endregion
+{   
 
     #region InspectorAssigned
     public GameObject MeleePrefab;
@@ -29,7 +24,9 @@ public class TowerUpgradeManager : MonoBehaviour
     public Button RangeUpButton;
     public Button DamageUpButton;
     public Button SpecialUpButton;
-    public Button SellButton;   
+    public Button SellButton;
+
+    public SandDollarBank Bank;
 
 
     //Maximum number of upgrades available to each type of tower
@@ -62,29 +59,17 @@ public class TowerUpgradeManager : MonoBehaviour
 
     public bool MenuActive { get; private set; }
 
-    public int SandDollars
-    {
-        get
-        {
-            return _sandDollars;
-        }
-
-        set
-        {
-            _sandDollars = value;
-            if (OnSandDollarsChanged != null)
-                OnSandDollarsChanged(_sandDollars);
-        }
-    }
+    
     
 
     #region MonoBehaviour
     void Awake()
     {
-        SandDollars = 100; //Todo Set this by the level logic
-
         AssignButtons();
         FillLookups();
+
+        if (Bank == null)
+            Debug.LogError("Where's the bank");
 
         if (MeleeTowerCost < 0 || RangedTowerCost < 0 || SlowTowerCost < 0)
             Debug.LogWarning("Forgot to set build costs in upgrade manager?");
@@ -97,20 +82,20 @@ public class TowerUpgradeManager : MonoBehaviour
         ShowUpgradeButtons();
 
 
+
     }
 
     void OnEnable()
     {
         Tower.onTowerTouched += TowerTouched;
         OpenAreaBehavior.onAreaTouched += OpenAreaTouched;
-        Enemy.SomeEnemyDied += AddMoneyUponEnemyDeath;
+        
     }
 
     void OnDisable()
     {
         Tower.onTowerTouched -= TowerTouched;
-        OpenAreaBehavior.onAreaTouched -= OpenAreaTouched;
-        Enemy.SomeEnemyDied -= AddMoneyUponEnemyDeath;
+        OpenAreaBehavior.onAreaTouched -= OpenAreaTouched;        
     }
 
     #endregion
@@ -120,43 +105,43 @@ public class TowerUpgradeManager : MonoBehaviour
     public void BuildMelee()
     {
         BuildTower(MeleePrefab.GetComponent<MeleeTower>());
-        SandDollars -= MeleeTowerCost;
+        Bank.SubtractDollars(MeleeTowerCost);
     }
 
     public void BuildRanged()
     {
         BuildTower(RangedPrefab.GetComponent<RangedTower>());
-        SandDollars -= RangedTowerCost;
+        Bank.SubtractDollars(RangedTowerCost);
     }
 
     public void BuildSlow()
     {
         BuildTower(SlowPrefab.GetComponent<SlowTower>());
-        SandDollars -= SlowTowerCost;
+        Bank.SubtractDollars(SlowTowerCost);
     }
 
     public void UpgradeSpeed()
     {
         UpgradeTower(_10percentSpeed);
-        SandDollars -= SpeedUpgradeCost;
+        Bank.SubtractDollars(SpeedUpgradeCost);
     }
 
     public void UpgradeRange()
     {
         UpgradeTower(_10percentRange);
-        SandDollars -= RangeUpgradeCost;
+        Bank.SubtractDollars(RangeUpgradeCost);
     }
 
     public void UpgradeDamage()
     {
         UpgradeTower(_10percentDamage);
-        SandDollars -= DamageUpgradeCost;
+        Bank.SubtractDollars(DamageUpgradeCost);
     }
 
     public void UpgradeSpecial()
     {
         UpgradeTower(_specialUpgrade);
-        SandDollars -= SpecialUpgradeCost;
+        Bank.SubtractDollars(SpecialUpgradeCost);
     }
 
     public void SellTower()
@@ -195,7 +180,7 @@ public class TowerUpgradeManager : MonoBehaviour
     private Button[] _buttons;
     private Vector2 _buttonSizeRect = new Vector2(0.5f, 0.5f);
     private Collider2D[] _hitByButtons;
-    private int _sandDollars;
+    
 
     private void AssignButtons()
     {
@@ -374,17 +359,17 @@ public class TowerUpgradeManager : MonoBehaviour
 
     private  bool CanBuildMelee()
     {
-        return SandDollars >= MeleeTowerCost;
+        return Bank.SandDollars >= MeleeTowerCost;
     }
 
     private bool CanBuildRanged()
     {
-        return SandDollars >= RangedTowerCost;
+        return Bank.SandDollars >= RangedTowerCost;
     }
 
     private bool CanBuildSlow()
     {
-        return SandDollars >= SlowTowerCost;
+        return Bank.SandDollars >= SlowTowerCost;
     }
 
 
@@ -399,7 +384,7 @@ public class TowerUpgradeManager : MonoBehaviour
         
         max = _maxUpgrades[index, SPEEDINDEX];
 
-        return ( _touchedTower.SpeedUpgrades < max ) && (SpeedUpgradeCost <= SandDollars);        
+        return (_touchedTower.SpeedUpgrades < max) && (SpeedUpgradeCost <= Bank.SandDollars);        
     }
 
     private bool CanUpgradeRange()
@@ -410,7 +395,7 @@ public class TowerUpgradeManager : MonoBehaviour
       
         max = _maxUpgrades[index, RANGEINDEX];
 
-        return (_touchedTower.RangeUpgrades < max) && ( RangeUpgradeCost <= SandDollars );
+        return (_touchedTower.RangeUpgrades < max) && (RangeUpgradeCost <= Bank.SandDollars);
     }
 
     private bool CanUpgradeDamage()
@@ -421,7 +406,7 @@ public class TowerUpgradeManager : MonoBehaviour
         
         max = _maxUpgrades[index, DAMAGEINDEX];
 
-        return ( _touchedTower.DamageUpgrades < max ) && ( DamageUpgradeCost <= SandDollars );    
+        return (_touchedTower.DamageUpgrades < max) && (DamageUpgradeCost <= Bank.SandDollars);    
     }
 
     private bool CanUpgradeSpecial()
@@ -431,7 +416,7 @@ public class TowerUpgradeManager : MonoBehaviour
         
         max = _maxUpgrades[index, SPECIALINDEX];
 
-        return ( _touchedTower.SpecialUpgrades < max ) && ( SpeedUpgradeCost <= SandDollars );
+        return (_touchedTower.SpecialUpgrades < max) && (SpeedUpgradeCost <= Bank.SandDollars);
     }
 
     private bool CanSellTower()
@@ -478,11 +463,7 @@ public class TowerUpgradeManager : MonoBehaviour
         MenuActive = false;
     }
 
-    private void AddMoneyUponEnemyDeath(Enemy enemy)
-    {
-        Debug.Log("Add money: " + enemy.EnemyKillValue.ToString());
-        SandDollars += enemy.EnemyKillValue;
-    }
+
     
 	
 }
