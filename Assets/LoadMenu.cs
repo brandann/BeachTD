@@ -14,7 +14,7 @@ public class LoadMenu : MonoBehaviour {
 	void Update () {
 		if ((Time.realtimeSinceStartup - _spawntimedinterval) > 3)
 		{
-			Application.LoadLevel("Menu");
+			Application.LoadLevel(Global.Scenes.Menu.ToString());
 		}
 	}
 }
