@@ -7,7 +7,6 @@ public class Map {
 	#region Public Methods
 	public Map(int[,] map)
 	{
-		//_map = FixMap(map);
 		_map = map;
 		_waypoints = FindWayPoints(_map);
 		waves = new List<Wave>();

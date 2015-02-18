@@ -5,8 +5,11 @@ using System.Collections.Generic;
 public class EnemyManager : ManagerBase {
 
 	#region Private memebers
+	private List<Wave> _waves;
+	
     private Wave _currentWave;
     private int _currentWaveIndex;
+    private int _waveIndex;
     private float delay;
     
     private GameObject EnemyA0Prefab;
@@ -17,6 +20,7 @@ public class EnemyManager : ManagerBase {
     private float randomSpawnTime = 0;
 
     private bool _mapLoaded = false;
+    private bool _winable = false;
     #endregion
 	
 	#region Public methods
@@ -30,7 +34,8 @@ public class EnemyManager : ManagerBase {
 	
 	// Update is called once per frame
 	public void Update () {
-        RandomEnemySpawner(_mapLoaded);
+		LoadWaveEnemy();
+        //RandomEnemySpawner(_mapLoaded);
 
         if (Input.GetKeyUp(KeyCode.Alpha1)) { Create(EnemyA0Prefab, _startingPosition); }
      	else if (Input.GetKeyUp(KeyCode.Alpha2)) { Create(EnemyB0Prefab, _startingPosition); }
@@ -42,16 +47,30 @@ public class EnemyManager : ManagerBase {
         _mapLoaded = true;
     }
     
-    public void SetCurrentWave(Wave wave)
+    public void SetWaves(List<Wave> waves)
     {
-    	_currentWave = wave;
+    	_waves = waves;
+    	if(_waves.Count > 0)
+    	{
+    		_currentWave = _waves[0];
+    	}
+    	else
+    	{
+    		_waves = null;
+    	}
+		_currentWaveIndex = 0;
+		_waveIndex = 0;
     }
 	#endregion
 	
 	#region Private Methods
 	private void LoadWaveEnemy()
 	{
-		if(_currentWave == null)
+		if(_winable && GetActiveCount() == 0)
+		{
+			Application.LoadLevel(Global.Scenes.Menu.ToString());
+		}
+		if(_waves == null)
 		{
 			return;
 		}
@@ -78,7 +97,29 @@ public class EnemyManager : ManagerBase {
 				case(EnemySchedule.Token.C1):
 					break;
 			}
-			delay = _currentWave.GetScheduleItem(_currentWaveIndex++).time;
+			
+			_currentWaveIndex++;
+			
+			if(_currentWaveIndex == _currentWave.Count())
+			{
+				// end of wave
+				_currentWaveIndex = 0;
+				
+				
+				_waveIndex++;
+				
+				if(_waveIndex == _waves.Count)
+				{
+					// end of all waves
+					_waves = null;
+					_winable = true;
+					return;
+				}
+				
+				_currentWave = _waves[_waveIndex];
+			}
+			
+			delay = _currentWave.GetScheduleItem(_currentWaveIndex).time;
 			_spawntimedinterval = Time.realtimeSinceStartup;
 		}
 	}

@@ -118,6 +118,7 @@ public class Global : MonoBehaviour {
 		eggManager.SpawnEgg();
 		_mapLoaded = true;
 		enemyManager.SetStartingPosition(CurrentMap.Waypoints[0]);
+		enemyManager.SetWaves(_currentMap.GetWaves());
 	}
 	
 	private void Initilize()

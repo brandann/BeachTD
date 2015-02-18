@@ -31,10 +31,26 @@ public class Wave {
 	
 	public EnemySchedule GetScheduleItem(int index) 
 	{
-		if(index < 0 || index > wave.Count)
+		if(index < 0 || index >= wave.Count)
 		{
 			return null;
 		}
 		return wave[index];
+	}
+	
+	public EnemySchedule GetNextScheduleItem()
+	{
+		if(wave.Count > 0)
+		{
+			EnemySchedule t = wave[0];
+			wave.RemoveAt(0);
+			return t;
+		}
+		return null;
+	}
+	
+	public int Count()
+	{
+		return wave.Count;
 	}
 }
