@@ -143,11 +143,27 @@ public class Global : MonoBehaviour {
 	{
 		List<Map> m = new List<Map>();
 		
+		m.Add(new Map00().GetMap());
 		m.Add(new Map01().GetMap());
 		m.Add(new Map02().GetMap());
 		m.Add(new Map03().GetMap());
 		m.Add(new Map04().GetMap());
 		m.Add(new Map05().GetMap());
+		m.Add(new Map06().GetMap());
+		m.Add(new Map07().GetMap());
+		m.Add(new Map08().GetMap());
+		m.Add(new Map09().GetMap());
+		m.Add(new Map10().GetMap());
+		m.Add(new Map11().GetMap());
+		m.Add(new Map12().GetMap());
+		m.Add(new Map13().GetMap());
+		m.Add(new Map14().GetMap());
+		m.Add(new Map15().GetMap());
+		m.Add(new Map16().GetMap());
+		m.Add(new Map17().GetMap());
+		m.Add(new Map18().GetMap());
+		m.Add(new Map19().GetMap());
+		
 		
 		return m;
 	}

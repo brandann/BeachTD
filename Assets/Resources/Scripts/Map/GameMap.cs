@@ -12,6 +12,11 @@ public class GameMap {
 		return null;
 	}
 	
+	/*
+	//----------------------------------------------
+	// fix map is broken, and not being used
+	//----------------------------------------------
+	
 	// Mirror the map verically so bool array matches
 	// screen map.
 	protected int[,] FixMap(int[,] m)
@@ -37,4 +42,5 @@ public class GameMap {
 		Debug.LogError("Map Fix is Bad");
 		return m; // should never reach this
 	}
+	*/
 }

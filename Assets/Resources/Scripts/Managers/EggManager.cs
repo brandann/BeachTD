@@ -56,8 +56,8 @@ public class EggManager : ManagerBase {
 		for(int i = 0; i < STARTING_EGG_COUNT; i++)
 		{
 			Vector3 endloc = _global.CurrentMap.Waypoints[_global.CurrentMap.Waypoints.Length - 1];
-			Vector3 randloc = new Vector3(Random.Range(-0.5f, 0.5f),Random.Range(-1.5f,1.5f), 0);
-			Vector3 offset = new Vector3(1,0,0);
+			Vector3 randloc = new Vector3(Random.Range(-0.5f, 0.5f),Random.Range(-0.5f, 0.5f), 0);
+			Vector3 offset = new Vector3(0,0,0);
 			GameObject egg = Create(EggPrefab, endloc + randloc + offset);
 		}
 
