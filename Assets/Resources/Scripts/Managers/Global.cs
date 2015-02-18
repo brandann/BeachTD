@@ -14,7 +14,7 @@ public class Global : MonoBehaviour {
 
 	private int _eggsStillActive;*/
 	
-	private Mapmanager _mapManager;
+	private MapManager _mapManager;
 	private Map _currentMap;
 	private Dictionary<int, Map> _maps;
 
@@ -41,7 +41,6 @@ public class Global : MonoBehaviour {
 	#region Unity
 	// Use this for initialization
 	void Start () {
-		Initilize();
 		LoadMap(StartingLevel);
 
         if (StatBar == null)
@@ -89,6 +88,8 @@ public class Global : MonoBehaviour {
 	#region Private Methods
 	private void LoadMap(int index)
 	{
+		Initilize();
+		
 		_mapManager.LoadMap(_maps[index]);
 		_currentMap = _maps[index];
 		eggManager.SpawnEgg();
@@ -112,7 +113,7 @@ public class Global : MonoBehaviour {
 			_maps.Add(i, tempMaps[i]);
 		}
 		
-		_mapManager = new Mapmanager();
+		_mapManager = new MapManager();
 		
 		// Enemies ------------------------------------------------------------
 		enemyManager = new EnemyManager();

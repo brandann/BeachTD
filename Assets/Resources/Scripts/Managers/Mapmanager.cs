@@ -2,14 +2,14 @@
 using System.Collections;
 using System.Collections.Generic;
 
-public class Mapmanager{
+public class MapManager{
 
 	#region Public Accessors
 
 	#endregion
 	
 	#region Public Methods
-	public Mapmanager()
+	public MapManager()
 	{
 		OpenSpace = Resources.Load("Prefabs/OpenArea") as GameObject;
 		global = GameObject.Find("Global").GetComponent<Global>();

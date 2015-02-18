@@ -7,6 +7,7 @@ public abstract class ManagerBase {
 	protected Global _global;
 	protected List<GameObject> _managerObjects;
 	protected Vector3 _startingPosition = Vector3.zero;
+	public Vector3 StartingPosition{ get {return _startingPosition;} }
 	
 	public ManagerBase()
 	{
