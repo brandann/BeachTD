@@ -5,6 +5,8 @@ using System.Collections.Generic;
 public class Global : MonoBehaviour {
 	
     public StatusBar StatBar;
+    public GameObject PauseScreen;
+    public GameObject PauseButton;
 
 	#region Private Memebers
     //private EnemyManager enemyManager;
@@ -43,8 +45,14 @@ public class Global : MonoBehaviour {
 	void Start () {
 		LoadMap(StartingLevel);
 
-        if (StatBar == null)
-            Debug.LogError("missing status Bar ref");
+        if (StatBar == null || PauseButton == null || PauseScreen == null)
+            Debug.LogError("missing UI ref");
+        else
+        {
+            PauseButton.SetActive(true);
+            PauseScreen.SetActive(false);
+        }
+
 	}
 	
 	// Update is called once per frame
@@ -83,6 +91,20 @@ public class Global : MonoBehaviour {
 		SpawnedPrefab.transform.position = pos;
 		return SpawnedPrefab;
 	}
+
+    public void PauseGame()
+    {
+        Time.timeScale = 0;
+        PauseScreen.SetActive(true);
+        PauseButton.SetActive(false);
+    }
+
+    public void ResumeGame()
+    {
+        PauseScreen.SetActive(false);
+        Time.timeScale = 1;
+        PauseButton.SetActive(true);
+    }
 	#endregion
 	
 	#region Private Methods

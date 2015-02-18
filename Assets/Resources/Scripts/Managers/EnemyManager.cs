@@ -87,7 +87,7 @@ public class EnemyManager : ManagerBase {
     {
         if (!go) return;
 
-        if ((Time.realtimeSinceStartup - _spawntimedinterval) > randomSpawnTime)
+        if ((Time.time - _spawntimedinterval) > randomSpawnTime)
         {
             int r = Random.Range(0, 3);
             GameObject enemy = Resources.Load("Prefabs/EnemyA0") as GameObject;
