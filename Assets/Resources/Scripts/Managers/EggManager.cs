@@ -96,6 +96,7 @@ public class EggManager : ManagerBase {
 		if(activeEggs == 0)
 		{
 			Debug.LogWarning("Game Over");
+			Application.LoadLevel("Lose");
 		}
 
        
