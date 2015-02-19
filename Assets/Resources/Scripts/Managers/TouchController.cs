@@ -13,11 +13,11 @@ public class TouchController : MonoBehaviour {
 
 	public List<string> TouchableTags; // filled in on inspector
 	
-	private bool active;
+	private bool touchActive;
 	public bool OpenSpaceEnabled
 	{
-		get { return active; }
-		set { active = value; }
+		get { return touchActive; }
+		set { touchActive = value; }
 	}
 
 	// Use this for initialization

@@ -60,7 +60,7 @@ public class SandDollarBank : MonoBehaviour {
 
     private void AddMoneyUponEnemyDeath(Enemy enemy)
     {
-        Debug.Log("Add money: " + enemy.EnemyKillValue.ToString());
+        //Debug.Log("Add money: " + enemy.EnemyKillValue.ToString());
         SandDollars += enemy.EnemyKillValue;
     }
 	

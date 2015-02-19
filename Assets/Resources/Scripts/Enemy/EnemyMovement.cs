@@ -14,10 +14,7 @@ public class EnemyMovement : MonoBehaviour {
     
     //Time.time when the current modification should be removed and normal speed should be set
     private float endModificationTime;
-
-    //Enemy that is being moved
-    private Enemy _enemy;
-
+    
 	Global global;
 
 	public int direction = 1;
@@ -58,8 +55,6 @@ public class EnemyMovement : MonoBehaviour {
 		transform.up = nextPoint - transform.position; //gets the first direction
 		
         listPos = 1;
-
-        _enemy = gameObject.GetComponent<Enemy>();
 	}
 	
 	// Update is called once per frame

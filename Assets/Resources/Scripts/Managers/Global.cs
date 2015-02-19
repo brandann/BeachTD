@@ -21,8 +21,6 @@ public class Global : MonoBehaviour {
 	private Dictionary<int, Map> _maps;
 
 	private Dictionary<int, GameObject> _towers;
-	
-	private bool _mapLoaded = false;
 	#endregion
 	
 	#region Public Memebers
@@ -58,17 +56,10 @@ public class Global : MonoBehaviour {
 	
 	// Update is called once per frame
 	void Update () {
-		int EnemyCount;
-		int WaveCount;	
-		
 		if(enemyManager != null)
 		{
 			enemyManager.Update();
 		}
-        if (_mapLoaded) 
-        {
-            enemyManager.StartRandomEnemySpawner();
-        }
 	}
 	#endregion
 	
@@ -106,6 +97,16 @@ public class Global : MonoBehaviour {
         Time.timeScale = 1;
         PauseButton.SetActive(true);
     }
+    
+    public void WinCond()
+    {
+		Application.LoadLevel(Global.Scenes.Win.ToString());
+    }
+    
+    public void LoseCond()
+    {
+		Application.LoadLevel(Global.Scenes.Lose.ToString());
+    }
 	#endregion
 	
 	#region Private Methods
@@ -116,7 +117,6 @@ public class Global : MonoBehaviour {
 		_mapManager.LoadMap(_maps[index]);
 		_currentMap = _maps[index];
 		eggManager.SpawnEgg();
-		_mapLoaded = true;
 		enemyManager.SetStartingPosition(CurrentMap.Waypoints[0]);
 		enemyManager.SetWaves(_currentMap.GetWaves());
 	}

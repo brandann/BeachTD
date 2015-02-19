@@ -155,9 +155,6 @@ public class Enemy : MonoBehaviour
 	#region Private Methods
 	private void Dead()
 	{
-		//dead
-		Debug.Log("Enemy Dead");
-		
 		if(HasEgg)
 		{
 			global.eggManager.DropEgg(this.transform.position);

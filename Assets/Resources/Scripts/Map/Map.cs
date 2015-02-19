@@ -14,7 +14,6 @@ public class Map {
 	
 	public bool[,] TowerLocations()
 	{
-		Debug.Log("tower locations");
 		bool[,] b = new bool[_map.GetLength(0), _map.GetLength(1)];
 		for(int i = 0; i < _map.GetLength(0); i++)
 		{
