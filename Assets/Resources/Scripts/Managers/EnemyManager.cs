@@ -68,7 +68,7 @@ public class EnemyManager : ManagerBase {
 	{
 		if(_winable && GetActiveCount() == 0)
 		{
-			Application.LoadLevel(Global.Scenes.Menu.ToString());
+			Application.LoadLevel(Global.Scenes.Win.ToString());
 		}
 		if(_waves == null)
 		{

@@ -171,8 +171,8 @@ public class Enemy : MonoBehaviour
 
         if (SomeEnemyDied != null)
             SomeEnemyDied(this);
-
-		Destroy(this.gameObject);
+            
+        global.enemyManager.Remove(this.gameObject);
 	}
 	
 	private void OnCollisionEnter2D(Collision2D collision)
