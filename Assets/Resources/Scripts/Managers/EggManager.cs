@@ -37,7 +37,7 @@ public class EggManager : ManagerBase {
 	
 	public void KillGoalEgg()
 	{
-		Remove();
+		//Remove();
 	}
 	
 	public void EnemyKillEgg()
