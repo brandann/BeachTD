@@ -44,7 +44,7 @@ public class Global : MonoBehaviour {
 	#region Unity
 	// Use this for initialization
 	void Start () {
-		LoadMap(0);
+		LoadMap(StartingLevel);
 
         if (StatBar == null || PauseButton == null || PauseScreen == null)
             Debug.LogError("missing UI ref");
