@@ -17,8 +17,6 @@ public class EnemyManager : ManagerBase {
     private GameObject EnemyC0Prefab;
 
     private float _spawntimedinterval = 0;
-
-    private bool _winable = false;
     #endregion
 	
 	#region Public methods
@@ -53,15 +51,16 @@ public class EnemyManager : ManagerBase {
 		_currentWaveIndex = 0;
 		_waveIndex = 0;
     }
+    
+    public List<Wave> Waves
+    {
+    	get{ return _waves; }
+    }
 	#endregion
 	
 	#region Private Methods
 	private void LoadWaveEnemy()
 	{
-		if(_winable && GetActiveCount() == 0)
-		{
-			_global.WinCond();
-		}
 		if(_waves == null)
 		{
 			return;
@@ -104,7 +103,6 @@ public class EnemyManager : ManagerBase {
 				{
 					// end of all waves
 					_waves = null;
-					_winable = true;
 					return;
 				}
 				

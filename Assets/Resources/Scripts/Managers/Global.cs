@@ -21,6 +21,8 @@ public class Global : MonoBehaviour {
 	private Dictionary<int, Map> _maps;
 
 	private Dictionary<int, GameObject> _towers;
+	
+	private enum WinStatus{Win, Neutral, Lose}
 	#endregion
 	
 	#region Public Memebers
@@ -98,14 +100,17 @@ public class Global : MonoBehaviour {
         PauseButton.SetActive(true);
     }
     
-    public void WinCond()
+    public void WinLoseCond()
     {
-		Application.LoadLevel(Global.Scenes.Win.ToString());
-    }
-    
-    public void LoseCond()
-    {
-		Application.LoadLevel(Global.Scenes.Lose.ToString());
+    	Debug.Log("WinLoseCond: " + eggManager.EggCount + " - " + enemyManager.GetActiveCount() + " - " + enemyManager.Waves);
+		if(eggManager.EggCount == 0)
+		{
+			LoseCond();
+		}
+    	else if(enemyManager.GetActiveCount() == 0 && enemyManager.Waves == null)
+    	{
+    		WinCond();
+    	}
     }
 	#endregion
 	
@@ -190,6 +195,16 @@ public class Global : MonoBehaviour {
 		
 		
 		return m;
+	}
+	
+	private void WinCond()
+	{
+		Application.LoadLevel(Global.Scenes.Win.ToString());
+	}
+	
+	private void LoseCond()
+	{
+		Application.LoadLevel(Global.Scenes.Lose.ToString());
 	}
 	#endregion
 }

@@ -74,52 +74,34 @@ public class Enemy : MonoBehaviour
 		
 	}
 	
-	public void PickUpEgg(GameObject go = null)
+	public void ApplyEggToCrab(EggManager.EggLocations el)
 	{
 		// crab already has an egg
 		if(HasEgg)
 		{
+			Debug.Log("crab has egg already");
 			return;
 		}
 		
-		// get an egg from the goal location
-		if(go == null)
+		if(el == EggManager.EggLocations.Enemy)
+		{
+			Debug.LogError("Invalid location for crab to recieve egg");
+			return;
+		}
+		else if(el == EggManager.EggLocations.End)
 		{
 			// if the egg manager has any eggs, get a egg
 			if(global.eggManager.GetActiveCount() > 0)
 			{
 				HasEgg = true;
-				global.eggManager.Remove();
+				global.eggManager.TransferEgg(EggManager.EggLocations.End, EggManager.EggLocations.Enemy);
 			}
 		}
-		
-		// if the egg exists
-		else if(go != null)
+		else if(el == EggManager.EggLocations.Path)
 		{
-			global.eggManager.Remove(go);
 			HasEgg = true;
+			global.eggManager.TransferEgg(EggManager.EggLocations.Path, EggManager.EggLocations.Enemy);
 		}
-		
-		return;
-		/*
-		if(go == null)
-		{
-			Egg = global.eggManager.GetEggFromGoal();
-		}
-		else
-		{
-			Egg = go;
-		}
-		
-		if(Egg != null)
-		{
-			Egg.transform.localScale = new Vector3(.5f, .5f, .5f);
-			Egg.transform.parent = transform.parent;
-			Egg.transform.position = transform.position;
-			Egg.transform.position = new Vector3(transform.position.x, transform.position.y, -1);
-			Egg.GetComponent<CircleCollider2D>().enabled = false;
-		}
-		*/
 	}
 	
 	public virtual void TakeDamage(float damage)
@@ -147,8 +129,10 @@ public class Enemy : MonoBehaviour
 	{
 		if(HasEgg)
 		{
-			global.eggManager.EnemyKillEgg();
+			global.eggManager.TransferEgg(EggManager.EggLocations.Enemy, EggManager.EggLocations.Start);
 		}
+		
+		Kill();
 	}
 	#endregion
 	
@@ -159,24 +143,34 @@ public class Enemy : MonoBehaviour
 		{
 			global.eggManager.DropEgg(this.transform.position);
 		}
+		
+		Kill();
+	}
+	
+	private void Kill()
+	{
 		GameObject prefab = Resources.Load("Prefabs/temp-pow") as GameObject;
 		GameObject SpawnedPrefab = Instantiate(prefab) as GameObject;
 		SpawnedPrefab.transform.position = this.transform.position;
-
-        if (ThisEnemyDied != null)
-            ThisEnemyDied(this);
-
-        if (SomeEnemyDied != null)
-            SomeEnemyDied(this);
-            
-        global.enemyManager.Remove(this.gameObject);
+		
+		if (ThisEnemyDied != null)
+			ThisEnemyDied(this);
+		
+		if (SomeEnemyDied != null)
+			SomeEnemyDied(this);
+		
+		global.enemyManager.Remove(this.gameObject);
 	}
 	
 	private void OnCollisionEnter2D(Collision2D collision)
 	{
 		if(collision.gameObject.tag == "egg")
 		{
-			PickUpEgg(collision.gameObject);
+			if(!HasEgg)
+			{
+				ApplyEggToCrab(EggManager.EggLocations.Path);
+				Destroy(collision.gameObject);
+			}
 		}
 	}
 	

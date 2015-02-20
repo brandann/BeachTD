@@ -6,12 +6,11 @@ public class EggManager : ManagerBase {
     public delegate void EggCountChanged(int count);
     public static event EggCountChanged OnEggCountChanged;
 
-
 	#region Private Memebers
 	private const int STARTING_EGG_COUNT = 3;
 	private int _eggsOnPath;
 	private int _eggsWithEnemy;
-	private enum EggCounter{Path, Enemy, Goal}
+	public enum EggLocations{Path, Enemy, End, Start, Bird}
 	#endregion
 	
 	#region Public Methods
@@ -21,33 +20,56 @@ public class EggManager : ManagerBase {
 		_eggsWithEnemy = 0;
 	}
 	
-	public void DropEgg(Vector3 pos)
+	public void TransferEgg(EggLocations from, EggLocations to)
 	{
-		Debug.Log("Dropegg");
-		GameObject EggPrefab = Resources.Load("Prefabs/egg") as GameObject;
-		GameObject egg = Create(EggPrefab, pos);
-		egg.GetComponent<CircleCollider2D>().enabled = true;
-	}
-	
-	public void PickUpEggFromPath()
-	{
-		DecrementEggCount(EggCounter.Path);
-		_eggsWithEnemy++;
-	}
-	
-	public void KillGoalEgg()
-	{
-		Remove();
-	}
-	
-	public void EnemyKillEgg()
-	{
-		DecrementEggCount(EggCounter.Enemy);
-	}
-	
-	public void ArialKillEgg()
-	{
-		base.Remove();
+		if(from == to)
+		{
+			Debug.LogError("TransferEgg: from cannot == to");
+			return;
+		}
+		
+		switch(from)
+		{
+			case(EggLocations.End):
+				Remove();
+				break;
+			case(EggLocations.Enemy):
+				_eggsWithEnemy--;
+				break;
+			case(EggLocations.Path):
+				_eggsOnPath--;
+				break;
+			case(EggLocations.Start):
+				break;
+			case(EggLocations.Bird):
+				Remove();
+				break;
+		}
+		
+		switch(to)
+		{
+			case(EggLocations.End):
+				break;
+			case(EggLocations.Enemy):
+				_eggsWithEnemy++;
+				break;
+			case(EggLocations.Path):
+				_eggsOnPath++;
+				break;
+			case(EggLocations.Start):
+				break;
+			case(EggLocations.Bird):
+				break;
+		}
+		
+		//Inform subscribers of change in number of eggs
+		if (OnEggCountChanged != null)
+			OnEggCountChanged(EggCount);
+		
+		if(EggCount == 0)
+		{
+			_global.WinLoseCond();
+		}
 	}
 	
 	public void SpawnEgg()
@@ -66,40 +88,22 @@ public class EggManager : ManagerBase {
             OnEggCountChanged(STARTING_EGG_COUNT);
 	}
 	
-	public override void Remove (GameObject go)
+	public void DropEgg(Vector3 location)
 	{
-		base.Remove (go);
-		_eggsWithEnemy++;
-		DecrementEggCount(EggCounter.Goal);
+		TransferEgg(EggLocations.Enemy, EggLocations.Path);
+		GameObject EggPrefab = Resources.Load("Prefabs/egg") as GameObject;
+		GameObject egg = GameObject.Instantiate(EggPrefab) as GameObject;
+		egg.transform.position = location;
+		egg.GetComponent<CircleCollider2D>().enabled = true;
+	}
+	
+	public int EggCount
+	{
+		get { return GetActiveCount() + _eggsOnPath + _eggsWithEnemy; }
 	}
 	#endregion
 	
 	#region Private Methods
-	private void DecrementEggCount(EggCounter ec)
-	{
-		switch(ec)
-		{
-			case(EggCounter.Path):
-				_eggsOnPath--;
-				break;
-			case(EggCounter.Enemy):
-				_eggsWithEnemy--;
-				break;
-			default:
-				break;
-		}
-		int activeEggs = GetActiveCount() + _eggsOnPath + _eggsWithEnemy;
 
-        //Inform subscribers of change in number of eggs
-        if (OnEggCountChanged != null)
-            OnEggCountChanged(activeEggs);
-
-		if(activeEggs == 0)
-		{
-			_global.LoseCond();
-		}
-
-       
-	}
 	#endregion
 }
