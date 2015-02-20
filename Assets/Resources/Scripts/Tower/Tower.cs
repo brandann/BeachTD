@@ -53,7 +53,8 @@ public abstract class Tower : MonoBehaviour
         }
         protected set
         {
-            _previousState = _currentState;
+            Debug.Log("transition from: " + _currentState + " to: " + value);
+            _previousState = _currentState;            
             _currentState = value;
         }
     }    
@@ -150,7 +151,11 @@ public abstract class Tower : MonoBehaviour
 
     protected virtual void TransitionToState(Tower.TowerState toState)
     {
-        CurrentState = toState;
+        //First transition into acting state triggers immediate action
+        if (toState == TowerState.Acting)
+            _nextActionTime = Time.time;
+
+        CurrentState = toState;        
 
         UpdateAnimator();
     }

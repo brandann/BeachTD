@@ -89,7 +89,7 @@ public class Enemy : MonoBehaviour
 			if(global.eggManager.GetActiveCount() > 0)
 			{
 				HasEgg = true;
-				global.eggManager.Remove();
+				//global.eggManager.Remove();
 			}
 		}
 		
