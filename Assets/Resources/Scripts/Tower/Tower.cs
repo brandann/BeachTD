@@ -53,7 +53,7 @@ public abstract class Tower : MonoBehaviour
         }
         protected set
         {
-            Debug.Log("transition from: " + _currentState + " to: " + value);
+            //Debug.Log("transition from: " + _currentState + " to: " + value);
             _previousState = _currentState;            
             _currentState = value;
         }
@@ -134,8 +134,7 @@ public abstract class Tower : MonoBehaviour
 
         if (Time.time >= _nextActionTime)
             Act();
-        else
-            TransitionToState(TowerState.Idle);
+        
     }
 
     void Awake()
