@@ -19,7 +19,7 @@ public class EnemyMovement : MonoBehaviour {
 	private float[] SpeedMods = {0f, .5f, 1f, 2f};
 	private float SpeedMod;
 	private float endModificationTime;
-	private float speed = 2;
+	private float speed = 1;
 	
 	private Vector3[] waypoints;
 	private Vector3 nextPoint; // the next waypoint the enemy is traveling to
