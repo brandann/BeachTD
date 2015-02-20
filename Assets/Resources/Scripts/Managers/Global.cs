@@ -36,7 +36,7 @@ public class Global : MonoBehaviour {
 	public float RandomEnemySpawnHigh;
 	public enum MapToken {Tower = -2, Path = -1, Start = 0}
 	public enum GameState{Menu, Game, Pause, Credits, GameOver, Saving, Loading}
-	public enum Scenes{Menu, Game, Lose, Win}
+	public enum Scenes{Menu, Game, Lose, Win, Levels}
 	static public GameState CurrentGameState;
 	public Map CurrentMap { get{ return _currentMap; } }
 	#endregion
@@ -44,7 +44,7 @@ public class Global : MonoBehaviour {
 	#region Unity
 	// Use this for initialization
 	void Start () {
-		LoadMap(StartingLevel);
+		LoadMap(0);
 
         if (StatBar == null || PauseButton == null || PauseScreen == null)
             Debug.LogError("missing UI ref");

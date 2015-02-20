@@ -16,16 +16,16 @@ public class MainMenuStartButton : SlidingUI{
 
 	public override void Clicked ()
 	{
-		base.Clicked ();
-		Credits.Slide ();
+		//base.Clicked ();
+		//Credits.Slide ();
         //StartCoroutine(LoadLevel()); //Todo swap these out for release
-        Application.LoadLevel(1); 
+        Application.LoadLevel(Global.Scenes.Game.ToString()); 
 	}
 
     private IEnumerator LoadLevel()
     {
         yield return new WaitForSeconds(_slideTime);
-        Application.LoadLevel(1);     
+		//Application.LoadLevel(Global.Scenes.Levels.ToString());     
     }
 	
 }
