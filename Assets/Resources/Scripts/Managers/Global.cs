@@ -102,7 +102,6 @@ public class Global : MonoBehaviour {
     
     public void WinLoseCond()
     {
-    	Debug.Log("WinLoseCond: " + eggManager.EggCount + " - " + enemyManager.GetActiveCount() + " - " + enemyManager.Waves);
 		if(eggManager.EggCount == 0)
 		{
 			LoseCond();
