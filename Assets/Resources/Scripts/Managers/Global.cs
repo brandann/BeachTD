@@ -2,8 +2,17 @@ using UnityEngine;
 using System.Collections;
 using System.Collections.Generic;
 
-public class Global : MonoBehaviour {
-	
+public class Global : MonoBehaviour
+{
+
+    #region Events
+
+    public delegate void GameStateChanged();
+    public static event GameStateChanged OnGamePaused;
+    public static event GameStateChanged OnGameResumed;
+
+    #endregion
+
     public StatusBar StatBar;
     public GameObject PauseScreen;
     public GameObject PauseButton;
@@ -91,6 +100,10 @@ public class Global : MonoBehaviour {
         Time.timeScale = 0;
         PauseScreen.SetActive(true);
         PauseButton.SetActive(false);
+        
+        //Inform subscribers of pause event
+        if (OnGamePaused != null)
+            OnGamePaused();
     }
 
     public void ResumeGame()
@@ -98,6 +111,10 @@ public class Global : MonoBehaviour {
         PauseScreen.SetActive(false);
         Time.timeScale = 1;
         PauseButton.SetActive(true);
+
+        //Inform subscribers of resume event
+        if (OnGamePaused != null)
+            OnGameResumed();
     }
     
     public void WinLoseCond()

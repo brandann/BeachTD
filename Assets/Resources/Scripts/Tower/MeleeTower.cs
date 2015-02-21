@@ -1,9 +1,17 @@
 ﻿using UnityEngine;
 using System.Collections;
 
-public class MeleeTower : Tower {
+public class MeleeTower : Tower
+{
+
+    #region Events
+    public delegate void MeleeFired();
+
+    public static event MeleeFired OnMeleeFired;
     
-	// Use this for initialization
+    #endregion 
+
+    // Use this for initialization
 	public override void Initialize() {
         base.Initialize();
 
@@ -17,7 +25,16 @@ public class MeleeTower : Tower {
     protected override void Act()
     {
         base.Act();
-        _tip.Attack(_targets[0].transform);        
+
+        Enemy target = _targets[0];
+
+        if(target == null)
+            return;
+
+        _tip.Attack(target.transform);
+
+        if (OnMeleeFired != null)
+            OnMeleeFired();
     }
     
 

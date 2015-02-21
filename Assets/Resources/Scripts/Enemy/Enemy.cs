@@ -5,9 +5,12 @@ public class Enemy : MonoBehaviour
 {
 
     #region Events
-    public delegate void EnemyDied(Enemy enemy);
+    public delegate void EnemyDied(Enemy enemy);    
+
+    //Use when you want to know if a particular enemy dies
     public event EnemyDied ThisEnemyDied;
 
+    //Use if you want to know when any enemy object dies
     public static event EnemyDied SomeEnemyDied;
 
     #endregion
