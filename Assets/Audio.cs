@@ -10,7 +10,11 @@ public class Audio : MonoBehaviour {
                      Alert,
                      RangedTowerShoot,
                      MeleeTowerShoot,
-                     SlowTowerShoot;
+                     SlowTowerShoot,
+                     EndMusic,
+                     WinEffect,
+                     LoseEffect;
+
     
 
     #region MonoBehaviour Callbacks
