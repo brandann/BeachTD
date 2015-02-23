@@ -41,8 +41,8 @@ public class EnemyMovement : MonoBehaviour {
 	{
 		if(direction > 0)
 		{
-			direction *= -1;
-			listPos -= 1;
+			ReverseWaypoints();
+			listPos--;
 			nextPoint = waypoints[listPos];
 		}
 		
