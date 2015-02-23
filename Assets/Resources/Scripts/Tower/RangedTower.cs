@@ -3,6 +3,12 @@ using System.Collections;
 
 public class RangedTower : Tower
 {
+    #region Events
+    public delegate void RangedFired();
+    
+    public static event RangedFired OnRangedFired;
+
+    #endregion
 
     public GameObject ProjectilePrefab;
 
@@ -36,8 +42,10 @@ public class RangedTower : Tower
             Projectile projectile = arrow.GetComponent<Projectile>();
 
             projectile.setTarget(target.transform);
-        }        
-        
+        }
+
+        if (OnRangedFired != null)
+            OnRangedFired();
         //Debug.Log("Act");
     }
 

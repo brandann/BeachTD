@@ -3,6 +3,12 @@ using System.Collections;
 
 public class SlowTower : Tower
 {
+    #region Events
+    public delegate void SlowFired();
+
+    public static event SlowFired OnSlowFired;
+
+    #endregion
 
     public GameObject ProjectilePrefab;
     public readonly float SlowCoolDownTime = 1;
@@ -29,6 +35,9 @@ public class SlowTower : Tower
 
         GameObject target = _targets[0].gameObject;
 
+        if (target == null)
+            return;
+
         GameObject go = GameObject.Instantiate(ProjectilePrefab, gameObject.transform.position, Quaternion.identity) as GameObject;
 
         SlowProjectile slowPro = go.GetComponent<SlowProjectile>();
@@ -38,6 +47,9 @@ public class SlowTower : Tower
         //slowPro.Duration = BaseDuration * _durationMultiplier;        
         
         //Debug.Log("Act");
+
+        if (OnSlowFired != null)
+            OnSlowFired();
     }
 
     protected override void UpgradeSpecial(int level)
