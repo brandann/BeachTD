@@ -46,21 +46,21 @@ public class Audio : MonoBehaviour {
 
 	// Use this for initialization
 	void Awake () {
-        Debug.Log("Audio Awake");
+        //Debug.Log("Audio Awake");
 
         //Should only need one audio prefab in intial scene but this allows
         //you to put one in each scene so that you can have audio when testing without first loading menu scene
         //probably should be removed in production
         if (AudioExists)
         {
-            Debug.Log("Audio destroy self");
+            //Debug.Log("Audio destroy self");
             Destroy(gameObject);
             _beingDestroyed = true;
             return;
         }
         else
         {
-            Debug.Log("don't destroy");
+            //Debug.Log("don't destroy");
             DontDestroyOnLoad(transform.gameObject);
             AudioExists = true;
         }
@@ -75,6 +75,7 @@ public class Audio : MonoBehaviour {
 
     void OnLevelWasLoaded(int lvl)
     {
+        //Destroy has been called but we're still in the same frame
         if (_beingDestroyed)
             return;
 
@@ -95,7 +96,7 @@ public class Audio : MonoBehaviour {
             case 3:
                 _effectSource.PlayOneShot(WinEffect);
                 _musicSource.clip = EndMusic;
-                Debug.Log("Audio win");
+                //Debug.Log("Audio win");
                 break;
             default:
                 Debug.LogError("No music for level");

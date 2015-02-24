@@ -912,6 +912,7 @@ MonoBehaviour:
   DamageUpButton: {fileID: 11400012}
   SpecialUpButton: {fileID: 11400024}
   SellButton: {fileID: 11400004}
+  Bank: {fileID: 0}
   MaxMeleeRange: 2
   MaxMeleeSpeed: 2
   MaxMeleeDamage: 2
@@ -924,6 +925,13 @@ MonoBehaviour:
   MaxSlowSpeed: 2
   MaxSlowDamage: 2
   MaxSlowSpecial: 2
+  MeleeTowerCost: 20
+  RangedTowerCost: 50
+  SlowTowerCost: 60
+  SpeedUpgradeCost: 10
+  RangeUpgradeCost: 10
+  DamageUpgradeCost: 10
+  SpecialUpgradeCost: 10
 --- !u!222 &22200000
 CanvasRenderer:
   m_ObjectHideFlags: 1

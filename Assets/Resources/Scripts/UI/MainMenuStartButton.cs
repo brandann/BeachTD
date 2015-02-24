@@ -16,7 +16,7 @@ public class MainMenuStartButton : SlidingUI{
 
 	public override void Clicked ()
 	{
-		//base.Clicked ();
+		base.Clicked ();
 		//Credits.Slide ();
         //StartCoroutine(LoadLevel()); //Todo swap these out for release
         Application.LoadLevel(Global.Scenes.Game.ToString()); 
