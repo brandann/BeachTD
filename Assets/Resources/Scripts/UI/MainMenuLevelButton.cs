@@ -1,20 +1,13 @@
 ﻿using UnityEngine;
 using System.Collections;
 
-public class MainMenuLevelButton : MonoBehaviour {
+public class MainMenuLevelButton : ClickableUI {
 
-	// Use this for initialization
-	void Start () {
+    public override void Clicked()
+    {
+        base.Clicked();
+        Application.LoadLevel(Global.Scenes.Levels.ToString());
+    }
 	
-	}
-	
-	// Update is called once per frame
-	void Update () {
-	
-	}
-	
-	public void Clicked()
-	{
-		Application.LoadLevel(Global.Scenes.Levels.ToString());
-	}
+
 }
