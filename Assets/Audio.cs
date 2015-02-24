@@ -15,7 +15,8 @@ public class Audio : MonoBehaviour {
                      SlowTowerShoot,
                      EndMusic,
                      WinEffect,
-                     LoseEffect;
+                     LoseEffect,
+                     ClickEffect;
 
     
 
@@ -29,7 +30,7 @@ public class Audio : MonoBehaviour {
         MeleeTower.OnMeleeFired += PlayMeleeFired;
         RangedTower.OnRangedFired += PlayRangedFired;
         SlowTower.OnSlowFired += PlaySlowFired;
-
+        ClickableUI.OnButtonClicked += PlayClick;
     }
 
    void OnDisable()
@@ -40,22 +41,27 @@ public class Audio : MonoBehaviour {
        MeleeTower.OnMeleeFired -= PlayMeleeFired;
        RangedTower.OnRangedFired -= PlayRangedFired;
        SlowTower.OnSlowFired -= PlaySlowFired;
+       ClickableUI.OnButtonClicked -= PlayClick;
    }   
 
 	// Use this for initialization
 	void Awake () {
+        Debug.Log("Audio Awake");
 
         //Should only need one audio prefab in intial scene but this allows
         //you to put one in each scene so that you can have audio when testing without first loading menu scene
         //probably should be removed in production
         if (AudioExists)
         {
+            Debug.Log("Audio destroy self");
             Destroy(gameObject);
+            _beingDestroyed = true;
             return;
         }
         else
         {
-            DontDestroyOnLoad(gameObject);
+            Debug.Log("don't destroy");
+            DontDestroyOnLoad(transform.gameObject);
             AudioExists = true;
         }
 
@@ -69,13 +75,15 @@ public class Audio : MonoBehaviour {
 
     void OnLevelWasLoaded(int lvl)
     {
+        if (_beingDestroyed)
+            return;
+
         //Debug.Log("level: " + lvl);
 
         switch (lvl)
         {
             case 0:
                 _musicSource.clip = MenuMusic;
-                Debug.Log("Menu");
                 break;
             case 1:
                 _musicSource.clip = InGameMusic;
@@ -90,7 +98,7 @@ public class Audio : MonoBehaviour {
                 Debug.Log("Audio win");
                 break;
             default:
-                Debug.Log("No music for level");
+                Debug.LogError("No music for level");
                 return;
         }
 
@@ -101,10 +109,11 @@ public class Audio : MonoBehaviour {
 
     private AudioSource _effectSource;
     private AudioSource _musicSource;
+    private bool _beingDestroyed;
 
     private void PauseAudio()
     {
-        Debug.Log("pause audio");
+        //Debug.Log("pause audio");
         _effectSource.PlayOneShot(Alert);
         _musicSource.Pause();    
 
@@ -112,7 +121,7 @@ public class Audio : MonoBehaviour {
 
     private void ResumeAudio()
     {
-        Debug.Log("resume audio");
+        //Debug.Log("resume audio");
         _effectSource.PlayOneShot(Alert);
         _musicSource.Play();
     }
@@ -135,5 +144,10 @@ public class Audio : MonoBehaviour {
     private void PlayRangedFired()
     {
         _effectSource.PlayOneShot(RangedTowerShoot);
+    }
+
+    private void PlayClick()
+    {
+        _effectSource.PlayOneShot(ClickEffect);
     }
 }

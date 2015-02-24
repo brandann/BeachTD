@@ -1,9 +1,10 @@
 ﻿using UnityEngine;
 using System.Collections;
 
-public class SlidingUI : MonoBehaviour {
+public class SlidingUI : ClickableUI
+{
 
-	public Animator ButtonAnimController;
+    public Animator ButtonAnimController;
 	private int _SlideHash;
     
 
@@ -30,7 +31,9 @@ public class SlidingUI : MonoBehaviour {
 		ButtonAnimController.SetTrigger (_SlideHash);
 	}
 
-	public virtual void Clicked(){
-		Slide ();
-	}
+    public override void Clicked()
+    {
+        base.Clicked();
+        Slide();
+    }
 }

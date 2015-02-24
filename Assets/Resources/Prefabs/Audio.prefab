@@ -175,6 +175,7 @@ MonoBehaviour:
   EndMusic: {fileID: 8300000, guid: 84f6e267142ec084390d4909f8f57ffc, type: 3}
   WinEffect: {fileID: 8300000, guid: c1f272f6221c9c543b4e4919bb1174d3, type: 3}
   LoseEffect: {fileID: 8300000, guid: fd55fbaf673cdbc4caa28aaed4da799b, type: 3}
+  ClickEffect: {fileID: 8300000, guid: f6dafc04289211742b39fc921a39fda4, type: 3}
 --- !u!1001 &100100000
 Prefab:
   m_ObjectHideFlags: 1
