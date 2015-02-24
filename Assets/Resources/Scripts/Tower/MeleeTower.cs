@@ -25,6 +25,9 @@ public class MeleeTower : Tower
     protected override void Act()
     {
         base.Act();
+        
+        if (_targets.Count == 0)
+            return;
 
         Enemy target = _targets[0];
 

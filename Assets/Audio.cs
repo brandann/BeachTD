@@ -4,6 +4,8 @@ using System.Collections.Generic;
 
 public class Audio : MonoBehaviour {
 
+    public static bool AudioExists;
+
     public AudioClip EnemyDies,
                      InGameMusic,
                      MenuMusic,
@@ -43,10 +45,26 @@ public class Audio : MonoBehaviour {
 	// Use this for initialization
 	void Awake () {
 
+        //Should only need one audio prefab in intial scene but this allows
+        //you to put one in each scene so that you can have audio when testing without first loading menu scene
+        //probably should be removed in production
+        if (AudioExists)
+        {
+            Destroy(gameObject);
+            return;
+        }
+        else
+        {
+            DontDestroyOnLoad(gameObject);
+            AudioExists = true;
+        }
+
         AudioSource[] sources = gameObject.GetComponents<AudioSource>();
         _effectSource = sources[0];
         _musicSource = sources[1];
         _musicSource.loop = true;
+        OnLevelWasLoaded(Application.loadedLevel);
+       
 	}
 
     void OnLevelWasLoaded(int lvl)
@@ -57,9 +75,19 @@ public class Audio : MonoBehaviour {
         {
             case 0:
                 _musicSource.clip = MenuMusic;
+                Debug.Log("Menu");
                 break;
             case 1:
                 _musicSource.clip = InGameMusic;
+                break;
+            case 2:
+                _effectSource.PlayOneShot(LoseEffect);
+                _musicSource.clip = EndMusic;
+                break;
+            case 3:
+                _effectSource.PlayOneShot(WinEffect);
+                _musicSource.clip = EndMusic;
+                Debug.Log("Audio win");
                 break;
             default:
                 Debug.Log("No music for level");
