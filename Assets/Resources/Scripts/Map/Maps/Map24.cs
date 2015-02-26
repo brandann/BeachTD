@@ -1,19 +1,19 @@
 ﻿using UnityEngine;																														
 using System.Collections;																														
 
-public class Map17 : GameMap {																														
+public class Map24 : GameMap {																														
 	public override Map GetMap ()																													
 	{																													
 		int[,] intmap = new int[,] 																												
 		{																												
-			{	0,	1,	T,	T,	T,	T,	T,	T,	T,	T,	T,	T,	T,	T,	T},												
-			{	T,	P,	T,	T,	T,	T,	T,	T,	T,	T,	T,	T,	T,	T,	T},												
-			{	T,	P,	T,	T,	T,	T,	T,	T,	T,	T,	T,	6,	P,	P,	7},												
-			{	T,	P,	T,	T,	T,	T,	T,	T,	T,	T,	T,	P,	T,	T,	T},												
-			{	T,	P,	T,	T,	T,	T,	T,	T,	T,	4,	P,	5,	T,	T,	T},												
-			{	T,	P,	T,	T,	T,	T,	T,	T,	T,	P,	T,	T,	T,	T,	T},												
-			{	T,	P,	T,	T,	T,	T,	T,	T,	T,	P,	T,	T,	T,	T,	T},												
-			{	T,	2,	P,	P,	P,	P,	P,	P,	P,	3,	T,	T,	T,	T,	T}												
+			{	T,	T,	T,	T,	T,	T,	T,	T,	T,	T,	T,	T,	T,	T,	T},												
+			{	T,	T,	T,	T,	T,	T,	T,	T,	T,	T,	T,	T,	T,	T,	T},												
+			{	T,	T,	T,	T,	T,	T,	T,	T,	T,	T,	T,	T,	T,	6,	7},												
+			{	T,	T,	T,	T,	T,	T,	T,	T,	T,	T,	T,	T,	4,	5,	T},												
+			{	T,	T,	P,	P,	P,	P,	P,	P,	P,	T,	T,	2,	3,	T,	T},												
+			{	0,	P,	P,	P,	P,	P,	P,	P,	P,	P,	P,	1,	T,	T,	T},												
+			{	T,	T,	P,	P,	P,	P,	P,	P,	P,	T,	T,	T,	T,	T,	T},												
+			{	T,	T,	T,	T,	T,	T,	T,	T,	T,	T,	T,	T,	T,	T,	T}												
 		};																												
 		
 		Map map = new Map(intmap);																												
