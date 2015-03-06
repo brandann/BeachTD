@@ -345,7 +345,7 @@ public class TowerUpgradeManager : MonoBehaviour
             if (!b.gameObject.activeSelf)
                 continue;
                         
-            if (b.collider2D.bounds.Intersects(go.renderer.bounds))
+            if (b.GetComponent<Collider2D>().bounds.Intersects(go.GetComponent<Renderer>().bounds))
             {
                 //Debug.Log("found intersection");
                 return true;

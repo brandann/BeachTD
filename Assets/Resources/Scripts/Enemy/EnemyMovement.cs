@@ -55,14 +55,14 @@ public class EnemyMovement : MonoBehaviour {
 	/// <param name="duration">Lenght in seconds the modification should last</param>
 	public void UpdateSpeedMod(EnemyMovementSpeed mod, float duration)
 	{
-		Color currentColor = this.renderer.material.color;
+		Color currentColor = this.GetComponent<Renderer>().material.color;
 		if(currentColor == Color.white)
 		{
-			this.renderer.material.color = Color.blue;
+			this.GetComponent<Renderer>().material.color = Color.blue;
 		}
 		else if(currentColor == Color.red)
 		{
-			this.renderer.material.color = new Color(125/255, 50/255, 180/255);
+			this.GetComponent<Renderer>().material.color = new Color(125/255, 50/255, 180/255);
 		}
 		
 		CurrentMovement = mod;
