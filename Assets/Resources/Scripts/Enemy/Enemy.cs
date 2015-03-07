@@ -104,7 +104,7 @@ public class Enemy : MonoBehaviour
 		{
 			HasEgg = true;
 			global.eggManager.TransferEgg(EggManager.EggLocations.Path, EggManager.EggLocations.Enemy);
-			this.GetComponent<EnemyMovement>().ReverseDirection();
+			//this.GetComponent<EnemyMovement>().ReverseDirection();
 		}
 	}
 	

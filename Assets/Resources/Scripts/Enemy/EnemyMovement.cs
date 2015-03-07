@@ -2,52 +2,84 @@ using UnityEngine;
 using System.Collections;
 
 public class EnemyMovement : MonoBehaviour {
-
+	
 	#region Public Members
 	public enum EnemyMovementSpeed {Paused = 0, Slow = 1, Normal = 2, Fast = 3}
-	public EnemyMovementSpeed CurrentMovement;
-	
 	public float DistanceTraveled { get; protected set; }
-	
-	public int direction = 1;
-	public int listPos{get; private set;} //current index of the array list
-	public float distance;// = .1f; //distance enemy must be away from waypoint to got to next
-	public float rotateangle;// = 3; // rotation factor
+	public float speed = 1;
 	#endregion
 	
-	#region Private Members
+	#region Private members
+	private EnemyMovementSpeed CurrentMovement;
+	private Global global;
+	private Vector3[] waypoints;
+	private Vector3 nextPoint; // the next waypoint the enemy is traveling to
+	private int listPos;
+	private int direction = 1;
 	private float[] SpeedMods = {0f, .5f, 1f, 2f};
 	private float SpeedMod;
 	private float endModificationTime;
-	private float speed = 1;
-	
-	private Vector3[] waypoints;
-	private Vector3 nextPoint; // the next waypoint the enemy is traveling to
-	//Time.time when the current modification should be removed and normal speed should be set
-	
-	private Global global;
-	
-	bool right = false; //should the enemy rotate right?
-	bool left = false; //should the enemy rotate left?
 	#endregion
 	
-	#region Public Methods
-	public void ReverseWaypoints()
-	{
-		direction *= -1;
+	#region Unity
+	// Use this for initialization
+	void Start () {
+		global = GameObject.Find("Global").GetComponent<Global>();
+		CurrentMovement = EnemyMovementSpeed.Normal;
+		SpeedMod = SpeedMods[(int) CurrentMovement];
+		listPos = direction = 1;
+		waypoints = global.CurrentMap.Waypoints;
+		nextPoint = waypoints[listPos];
+		transform.up = nextPoint - transform.position;
 	}
 	
-	public void ReverseDirection()
-	{
-		if(direction > 0)
+	// Update is called once per frame
+	void Update () {
+		
+		if(waypoints == null || Global.CurrentGameState != Global.GameState.Game)
 		{
-			ReverseWaypoints();
-			listPos--;
+			return;
+		}
+		
+		//Remove modification after it has expired
+		if (CurrentMovement != EnemyMovementSpeed.Normal && Time.time >= endModificationTime)
+		{
+			CurrentMovement = EnemyMovementSpeed.Normal;
+			gameObject.GetComponent<Enemy>().ResetColor();
+		}
+		
+		//Speed mods from tower
+		SpeedMod = SpeedMods[(int) CurrentMovement];
+		
+		Vector3 currentPos = nextPoint - transform.position;
+		if(currentPos.magnitude < .1f)
+		{
+			listPos += direction;
+			if(listPos == -1)
+			{
+				GetComponent<Enemy>().AtGoal();
+				Destroy(this.gameObject);
+				return; // keeps from getting an error thrown
+			}
+			if(listPos >= waypoints.Length)
+			{
+				GetComponent<Enemy>().ApplyEggToCrab(EggManager.EggLocations.End);
+				direction = -1;
+				listPos -= 2;
+				transform.Rotate (Vector3.forward, 180);
+			}
 			nextPoint = waypoints[listPos];
 		}
 		
+		transform.up = nextPoint - transform.position;
+		Vector3 moveDelta = (speed * SpeedMod * Time.smoothDeltaTime) * transform.up;
+		transform.position += moveDelta;
+		DistanceTraveled += moveDelta.magnitude;
+		
 	}
+	#endregion
 	
+	#region Public Methods
 	/// <summary>
 	/// Modify the speed of enemy
 	/// </summary>
@@ -70,134 +102,4 @@ public class EnemyMovement : MonoBehaviour {
 		endModificationTime = Time.time + duration;
 	}
 	#endregion
-	
-	#region Private Methods
-	private void AtGoal()
-	{
-		GetComponent<Enemy>().AtGoal();
-		Destroy(this.gameObject);
-	}
-	#endregion
-	
-	#region Unity
-	// Use this for initialization
-	void Start () {
-		
-		CurrentMovement = EnemyMovementSpeed.Normal;
-		SpeedMod = SpeedMods[(int) CurrentMovement];
-		
-		global = GameObject.Find("Global").GetComponent<Global>();
-		waypoints = new Vector3[global.CurrentMap.Waypoints.Length];
-		
-		//Vector3 MoveOffset = new Vector3(Random.Range(-0.5f, 0.5f), Random.Range(-0.5f, 0.5f), 0);
-		Vector3 MoveOffset = Vector3.zero;
-		Vector3[] Mapwaypoints = global.CurrentMap.Waypoints;
-		for (int i = 0; i < waypoints.Length; i++)
-		{
-			waypoints[i] = MoveOffset + Mapwaypoints[i];
-		}
-		
-		Vector3 firstposition = waypoints[0];
-		this.transform.position = firstposition;
-		nextPoint = waypoints[1];
-		transform.up = nextPoint - transform.position;
-		
-		listPos = 1;
-	}
-	
-	// Update is called once per frame
-	void Update () {
-		
-		//Remove modification after it has expired
-		if (CurrentMovement != EnemyMovementSpeed.Normal && Time.time >= endModificationTime)
-		{
-			CurrentMovement = EnemyMovementSpeed.Normal;
-			gameObject.GetComponent<Enemy>().ResetColor();
-		}
-		
-		SpeedMod = SpeedMods[(int) CurrentMovement];
-		
-		if(Global.CurrentGameState != Global.GameState.Game)
-		{
-			return; // early out for not in playmode
-		}
-		
-		float dot = 0;
-		Vector3 currentPos = nextPoint - transform.position; //how close am I to the next waypoint? 
-		
-		if (currentPos != transform.up)// no need to rotate, object is moving in a straight line
-		{
-			dot = transform.up.x * -currentPos.y + transform.up.y * currentPos.x; //how much more do I have to rotate? 
-		}
-		
-		//once enemy gets really close to the waypoint,
-		// go to the next waypoint until there are none left, then reverse
-		if (currentPos.magnitude < distance && listPos < waypoints.GetLength(0))
-		{
-			listPos += direction;
-			if(listPos == waypoints.GetLength(0))
-			{
-				if(direction > 0)
-				{
-					ReverseWaypoints();
-					GetComponent<Enemy>().ApplyEggToCrab(EggManager.EggLocations.End);
-					listPos--;
-				}
-			}
-			if(listPos == -1)
-			{
-				AtGoal();
-			}
-			else
-			{
-				nextPoint = waypoints[listPos];
-			}
-			
-			Vector3 dir = nextPoint - transform.position; // the new vector to turn towards
-			
-			// by making dir.y negative we flip the angle 90 degrees. By doing that we can easily use to dot product to determine
-			// right or left. Normally, the dot product returns a - or + angle based on front or behind
-			dot = transform.up.x * -dir.y + transform.up.y * dir.x;
-			
-			if (dot > 0) //my next waypoint is to the right
-			{
-				//print ("b on the right of a");
-				right = true;
-			}
-			else if (dot < 0) // my next waypoint is to the left
-			{
-				left = true;
-				//print ("b on the left of a");
-			}
-		} 
-		
-		if (right && dot < 0)
-		{ 
-			//I want to turn right as long as the dot calculation doesn't go over zero (which means the object has 
-			// rotated past the waypoint it needs to go to)
-			right = false;
-			transform.up = currentPos; //makes sure we dont rotate past our destination 
-		}
-		else if (right)
-		{
-			transform.Rotate (Vector3.forward, -rotateangle * (120f * Time.smoothDeltaTime));
-		}
-		
-		if (left && dot > 0)
-		{ 
-			//exactly the same as above, but inverted
-			left = false;
-			transform.up = currentPos;
-		}
-		else if(left)
-		{
-			transform.Rotate (Vector3.forward, rotateangle * (120f * Time.smoothDeltaTime));	
-		}
-		
-		//movement operation
-		Vector3 moveDelta = (speed * SpeedMod * Time.smoothDeltaTime) * transform.up;
-		transform.position += moveDelta;
-		DistanceTraveled += moveDelta.magnitude;
-	}
-	#endregion
-}
+}	
