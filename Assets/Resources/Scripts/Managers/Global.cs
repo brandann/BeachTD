@@ -32,6 +32,7 @@ public class Global : MonoBehaviour
 	private Dictionary<int, GameObject> _towers;
 	
 	private enum WinStatus{Win, Neutral, Lose}
+	private int leveltoload = -1;
 	#endregion
 	
 	#region Public Memebers
@@ -53,20 +54,26 @@ public class Global : MonoBehaviour
 	#region Unity
 	// Use this for initialization
 	void Start () {
-		LoadMap(StartingLevel);
-
-        if (StatBar == null || PauseButton == null || PauseScreen == null)
-            Debug.LogError("missing UI ref");
-        else
-        {
-            PauseButton.SetActive(true);
-            PauseScreen.SetActive(false);
-        }
-
+		
+	}
+	
+	void Awake()
+	{
+		Debug.Log("Global Awake");
+		//LoadMap(StartingLevel);
+		DontDestroyOnLoad(this);
+		
+		
 	}
 	
 	// Update is called once per frame
 	void Update () {
+		if(Application.loadedLevelName == "Game" && leveltoload != -1)
+		{
+			LoadLevelLoader(leveltoload);
+			leveltoload = -1;
+		}
+		
 		if(enemyManager != null)
 		{
 			enemyManager.Update();
@@ -128,11 +135,16 @@ public class Global : MonoBehaviour
     		WinCond();
     	}
     }
+	public void LoadMap(int index)
+	{
+		leveltoload = index;
+	}
 	#endregion
 	
 	#region Private Methods
-	private void LoadMap(int index)
+	private void LoadLevelLoader(int index)
 	{
+		Debug.Log ("Global Level Load");
 		Initilize();
 		
 		_mapManager.LoadMap(_maps[index]);
@@ -144,6 +156,15 @@ public class Global : MonoBehaviour
 	
 	private void Initilize()
 	{
+		StatBar = GameObject.Find("ScreenCanvas").GetComponent<StatusBar>();
+		if (StatBar == null || PauseButton == null || PauseScreen == null)
+			Debug.LogError("missing UI ref");
+		else
+		{
+			PauseButton.SetActive(true);
+			PauseScreen.SetActive(false);
+		}
+		
 		CurrentGameState = GameState.Game; // TODO set this someplace else!
         
 		// Towers ------------------------------------------------------------

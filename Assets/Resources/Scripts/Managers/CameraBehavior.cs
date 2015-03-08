@@ -45,22 +45,22 @@ public class CameraBehavior : MonoBehaviour {
 			//float c_height = camera.orthographicSize;
 			//float c_width = c_height * camera.aspect;
 			float p_height = m_height;
-			float p_width = p_height * camera.aspect;
+			float p_width = p_height * GetComponent<Camera>().aspect;
 			
 			if( p_width < m_width)
 			{
 				// the lap is to long for the camera
-				this.camera.orthographicSize = (m_width / camera.aspect) / 2f;
+				this.GetComponent<Camera>().orthographicSize = (m_width / GetComponent<Camera>().aspect) / 2f;
 				
 			}
 			else
 			{
 				// the map fits into the camera
-				this.camera.orthographicSize = m_height / 2f;
+				this.GetComponent<Camera>().orthographicSize = m_height / 2f;
 			}
 			
 			//this.camera.orthographicSize += 1;
-			this.transform.position = new Vector3(((camera.orthographicSize * 2) * camera.aspect) / 2f, camera.orthographicSize, -10f);
+			this.transform.position = new Vector3(((GetComponent<Camera>().orthographicSize * 2) * GetComponent<Camera>().aspect) / 2f, GetComponent<Camera>().orthographicSize, -10f);
 			
 			
 			

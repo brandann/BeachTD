@@ -34,14 +34,14 @@ public class Enemy : MonoBehaviour
 			_hasEgg = value;
 			if(_hasEgg)
 			{
-				this.renderer.material.color = Color.red;
+				this.GetComponent<Renderer>().material.color = Color.red;
 			}
 			else
 			{
-				this.renderer.material.color = Color.white;
+				this.GetComponent<Renderer>().material.color = Color.white;
 			}
 			
-			_currentColor = this.renderer.material.color;
+			_currentColor = this.GetComponent<Renderer>().material.color;
 		}
 	}
 	#endregion
@@ -126,7 +126,7 @@ public class Enemy : MonoBehaviour
 	
 	public void ResetColor()
 	{
-		this.renderer.material.color = _currentColor;
+		this.GetComponent<Renderer>().material.color = _currentColor;
 	}
 	
 	public void AtGoal()

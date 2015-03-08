@@ -8,7 +8,7 @@ public class StartButton : MonoBehaviour {
 	
 		if(Input.touchCount > 0)
 		{
-			if(guiTexture.HitTest(Input.GetTouch(0).position))
+			if(GetComponent<GUITexture>().HitTest(Input.GetTouch(0).position))
 			{
 				// send game object OnTouchDown Message
 				// do not require the Object to have the method "OnTouchDown"

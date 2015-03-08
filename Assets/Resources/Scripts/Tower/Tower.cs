@@ -184,7 +184,7 @@ public abstract class Tower : MonoBehaviour
     {
         _anim = gameObject.GetComponent<Animator>();
 
-        _collider = (CircleCollider2D)gameObject.collider2D;
+        _collider = (CircleCollider2D)gameObject.GetComponent<Collider2D>();
 
         _previousState = TowerState.Idle;
 

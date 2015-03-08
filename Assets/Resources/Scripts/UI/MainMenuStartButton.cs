@@ -19,6 +19,7 @@ public class MainMenuStartButton : SlidingUI{
 		base.Clicked ();
 		//Credits.Slide ();
         //StartCoroutine(LoadLevel()); //Todo swap these out for release
+        GameObject.Find("Global").GetComponent<Global>().LoadMap(5);
         Application.LoadLevel(Global.Scenes.Game.ToString()); 
 	}
 
