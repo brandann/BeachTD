@@ -6,7 +6,7 @@ public class EnemyMovement : MonoBehaviour {
 	#region Public Members
 	public enum EnemyMovementSpeed {Paused = 0, Slow = 1, Normal = 2, Fast = 3}
 	public float DistanceTraveled { get; protected set; }
-	public float speed = 1;
+
 	#endregion
 	
 	#region Private members
@@ -22,11 +22,10 @@ public class EnemyMovement : MonoBehaviour {
 
 	private float speed = 1;
 	
-	private Vector3[] waypoints;
-	private Vector3 nextPoint; // the next waypoint the enemy is traveling to
+	
 	//Time.time when the current modification should be removed and normal speed should be set
 	
-	private Global global;
+	
 	
 	bool right = false; //should the enemy rotate right?
 	bool left = false; //should the enemy rotate left?
@@ -137,29 +136,6 @@ public class EnemyMovement : MonoBehaviour {
 		DistanceTraveled += moveDelta.magnitude;
 		
 	}
-	#endregion
-	
-	#region Public Methods
-	/// <summary>
-	/// Modify the speed of enemy
-	/// </summary>
-	/// <param name="mod">Type of modification to be applied</param>
-	/// <param name="duration">Lenght in seconds the modification should last</param>
-	public void UpdateSpeedMod(EnemyMovementSpeed mod, float duration)
-	{
-		Color currentColor = this.GetComponent<Renderer>().material.color;
-		if(currentColor == Color.white)
-		{
-			this.GetComponent<Renderer>().material.color = Color.blue;
-		}
-		else if(currentColor == Color.red)
-		{
-			this.GetComponent<Renderer>().material.color = new Color(125/255, 50/255, 180/255);
-		}
-		
-		CurrentMovement = mod;
-		SpeedMod = SpeedMods[(int) CurrentMovement];
-		endModificationTime = Time.time + duration;
-	}
-	#endregion
+	#endregion	
+
 }	

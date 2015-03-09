@@ -54,6 +54,14 @@ public class Global : MonoBehaviour
 	#region Unity
 	// Use this for initialization
 	void Start () {
+
+        if (StatBar == null || PauseButton == null || PauseScreen == null)
+            Debug.LogError("missing UI ref");
+        else
+        {
+            PauseButton.SetActive(true);
+            PauseScreen.SetActive(false);
+        }
 		
 	}
 	
