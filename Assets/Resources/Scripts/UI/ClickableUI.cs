@@ -14,6 +14,4 @@ public class ClickableUI : MonoBehaviour {
         if (OnButtonClicked != null)
             OnButtonClicked();
     }
-
-
 }

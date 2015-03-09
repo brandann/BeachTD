@@ -205,13 +205,8 @@ public class Global : MonoBehaviour
 				Destroy(_towers[i]);
 			}
 		}
-	}
-	
-	// this will be the pause delegate at some point...
-	private void Pause(bool pause)
-	{
-		gameObject.SetActive(pause);
-	}
+	}	
+
 	
 	private List<Map> LoadMaps()
 	{
