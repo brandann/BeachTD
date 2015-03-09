@@ -19,6 +19,66 @@ public class EnemyMovement : MonoBehaviour {
 	private float[] SpeedMods = {0f, .5f, 1f, 2f};
 	private float SpeedMod;
 	private float endModificationTime;
+
+	private float speed = 1;
+	
+	private Vector3[] waypoints;
+	private Vector3 nextPoint; // the next waypoint the enemy is traveling to
+	//Time.time when the current modification should be removed and normal speed should be set
+	
+	private Global global;
+	
+	bool right = false; //should the enemy rotate right?
+	bool left = false; //should the enemy rotate left?
+	#endregion
+	
+	#region Public Methods
+	public void ReverseWaypoints()
+	{
+		direction *= -1;
+	}
+	
+	public void ReverseDirection()
+	{
+		if(direction > 0)
+		{
+			ReverseWaypoints();
+			listPos--;
+			nextPoint = waypoints[listPos];
+		}
+		
+	}
+	
+	/// <summary>
+	/// Modify the speed of enemy
+	/// </summary>
+	/// <param name="mod">Type of modification to be applied</param>
+	/// <param name="duration">Lenght in seconds the modification should last</param>
+	public void UpdateSpeedMod(EnemyMovementSpeed mod, float duration)
+	{
+		Color currentColor = this.GetComponent<Renderer>().material.color;
+		if(currentColor == Color.white)
+		{
+			this.GetComponent<Renderer>().material.color = Color.blue;
+		}
+		else if(currentColor == Color.red)
+		{
+			this.GetComponent<Renderer>().material.color = new Color(125/255, 50/255, 180/255);
+		}
+		
+		CurrentMovement = mod;
+		SpeedMod = SpeedMods[(int) CurrentMovement];
+		endModificationTime = Time.time + duration;
+	}
+	#endregion
+	
+	#region Private Methods
+	private void AtGoal()
+	{
+		GetComponent<Enemy>().AtGoal();
+		Destroy(this.gameObject);
+	}
+
 	#endregion
 	
 	#region Unity

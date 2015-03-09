@@ -130,8 +130,7 @@ public class TouchController : MonoBehaviour {
 			if(message == touchDown)
 			{				
                 // If colliders are found at touchPos point
-                RaycastHit2D[] hits = Physics2D.RaycastAll(Camera.main.ScreenToWorldPoint(dp), Vector2.zero);                   
-              
+                RaycastHit2D[] hits = Physics2D.RaycastAll(Camera.main.ScreenToWorldPoint(dp), Vector2.zero);                              
 				
 				foreach(RaycastHit2D h in hits)
 				{
