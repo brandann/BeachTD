@@ -293,6 +293,7 @@ public class TowerUpgradeManager : MonoBehaviour
         ShowBuildButtons(showMelee, showRanged, showSlow);
     }
 
+
     private void TowerTouched(Tower tower)
     {
 
