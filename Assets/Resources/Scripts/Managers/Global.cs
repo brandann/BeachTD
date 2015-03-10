@@ -13,10 +13,7 @@ public class Global : MonoBehaviour
 
     #endregion
 
-
-    public StatusBar StatBar;
-    public GameObject PauseScreen;
-    public GameObject PauseButton;
+  
     public int LoadedLevel{get{return _loadedlevel;}}
 
 
@@ -155,10 +152,7 @@ public class Global : MonoBehaviour
 	}
 	
 	private void Initilize()
-	{
-		StatBar = GameObject.Find("ScreenCanvas").GetComponent<StatusBar>();
-		if (StatBar == null)
-			Debug.LogError("missing UI ref");
+	{		
 		
 		CurrentGameState = GameState.Game; // TODO set this someplace else!
         
