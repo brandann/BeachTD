@@ -3,23 +3,12 @@ using System.Collections;
 
 public class LevelButtonCall : MonoBehaviour {
 
-	public void LoadLevel1()
+
+	public void LoadLevel(int i)
 	{
-	
+		Debug.Log ("Load Level: " + i);
+		GameObject.Find("Global").GetComponent<Global>().LoadMap(i);
+		Application.LoadLevel(Global.Scenes.Game.ToString()); 
 	}
 	
-	public void LoadLevel2()
-	{
-		
-	}
-	
-	public void LoadLevel3()
-	{
-		
-	}
-	
-	public void LoadLevel4()
-	{
-		
-	}
 }
