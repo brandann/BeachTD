@@ -31,7 +31,10 @@ public class SlowTower : Tower
     /// </summary>
     protected override void Act()
     {
-        base.Act();              
+        base.Act();
+
+        if (_targets.Count == 0)
+            return;
 
         GameObject target = _targets[0].gameObject;
 
