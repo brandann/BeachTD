@@ -56,29 +56,41 @@ public class EnemyMovement : MonoBehaviour {
 		Vector3 currentPos = nextPoint - transform.position;
 		if(currentPos.magnitude < DistanceFromWaypoint)
 		{
-			this.transform.position = nextPoint;
-			listPos += direction;
-			if(listPos == -1)
-			{
-				GetComponent<Enemy>().AtGoal();
-				Destroy(this.gameObject);
-				return; // keeps from getting an error thrown
-			}
-			if(listPos >= waypoints.Length)
-			{
-				GetComponent<Enemy>().ApplyEggToCrab(EggManager.EggLocations.End);
-				direction = -1;
-				listPos -= 2;
-				transform.Rotate (Vector3.forward, 180);
-			}
-			nextPoint = waypoints[listPos];
+			SetCurrentWaypoint(direction);
 		}
 		
-		transform.up = nextPoint - transform.position;
 		Vector3 moveDelta = (speed * SpeedMod * Time.smoothDeltaTime) * transform.up;
 		transform.position += moveDelta;
 		DistanceTraveled += moveDelta.magnitude;
 		
+	}
+	#endregion
+	
+	#region Private Methods
+	private void SetCurrentWaypoint(int deltaIndex)
+	{
+		ResetPosition();
+		listPos += deltaIndex;
+		if(listPos == -1)
+		{
+			GetComponent<Enemy>().Kill (Enemy.EnemyDeath.AtStart);
+			Destroy(this.gameObject);
+			return; // keeps from getting an error thrown
+		}
+		else if(listPos >= waypoints.Length)
+		{
+			GetComponent<Enemy>().ApplyEggToCrab(EggManager.EggLocations.End);
+			direction = -1;
+			listPos -= 2;
+			transform.Rotate (Vector3.forward, 180);
+		}
+		nextPoint = waypoints[listPos];
+		transform.up = nextPoint - transform.position;
+	}
+	
+	private void ResetPosition()
+	{
+		this.transform.position = nextPoint;
 	}
 	#endregion
 	
@@ -103,6 +115,15 @@ public class EnemyMovement : MonoBehaviour {
 		CurrentMovement = mod;
 		SpeedMod = SpeedMods[(int) CurrentMovement];
 		endModificationTime = Time.time + duration;
+	}
+	
+	public void ReverseDirection()
+	{
+		direction = -1;
+		listPos += direction;
+		transform.Rotate (Vector3.forward, 180);
+		nextPoint = waypoints[listPos];
+		transform.up = nextPoint - transform.position;
 	}
 	#endregion
 }	

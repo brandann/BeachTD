@@ -59,11 +59,8 @@ public class Global : MonoBehaviour
 	
 	void Awake()
 	{
-		Debug.Log("Global Awake");
 		//LoadMap(StartingLevel);
 		DontDestroyOnLoad(this);
-		
-		
 	}
 	
 	// Update is called once per frame
@@ -144,7 +141,6 @@ public class Global : MonoBehaviour
 	#region Private Methods
 	private void LoadLevelLoader(int index)
 	{
-		Debug.Log ("Global Level Load");
 		Initilize();
 		
 		_mapManager.LoadMap(_maps[index]);
