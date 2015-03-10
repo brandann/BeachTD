@@ -9,9 +9,9 @@ public class Map01 : GameMap {
 			{	P,	P,	P,	P,	P,	P,	P,	P,	P,	P,	P,	P,	P,	P,	P},
 			{	P,	P,	P,	P,	P,	P,	P,	P,	P,	P,	P,	P,	P,	P,	P},
 			{	P,	P,	P,	P,	P,	P,	P,	P,	P,	P,	P,	P,	P,	P,	P},
-			{	P,	P,	T,	T,	T,	T,	T,	T,	T,	T,	T,	T,	T,	P,	P},
+			{	T,	P,	T,	P,	T,	P,	T,	P,	T,	P,	T,	P,	T,	P,	P},
 			{	0,	P,	P,	P,	P,	P,	P,	P,	P,	P,	P,	P,	P,	P,	1},
-			{	P,	P,	T,	T,	T,	T,	T,	T,	T,	T,	T,	T,	T,	P,	P},
+			{	P,	T,	P,	T,	P,	T,	P,	T,	P,	T,	P,	T,	P,	T,	P},
 			{	P,	P,	P,	P,	P,	P,	P,	P,	P,	P,	P,	P,	P,	P,	P},
 			{	P,	P,	P,	P,	P,	P,	P,	P,	P,	P,	P,	P,	P,	P,	P}	
 		};																		

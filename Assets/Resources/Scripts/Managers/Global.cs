@@ -16,6 +16,7 @@ public class Global : MonoBehaviour
     public StatusBar StatBar;
     public GameObject PauseScreen;
     public GameObject PauseButton;
+    public int LoadedLevel{get{return _loadedlevel;}}
 
 	#region Private Memebers
     //private EnemyManager enemyManager;
@@ -33,6 +34,7 @@ public class Global : MonoBehaviour
 	
 	private enum WinStatus{Win, Neutral, Lose}
 	private int leveltoload = -1;
+	private int _loadedlevel;
 	#endregion
 	
 	#region Public Memebers
@@ -135,6 +137,7 @@ public class Global : MonoBehaviour
 	public void LoadMap(int index)
 	{
 		leveltoload = index;
+		_loadedlevel = index;
 	}
 	#endregion
 	

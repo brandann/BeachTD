@@ -6,8 +6,9 @@ public class LevelButtonCall : MonoBehaviour {
 
 	public void LoadLevel(int i)
 	{
-		Debug.Log ("Load Level: " + i);
-		GameObject.Find("Global").GetComponent<Global>().LoadMap(i);
+		int level = i - 1;
+		Debug.Log ("Load Level: " + level);
+		GameObject.Find("Global").GetComponent<Global>().LoadMap(level);
 		Application.LoadLevel(Global.Scenes.Game.ToString()); 
 	}
 	

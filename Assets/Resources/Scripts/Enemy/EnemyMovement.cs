@@ -119,11 +119,14 @@ public class EnemyMovement : MonoBehaviour {
 	
 	public void ReverseDirection()
 	{
-		direction = -1;
-		listPos += direction;
-		transform.Rotate (Vector3.forward, 180);
-		nextPoint = waypoints[listPos];
-		transform.up = nextPoint - transform.position;
+		if(direction > 0)
+		{
+			direction = -1;
+			listPos += direction;
+			transform.Rotate (Vector3.forward, 180);
+			nextPoint = waypoints[listPos];
+			transform.up = nextPoint - transform.position;
+		}
 	}
 	#endregion
 }	

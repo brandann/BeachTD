@@ -200,7 +200,7 @@ RectTransform:
   m_Children:
   - {fileID: 1978861865}
   m_Father: {fileID: 1347506215}
-  m_RootOrder: 16
+  m_RootOrder: 15
   m_AnchorMin: {x: .5, y: .5}
   m_AnchorMax: {x: .5, y: .5}
   m_AnchoredPosition: {x: -39, y: -50}
@@ -643,7 +643,7 @@ RectTransform:
   m_Children:
   - {fileID: 1649466192}
   m_Father: {fileID: 1347506215}
-  m_RootOrder: 18
+  m_RootOrder: 17
   m_AnchorMin: {x: .5, y: .5}
   m_AnchorMax: {x: .5, y: .5}
   m_AnchoredPosition: {x: -44, y: -154}
@@ -1260,7 +1260,7 @@ RectTransform:
   m_Children:
   - {fileID: 1391967733}
   m_Father: {fileID: 1347506215}
-  m_RootOrder: 15
+  m_RootOrder: 13
   m_AnchorMin: {x: .5, y: .5}
   m_AnchorMax: {x: .5, y: .5}
   m_AnchoredPosition: {x: 9, y: -154}
@@ -1926,7 +1926,7 @@ RectTransform:
   m_Children:
   - {fileID: 246210861}
   m_Father: {fileID: 1347506215}
-  m_RootOrder: 4
+  m_RootOrder: 18
   m_AnchorMin: {x: .5, y: .5}
   m_AnchorMax: {x: .5, y: .5}
   m_AnchoredPosition: {x: -132, y: -154}
@@ -2479,7 +2479,7 @@ RectTransform:
   m_Children:
   - {fileID: 1729340796}
   m_Father: {fileID: 1347506215}
-  m_RootOrder: 11
+  m_RootOrder: 4
   m_AnchorMin: {x: .5, y: .5}
   m_AnchorMax: {x: .5, y: .5}
   m_AnchoredPosition: {x: 178, y: -50}
@@ -2599,7 +2599,7 @@ RectTransform:
   m_Children:
   - {fileID: 1649258755}
   m_Father: {fileID: 1347506215}
-  m_RootOrder: 22
+  m_RootOrder: 23
   m_AnchorMin: {x: .5, y: .5}
   m_AnchorMax: {x: .5, y: .5}
   m_AnchoredPosition: {x: 2, y: 62}
@@ -3283,7 +3283,7 @@ RectTransform:
   m_Children:
   - {fileID: 558123962}
   m_Father: {fileID: 1347506215}
-  m_RootOrder: 10
+  m_RootOrder: 5
   m_AnchorMin: {x: .5, y: .5}
   m_AnchorMax: {x: .5, y: .5}
   m_AnchoredPosition: {x: 179, y: 62}
@@ -3657,7 +3657,7 @@ RectTransform:
   m_Children:
   - {fileID: 1227553339}
   m_Father: {fileID: 1347506215}
-  m_RootOrder: 12
+  m_RootOrder: 10
   m_AnchorMin: {x: .5, y: .5}
   m_AnchorMax: {x: .5, y: .5}
   m_AnchoredPosition: {x: 177, y: -154}
@@ -4250,7 +4250,7 @@ RectTransform:
   m_Children:
   - {fileID: 261927382}
   m_Father: {fileID: 1347506215}
-  m_RootOrder: 13
+  m_RootOrder: 11
   m_AnchorMin: {x: .5, y: .5}
   m_AnchorMax: {x: .5, y: .5}
   m_AnchoredPosition: {x: 47, y: -50}
@@ -4371,26 +4371,26 @@ RectTransform:
   - {fileID: 336703564}
   - {fileID: 1694264162}
   - {fileID: 347500808}
-  - {fileID: 535727607}
-  - {fileID: 2009281235}
+  - {fileID: 699899504}
+  - {fileID: 1016489384}
   - {fileID: 2112674728}
   - {fileID: 255036121}
   - {fileID: 1516035812}
   - {fileID: 1487485746}
-  - {fileID: 1016489384}
-  - {fileID: 699899504}
   - {fileID: 1164494028}
   - {fileID: 1308185071}
-  - {fileID: 1297438136}
+  - {fileID: 2009281235}
   - {fileID: 384733654}
+  - {fileID: 1297438136}
   - {fileID: 9972112}
   - {fileID: 1921142874}
   - {fileID: 219599206}
+  - {fileID: 535727607}
   - {fileID: 1903265363}
   - {fileID: 1783656349}
   - {fileID: 509922833}
-  - {fileID: 727386373}
   - {fileID: 2124482085}
+  - {fileID: 727386373}
   - {fileID: 1230845401}
   - {fileID: 1772525558}
   - {fileID: 451029774}
@@ -6178,7 +6178,7 @@ RectTransform:
   m_Children:
   - {fileID: 525149052}
   m_Father: {fileID: 1347506215}
-  m_RootOrder: 17
+  m_RootOrder: 16
   m_AnchorMin: {x: .5, y: .5}
   m_AnchorMax: {x: .5, y: .5}
   m_AnchoredPosition: {x: 47, y: -154}
@@ -6617,7 +6617,7 @@ RectTransform:
   m_Children:
   - {fileID: 698434040}
   m_Father: {fileID: 1347506215}
-  m_RootOrder: 5
+  m_RootOrder: 12
   m_AnchorMin: {x: .5, y: .5}
   m_AnchorMax: {x: .5, y: .5}
   m_AnchoredPosition: {x: -126, y: 62}
@@ -7051,7 +7051,7 @@ RectTransform:
   m_Children:
   - {fileID: 423407049}
   m_Father: {fileID: 1347506215}
-  m_RootOrder: 23
+  m_RootOrder: 22
   m_AnchorMin: {x: .5, y: .5}
   m_AnchorMax: {x: .5, y: .5}
   m_AnchoredPosition: {x: 89, y: -50}

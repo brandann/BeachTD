@@ -14,7 +14,16 @@ public class LoadMenu : MonoBehaviour {
 	void Update () {
 		if ((Time.realtimeSinceStartup - _spawntimedinterval) > 3)
 		{
-			Application.LoadLevel(Global.Scenes.Menu.ToString());
+			Global myGlobal = GameObject.Find("Global").GetComponent<Global>();
+			if(myGlobal != null)
+			{
+				int nextLevel = myGlobal.LoadedLevel + 1;
+				if(nextLevel <= 24)
+				{
+					myGlobal.LoadMap(nextLevel);
+					Application.LoadLevel(Global.Scenes.Game.ToString());
+				}
+			}
 		}
 	}
 }
