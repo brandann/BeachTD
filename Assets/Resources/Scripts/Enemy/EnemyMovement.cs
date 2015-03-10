@@ -6,7 +6,7 @@ public class EnemyMovement : MonoBehaviour {
 	#region Public Members
 	public enum EnemyMovementSpeed {Paused = 0, Slow = 1, Normal = 2, Fast = 3}
 	public float DistanceTraveled { get; protected set; }
-	public float speed = 1;
+	public float speed;
 	#endregion
 	
 	#region Private members
@@ -19,11 +19,13 @@ public class EnemyMovement : MonoBehaviour {
 	private float[] SpeedMods = {0f, .5f, 1f, 2f};
 	private float SpeedMod;
 	private float endModificationTime;
+	private float DistanceFromWaypoint;
 	#endregion
 	
 	#region Unity
 	// Use this for initialization
 	void Start () {
+		DistanceFromWaypoint = speed * 0.02f;
 		global = GameObject.Find("Global").GetComponent<Global>();
 		CurrentMovement = EnemyMovementSpeed.Normal;
 		SpeedMod = SpeedMods[(int) CurrentMovement];
@@ -52,8 +54,9 @@ public class EnemyMovement : MonoBehaviour {
 		SpeedMod = SpeedMods[(int) CurrentMovement];
 		
 		Vector3 currentPos = nextPoint - transform.position;
-		if(currentPos.magnitude < .1f)
+		if(currentPos.magnitude < DistanceFromWaypoint)
 		{
+			this.transform.position = nextPoint;
 			listPos += direction;
 			if(listPos == -1)
 			{
