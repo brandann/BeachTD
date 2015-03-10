@@ -44,7 +44,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e297a0e06ff1346b1b0d3c057aab6111, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  StatBar: {fileID: 0}
   EggPrefab: {fileID: 100000, guid: 60120948cf0bd439da6e22f973d49f3e, type: 2}
   StartingLevel: 5
   RandomEnemySpawnLow: 1.5
@@ -63,6 +62,7 @@ MonoBehaviour:
   MeleePrefab: {fileID: 188216, guid: 16759b14245e82c459d24e20f90a4a0d, type: 2}
   RangedPrefab: {fileID: 100000, guid: 77f5f423a6f6244019589da343170d08, type: 2}
   SlowPrefab: {fileID: 100000, guid: 16cd5ec2a267bbe46add22942a75c962, type: 2}
+  PathPrefab: {fileID: 153392, guid: 5828b5fa2dfc9144db90caa0bb69b0ba, type: 2}
 --- !u!114 &11400004
 MonoBehaviour:
   m_ObjectHideFlags: 1

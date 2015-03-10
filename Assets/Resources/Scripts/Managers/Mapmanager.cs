@@ -35,10 +35,12 @@ public class MapManager{
 		{
 			for (int j = 0; j < map.GetLength(1); j++)
 			{
-				if (map[i,j])
-				{
-					makeSpace(j, i);
-				}
+                if (map[i, j])
+                {
+                    makeSpace(j, i);
+                }
+                else
+                    makePath(j, i);
 			}
 		}
 	}
@@ -47,5 +49,10 @@ public class MapManager{
 	{
 		global.SpawnTower(OpenSpace, new Vector3(i + .5f, j + .5f, 0));
 	}
+
+    private void makePath(int i, int j)
+    {
+        TowerFactory.Instance.CreatePathSquare().transform.position = new Vector3(i + .5f, j + .5f, 0);
+    }
 	#endregion
 }

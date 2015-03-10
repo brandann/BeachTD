@@ -3,9 +3,9 @@ using System.Collections;
 
 public class OpenAreaBehavior : MonoBehaviour {
 
-    public delegate void OpenAreaHandler(OpenAreaBehavior area);
+    public delegate void OpenAreaTouched(OpenAreaBehavior area);
 
-    public static event OpenAreaHandler onAreaTouched;
+    public static event OpenAreaTouched onAreaTouched;
 
     public void OnTouchDown()
     {

@@ -10,6 +10,7 @@ public class TowerFactory : MonoBehaviour
     public GameObject MeleePrefab;
     public GameObject RangedPrefab;
     public GameObject SlowPrefab;
+    public GameObject PathPrefab;
 
     public static TowerFactory Instance
     {
@@ -88,6 +89,11 @@ public class TowerFactory : MonoBehaviour
 		TowersDispensed++;
         _deployedTowers.Add(towerToReturn);
         return towerToReturn;
+    }
+
+    public GameObject CreatePathSquare()
+    {
+        return Instantiate(PathPrefab);
     }
     
     void Awake()

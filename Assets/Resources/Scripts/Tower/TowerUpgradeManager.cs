@@ -82,13 +82,15 @@ public class TowerUpgradeManager : MonoBehaviour
     {
         Tower.onTowerTouched += TowerTouched;
         OpenAreaBehavior.onAreaTouched += OpenAreaTouched;
+        Path.OnPathTouched += HandlePathTouched;
         
     }
 
     void OnDisable()
     {
         Tower.onTowerTouched -= TowerTouched;
-        OpenAreaBehavior.onAreaTouched -= OpenAreaTouched;        
+        OpenAreaBehavior.onAreaTouched -= OpenAreaTouched;
+        Path.OnPathTouched -= HandlePathTouched;
     }
 
     #endregion
@@ -460,7 +462,11 @@ public class TowerUpgradeManager : MonoBehaviour
         MenuActive = false;
     }
 
-
+    private void HandlePathTouched()
+    {
+        ShowBuildButtons();
+        ShowUpgradeButtons();
+    }
     
 	
 }
