@@ -16,11 +16,11 @@ public class TowerFactory : MonoBehaviour
     {
         get
         {
-            if (mInstance == null)
+            if (_instance == null)
             {
-                mInstance = GameObject.FindObjectOfType<TowerFactory>();
+                _instance = GameObject.FindObjectOfType<TowerFactory>();
             }
-            return mInstance;
+            return _instance;
         }
     }
 
@@ -103,7 +103,7 @@ public class TowerFactory : MonoBehaviour
     }
 
     //The towerfactory singleton
-    private static TowerFactory mInstance;
+    private static TowerFactory _instance;
 
     //Cached towers ready to be deployed
     private static Queue<GameObject>[] _Pool;
@@ -164,7 +164,7 @@ public class TowerFactory : MonoBehaviour
 
     }
 
-    void OnLevelWasLoaded()
+    void OnLevelWasLoaded(int lvl)
     {
         RecycleAllDeployed();
     }
