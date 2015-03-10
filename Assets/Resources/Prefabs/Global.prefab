@@ -45,8 +45,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   StatBar: {fileID: 0}
-  PauseScreen: {fileID: 0}
-  PauseButton: {fileID: 0}
   EggPrefab: {fileID: 100000, guid: 60120948cf0bd439da6e22f973d49f3e, type: 2}
   StartingLevel: 5
   RandomEnemySpawnLow: 1.5
@@ -91,6 +89,16 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: acd9fb0f90e5ba143a85b8e8d4285b7c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  _global: {fileID: 0}
+  _managerObjects: []
+  _startingPosition: {x: 0, y: 0, z: 0}
+  _currentWaveIndex: 0
+  _waveIndex: 0
+  delay: 0
+  EnemyA0Prefab: {fileID: 0}
+  EnemyB0Prefab: {fileID: 0}
+  EnemyC0Prefab: {fileID: 0}
+  _spawntimedinterval: 0
 --- !u!114 &11473388
 MonoBehaviour:
   m_ObjectHideFlags: 1

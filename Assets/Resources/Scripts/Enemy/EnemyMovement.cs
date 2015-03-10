@@ -6,7 +6,7 @@ public class EnemyMovement : MonoBehaviour {
 	#region Public Members
 	public enum EnemyMovementSpeed {Paused = 0, Slow = 1, Normal = 2, Fast = 3}
 	public float DistanceTraveled { get; protected set; }
-
+	public float speed;
 	#endregion
 	
 	#region Private members
@@ -19,70 +19,13 @@ public class EnemyMovement : MonoBehaviour {
 	private float[] SpeedMods = {0f, .5f, 1f, 2f};
 	private float SpeedMod;
 	private float endModificationTime;
-
-	private float speed = 1;
-	
-	
-	//Time.time when the current modification should be removed and normal speed should be set
-	
-	
-	
-	bool right = false; //should the enemy rotate right?
-	bool left = false; //should the enemy rotate left?
-	#endregion
-	
-	#region Public Methods
-	public void ReverseWaypoints()
-	{
-		direction *= -1;
-	}
-	
-	public void ReverseDirection()
-	{
-		if(direction > 0)
-		{
-			ReverseWaypoints();
-			listPos--;
-			nextPoint = waypoints[listPos];
-		}
-		
-	}
-	
-	/// <summary>
-	/// Modify the speed of enemy
-	/// </summary>
-	/// <param name="mod">Type of modification to be applied</param>
-	/// <param name="duration">Lenght in seconds the modification should last</param>
-	public void UpdateSpeedMod(EnemyMovementSpeed mod, float duration)
-	{
-		Color currentColor = this.GetComponent<Renderer>().material.color;
-		if(currentColor == Color.white)
-		{
-			this.GetComponent<Renderer>().material.color = Color.blue;
-		}
-		else if(currentColor == Color.red)
-		{
-			this.GetComponent<Renderer>().material.color = new Color(125/255, 50/255, 180/255);
-		}
-		
-		CurrentMovement = mod;
-		SpeedMod = SpeedMods[(int) CurrentMovement];
-		endModificationTime = Time.time + duration;
-	}
-	#endregion
-	
-	#region Private Methods
-	private void AtGoal()
-	{
-		GetComponent<Enemy>().AtGoal();
-		Destroy(this.gameObject);
-	}
-
+	private float DistanceFromWaypoint;
 	#endregion
 	
 	#region Unity
 	// Use this for initialization
 	void Start () {
+		DistanceFromWaypoint = speed * 0.02f;
 		global = GameObject.Find("Global").GetComponent<Global>();
 		CurrentMovement = EnemyMovementSpeed.Normal;
 		SpeedMod = SpeedMods[(int) CurrentMovement];
@@ -111,31 +54,79 @@ public class EnemyMovement : MonoBehaviour {
 		SpeedMod = SpeedMods[(int) CurrentMovement];
 		
 		Vector3 currentPos = nextPoint - transform.position;
-		if(currentPos.magnitude < .1f)
+		if(currentPos.magnitude < DistanceFromWaypoint)
 		{
-			listPos += direction;
-			if(listPos == -1)
-			{
-				GetComponent<Enemy>().AtGoal();
-				Destroy(this.gameObject);
-				return; // keeps from getting an error thrown
-			}
-			if(listPos >= waypoints.Length)
-			{
-				GetComponent<Enemy>().ApplyEggToCrab(EggManager.EggLocations.End);
-				direction = -1;
-				listPos -= 2;
-				transform.Rotate (Vector3.forward, 180);
-			}
-			nextPoint = waypoints[listPos];
+			SetCurrentWaypoint(direction);
 		}
 		
-		transform.up = nextPoint - transform.position;
 		Vector3 moveDelta = (speed * SpeedMod * Time.smoothDeltaTime) * transform.up;
 		transform.position += moveDelta;
 		DistanceTraveled += moveDelta.magnitude;
 		
 	}
-	#endregion	
-
+	#endregion
+	
+	#region Private Methods
+	private void SetCurrentWaypoint(int deltaIndex)
+	{
+		ResetPosition();
+		listPos += deltaIndex;
+		if(listPos == -1)
+		{
+			GetComponent<Enemy>().Kill (Enemy.EnemyDeath.AtStart);
+			Destroy(this.gameObject);
+			return; // keeps from getting an error thrown
+		}
+		else if(listPos >= waypoints.Length)
+		{
+			GetComponent<Enemy>().ApplyEggToCrab(EggManager.EggLocations.End);
+			direction = -1;
+			listPos -= 2;
+			transform.Rotate (Vector3.forward, 180);
+		}
+		nextPoint = waypoints[listPos];
+		transform.up = nextPoint - transform.position;
+	}
+	
+	private void ResetPosition()
+	{
+		this.transform.position = nextPoint;
+	}
+	#endregion
+	
+	#region Public Methods
+	/// <summary>
+	/// Modify the speed of enemy
+	/// </summary>
+	/// <param name="mod">Type of modification to be applied</param>
+	/// <param name="duration">Lenght in seconds the modification should last</param>
+	public void UpdateSpeedMod(EnemyMovementSpeed mod, float duration)
+	{
+		Color currentColor = this.GetComponent<Renderer>().material.color;
+		if(currentColor == Color.white)
+		{
+			this.GetComponent<Renderer>().material.color = Color.blue;
+		}
+		else if(currentColor == Color.red)
+		{
+			this.GetComponent<Renderer>().material.color = new Color(125/255, 50/255, 180/255);
+		}
+		
+		CurrentMovement = mod;
+		SpeedMod = SpeedMods[(int) CurrentMovement];
+		endModificationTime = Time.time + duration;
+	}
+	
+	public void ReverseDirection()
+	{
+		if(direction > 0)
+		{
+			direction = -1;
+			listPos += direction;
+			transform.Rotate (Vector3.forward, 180);
+			nextPoint = waypoints[listPos];
+			transform.up = nextPoint - transform.position;
+		}
+	}
+	#endregion
 }	

@@ -18,6 +18,7 @@ public class Enemy : MonoBehaviour
     #region Public Members
     public float Health;
 	public enum EnemyState { Active, Stunned, Dying }
+	public enum EnemyDeath { AtStart, ByTower}
 	public EnemyState CurrentEnemyState;
 	public Global global;
     public int EnemyKillValue;
@@ -66,7 +67,7 @@ public class Enemy : MonoBehaviour
 		}
 		if(Health <= 0)
 		{
-			Dead();
+			Kill (EnemyDeath.ByTower);
 		}
 	}
 	#endregion
@@ -104,7 +105,7 @@ public class Enemy : MonoBehaviour
 		{
 			HasEgg = true;
 			global.eggManager.TransferEgg(EggManager.EggLocations.Path, EggManager.EggLocations.Enemy);
-			//this.GetComponent<EnemyMovement>().ReverseDirection();
+			this.GetComponent<EnemyMovement>().ReverseDirection();
 		}
 	}
 	
@@ -113,15 +114,13 @@ public class Enemy : MonoBehaviour
 		Health -= damage;
 		if(Health <= 0)
 		{
-			Dead();
-			//dead
-			Destroy(this.gameObject);			
+			Kill (EnemyDeath.ByTower);			
 		}
 	}
 	
 	public void OnTouchDown()
 	{
-		Dead();
+		Kill();
 	}
 	
 	public void ResetColor()
@@ -129,33 +128,26 @@ public class Enemy : MonoBehaviour
 		this.GetComponent<Renderer>().material.color = _currentColor;
 	}
 	
-	public void AtGoal()
+	public void Kill(EnemyDeath ED = EnemyDeath.ByTower)
 	{
-		if(HasEgg)
+		if(ED == EnemyDeath.ByTower)
 		{
-			global.eggManager.TransferEgg(EggManager.EggLocations.Enemy, EggManager.EggLocations.Start);
+			if(HasEgg)
+			{
+				global.eggManager.DropEgg(this.transform.position);
+			}
+			
+			GameObject prefab = Resources.Load("Prefabs/temp-pow") as GameObject;
+			GameObject SpawnedPrefab = Instantiate(prefab) as GameObject;
+			SpawnedPrefab.transform.position = this.transform.position;
 		}
-		
-		Kill();
-	}
-	#endregion
-	
-	#region Private Methods
-	private void Dead()
-	{
-		if(HasEgg)
+		else if(ED == EnemyDeath.AtStart)
 		{
-			global.eggManager.DropEgg(this.transform.position);
+			if(HasEgg)
+			{
+				global.eggManager.TransferEgg(EggManager.EggLocations.Enemy, EggManager.EggLocations.Start);
+			}
 		}
-		
-		Kill();
-	}
-	
-	private void Kill()
-	{
-		GameObject prefab = Resources.Load("Prefabs/temp-pow") as GameObject;
-		GameObject SpawnedPrefab = Instantiate(prefab) as GameObject;
-		SpawnedPrefab.transform.position = this.transform.position;
 		
 		if (ThisEnemyDied != null)
 			ThisEnemyDied(this);
@@ -165,6 +157,10 @@ public class Enemy : MonoBehaviour
 		
 		global.enemyManager.Remove(this.gameObject);
 	}
+	#endregion
+	
+	#region Private Methods
+
 	
 	private void OnCollisionEnter2D(Collision2D collision)
 	{
