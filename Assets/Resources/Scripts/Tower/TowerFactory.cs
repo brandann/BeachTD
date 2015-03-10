@@ -50,6 +50,12 @@ public class TowerFactory : MonoBehaviour
     /// <returns>Initialized tower of the type passed in</returns>
     public Tower CreateTower(Tower tower)
     {
+        if (tower == null)
+        {
+            Debug.LogError("Can't create null tower");
+            return null;
+        }
+
         int towerIndex;
         _TypeIndex.TryGetValue(tower.GetType(), out towerIndex);
 
@@ -80,12 +86,14 @@ public class TowerFactory : MonoBehaviour
 
         towerToReturn.gameObject.SetActive(true);        
 		TowersDispensed++;
+        _deployedTowers.Add(towerToReturn);
         return towerToReturn;
     }
     
     void Awake()
     {
         InitializeFactory();
+        Debug.Log("initialize factory");
     }
 
     //The towerfactory singleton
@@ -102,6 +110,8 @@ public class TowerFactory : MonoBehaviour
    
     private List<GameObject> _Prefabs;
 
+    private List<Tower> _deployedTowers;
+
 
     /// <summary>
     /// Fill enemy pools with new enemies.
@@ -113,7 +123,7 @@ public class TowerFactory : MonoBehaviour
         _Prefabs.Add( RangedPrefab );
         _Prefabs.Add( SlowPrefab );
 
-       
+        _deployedTowers = new List<Tower>();               
     
         _TypeIndex = new Dictionary<Type, int>();
         
@@ -130,6 +140,7 @@ public class TowerFactory : MonoBehaviour
                     Debug.LogError("Shouldn't insert null into queue");
 
                 _Pool[i].Enqueue(tmp);
+                DontDestroyOnLoad(tmp); 
             }
 
         }
@@ -145,6 +156,19 @@ public class TowerFactory : MonoBehaviour
             if (_Pool [i].Count == 0)
                 Debug.LogError("Missing i: " + i);
 
+    }
+
+    void OnLevelWasLoaded()
+    {
+        RecycleAllDeployed();
+    }
+
+    private void RecycleAllDeployed()
+    {
+        foreach (Tower t in _deployedTowers)
+            RecycleTower(t);
+
+        _deployedTowers.Clear();
     }
     
 

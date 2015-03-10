@@ -2,13 +2,13 @@
 using System.Collections;
 using System.Collections.Generic;
 
-public abstract class ManagerBase {
+public abstract class ManagerBase{
 
 	protected Global _global;
 	protected List<GameObject> _managerObjects;
 	protected Vector3 _startingPosition = Vector3.zero;
 	public Vector3 StartingPosition{ get {return _startingPosition;} }
-	
+
 	public ManagerBase()
 	{
 		_managerObjects = new List<GameObject>();

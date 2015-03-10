@@ -10,6 +10,8 @@ public class PauseButton : ClickableUI {
         _global = GameObject.Find("Global").GetComponent<Global>();
         if (_global == null)
             Debug.LogError("Can't find global");
+
+        gameObject.SetActive(true); 
     }
 
     private void HandlePause()
@@ -28,7 +30,7 @@ public class PauseButton : ClickableUI {
         Global.OnGameResumed += HandleResume;
     }
 
-    void OnDisable()
+    void OnDestroy()
     {
         Global.OnGamePaused -= HandlePause;
         Global.OnGameResumed -= HandleResume;

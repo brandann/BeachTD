@@ -11,7 +11,7 @@ public class PointsDispensor : MonoBehaviour {
     private int poolDepth = 10;
 
 	// Use this for initialization
-	void Start () {
+	void Start () {        
 
         _points = new Queue<GameObject>(poolDepth);
 
@@ -21,7 +21,8 @@ public class PointsDispensor : MonoBehaviour {
             GameObject points = Instantiate(PointsPrefab) as GameObject;
             points.SetActive(false);
             _points.Enqueue(points);
-        }
+            DontDestroyOnLoad(points);
+        }        
 	
 	}
 

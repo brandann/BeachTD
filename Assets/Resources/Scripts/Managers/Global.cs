@@ -13,9 +13,7 @@ public class Global : MonoBehaviour
 
     #endregion
 
-    public StatusBar StatBar;
-    public GameObject PauseScreen;
-    public GameObject PauseButton;
+    public StatusBar StatBar;    
 
 	#region Private Memebers
     //private EnemyManager enemyManager;
@@ -54,17 +52,14 @@ public class Global : MonoBehaviour
 	#region Unity
 	// Use this for initialization
 	void Start () {
-
-        if (OnGameResumed != null)
-            OnGameResumed();		
+       
 	}
 	
 	void Awake()
 	{
 		Debug.Log("Global Awake");
 		//LoadMap(StartingLevel);
-		DontDestroyOnLoad(this);
-		
+		DontDestroyOnLoad(this);		
 		
 	}
 	
@@ -107,8 +102,7 @@ public class Global : MonoBehaviour
     public void PauseGame()
     {
         Time.timeScale = 0;
-        PauseScreen.SetActive(true);
-        PauseButton.SetActive(false);
+        
         
         //Inform subscribers of pause event
         if (OnGamePaused != null)
@@ -116,13 +110,11 @@ public class Global : MonoBehaviour
     }
 
     public void ResumeGame()
-    {
-        PauseScreen.SetActive(false);
-        Time.timeScale = 1;
-        PauseButton.SetActive(true);
+    {        
+        Time.timeScale = 1;        
 
         //Inform subscribers of resume event
-        if (OnGamePaused != null)
+        if (OnGameResumed != null)
             OnGameResumed();
     }
     
@@ -159,13 +151,8 @@ public class Global : MonoBehaviour
 	private void Initilize()
 	{
 		StatBar = GameObject.Find("ScreenCanvas").GetComponent<StatusBar>();
-		if (StatBar == null || PauseButton == null || PauseScreen == null)
+		if (StatBar == null)
 			Debug.LogError("missing UI ref");
-		else
-		{
-			PauseButton.SetActive(true);
-			PauseScreen.SetActive(false);
-		}
 		
 		CurrentGameState = GameState.Game; // TODO set this someplace else!
         
