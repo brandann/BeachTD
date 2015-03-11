@@ -37,7 +37,7 @@ public class Global : MonoBehaviour
 	private Dictionary<int, GameObject> _towers;
 	
 	private enum WinStatus{Win, Neutral, Lose}
-	private int leveltoload = -1;
+	private int leveltoload = 0;
 	private int _loadedlevel;
 	#endregion
 	
@@ -68,13 +68,19 @@ public class Global : MonoBehaviour
         //Only one global needed
         if (GlobalCreated)
         {
-            Destroy(this);
+            Destroy(this.gameObject);
             return;
         }
         else
         {
             DontDestroyOnLoad(this);
-            GlobalCreated = true;
+            GlobalCreated = true;          
+        }
+
+        //Not starting from main menu
+        if (Application.loadedLevel != 0)
+        {
+            LoadLevelLoader(leveltoload);
         }
            
 
