@@ -15,7 +15,7 @@ public class Global : MonoBehaviour
     #endregion
 
   
-    public const int MaxLevels = 24;
+    public const int MaxLevels = 25;
 
     public int LoadedLevel{get{return _loadedlevel;}}
 
@@ -71,17 +71,21 @@ public class Global : MonoBehaviour
 	
 	// Update is called once per frame
 	void Update () {
-		if(Application.loadedLevelName == "Game" && leveltoload != -1)
-		{
-			LoadLevelLoader(leveltoload);
-			leveltoload = -1;
-		}
+		
 		
 		if(enemyManager != null)
 		{
 			enemyManager.Update();
 		}
 	}
+
+    void OnLevelWasLoaded(int lvl)
+    {
+        if (Application.loadedLevelName == "Game" )
+        {
+            LoadLevelLoader(leveltoload);           
+        }
+    }
 	#endregion
 	
 	#region Towers
@@ -229,7 +233,7 @@ public class Global : MonoBehaviour
 	
 	private void LoseCond()
 	{
-		Application.LoadLevel(Global.Scenes.Lose.ToString());
+		
 	}
 	#endregion
 }
