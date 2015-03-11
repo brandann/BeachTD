@@ -1,21 +1,21 @@
 ﻿using UnityEngine;
 using System.Collections;
 
-public class ResumeButton : ClickableUI {
+public class NextLevel : ClickableUI {
 
-    void Start() 
+    private Global _global;
+
+    void Start()
     {
         _global = GameObject.Find("Global").GetComponent<Global>();
-        if (_global == null)
-            Debug.LogError("Can't find _global");
     }
+    
+
 
     public override void Clicked()
     {
         base.Clicked();
-        _global.ResumeGame();
+        _global.LoadMap(_global.LoadedLevel + 1);
+        Application.LoadLevel(Global.Scenes.Game.ToString());
     }
-
-    private Global _global;
-
 }

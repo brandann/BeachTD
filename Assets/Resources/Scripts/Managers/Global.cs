@@ -10,10 +10,13 @@ public class Global : MonoBehaviour
     public delegate void GameStateChanged();
     public static event GameStateChanged OnGamePaused;
     public static event GameStateChanged OnGameResumed;
+    public static event GameStateChanged OnGameWon;
 
     #endregion
 
   
+    public const int MaxLevels = 24;
+
     public int LoadedLevel{get{return _loadedlevel;}}
 
 
@@ -220,7 +223,8 @@ public class Global : MonoBehaviour
 	
 	private void WinCond()
 	{
-		Application.LoadLevel(Global.Scenes.Win.ToString());
+        if (OnGameWon != null)
+            OnGameWon();
 	}
 	
 	private void LoseCond()

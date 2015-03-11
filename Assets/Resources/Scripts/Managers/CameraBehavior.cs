@@ -4,14 +4,14 @@ using System.Collections;
 public class CameraBehavior : MonoBehaviour {
 
 	private bool zoom = false;
-	//Global global;
+	//Global _global;
 	float speed = .0001f;
 	Vector2 lasttouch;
 
 	// Use this for initialization
 	void Start () 
 	{
-		//global = GameObject.Find("Global").GetComponent<Global>();
+		//_global = GameObject.Find("Global").GetComponent<Global>();
 	}
 	
 	// Update is called once per frame
