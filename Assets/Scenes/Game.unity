@@ -1257,6 +1257,7 @@ GameObject:
   - 222: {fileID: 1791889474}
   - 114: {fileID: 1791889473}
   - 114: {fileID: 1791889472}
+  - 114: {fileID: 1791889475}
   m_Layer: 5
   m_Name: MainMenuButton
   m_TagString: upgradebutton
@@ -1322,7 +1323,7 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 0}
+      - m_Target: {fileID: 1791889475}
         m_MethodName: Clicked
         m_Mode: 1
         m_Arguments:
@@ -1365,6 +1366,17 @@ CanvasRenderer:
     type: 2}
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 1791889470}
+--- !u!114 &1791889475
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1791889470}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4f3716717e66768468ac768913f2d422, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &1802257422
 GameObject:
   m_ObjectHideFlags: 0
@@ -1517,7 +1529,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!114 &2025847817
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1786,6 +1798,7 @@ GameObject:
   - 222: {fileID: 2143498968}
   - 114: {fileID: 2143498967}
   - 114: {fileID: 2143498966}
+  - 114: {fileID: 2143498969}
   m_Layer: 5
   m_Name: ReplayLevelButton
   m_TagString: upgradebutton
@@ -1851,7 +1864,7 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 0}
+      - m_Target: {fileID: 2143498969}
         m_MethodName: Clicked
         m_Mode: 1
         m_Arguments:
@@ -1894,6 +1907,17 @@ CanvasRenderer:
     type: 2}
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 2143498964}
+--- !u!114 &2143498969
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 2143498964}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f56b3f9f57a375443abc06dc816649cd, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &2143939091
 GameObject:
   m_ObjectHideFlags: 0
