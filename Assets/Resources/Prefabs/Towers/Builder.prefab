@@ -665,8 +665,8 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 11400036}
-        m_MethodName: BuildMelee
+      - m_Target: {fileID: 11404020}
+        m_MethodName: Clicked
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -677,8 +677,8 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
-      - m_Target: {fileID: 11404020}
-        m_MethodName: Clicked
+      - m_Target: {fileID: 11400036}
+        m_MethodName: BuildMelee
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}

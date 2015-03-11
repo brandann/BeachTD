@@ -291,6 +291,19 @@ public class TowerUpgradeManager : MonoBehaviour
         ShowBuildButtons(showMelee, showRanged, showSlow);
     }
 
+    private void HandlePathTouched(Path path)
+    {
+        if (MenuActive)
+        {
+            //Ignore hitting path when trying to select button
+            if (IsBelowButton(path.gameObject))
+                return;
+            else
+                DeselectAndHide();
+        }           
+       
+    }
+
 
     private void TowerTouched(Tower tower)
     {
@@ -462,11 +475,7 @@ public class TowerUpgradeManager : MonoBehaviour
         MenuActive = false;
     }
 
-    private void HandlePathTouched()
-    {
-        ShowBuildButtons();
-        ShowUpgradeButtons();
-    }
+   
     
 	
 }
