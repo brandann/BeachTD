@@ -356,12 +356,21 @@ public class TowerUpgradeManager : MonoBehaviour
             //Ignore buttons that aren't active
             if (!b.gameObject.activeSelf)
                 continue;
-                        
-            if (b.GetComponent<Collider2D>().bounds.Intersects(go.GetComponent<Renderer>().bounds))
+
+            Renderer r = go.GetComponent<Renderer>();
+            Bounds target;
+
+            if(r != null)
             {
-                //Debug.Log("found intersection");
-                return true;
-            }         
+                target = r.bounds;
+            }
+            else
+            {
+                target =  go.GetComponent<Collider2D>().bounds;
+            }           
+                                    
+            if (b.GetComponent<Collider2D>().bounds.Intersects(target) )            
+                return true;           
         }
 
         return false;

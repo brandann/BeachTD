@@ -24,4 +24,9 @@ public class WinScreen : MonoBehaviour {
         NextLevel.gameObject.SetActive(_global.LoadedLevel <= Global.MaxLevels);
     }
 
+    void OnDestroy()
+    {
+        Global.OnGameWon -= HandleWin;
+    }
+
 }
