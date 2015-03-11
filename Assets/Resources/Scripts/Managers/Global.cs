@@ -28,6 +28,7 @@ public class Global : MonoBehaviour
 
 
 	private int _eggsStillActive;*/
+    private static bool GlobalCreated;
 	
 	private MapManager _mapManager;
 	private Map _currentMap;
@@ -64,9 +65,20 @@ public class Global : MonoBehaviour
 	
 	void Awake()
 	{
-		//LoadMap(StartingLevel);
+        //Only one global needed
+        if (GlobalCreated)
+        {
+            Destroy(this);
+            return;
+        }
+        else
+        {
+            DontDestroyOnLoad(this);
+            GlobalCreated = true;
+        }
+           
 
-		DontDestroyOnLoad(this);		
+			
 
 	}
 	

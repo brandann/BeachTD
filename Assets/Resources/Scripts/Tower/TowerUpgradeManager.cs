@@ -86,7 +86,7 @@ public class TowerUpgradeManager : MonoBehaviour
         
     }
 
-    void OnDisable()
+    void OnDestroy()
     {
         Tower.onTowerTouched -= TowerTouched;
         OpenAreaBehavior.onAreaTouched -= OpenAreaTouched;
