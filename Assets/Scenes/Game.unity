@@ -712,7 +712,7 @@ GameObject:
   - 114: {fileID: 688771209}
   - 114: {fileID: 688771211}
   m_Layer: 5
-  m_Name: WinScreen
+  m_Name: GameOverScreen
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -839,7 +839,7 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: Congratulations You Win!
+  m_Text: 
 --- !u!222 &869821051
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -1517,7 +1517,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!114 &2025847817
 MonoBehaviour:
   m_ObjectHideFlags: 0

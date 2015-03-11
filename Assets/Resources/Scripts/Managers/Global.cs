@@ -11,6 +11,7 @@ public class Global : MonoBehaviour
     public static event GameStateChanged OnGamePaused;
     public static event GameStateChanged OnGameResumed;
     public static event GameStateChanged OnGameWon;
+    public static event GameStateChanged OnGameLost;
 
     #endregion
 
@@ -233,7 +234,8 @@ public class Global : MonoBehaviour
 	
 	private void LoseCond()
 	{
-		
+        if (OnGameLost != null)
+            OnGameLost();
 	}
 	#endregion
 }
