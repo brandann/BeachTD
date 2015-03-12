@@ -47,7 +47,7 @@ public class EnemyMovement : MonoBehaviour {
 		if (CurrentMovement != EnemyMovementSpeed.Normal && Time.time >= endModificationTime)
 		{
 			CurrentMovement = EnemyMovementSpeed.Normal;
-			gameObject.GetComponent<Enemy>().ResetColor();
+            this.GetComponent<Renderer>().material.color = Color.white;
 		}
 		
 		//Speed mods from tower
@@ -73,13 +73,11 @@ public class EnemyMovement : MonoBehaviour {
 		listPos += deltaIndex;
 		if(listPos == -1)
 		{
-			GetComponent<Enemy>().Kill (Enemy.EnemyDeath.AtStart);
-			Destroy(this.gameObject);
+            GetComponent<Enemy>().RemoveAfterReachedStart();
 			return; // keeps from getting an error thrown
 		}
 		else if(listPos >= waypoints.Length)
-		{
-			GetComponent<Enemy>().ApplyEggToCrab(EggManager.EggLocations.End);
+		{			
 			direction = -1;
 			listPos -= 2;
 			transform.Rotate (Vector3.forward, 180);

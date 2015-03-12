@@ -48,7 +48,7 @@ public class Audio : MonoBehaviour {
 	void Awake () {
         //Debug.Log("Audio Awake");
 
-        //Should only need one audio prefab in intial scene but this allows
+        //Should only need one audio _powPrefab in intial scene but this allows
         //you to put one in each scene so that you can have audio when testing without first loading menu scene
         //probably should be removed in production
         if (AudioExists)
