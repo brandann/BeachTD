@@ -12,7 +12,7 @@ public class MapManager{
 	public MapManager()
 	{
 		OpenSpace = Resources.Load("Prefabs/OpenArea") as GameObject;
-		global = GameObject.Find("Global").GetComponent<Global>();
+        global = GameObject.Find("Global").GetComponent<Global>();
 	}
 	
 	public void LoadMap(Map map)
