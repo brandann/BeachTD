@@ -20,7 +20,7 @@ public class OpenSpaceBehavior : MonoBehaviour {
 		/*
 		float offset = .5f;
 		
-		//GameObject towerPrefab = Resources.Load(prefab) as GameObject;
+		//GameObject towerPrefab = Resources.Load(_powPrefab) as GameObject;
 		//GameObject e = Instantiate(towerPrefab) as GameObject;
 		//e.transform.position = this.transform.position;
 		

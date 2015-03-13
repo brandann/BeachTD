@@ -58,10 +58,6 @@ public class Global : MonoBehaviour
 	#endregion
 	
 	#region Unity
-	// Use this for initialization
-	void Start () {
-       
-	}
 	
 	void Awake()
 	{
@@ -81,10 +77,7 @@ public class Global : MonoBehaviour
         if (Application.loadedLevel != 0)
         {
             LoadLevelLoader(leveltoload);
-        }
-           
-
-			
+        }			
 
 	}
 	
@@ -104,6 +97,8 @@ public class Global : MonoBehaviour
         {
             LoadLevelLoader(leveltoload);           
         }
+
+        eggManager.BroadcastEggCount();
     }
 	#endregion
 	

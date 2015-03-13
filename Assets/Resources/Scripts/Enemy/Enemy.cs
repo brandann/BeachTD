@@ -7,7 +7,7 @@ public class Enemy : MonoBehaviour
     #region Events
     public delegate void EnemyDied(Enemy enemy);    
 
-    //Use when you want to know if a particular enemy dies
+    //Use when you want to know if a particular enemy instance dies
     public event EnemyDied ThisEnemyDied;
 
     //Use if you want to know when any enemy object dies
@@ -18,38 +18,23 @@ public class Enemy : MonoBehaviour
     #region Public Members
     public float Health;
 	public enum EnemyState { Active, Stunned, Dying }
-	public enum EnemyDeath { AtStart, ByTower}
+	
 	public EnemyState CurrentEnemyState;
 	public Global global;
     public int EnemyKillValue;
-	private GameObject Egg;
+
+	
 	
 	public bool HasEgg
 	{
-		get
-		{
-			return _hasEgg;
-		}
-		set
-		{
-			_hasEgg = value;
-			if(_hasEgg)
-			{
-				this.GetComponent<Renderer>().material.color = Color.red;
-			}
-			else
-			{
-				this.GetComponent<Renderer>().material.color = Color.white;
-			}
-			
-			_currentColor = this.GetComponent<Renderer>().material.color;
-		}
+        get { return _carriedEgg != null; }		
 	}
 	#endregion
 	
 	#region Private Members
-	private bool _hasEgg = false;
+    private Egg _carriedEgg;
 	private Color _currentColor = Color.white;
+    private GameObject _powPrefab; 
 	#endregion
 	
 	#region Unity
@@ -57,6 +42,7 @@ public class Enemy : MonoBehaviour
 	{
 		CurrentEnemyState = EnemyState.Active;
 		global = GameObject.Find("Global").GetComponent<Global>();
+        _powPrefab = Resources.Load("Prefabs/temp-pow") as GameObject;        
 	}
 	
 	void Update () 
@@ -67,87 +53,54 @@ public class Enemy : MonoBehaviour
 		}
 		if(Health <= 0)
 		{
-			Kill (EnemyDeath.ByTower);
+			KillThisEnemy ();
 		}
 	}
 	#endregion
 	
 	#region Public Methods
-	public void updateWaypoints(Vector3[] waypoints)
-	{
-		
-	}
-	
-	public void ApplyEggToCrab(EggManager.EggLocations el)
-	{
-		// crab already has an egg
-		if(HasEgg)
-		{
-			Debug.Log("crab has egg already");
-			return;
-		}
-		
-		if(el == EggManager.EggLocations.Enemy)
-		{
-			Debug.LogError("Invalid location for crab to recieve egg");
-			return;
-		}
-		else if(el == EggManager.EggLocations.End)
-		{
-			// if the egg manager has any eggs, get a egg
-			if(global.eggManager.GetActiveCount() > 0)
-			{
-				HasEgg = true;
-				global.eggManager.TransferEgg(EggManager.EggLocations.End, EggManager.EggLocations.Enemy);
-			}
-		}
-		else if(el == EggManager.EggLocations.Path)
-		{
-			HasEgg = true;
-			global.eggManager.TransferEgg(EggManager.EggLocations.Path, EggManager.EggLocations.Enemy);
-			this.GetComponent<EnemyMovement>().ReverseDirection();
-		}
-	}
+
+    private void PickupEgg(Egg egg)
+    {
+        egg.Grab(gameObject);
+        _carriedEgg = egg;
+        this.GetComponent<Renderer>().material.color = Color.red;
+    }
+
+    private void DropCarriedEgg()
+    {
+        _carriedEgg.Drop();
+        _carriedEgg = null;
+        this.GetComponent<Renderer>().material.color = Color.white;
+    }
+
+    private void KillCarriedEgg()
+    {
+        _carriedEgg.Kill();
+        _carriedEgg = null;
+        this.GetComponent<Renderer>().material.color = Color.white;
+    }
 	
 	public virtual void TakeDamage(float damage)
 	{
 		Health -= damage;
 		if(Health <= 0)
 		{
-			Kill (EnemyDeath.ByTower);			
+			KillThisEnemy ();			
 		}
 	}
 	
 	public void OnTouchDown()
 	{
-		Kill();
+		KillThisEnemy();
 	}
 	
-	public void ResetColor()
-	{
-		this.GetComponent<Renderer>().material.color = _currentColor;
-	}
-	
-	public void Kill(EnemyDeath ED = EnemyDeath.ByTower)
-	{
-		if(ED == EnemyDeath.ByTower)
-		{
-			if(HasEgg)
-			{
-				global.eggManager.DropEgg(this.transform.position);
-			}
+	public void KillThisEnemy()
+	{		
+		if(HasEgg)
+            DropCarriedEgg();	
 			
-			GameObject prefab = Resources.Load("Prefabs/temp-pow") as GameObject;
-			GameObject SpawnedPrefab = Instantiate(prefab) as GameObject;
-			SpawnedPrefab.transform.position = this.transform.position;
-		}
-		else if(ED == EnemyDeath.AtStart)
-		{
-			if(HasEgg)
-			{
-				global.eggManager.TransferEgg(EggManager.EggLocations.Enemy, EggManager.EggLocations.Start);
-			}
-		}
+		Instantiate(_powPrefab, this.transform.position, Quaternion.identity );	
 		
 		if (ThisEnemyDied != null)
 			ThisEnemyDied(this);
@@ -157,21 +110,39 @@ public class Enemy : MonoBehaviour
 		
 		global.enemyManager.Remove(this.gameObject);
 	}
+
+    public void RemoveAfterReachedStart()
+    {
+        if (HasEgg)
+            KillCarriedEgg();
+        
+        global.enemyManager.Remove(this.gameObject);
+
+    }
 	#endregion
 	
 	#region Private Methods
 
-	
-	private void OnCollisionEnter2D(Collision2D collision)
+
+    private void OnTriggerEnter2D(Collider2D col)
 	{
-		if(collision.gameObject.tag == "egg")
+		if(col.gameObject.tag == "egg")
 		{
-			if(!HasEgg)
-			{
-				ApplyEggToCrab(EggManager.EggLocations.Path);
-				Destroy(collision.gameObject);
-			}
-		}
+            if (HasEgg)
+                return;
+
+            Egg egg = col.gameObject.GetComponent<Egg>();
+            if (egg == null)
+            {
+                Debug.LogError("Shouldn't be null");
+                return;
+            }
+
+            PickupEgg(egg);            
+        }
+
+           
+		
 	}
 	
 	private void Pause(bool pause)
