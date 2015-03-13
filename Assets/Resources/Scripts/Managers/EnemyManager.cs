@@ -16,8 +16,6 @@ public class EnemyManager : ManagerBase {
 
     private float _spawntimedinterval = 0;
     
-    private Global global;
-    
     private ManagerState _currentManagerState;
     #endregion
     
@@ -31,7 +29,6 @@ public class EnemyManager : ManagerBase {
     public EnemyManager() : base()
     {
     	_currentManagerState = ManagerState.Prep;
-    	global = GameObject.Find("Global").GetComponent<Global>();
 		EnemyA0Prefab = Resources.Load("Prefabs/EnemyA0") as GameObject;
 		EnemyB0Prefab = Resources.Load("Prefabs/EnemyB0") as GameObject;
 		EnemyC0Prefab = Resources.Load("Prefabs/EnemyC0") as GameObject;
@@ -135,7 +132,6 @@ public class EnemyManager : ManagerBase {
 		{
 			case(ManagerState.Prep):
 				return;
-				break;
 			case(ManagerState.Active):
 				if ((Time.realtimeSinceStartup - _spawntimedinterval) > delay)
 				{
@@ -151,7 +147,6 @@ public class EnemyManager : ManagerBase {
 				break;
 			case(ManagerState.Done):
 				return;
-				break;
 			case(ManagerState.WaitForPrevWave):
 				if(GetActiveCount() == 0)
 				{
