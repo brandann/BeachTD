@@ -61,6 +61,7 @@ public class Global : MonoBehaviour
 	
 	void Awake()
 	{
+		CurrentGameState = GameState.Menu;
         //Only one global needed
         if (GlobalCreated)
         {
@@ -76,7 +77,7 @@ public class Global : MonoBehaviour
         //Not starting from main menu
         if (Application.loadedLevel != 0)
         {
-            LoadLevelLoader(leveltoload);
+            //LoadLevelLoader(leveltoload);
         }			
 
 	}
@@ -95,10 +96,9 @@ public class Global : MonoBehaviour
     {
         if (Application.loadedLevelName == "Game" )
         {
-            LoadLevelLoader(leveltoload);           
+            LoadLevelLoader(leveltoload);  
+			eggManager.BroadcastEggCount();         
         }
-
-        eggManager.BroadcastEggCount();
     }
 	#endregion
 	
