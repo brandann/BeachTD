@@ -153,7 +153,7 @@ public class Global : MonoBehaviour
 		{
 			LoseCond();
 		}
-    	else if(enemyManager.GetActiveCount() == 0 && enemyManager.Waves == null)
+    	else if(enemyManager.GetActiveCount() == 0 && enemyManager.CurrentManagerState == EnemyManager.ManagerState.Done)
     	{
     		WinCond();
     	}
