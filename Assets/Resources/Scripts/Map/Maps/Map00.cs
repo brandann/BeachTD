@@ -29,7 +29,10 @@ public class Map00 : GameMap {
 		wave02.AddScheduleItem(new EnemySchedule(EnemySchedule.Token.WAIT, 0f));																			
 		wave02.AddScheduleItem(new EnemySchedule(EnemySchedule.Token.A0, .75f));																		
 		wave02.AddScheduleItem(new EnemySchedule(EnemySchedule.Token.A0, .75f));																		
-		wave02.AddScheduleItem(new EnemySchedule(EnemySchedule.Token.A0, .75f));																																				
+		wave02.AddScheduleItem(new EnemySchedule(EnemySchedule.Token.A0, .75f));
+		wave02.AddScheduleItem(new EnemySchedule(EnemySchedule.Token.A0, .75f));																		
+		wave02.AddScheduleItem(new EnemySchedule(EnemySchedule.Token.A0, .75f));																		
+		wave02.AddScheduleItem(new EnemySchedule(EnemySchedule.Token.A0, .75f));																					
 		map.AddWave(wave02);																		
 		
 		return map;																		
