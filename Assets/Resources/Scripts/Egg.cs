@@ -9,15 +9,20 @@ public class Egg : MonoBehaviour {
 
     public delegate void EggStatusChanged(Egg egg);
     
-    private Collider2D _collider;
+    private CircleCollider2D _collider;
     private GameObject _toFollow;
+    private float _smallRadius = 0.25f;
+    private float _largeRadius = 0.32f;
 
     public bool BeingCarried { get { return _toFollow != null; } }
 
     void Start()
     {
-        _collider = gameObject.GetComponent<Collider2D>();
+        _collider = gameObject.GetComponent<CircleCollider2D>();
         _toFollow = null;
+
+        //Bigger radius makes more likely that enemies will collide when they reach the end of path
+        _collider.radius = _largeRadius;
     }
 
     void Update()
@@ -25,7 +30,6 @@ public class Egg : MonoBehaviour {
         if(_toFollow != null)
             transform.position = _toFollow.transform.position;
     }
-
 
     public void Grab(GameObject grabedBy)
     {
@@ -40,6 +44,9 @@ public class Egg : MonoBehaviour {
     {
         _toFollow = null;
         _collider.enabled = true;
+
+        //Egg must have been moved from starting location so shrink collider down to fit the sprite render
+        _collider.radius = _smallRadius;
 
         if (EggDropped != null)
             EggDropped(this);
