@@ -94,7 +94,7 @@ public class EnemyManager : ManagerBase {
 		if(_enemyQueue != null && _enemyQueue.Count > 0)
 		{
 			delay = _enemyQueue.Peek().time;
-			_spawntimedinterval = Time.realtimeSinceStartup;
+			_spawntimedinterval = Time.time;
 			if(_enemyQueue.Peek().token == EnemySchedule.Token.WAIT)
 			{
 				_currentManagerState = ManagerState.WaitForPrevWave;
@@ -133,7 +133,7 @@ public class EnemyManager : ManagerBase {
 			case(ManagerState.Prep):
 				return;
 			case(ManagerState.Active):
-				if ((Time.realtimeSinceStartup - _spawntimedinterval) > delay)
+				if ((Time.time - _spawntimedinterval) > delay)
 				{
 					EnemySchedule es = _enemyQueue.Dequeue();
 					SpawnEnemy(es.token);
@@ -151,7 +151,7 @@ public class EnemyManager : ManagerBase {
 				if(GetActiveCount() == 0)
 				{
 					_currentManagerState = ManagerState.Active;
-					_spawntimedinterval = Time.realtimeSinceStartup;
+					_spawntimedinterval = Time.time;
 				}
 				break;
 		}

@@ -34,7 +34,8 @@ public class Enemy : MonoBehaviour
 	#region Private Members
     private Egg _carriedEgg;
 	private Color _currentColor = Color.white;
-    private GameObject _powPrefab; 
+    private GameObject _powPrefab;
+    private EnemyMovement _movement;
 	#endregion
 	
 	#region Unity
@@ -42,7 +43,8 @@ public class Enemy : MonoBehaviour
 	{
 		CurrentEnemyState = EnemyState.Active;
 		global = GameObject.Find("Global").GetComponent<Global>();
-        _powPrefab = Resources.Load("Prefabs/temp-pow") as GameObject;        
+        _powPrefab = Resources.Load("Prefabs/temp-pow") as GameObject;
+        _movement = gameObject.GetComponent<EnemyMovement>();
 	}
 	
 	void Update () 
@@ -138,10 +140,9 @@ public class Enemy : MonoBehaviour
                 return;
             }
 
-            PickupEgg(egg);            
-        }
-
-           
+            PickupEgg(egg);
+            _movement.ReverseDirection();
+        }         
 		
 	}
 	

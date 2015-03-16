@@ -196,6 +196,8 @@ public class Global : MonoBehaviour
 		
 		// Eggs ------------------------------------------------------------
 		eggManager = new EggManager();
+
+        Time.timeScale = 1;
 	}
 	
 	private void Reset()
@@ -241,12 +243,16 @@ public class Global : MonoBehaviour
 	
 	private void WinCond()
 	{
+        Time.timeScale = 0;
+
         if (OnGameWon != null)
             OnGameWon();
 	}
 	
 	private void LoseCond()
 	{
+        Time.timeScale = 0;
+
         if (OnGameLost != null)
             OnGameLost();
 	}

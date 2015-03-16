@@ -64,6 +64,8 @@ public class EnemyMovement : MonoBehaviour {
 		DistanceTraveled += moveDelta.magnitude;
 		
 	}
+
+
 	#endregion
 	
 	#region Private Methods
@@ -126,5 +128,6 @@ public class EnemyMovement : MonoBehaviour {
 			transform.up = nextPoint - transform.position;
 		}
 	}
+
 	#endregion
 }	

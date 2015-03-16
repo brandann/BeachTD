@@ -10,13 +10,15 @@ public class Seagull : MonoBehaviour {
 	void Start () {
 
         GameObject go = GameObject.Find("egg");
-        _target = go.transform.position;
+        if(go != null)
+            _target = go.transform.position;
 	
 	}
 	
 	// Update is called once per frame
 	void FixedUpdate () {
-        transform.position += (_target - transform.position) * Speed * Time.deltaTime;
+        if( _target != null)
+            transform.position += (_target - transform.position) * Speed * Time.deltaTime;
 	}
 
     private Vector3 _target;
