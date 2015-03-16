@@ -31,10 +31,9 @@ public abstract class ManagerBase{
 	{
 		if(go != null)
 		{
-			GameObject spawned = GameObject.Instantiate(go) as GameObject;
-			_managerObjects.Add(spawned);
-			spawned.transform.position = position;
-			return go;
+			GameObject spawned = GameObject.Instantiate(go,position,Quaternion.identity) as GameObject;
+            _managerObjects.Add(spawned);
+			return spawned;
 		}
 		return null;
 	}

@@ -70,7 +70,7 @@ public class EggManager : ManagerBase {
 	#region Private Methods
 
     private void HandleEggPickup(Egg egg)
-    {
+    {       
         _eggsOnPath.Remove(egg);
         _eggsWithEnemy.Add(egg);
     }
