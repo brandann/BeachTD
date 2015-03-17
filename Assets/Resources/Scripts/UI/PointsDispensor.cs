@@ -29,11 +29,13 @@ public class PointsDispensor : MonoBehaviour {
     void OnEnable()
     {
         Enemy.SomeEnemyDied += HandleEnemyDeath;
+        Seagull.OnGullKilled += HandleGullDeath;
     }
 
     void OnDisable()
     {
         Enemy.SomeEnemyDied -= HandleEnemyDeath;
+        Seagull.OnGullKilled -= HandleGullDeath;
     }
 	
 	private void HandleEnemyDeath(Enemy enemy)
@@ -44,5 +46,14 @@ public class PointsDispensor : MonoBehaviour {
         points.GetComponentInChildren<Text>().text = "+" + enemy.EnemyKillValue.ToString();
         _points.Enqueue(points);
 
+    }
+
+    private void HandleGullDeath(Seagull gull)
+    {
+        GameObject points = _points.Dequeue();
+        points.SetActive(true);
+        points.transform.position = gull.transform.position;
+        points.GetComponentInChildren<Text>().text = "+" + gull.GullKillValue;
+        _points.Enqueue(points);
     }
 }

@@ -49,11 +49,14 @@ public class SandDollarBank : MonoBehaviour {
     void OnEnable()
     {
         Enemy.SomeEnemyDied += AddMoneyUponEnemyDeath;
+        Seagull.OnGullKilled += AddDeadSeagullMoney;
+        
     }
 
     void OnDisable()
     {
         Enemy.SomeEnemyDied -= AddMoneyUponEnemyDeath;
+        Seagull.OnGullKilled -= AddDeadSeagullMoney;
     }
 
     private int _sandDollars;
@@ -62,6 +65,11 @@ public class SandDollarBank : MonoBehaviour {
     {
         //Debug.Log("Add money: " + enemy.EnemyKillValue.ToString());
         SandDollars += enemy.EnemyKillValue;
+    }
+
+    private void AddDeadSeagullMoney(Seagull gull)
+    {
+        SandDollars += gull.GullKillValue;
     }
 	
 }
