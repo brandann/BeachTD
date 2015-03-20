@@ -51,6 +51,7 @@ public class Enemy : MonoBehaviour
 	{
 		if(CurrentEnemyState != EnemyState.Active)
 		{
+			Debug.Log("Enemy Not Active");
 			this.GetComponent<EnemyMovement>().enabled = false;
 		}
 		if(Health <= 0)
@@ -66,21 +67,19 @@ public class Enemy : MonoBehaviour
     {
         egg.Grab(gameObject);
         _carriedEgg = egg;
-        this.GetComponent<Renderer>().material.color = Color.red;
+        //this.GetComponent<Renderer>().material.color = Color.red;
     }
 
     private void DropCarriedEgg()
     {
         _carriedEgg.Drop();
         _carriedEgg = null;
-        this.GetComponent<Renderer>().material.color = Color.white;
     }
 
     private void KillCarriedEgg()
     {
         _carriedEgg.Kill();
         _carriedEgg = null;
-        this.GetComponent<Renderer>().material.color = Color.white;
     }
 	
 	public virtual void TakeDamage(float damage)
@@ -99,6 +98,7 @@ public class Enemy : MonoBehaviour
 	
 	public void KillThisEnemy()
 	{		
+		Debug.Log("Enemy Dead");
 		if(HasEgg)
             DropCarriedEgg();	
 			

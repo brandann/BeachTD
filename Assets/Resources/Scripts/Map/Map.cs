@@ -66,7 +66,7 @@ public class Map {
 	protected List<Wave>	waves;
 	protected int[,]		_map;		// int array of map w/ paths
 	protected Vector3[] 	_waypoints;	// enemys path for map
-	protected int			_hitpoints;	// "lives" for level
+	protected int			_hitpoints = 10;	// "lives" for level
 	#endregion
 	
 	#region Private Methods

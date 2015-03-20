@@ -17,7 +17,7 @@ public class MeleeTower : Tower
 
         CoolDownTime = 5;
         _tip = GetComponentInChildren<TipBarnacle>();
-        _tip.SetDamage(Damage);
+        //_tip.SetDamage(Damage);
         Damage = 5;
         gameObject.SetActive(false);
 	}

@@ -16,7 +16,7 @@ public class EggManager : ManagerBase {
 
 
 	#region Private Memebers
-	private const int STARTING_EGG_COUNT = 3;
+	private int STARTING_EGG_COUNT;
 	private List<Egg> _eggsOnPath;
 	private List<Egg> _eggsWithEnemy;    
 	
@@ -30,7 +30,7 @@ public class EggManager : ManagerBase {
         Egg.EggPickedUp += HandleEggPickup;
         Egg.EggDropped += HandleEggDrop;
         Egg.EggKilled += HandleEggKilled;
-        
+
 	}
 
     ~EggManager()
@@ -41,13 +41,15 @@ public class EggManager : ManagerBase {
     }
 
 
-    public void SpawnEgg()
+    public void SpawnEgg(int starteggcount)
     {
+    	STARTING_EGG_COUNT = starteggcount;
         GameObject EggPrefab = Resources.Load("Prefabs/egg") as GameObject;
         for (int i = 0; i < STARTING_EGG_COUNT; i++)
         {
             Vector3 endloc = _global.CurrentMap.Waypoints[_global.CurrentMap.Waypoints.Length - 1];
             Vector3 randloc = new Vector3(Random.Range(-0.5f, 0.5f), Random.Range(-0.5f, 0.5f), 0);
+            randloc.x -= 1;
             Vector3 offset = new Vector3(0, 0, 0);
             GameObject egg = Create(EggPrefab, endloc + randloc + offset);
 

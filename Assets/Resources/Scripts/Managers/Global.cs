@@ -167,7 +167,7 @@ public class Global : MonoBehaviour
 		
 		_mapManager.LoadMap(_maps[index]);
 		_currentMap = _maps[index];
-		eggManager.SpawnEgg();
+		eggManager.SpawnEgg(_currentMap.HitPoints);
 		enemyManager.SetStartingPosition(CurrentMap.Waypoints[0]);
 		enemyManager.SetWaves(_currentMap.GetWaves());
 	}

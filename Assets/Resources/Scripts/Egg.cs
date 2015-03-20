@@ -9,6 +9,11 @@ public class Egg : MonoBehaviour {
 
     public delegate void EggStatusChanged(Egg egg);
     
+    public Sprite Gem1;
+    public Sprite Gem2;
+    public Sprite Gem3;
+    public Sprite Gem4;
+    
     private CircleCollider2D _collider;
     private GameObject _toFollow;
     private float _smallRadius = 0.25f;
@@ -23,6 +28,24 @@ public class Egg : MonoBehaviour {
 
         //Bigger radius makes more likely that enemies will collide when they reach the end of path
         _collider.radius = _largeRadius;
+        
+        int i = Random.Range(1,5);
+        SpriteRenderer sr = this.GetComponent<SpriteRenderer>();
+        switch(i)
+        {
+        case(1):
+        	sr.sprite = Gem1;
+        	break;
+        	case(2):
+        	sr.sprite = Gem2;
+        	break;
+        	case(3):
+        	sr.sprite = Gem3;
+        	break;
+        	case(4):
+        	sr.sprite = Gem4;
+        	break;
+        }
     }
 
     void Update()
