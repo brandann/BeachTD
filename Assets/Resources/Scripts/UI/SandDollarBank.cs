@@ -59,6 +59,11 @@ public class SandDollarBank : MonoBehaviour {
         Seagull.OnGullKilled -= AddDeadSeagullMoney;
     }
 
+    void OnLevelWasLoaded()
+    {
+        SandDollars = StartingDollars;
+    }
+
     private int _sandDollars;
 
     private void AddMoneyUponEnemyDeath(Enemy enemy)
