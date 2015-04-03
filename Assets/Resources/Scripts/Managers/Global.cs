@@ -247,6 +247,7 @@ public class Global : MonoBehaviour
 
         if (OnGameWon != null)
             OnGameWon();
+        Save ();
 	}
 	
 	private void LoseCond()
@@ -255,6 +256,23 @@ public class Global : MonoBehaviour
 
         if (OnGameLost != null)
             OnGameLost();
+	}
+	
+	private void Save()
+	{
+		Debug.Log ("Saving: " + LoadedLevel + " Unlocked");
+		Game g = new Game();
+		for(int i = 0; i < MaxLevels; i++)
+		{
+			if(i <= LoadedLevel)
+				g.Levels[i] = Game.LevelStatus.Unlocked;
+			if(i == (LoadedLevel+1))
+				g.Levels[i] = Game.LevelStatus.Current;
+			else
+				g.Levels[i] = Game.LevelStatus.Locked;
+		}
+		Game.CurrentGame = g;
+		SaveLoad.Save();
 	}
 	#endregion
 }

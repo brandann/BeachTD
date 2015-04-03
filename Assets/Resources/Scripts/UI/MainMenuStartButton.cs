@@ -19,7 +19,18 @@ public class MainMenuStartButton : SlidingUI{
 		base.Clicked ();
 		//Credits.Slide ();
         //StartCoroutine(LoadLevel()); //Todo swap these out for release
-        GameObject.Find("Global").GetComponent<Global>().LoadMap(0);
+        //SaveLoad s = new SaveLoad();
+        SaveLoad.Load();
+        Game g = SaveLoad.SavedGame;
+		int index = 0;
+		if(g != null)
+        {
+			for(int i = 0; i < Global.MaxLevels; i++)
+			{
+				if(g.Levels[i] == Game.LevelStatus.Current) { index = i;}
+			}
+		}
+        GameObject.Find("Global").GetComponent<Global>().LoadMap(index);
         Application.LoadLevel(Global.Scenes.Game.ToString()); 
 	}
 
