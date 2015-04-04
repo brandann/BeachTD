@@ -35,6 +35,16 @@ public class Map00 : GameMap {
 		wave02.AddScheduleItem(new EnemySchedule(EnemySchedule.Token.C0, .75f));																					
 		map.AddWave(wave02);																		
 		
+		Wave wave03 = new Wave();
+		wave03.AddScheduleItem(new EnemySchedule(EnemySchedule.Token.WAIT, 0f));																			
+		wave03.AddScheduleItem(new EnemySchedule(EnemySchedule.Token.A0, .75f));																		
+		wave03.AddScheduleItem(new EnemySchedule(EnemySchedule.Token.B0, .75f));																		
+		wave03.AddScheduleItem(new EnemySchedule(EnemySchedule.Token.C0, .75f));
+		wave03.AddScheduleItem(new EnemySchedule(EnemySchedule.Token.B0, .75f));																		
+		wave03.AddScheduleItem(new EnemySchedule(EnemySchedule.Token.B0,   3f));																		
+		wave03.AddScheduleItem(new EnemySchedule(EnemySchedule.Token.C0,   3f));																					
+		map.AddWave(wave03);																		
+		
 		return map;																		
 	}																			
 }																				
