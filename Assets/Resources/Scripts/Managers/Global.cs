@@ -78,7 +78,9 @@ public class Global : MonoBehaviour
         if (Application.loadedLevel != 0)
         {
             //LoadLevelLoader(leveltoload);
-        }			
+        }
+
+        LoadSavedGame();
 
 	}
 	
@@ -131,6 +133,12 @@ public class Global : MonoBehaviour
         //Inform subscribers of pause event
         if (OnGamePaused != null)
             OnGamePaused();
+    }
+
+    public void Continue()
+    {
+        LoadMap(Game.CurrentGame.CurrentLevel);
+        Application.LoadLevel(Global.Scenes.Game.ToString()); 
     }
 
     public void ResumeGame()
@@ -261,18 +269,22 @@ public class Global : MonoBehaviour
 	private void Save()
 	{
 		Debug.Log ("Saving: " + LoadedLevel + " Unlocked");
-		Game g = new Game();
-		for(int i = 0; i < MaxLevels; i++)
-		{
-			if(i <= LoadedLevel)
-				g.Levels[i] = Game.LevelStatus.Unlocked;
-			if(i == (LoadedLevel+1))
-				g.Levels[i] = Game.LevelStatus.Current;
-			else
-				g.Levels[i] = Game.LevelStatus.Locked;
-		}
-		Game.CurrentGame = g;
+		
+		
+        Game.CurrentGame.CurrentLevel = LoadedLevel + 1;
 		SaveLoad.Save();
 	}
+
+    //Lo
+    private void LoadSavedGame()
+    {
+        SaveLoad.Load();
+        Game g = SaveLoad.SavedGame;
+        if (g != null)
+            Game.CurrentGame = g;
+        else
+            Game.CurrentGame = new Game();
+
+    }
 	#endregion
 }
