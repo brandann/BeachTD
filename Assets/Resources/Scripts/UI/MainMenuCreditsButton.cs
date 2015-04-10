@@ -3,7 +3,7 @@ using System.Collections;
 
 public class MainMenuCreditsButton : SlidingUI {
 
-    public MainMenuStartButton StartButton;
+    public MainMenuContinueButton StartButton;
     public SlidingUI CreditsScript;
 
     public override void Clicked()

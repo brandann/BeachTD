@@ -4,16 +4,23 @@ using System.Collections;
 public class SlidingUI : ClickableUI
 {
 
-    public Animator ButtonAnimController;
+    private Animator ButtonAnimController;
 	private int _SlideHash;
-    
+
+    void Awake()
+    {
+        ButtonAnimController = gameObject.GetComponent<Animator>();
+        if (ButtonAnimController == null)
+            Debug.LogError("missing animator");
+    }
+
 
 	public virtual void Start(){
 		
         //Trigger between states
 		_SlideHash = Animator.StringToHash ("Slide");        
 
-        //public AnimationInfo[] GetCurrentAnimationClipState(int layerIndex);
+        
 
         //Speed up animation in debug mode
         if (Debug.isDebugBuild)

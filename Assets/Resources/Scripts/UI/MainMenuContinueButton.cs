@@ -1,7 +1,7 @@
 ﻿using UnityEngine;
 using System.Collections;
 
-public class MainMenuStartButton : SlidingUI{
+public class MainMenuContinueButton : SlidingUI{
 
 	public MainMenuCreditsButton Credits;
     public AnimationClip SlideAnimation;    

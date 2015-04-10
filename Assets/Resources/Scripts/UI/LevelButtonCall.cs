@@ -3,10 +3,15 @@ using UnityEngine.UI;
 using System.Collections;
 
 
-public class LevelButtonCall : MonoBehaviour {
+public class LevelButtonCall : SlidingUI {
     
     //Set in inspector
     public int lvl;
+
+    void Awake()
+    {
+        MainMenuLevelButton.OnLevelClicked += Slide;
+    }
 
     void Start()
     {

@@ -1,12 +1,17 @@
 ﻿using UnityEngine;
 using System.Collections;
 
-public class MainMenuLevelButton : ClickableUI {
+public class MainMenuLevelButton : SlidingUI {
+
+    public delegate void LevelClicked();
+    public static event LevelClicked OnLevelClicked;
 
     public override void Clicked()
     {
         base.Clicked();
-        Application.LoadLevel(Global.Scenes.Levels.ToString());
+        
+        if (OnLevelClicked != null)
+            OnLevelClicked();
     }
 	
 
