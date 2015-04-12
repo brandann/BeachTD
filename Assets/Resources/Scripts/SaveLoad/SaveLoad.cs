@@ -25,7 +25,7 @@ public static class SaveLoad
 			FileStream file = File.Open(Application.persistentDataPath + FileName, FileMode.Open);
 			SaveLoad.SavedGame = (Game)bf.Deserialize(file);
 			file.Close();
-			Debug.Log ("Yay loaded");
+			//Debug.Log ("Yay loaded");
 		}
 	}
 	

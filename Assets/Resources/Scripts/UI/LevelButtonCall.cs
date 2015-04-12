@@ -8,9 +8,10 @@ public class LevelButtonCall : SlidingUI {
     //Set in inspector
     public int lvl;
 
-    void Awake()
+    protected override void Awake()
     {
-        MainMenuLevelButton.OnLevelClicked += Slide;
+        base.Awake();        
+        MainMenuLevelButton.OnLevelClicked += HandleLevelSelection;
     }
 
     void Start()
@@ -27,6 +28,13 @@ public class LevelButtonCall : SlidingUI {
 		_global.LoadMap(level);
 		Application.LoadLevel(Global.Scenes.Game.ToString()); 
 	}
+
+    private void HandleLevelSelection()
+    {
+        base.Slide();
+        //Animator ani = gameObject.GetComponent<Animator>();
+        //ani.SetTrigger("Slide");
+    }
 
     private Global _global;
 	

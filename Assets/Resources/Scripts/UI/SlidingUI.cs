@@ -4,10 +4,10 @@ using System.Collections;
 public class SlidingUI : ClickableUI
 {
 
-    private Animator ButtonAnimController;
-	private int _SlideHash;
+    protected Animator ButtonAnimController;
+	protected int _SlideHash;
 
-    void Awake()
+    protected virtual void Awake()
     {
         ButtonAnimController = gameObject.GetComponent<Animator>();
         if (ButtonAnimController == null)
@@ -21,7 +21,7 @@ public class SlidingUI : ClickableUI
 		_SlideHash = Animator.StringToHash ("Slide");        
 
         
-
+        /*
         //Speed up animation in debug mode
         if (Debug.isDebugBuild)
         {
@@ -31,11 +31,15 @@ public class SlidingUI : ClickableUI
         {
             Animator.StringToHash("SlideInRight");
         }
+        */
         
 	}
 	
 	public void Slide(){
-		ButtonAnimController.SetTrigger (_SlideHash);
+		ButtonAnimController.SetTrigger ("Slide");
+        Debug.Log(gameObject.name + "sliding time: " + Time.time);
+
+
 	}
 
     public override void Clicked()
