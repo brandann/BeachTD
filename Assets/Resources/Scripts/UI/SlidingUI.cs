@@ -4,17 +4,24 @@ using System.Collections;
 public class SlidingUI : ClickableUI
 {
 
-    public Animator ButtonAnimController;
-	private int _SlideHash;
-    
+    protected Animator ButtonAnimController;
+	protected int _SlideHash;
+
+    protected virtual void Awake()
+    {
+        ButtonAnimController = gameObject.GetComponent<Animator>();
+        if (ButtonAnimController == null)
+            Debug.LogError("missing animator");
+    }
+
 
 	public virtual void Start(){
 		
         //Trigger between states
 		_SlideHash = Animator.StringToHash ("Slide");        
 
-        //public AnimationInfo[] GetCurrentAnimationClipState(int layerIndex);
-
+        
+        /*
         //Speed up animation in debug mode
         if (Debug.isDebugBuild)
         {
@@ -24,11 +31,15 @@ public class SlidingUI : ClickableUI
         {
             Animator.StringToHash("SlideInRight");
         }
+        */
         
 	}
 	
 	public void Slide(){
-		ButtonAnimController.SetTrigger (_SlideHash);
+		ButtonAnimController.SetTrigger ("Slide");
+        Debug.Log(gameObject.name + "sliding time: " + Time.time);
+
+
 	}
 
     public override void Clicked()

@@ -5,7 +5,7 @@ public class Projectile : MonoBehaviour {
 
     public Transform Target { get; protected set; }
     public float Speed = 1.5f;
-    public float Damage = 1;
+    public float Damage = 4;
 	
 	// Update is called once per frame
 	void FixedUpdate () {

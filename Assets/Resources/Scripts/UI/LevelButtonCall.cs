@@ -1,15 +1,41 @@
 ﻿using UnityEngine;
+using UnityEngine.UI;
 using System.Collections;
 
-public class LevelButtonCall : MonoBehaviour {
 
+public class LevelButtonCall : SlidingUI {
+    
+    //Set in inspector
+    public int lvl;
 
-	public void LoadLevel(int i)
+    protected override void Awake()
+    {
+        base.Awake();        
+        MainMenuLevelButton.OnLevelClicked += HandleLevelSelection;
+    }
+
+    void Start()
+    {
+        _global = GameObject.Find("Global").GetComponent<Global>();
+        if (Game.CurrentGame.CurrentLevel < lvl)
+            gameObject.GetComponent<Button>().interactable = false;
+    }
+
+	public void LoadLevel()
 	{
-		int level = i - 1;
+		int level = lvl - 1;
 		Debug.Log ("Load Level: " + level);
-		GameObject.Find("Global").GetComponent<Global>().LoadMap(level);
+		_global.LoadMap(level);
 		Application.LoadLevel(Global.Scenes.Game.ToString()); 
 	}
+
+    private void HandleLevelSelection()
+    {
+        base.Slide();
+        //Animator ani = gameObject.GetComponent<Animator>();
+        //ani.SetTrigger("Slide");
+    }
+
+    private Global _global;
 	
 }
