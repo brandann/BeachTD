@@ -29,11 +29,17 @@ public class LevelButtonCall : SlidingUI {
 		Application.LoadLevel(Global.Scenes.Game.ToString()); 
 	}
 
-    private void HandleLevelSelection()
+    protected virtual void HandleLevelSelection()
     {
         base.Slide();
         //Animator ani = gameObject.GetComponent<Animator>();
         //ani.SetTrigger("Slide");
+    }
+
+    void OnDestroy()
+    {
+        MainMenuLevelButton.OnLevelClicked -= HandleLevelSelection;
+
     }
 
     private Global _global;

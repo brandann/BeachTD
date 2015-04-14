@@ -7,10 +7,6 @@ public class MainMenuLevelButton : ClickableUI {
     public delegate void LevelClicked();
     public static event LevelClicked OnLevelClicked;
 
-    //private bool 
-    private const string SELECT = "LevelSelect";
-    private const string RESET = "Reset Game";
-
     void Start()
     {
         Text text = gameObject.GetComponentInChildren<Text>();
@@ -25,6 +21,7 @@ public class MainMenuLevelButton : ClickableUI {
         if (OnLevelClicked != null)
             OnLevelClicked();
     }
+
 	
 
 }

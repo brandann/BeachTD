@@ -141,6 +141,13 @@ public class Global : MonoBehaviour
         Application.LoadLevel(Global.Scenes.Game.ToString()); 
     }
 
+    public void ResetGame()
+    {
+        LoadMap(1);
+        Game.CurrentGame = new Game();
+        Application.LoadLevel(0);
+    }
+
     public void ResumeGame()
     {        
         Time.timeScale = 1;        
