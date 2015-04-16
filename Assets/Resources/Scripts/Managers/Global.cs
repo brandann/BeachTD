@@ -52,7 +52,7 @@ public class Global : MonoBehaviour
 	public float RandomEnemySpawnHigh;
 	public enum MapToken {Tower = -2, Path = -1, Start = 0}
 	public enum GameState{Menu, Game, Pause, Credits, GameOver, Saving, Loading}
-	public enum Scenes{Menu, Game, Levels}
+	public enum Scenes{Menu = 1, Game = 2}
 	static public GameState CurrentGameState;
 	public Map CurrentMap { get{ return _currentMap; } }
 	#endregion
