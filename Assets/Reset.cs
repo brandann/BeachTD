@@ -5,11 +5,10 @@ public class Reset : SlidingUI {
 
     public GameObject ResetPanel;
 
-    override protected void Awake()
+    protected override void Awake()
     {
         base.Awake();
         MainMenuLevelButton.OnLevelClicked += HandleLevelSelection;
-
     }
 
     void OnDestroy()
@@ -20,9 +19,10 @@ public class Reset : SlidingUI {
 
     public override void Clicked()
     {
-        base.Clicked();
-        ResetPanel.SetActive(true);
+        OtherClicked();
 
+        ResetPanel.SetActive(true);
+        
     }
 
     private void HandleLevelSelection()

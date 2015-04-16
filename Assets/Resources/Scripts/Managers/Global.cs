@@ -101,6 +101,8 @@ public class Global : MonoBehaviour
             LoadLevelLoader(leveltoload);  
 			eggManager.BroadcastEggCount();         
         }
+
+        Time.timeScale = 1;
     }
 	#endregion
 	
@@ -143,7 +145,7 @@ public class Global : MonoBehaviour
 
     public void ResetGame()
     {
-        LoadMap(1);
+        LoadMap(0);
         Game.CurrentGame = new Game();
         Application.LoadLevel(0);
     }
