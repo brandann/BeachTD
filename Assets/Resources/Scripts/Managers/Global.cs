@@ -101,6 +101,8 @@ public class Global : MonoBehaviour
             LoadLevelLoader(leveltoload);  
 			eggManager.BroadcastEggCount();         
         }
+
+        Time.timeScale = 1;
     }
 	#endregion
 	
@@ -139,6 +141,13 @@ public class Global : MonoBehaviour
     {
         LoadMap(Game.CurrentGame.CurrentLevel);
         Application.LoadLevel(Global.Scenes.Game.ToString()); 
+    }
+
+    public void ResetGame()
+    {
+        LoadMap(0);
+        Game.CurrentGame = new Game();
+        Application.LoadLevel(0);
     }
 
     public void ResumeGame()

@@ -35,6 +35,9 @@ public class RangedTower : Tower
 
         for(int i = 0; i < spinesToCreate; ++i)
         {
+            if (_targets[i] == null)
+                continue;
+
             GameObject target = _targets[i].gameObject;
 
             GameObject arrow = GameObject.Instantiate(ProjectilePrefab, gameObject.transform.position, Quaternion.identity) as GameObject;

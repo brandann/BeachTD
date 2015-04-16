@@ -14,4 +14,11 @@ public class ClickableUI : MonoBehaviour {
         if (OnButtonClicked != null)
             OnButtonClicked();
     }
+
+    //Didn't want to refactor things the right way
+    protected void OtherClicked()
+    {
+        if (OnButtonClicked != null)
+            OnButtonClicked();
+    }
 }

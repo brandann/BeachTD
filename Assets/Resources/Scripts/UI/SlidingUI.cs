@@ -37,9 +37,6 @@ public class SlidingUI : ClickableUI
 	
 	public void Slide(){
 		ButtonAnimController.SetTrigger ("Slide");
-        Debug.Log(gameObject.name + "sliding time: " + Time.time);
-
-
 	}
 
     public override void Clicked()
