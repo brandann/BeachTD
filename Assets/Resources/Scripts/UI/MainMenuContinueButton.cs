@@ -4,7 +4,8 @@ using System.Collections;
 public class MainMenuContinueButton : SlidingUI{
 
 	public MainMenuCreditsButton Credits;
-    public AnimationClip SlideAnimation;    
+    public AnimationClip SlideAnimation;
+   
     
     private float _slideTime;
     private Global _global;
@@ -27,10 +28,5 @@ public class MainMenuContinueButton : SlidingUI{
         
 	}
 
-    private IEnumerator LoadLevel()
-    {
-        yield return new WaitForSeconds(_slideTime);
-		//Application.LoadLevel(Global.Scenes.Levels.ToString());     
-    }
 	
 }
