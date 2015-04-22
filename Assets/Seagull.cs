@@ -122,6 +122,7 @@ public class Seagull : MonoBehaviour {
             if (egg != null && !egg.BeingCarried)
             {
                 _target = eggs[i].transform;
+                transform.right = eggs[i].transform.position - transform.position;
                 _targetEgg = egg;
             }
         }

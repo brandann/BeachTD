@@ -55,6 +55,8 @@ public class Global : MonoBehaviour
 	public enum Scenes{Menu = 1, Game = 2}
 	static public GameState CurrentGameState;
 	public Map CurrentMap { get{ return _currentMap; } }
+
+    public static float SLOW_FACTOR = .5f;
 	#endregion
 	
 	#region Unity
