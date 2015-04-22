@@ -9,29 +9,29 @@ public class Game
     {
         get
         {
-           return _currentLevel;
+        	return _currentLevel;
         }
-
-        set
-        {
-            if(value < 0 || value > Global.MaxLevels){
-                Debug.LogError("Invalid current level");
-                return;
-            }
-
-            for (int i = 0; i < value; i++)
-                Levels[i] = LevelStatus.Unlocked;
-
-            Levels[value] = Game.LevelStatus.Current;
-            _currentLevel = value;
-
-            for(int i = _currentLevel + 1; i < Global.MaxLevels; ++i)
-                Levels[i] = LevelStatus.Locked;  
-        }
-        
+    }
+    public void UnlockLevel(int level)
+    {
+    	Levels[level] = LevelStatus.Unlocked;
+    	for(int i = 0; i <= level; i++)
+    	{
+    		Levels[i] = LevelStatus.Unlocked;
+    	}
+    	
+		for(int i = Levels.Length - 1; i >= 0; i--)
+		{
+			if(Levels[i] == LevelStatus.Unlocked)
+			{
+				Levels[i + 1] = LevelStatus.Current;
+				_currentLevel = i;
+				return;
+			}
+		}
+		return;
     }
 	public enum LevelStatus{Unlocked, Current, Locked}
 	public LevelStatus[] Levels = new LevelStatus[Global.MaxLevels];
-
-    private int _currentLevel;
+	private int _currentLevel;
 }

@@ -16,7 +16,7 @@ public class Global : MonoBehaviour
     #endregion
 
   
-    public const int MaxLevels = 25;
+    public const int MaxLevels = 10;
 
     public int LoadedLevel{get{return _loadedlevel;}}
 
@@ -279,8 +279,9 @@ public class Global : MonoBehaviour
 	{
 		Debug.Log ("Saving: " + LoadedLevel + " Unlocked");
 		
-		
-        Game.CurrentGame.CurrentLevel = LoadedLevel + 1;
+		LoadSavedGame();
+
+        Game.CurrentGame.UnlockLevel(LoadedLevel + 1);
 		SaveLoad.Save();
 	}
 

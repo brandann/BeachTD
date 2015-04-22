@@ -17,6 +17,8 @@ public class LevelButtonCall : SlidingUI {
     void Start()
     {
         _global = GameObject.Find("Global").GetComponent<Global>();
+        SaveLoad.Load();
+        Game.CurrentGame = SaveLoad.SavedGame;
         if (Game.CurrentGame.CurrentLevel < lvl)
             gameObject.GetComponent<Button>().interactable = false;
     }

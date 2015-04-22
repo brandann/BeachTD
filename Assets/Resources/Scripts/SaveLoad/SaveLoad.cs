@@ -16,6 +16,7 @@ public static class SaveLoad
 		FileStream file = File.Create (Application.persistentDataPath + FileName);
 		bf.Serialize(file, SaveLoad.SavedGame);
 		file.Close();
+		Debug.Log("Saved: " + SavedGame.CurrentLevel);
 	}
 	
 	public static void Load()
