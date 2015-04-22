@@ -751,6 +751,26 @@ Prefab:
       propertyPath: m_RootOrder
       value: 4
       objectReference: {fileID: 0}
+    - target: {fileID: 8200002, guid: 96008eb276a5db14baa0dacdb22a6bc4, type: 2}
+      propertyPath: m_Enabled
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 11400000, guid: 96008eb276a5db14baa0dacdb22a6bc4, type: 2}
+      propertyPath: m_Enabled
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 8200000, guid: 96008eb276a5db14baa0dacdb22a6bc4, type: 2}
+      propertyPath: m_Enabled
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 11400000, guid: 96008eb276a5db14baa0dacdb22a6bc4, type: 2}
+      propertyPath: EndMusic
+      value: 
+      objectReference: {fileID: 8300000, guid: ed7c2f455f71bbb4ea1f21947a25540c, type: 3}
+    - target: {fileID: 11400000, guid: 96008eb276a5db14baa0dacdb22a6bc4, type: 2}
+      propertyPath: LoseEffect
+      value: 
+      objectReference: {fileID: 8300000, guid: 826018ac9c621814199f152ed8ee2943, type: 3}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 96008eb276a5db14baa0dacdb22a6bc4, type: 2}
   m_IsPrefabParent: 0
