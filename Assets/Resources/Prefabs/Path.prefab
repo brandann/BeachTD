@@ -10,6 +10,7 @@ GameObject:
   - 4: {fileID: 446762}
   - 61: {fileID: 6178644}
   - 114: {fileID: 11414796}
+  - 212: {fileID: 21250504}
   m_Layer: 0
   m_Name: Path
   m_TagString: open
@@ -24,8 +25,8 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 153392}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 8.58082008, y: -1.22759652, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_LocalPosition: {x: -3.15922546, y: -6.60653305, z: 0}
+  m_LocalScale: {x: .200000003, y: .200000003, z: .200000003}
   m_Children: []
   m_Father: {fileID: 0}
   m_RootOrder: 0
@@ -53,6 +54,32 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c8bbf6a670ceb5d48afc586863a60147, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!212 &21250504
+SpriteRenderer:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 153392}
+  m_Enabled: 0
+  m_CastShadows: 0
+  m_ReceiveShadows: 0
+  m_Materials:
+  - {fileID: 10754, guid: 0000000000000000e000000000000000, type: 0}
+  m_SubsetIndices: 
+  m_StaticBatchRoot: {fileID: 0}
+  m_UseLightProbes: 1
+  m_ReflectionProbeUsage: 1
+  m_ProbeAnchor: {fileID: 0}
+  m_ScaleInLightmap: 1
+  m_PreserveUVs: 0
+  m_ImportantGI: 0
+  m_AutoUVMaxDistance: .5
+  m_AutoUVMaxAngle: 89
+  m_LightmapParameters: {fileID: 0}
+  m_SortingLayerID: 0
+  m_SortingOrder: 0
+  m_Sprite: {fileID: 21300000, guid: 44b0f7de3688c964697314908e681982, type: 3}
+  m_Color: {r: .478431404, g: .369087189, b: .356862754, a: 1}
 --- !u!1001 &100100000
 Prefab:
   m_ObjectHideFlags: 1

@@ -16,8 +16,8 @@ public class Egg : MonoBehaviour {
     
     private CircleCollider2D _collider;
     private GameObject _toFollow;
-    private float _smallRadius = 0.25f;
-    private float _largeRadius = 0.32f;
+    private float _smallRadius = 0.01f;
+    private float _largeRadius = 0.1f;
 
     public bool BeingCarried { get { return _toFollow != null; } }
 

@@ -86,6 +86,7 @@ public class EnemyMovement : MonoBehaviour {
 		}
 		nextPoint = waypoints[listPos];
 		transform.up = nextPoint - transform.position;
+        transform.rotation = Quaternion.Euler(transform.eulerAngles.x, 0, transform.eulerAngles.z);
 	}
 	
 	private void ResetPosition()
