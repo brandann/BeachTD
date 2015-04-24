@@ -10,7 +10,7 @@ public class Map04 : GameMap {
 			{	P,	P,	P,	T,	2,	P,	P,	P,	P,	P,	3,	T,	P,	P,	P},
 			{	P,	P,	P,	T,	P,	T,	T,	T,	T,	T,	P,	T,	P,	P,	P},
 			{	P,	P,	P,	T,	P,	T,	P,	P,	P,	T,	P,	T,	P,	P,	P},
-			{	P,	T,	T,	T,	P,	T,	P,	P,	P,	T,	P,	T,	T,	T,	P},
+			{	P,	P,  P,	T,	P,	T,	P,	P,	P,	T,	P,	T,	T,	T,	P},
 			{	P,	T,	T,	T,	P,	T,	P,	P,	P,	T,	4,	P,	P,	P,	5},
 			{	0,	P,	P,	P,	1,	T,	P,	P,	P,	T,	T,	T,	T,	T,	P},
 			{	P,	T,	T,	T,	T,	T,	P,	P,	P,	P,	P,	P,	P,	P,	P}											
