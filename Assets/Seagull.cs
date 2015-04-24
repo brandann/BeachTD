@@ -51,6 +51,7 @@ public class Seagull : MonoBehaviour {
                 break;
             case BirdBrain.Fleeing:
                 transform.position += (_endPoint - transform.position).normalized * Speed * Time.deltaTime;
+				transform.right = _endPoint - transform.position;
                 break;
         } 
         
