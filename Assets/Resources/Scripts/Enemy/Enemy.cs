@@ -33,7 +33,6 @@ public class Enemy : MonoBehaviour
 	
 	#region Private Members
     private Egg _carriedEgg;
-	private Color _currentColor = Color.white;
     private GameObject _powPrefab;
     private EnemyMovement _movement;
 	#endregion
@@ -98,7 +97,7 @@ public class Enemy : MonoBehaviour
 	
 	public void KillThisEnemy()
 	{		
-		Debug.Log("Enemy Dead");
+		//Debug.Log("Enemy Dead");
 		if(HasEgg)
             DropCarriedEgg();	
 			

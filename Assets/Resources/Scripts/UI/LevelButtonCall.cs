@@ -14,7 +14,7 @@ public class LevelButtonCall : SlidingUI {
         MainMenuLevelButton.OnLevelClicked += HandleLevelSelection;
     }
 
-    void Start()
+    public override void Start()
     {
         _global = GameObject.Find("Global").GetComponent<Global>();
         SaveLoad.Load();
@@ -26,7 +26,6 @@ public class LevelButtonCall : SlidingUI {
 	public void LoadLevel()
 	{
 		int level = lvl - 1;
-		Debug.Log ("Load Level: " + level);
 		_global.LoadMap(level);
 		Application.LoadLevel(Global.Scenes.Game.ToString()); 
 	}

@@ -99,7 +99,7 @@ public class TowerFactory : MonoBehaviour
     void Awake()
     {
         InitializeFactory();
-        Debug.Log("initialize factory");
+        //Debug.Log("initialize factory");
     }
 
     //The towerfactory singleton
