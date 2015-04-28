@@ -327,7 +327,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b0ed0bb68b4032541b7084a98fdf8d14, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  bullet: {fileID: 196976, guid: dc1f614bd3a5986488d2c0826403031d, type: 2}
+  bullet: {fileID: 122424, guid: dc1f614bd3a5986488d2c0826403031d, type: 2}
 --- !u!114 &11450216
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -339,7 +339,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b0ed0bb68b4032541b7084a98fdf8d14, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  bullet: {fileID: 196976, guid: dc1f614bd3a5986488d2c0826403031d, type: 2}
+  bullet: {fileID: 122424, guid: dc1f614bd3a5986488d2c0826403031d, type: 2}
 --- !u!114 &11464968
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -362,7 +362,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b0ed0bb68b4032541b7084a98fdf8d14, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  bullet: {fileID: 196976, guid: dc1f614bd3a5986488d2c0826403031d, type: 2}
+  bullet: {fileID: 122424, guid: dc1f614bd3a5986488d2c0826403031d, type: 2}
 --- !u!114 &11474770
 MonoBehaviour:
   m_ObjectHideFlags: 1

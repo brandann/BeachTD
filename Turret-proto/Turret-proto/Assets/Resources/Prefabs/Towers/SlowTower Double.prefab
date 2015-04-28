@@ -272,7 +272,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b0ed0bb68b4032541b7084a98fdf8d14, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  bullet: {fileID: 114344, guid: 2b464e3d5a1267c4d88bd96e34c7b03d, type: 2}
+  bullet: {fileID: 184118, guid: 2b464e3d5a1267c4d88bd96e34c7b03d, type: 2}
 --- !u!114 &11432198
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -284,7 +284,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b0ed0bb68b4032541b7084a98fdf8d14, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  bullet: {fileID: 114344, guid: 2b464e3d5a1267c4d88bd96e34c7b03d, type: 2}
+  bullet: {fileID: 184118, guid: 2b464e3d5a1267c4d88bd96e34c7b03d, type: 2}
 --- !u!114 &11460738
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -296,7 +296,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b0ed0bb68b4032541b7084a98fdf8d14, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  bullet: {fileID: 114344, guid: 2b464e3d5a1267c4d88bd96e34c7b03d, type: 2}
+  bullet: {fileID: 184118, guid: 2b464e3d5a1267c4d88bd96e34c7b03d, type: 2}
 --- !u!114 &11465608
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -334,7 +334,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b0ed0bb68b4032541b7084a98fdf8d14, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  bullet: {fileID: 114344, guid: 2b464e3d5a1267c4d88bd96e34c7b03d, type: 2}
+  bullet: {fileID: 184118, guid: 2b464e3d5a1267c4d88bd96e34c7b03d, type: 2}
 --- !u!212 &21203326
 SpriteRenderer:
   m_ObjectHideFlags: 1
