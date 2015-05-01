@@ -39,11 +39,18 @@ public class TipBarnacle : MonoBehaviour {
         }
 	}
 
-    public void Attack(Transform targ)
+    public void Attack(Transform targ, float speed)
     {
+        _kinematicSpeed = speed;
         State = TipState.Attacking;
         Target = targ;
         _hitTarget = false;
+    }
+
+    public void ClearTarget()
+    {
+        Target = null;
+        PhysicsRetract();
     }
 
     private void PhysicsFinishRetracting()
@@ -85,16 +92,12 @@ public class TipBarnacle : MonoBehaviour {
             GetComponent<Rigidbody2D>().isKinematic = true;
         }
 
+        
         Vector2 dir2Target = (Target.position - transform.position).normalized;
         transform.position += (Vector3)(dir2Target * _kinematicSpeed * Time.deltaTime);
 
     }
 
-    public void ClearTarget()
-    {
-        Target = null;
-        PhysicsRetract();
-    }
 
     public void PhysicsJumpTowardTarget()
     {
