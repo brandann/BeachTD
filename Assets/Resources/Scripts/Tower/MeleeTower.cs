@@ -34,7 +34,7 @@ public class MeleeTower : Tower
         if(target == null)
             return;
 
-        _tip.Attack(target.transform);
+        _tip.Attack(target.transform, target.GetComponent<EnemyMovement>().speed * 2); //should maybe clean that up
 
         if (OnMeleeFired != null)
             OnMeleeFired();
