@@ -47,6 +47,12 @@ public class TipBarnacle : MonoBehaviour {
         _hitTarget = false;
     }
 
+    public void ClearTarget()
+    {
+        Target = null;
+        PhysicsRetract();
+    }
+
     private void PhysicsFinishRetracting()
     {
         if (State == TipState.Retracting &&
@@ -92,11 +98,6 @@ public class TipBarnacle : MonoBehaviour {
 
     }
 
-    public void ClearTarget()
-    {
-        Target = null;
-        PhysicsRetract();
-    }
 
     public void PhysicsJumpTowardTarget()
     {
