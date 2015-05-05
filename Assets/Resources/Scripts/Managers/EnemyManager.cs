@@ -78,7 +78,10 @@ public class EnemyManager : ManagerBase
 	private bool SetNextWave()
 	{
         if (OnWaveStarted != null)
+        {
             OnWaveStarted();
+            Debug.Log("wave triggered");
+        }
 
 		if(_waveQueue == null || _waveQueue.Count == 0)
 		{

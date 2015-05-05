@@ -57,7 +57,7 @@ public class Global : MonoBehaviour
 	public Map CurrentMap { get{ return _currentMap; } }
 
     public static float SLOW_FACTOR = .5f;
-    public int WaveCount { get { return enemyManager.WaveCount; }  }
+    public int WaveCount { get { return enemyManager != null ? enemyManager.WaveCount : 0; }  }
 	#endregion
 	
 	#region Unity

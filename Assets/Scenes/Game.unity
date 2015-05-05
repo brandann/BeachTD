@@ -1928,6 +1928,7 @@ GameObject:
   - 224: {fileID: 2104175441}
   - 222: {fileID: 2104175443}
   - 114: {fileID: 2104175442}
+  - 114: {fileID: 2104175444}
   m_Layer: 5
   m_Name: WaveDisplay
   m_TagString: Untagged
@@ -1987,6 +1988,17 @@ CanvasRenderer:
     type: 2}
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 2104175440}
+--- !u!114 &2104175444
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 2104175440}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 64eb045241431a141857d4b1b4c789ae, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1001 &2124150031
 Prefab:
   m_ObjectHideFlags: 0
