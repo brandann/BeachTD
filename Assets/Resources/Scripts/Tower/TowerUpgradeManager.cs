@@ -251,6 +251,10 @@ public class TowerUpgradeManager : MonoBehaviour
 
         //Clear UI
         ShowBuildButtons();
+        
+        // call enemy manager and tell her a tower has been built
+        Global go = GameObject.Find("Global").GetComponent<Global>();
+        go.enemyManager.NotifyTowerBuilt();
     }
 
     private void DeselectAndHide()

@@ -27,7 +27,7 @@ public class EnemyManager : ManagerBase
     #endregion
     
     #region Public Members
-	public enum ManagerState {Prep, Active, Done, WaitForPrevWave};
+	public enum ManagerState {Prep, Active, Done, WaitForPrevWave, WaitForTowers};
     public ManagerState CurrentManagerState { get { return _currentManagerState; } }
     public int WaveCount { get; protected set; }
     #endregion
@@ -57,6 +57,15 @@ public class EnemyManager : ManagerBase
   		else if (Input.GetKeyUp(KeyCode.Alpha3)) { Create(EnemyC0Prefab, _startingPosition); }
 	}
     
+    public void NotifyTowerBuilt()
+    {
+    	Debug.Log("Enemy Manager Notified that tower has been built");
+    	if (_currentManagerState == ManagerState.WaitForTowers)
+    	{
+    		_currentManagerState = ManagerState.Active;
+    	}
+    }
+    
     public void SetWaves(List<Wave> waves)
     {
     	_waveQueue = new Queue<Wave>();
@@ -64,14 +73,16 @@ public class EnemyManager : ManagerBase
     	
     	_currentManagerState = ManagerState.Active;
         WaveCount = waves.Count;
-    	
+
     	for (int i = 0; i < waves.Count; i++)
     	{
     		_waveQueue.Enqueue(waves[i]);
     	}
     	
     	SetNextWave();
-    }
+    	
+		_currentManagerState = ManagerState.WaitForTowers;
+	}
 	#endregion
 	
 	#region Private Methods
@@ -170,6 +181,8 @@ public class EnemyManager : ManagerBase
 					_spawntimedinterval = Time.time;
 				}
 				break;
+			case(ManagerState.WaitForTowers):
+				return;
 		}
 	}
     #endregion
