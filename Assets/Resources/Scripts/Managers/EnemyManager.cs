@@ -2,10 +2,16 @@
 using System.Collections;
 using System.Collections.Generic;
 
-public class EnemyManager : ManagerBase {
+public class EnemyManager : ManagerBase
+{
+    #region events
+    public delegate void WaveStarted();
+    public static event WaveStarted OnWaveStarted;
 
-	#region Private memebers
-	private Queue<Wave> _waveQueue;
+    #endregion
+
+    #region Private memebers
+    private Queue<Wave> _waveQueue;
 	private Queue<EnemySchedule> _enemyQueue;
 	
     private float delay;
@@ -17,11 +23,13 @@ public class EnemyManager : ManagerBase {
     private float _spawntimedinterval = 0;
     
     private ManagerState _currentManagerState;
+
     #endregion
     
     #region Public Members
 	public enum ManagerState {Prep, Active, Done, WaitForPrevWave};
     public ManagerState CurrentManagerState { get { return _currentManagerState; } }
+    public int WaveCount { get; protected set; }
     #endregion
 	
 	#region Public methods
@@ -55,6 +63,7 @@ public class EnemyManager : ManagerBase {
     	_enemyQueue = new Queue<EnemySchedule>();
     	
     	_currentManagerState = ManagerState.Active;
+        WaveCount = waves.Count;
     	
     	for (int i = 0; i < waves.Count; i++)
     	{
@@ -67,12 +76,16 @@ public class EnemyManager : ManagerBase {
 	
 	#region Private Methods
 	private bool SetNextWave()
-	{	
+	{
+        if (OnWaveStarted != null)
+            OnWaveStarted();
+
 		if(_waveQueue == null || _waveQueue.Count == 0)
 		{
 			_currentManagerState = ManagerState.Done;
 			_waveQueue = null;
-			_enemyQueue = null;
+			_enemyQueue = null;            
+            
 			return false;
 		}
 
