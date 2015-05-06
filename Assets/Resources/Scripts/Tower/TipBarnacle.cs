@@ -21,6 +21,7 @@ public class TipBarnacle : MonoBehaviour {
         if (_base == null)
             Debug.LogWarning("Missing base");
         GetComponent<Rigidbody2D>().isKinematic = true;
+        PhysicsRetract();
 	}
 	
 	// Update is called once per frame
@@ -95,6 +96,7 @@ public class TipBarnacle : MonoBehaviour {
         
         Vector2 dir2Target = (Target.position - transform.position).normalized;
         transform.position += (Vector3)(dir2Target * _kinematicSpeed * Time.deltaTime);
+        transform.Rotate(Vector3.forward * Time.deltaTime * 1000, Space.World);
 
     }
 
