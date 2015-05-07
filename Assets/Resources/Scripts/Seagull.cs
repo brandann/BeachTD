@@ -52,7 +52,12 @@ public class Seagull : MonoBehaviour {
             case BirdBrain.Fleeing:
                 transform.position += (_endPoint - transform.position).normalized * Speed * Time.deltaTime;
 				transform.right = _endPoint - transform.position;
+                if ((Time.time - _endTime) >= _restartDelay)
+                {
+                    Initialize();
+                }
                 break;
+                
         } 
         
            
@@ -91,6 +96,10 @@ public class Seagull : MonoBehaviour {
             _targetEgg = null;
 
             _state = BirdBrain.Fleeing;
+
+            _endPoint = new Vector3(18, Random.Range(-1, 20), 0);
+            _endTime = Time.time;
+            _restartDelay = Random.Range(5, 12);
         }
     }
 
@@ -108,7 +117,7 @@ public class Seagull : MonoBehaviour {
     private void Initialize()
     {
         _state = BirdBrain.Idle;
-        _startPoint = new Vector3(-1, Random.Range(0f, 4.5f), 0);
+        _startPoint = new Vector3(-1, Random.Range(0, 10), 0);
         transform.position = _startPoint;
         _lastAttack = Time.time;
     }
@@ -162,8 +171,10 @@ public class Seagull : MonoBehaviour {
     private Transform _target;
     private Egg _targetEgg;
     private float _lastAttack;
+    private float _restartDelay;
+    private float _endTime;
     private Vector3 _startPoint;
-    private readonly Vector3 _endPoint = new Vector3(18, 5, 0);
+    private Vector3 _endPoint = new Vector3(18, 5, 0);
     private BirdBrain _state;
 
     private enum BirdBrain { Idle, Attacking, Fleeing };
