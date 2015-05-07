@@ -156,7 +156,7 @@ public class TowerUpgradeManager : MonoBehaviour
 
     //Last tower that fired touch event
     private Tower _touchedTower;
-
+    
     //Last open area that fired touch event
     private OpenAreaBehavior _touchedArea;
 
@@ -168,6 +168,7 @@ public class TowerUpgradeManager : MonoBehaviour
     private Dictionary<Tower, int> _towerLookup;
 
     private int[,] _maxUpgrades;
+    private readonly float FADETIME = 5f;
     private readonly int RANGEINDEX = 0;
     private readonly int SPEEDINDEX = 1;
     private readonly int DAMAGEINDEX = 2;
@@ -176,7 +177,14 @@ public class TowerUpgradeManager : MonoBehaviour
     private Vector2 _buttonSizeRect = new Vector2(0.5f, 0.5f);
     private Collider2D[] _hitByButtons;
     private SandDollarBank _bank;
-    
+    private float _lastActivation;
+
+    public void Update()
+    {
+        if (MenuActive && Time.time >= _lastActivation + FADETIME)
+            DeselectAndHide();
+    }
+
 
     private void AssignButtons()
     {
@@ -280,6 +288,7 @@ public class TowerUpgradeManager : MonoBehaviour
         bool showSell = CanSellTower();
 
         ShowUpgradeButtons(showSpeed, showRange, showDamage, showSpecial, showSell);
+        _lastActivation = Time.time;
     }
 
     private void SelectAndShow(OpenAreaBehavior a)
@@ -293,6 +302,7 @@ public class TowerUpgradeManager : MonoBehaviour
         bool showRanged = CanBuildRanged();
         bool showSlow = CanBuildSlow();
         ShowBuildButtons(showMelee, showRanged, showSlow);
+        _lastActivation = Time.time;
     }
 
     private void HandlePathTouched(Path path)
@@ -472,6 +482,10 @@ public class TowerUpgradeManager : MonoBehaviour
         _buttons[7].gameObject.SetActive(sell);
 
         CheckMenuActive();
+
+        if (MenuActive)
+            _lastActivation = Time.time;
+
     }
 
     private void CheckMenuActive()
