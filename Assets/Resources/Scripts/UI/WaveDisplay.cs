@@ -11,14 +11,16 @@ public class WaveDisplay : MonoBehaviour {
 	// Use this for initialization
 	void Awake () {
 
-        _currentWave = 0;
+        _currentWave = 1;
         _totalWaves = GameObject.Find("Global").GetComponent<Global>().WaveCount;
         _text = gameObject.GetComponent<Text>();
+        UpdateDisplay();
 	}    
 
     void OnEnable()
     {
         EnemyManager.OnWaveStarted += HandleWaveStart;
+        UpdateDisplay();
     }
 
     void OnDisable()
@@ -31,12 +33,13 @@ public class WaveDisplay : MonoBehaviour {
         Debug.Log("Wave start");
         _currentWave++;
         UpdateDisplay();
-        
     }
 
     void UpdateDisplay()
     {
         //hackish way to deal with fact that wave count may not have been initialized before awake
+
+        // can we move it OnEnable()? <- Brandan
         if (_totalWaves == 0)
             _totalWaves = GameObject.Find("Global").GetComponent<Global>().WaveCount;
 

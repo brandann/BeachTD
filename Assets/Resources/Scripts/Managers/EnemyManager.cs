@@ -59,7 +59,6 @@ public class EnemyManager : ManagerBase
     
     public void NotifyTowerBuilt()
     {
-    	Debug.Log("Enemy Manager Notified that tower has been built");
     	if (_currentManagerState == ManagerState.WaitForTowers)
     	{
     		_currentManagerState = ManagerState.Active;
@@ -88,11 +87,11 @@ public class EnemyManager : ManagerBase
 	#region Private Methods
 	private bool SetNextWave()
 	{
-        if (OnWaveStarted != null)
-        {
-            OnWaveStarted();
-            Debug.Log("wave triggered");
-        }
+        //if (OnWaveStarted != null)
+        //{
+        //    OnWaveStarted();
+        //    Debug.Log("wave triggered");
+        //}
 
 		if(_waveQueue == null || _waveQueue.Count == 0)
 		{
@@ -179,6 +178,12 @@ public class EnemyManager : ManagerBase
 				{
 					_currentManagerState = ManagerState.Active;
 					_spawntimedinterval = Time.time;
+
+                    if (OnWaveStarted != null)
+                    {
+                        OnWaveStarted();
+                        Debug.Log("wave triggered");
+                    }
 				}
 				break;
 			case(ManagerState.WaitForTowers):
