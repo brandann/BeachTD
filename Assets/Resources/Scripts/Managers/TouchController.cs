@@ -36,8 +36,8 @@ public class TouchController : MonoBehaviour {
 		
 		
 #region touch/mouse
-#if UNITY_EDITOR
-		// use mouse for Unity Editor
+#if UNITY_EDITOR || UNITY_WEBPLAYER || UNITY_WEBGL
+        // use mouse for Unity Editor
     // turns mouse button actions into faux touch
     // inputs only in Unity Editor
     // can add for computer for PC/Mac port
