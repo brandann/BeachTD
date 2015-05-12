@@ -205,21 +205,20 @@ MonoBehaviour:
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FontData:
     m_Font: {fileID: 10102, guid: 0000000000000000e000000000000000, type: 0}
-    m_FontSize: 36
+    m_FontSize: 25
     m_FontStyle: 0
-    m_BestFit: 1
+    m_BestFit: 0
     m_MinSize: 10
     m_MaxSize: 40
-    m_Alignment: 0
-    m_RichText: 1
+    m_Alignment: 1
+    m_RichText: 0
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: "Executive Producer \tHiroshi Yamauchi (H. Miyauchi)\r\nProducer \tShigeru
-    Miyamoto (S. Miyahon)\r\nDirector \tShigeru Miyamoto (S. Miyahon), Takashi Tezuka
-    (Ten Ten)\r\nDesigner \tTakashi Tezuka (Ten Ten)\r\nProgrammer \tToshihiko Nakago
-    (T. Nakazoo), Yasunari Soejima (Yachan), I. Marui (Marumaru)\r\nSound Composer\tK\u014Dji
-    Kond\u014D (Konchan)"
+  m_Text: "-------------Credits-------------\r\nNybble Studios\r\nnybblestudios@gmail.com\r\n\r\nGary
+    Mixson - prevnode@gmail.com\r\nLead Developer\r\n\r\nBrandan Haertel - foilpudding@gmail.com\r\nLead
+    Developer\r\nArt\r\n\r\nJason Lantz - j.lantz87@gmail.com\r\nGame Design\r\n\r\nErick
+    House - erickhouse01@gmail.com\r\nDeveloper\r\n\r\nMiah McBride\r - jmcbride@northshoresheetmetal.com\nAudio\r\n"
 --- !u!222 &64504064
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -1306,7 +1305,7 @@ MonoBehaviour:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 479593047}
-  m_Enabled: 1
+  m_Enabled: 0
   m_EditorHideFlags: 0
   m_Script: {fileID: -765806418, guid: f5f67c52d1564df4a8936ccd202a3bd8, type: 3}
   m_Name: 
@@ -4031,14 +4030,12 @@ MonoBehaviour:
     m_BestFit: 1
     m_MinSize: 10
     m_MaxSize: 40
-    m_Alignment: 7
+    m_Alignment: 4
     m_RichText: 1
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: 'Back
-
-'
+  m_Text: Back
 --- !u!222 &1595836878
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -5555,8 +5552,8 @@ RectTransform:
   m_RootOrder: 0
   m_AnchorMin: {x: .5, y: .5}
   m_AnchorMax: {x: .5, y: .5}
-  m_AnchoredPosition: {x: 302, y: -53}
-  m_SizeDelta: {x: 200, y: 100}
+  m_AnchoredPosition: {x: 500, y: -53}
+  m_SizeDelta: {x: 200, y: 50}
   m_Pivot: {x: .5, y: .5}
 --- !u!114 &2083618954
 MonoBehaviour:
