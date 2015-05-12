@@ -93,6 +93,8 @@ public class EggManager : ManagerBase {
 
         if (OnEggCountChanged != null)
             OnEggCountChanged(EggCount);
+
+        _global.WinLoseCond();
     }
 
 	#endregion
