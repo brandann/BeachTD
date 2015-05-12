@@ -18,6 +18,13 @@ public class TurretShootBounce : MonoBehaviour {
         private float timeElapsed = 0;
     private float SpawnTime = .1f;
 
+    public void Shoot()
+    {
+        if (currentState == State.WAITING)
+        {
+            currentState = State.DIP;
+        }
+    }
 
 	// Use this for initialization
 	void Start () {

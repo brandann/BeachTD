@@ -17,7 +17,7 @@ public class RangedTower : Tower
     public override void Initialize()
     {
         base.Initialize(); 
-        CoolDownTime = 1f;
+        CoolDownTime = .5f;
         _spinesPerShot = 1;
         gameObject.SetActive(false);
     }    
@@ -45,6 +45,8 @@ public class RangedTower : Tower
             Projectile projectile = arrow.GetComponent<Projectile>();
 
             projectile.setTarget(target.transform);
+
+            GetComponentInChildren<TurretShootBounce>().Shoot();
         }
 
         if (OnRangedFired != null)

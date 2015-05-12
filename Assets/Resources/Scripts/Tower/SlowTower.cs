@@ -11,7 +11,7 @@ public class SlowTower : Tower
     #endregion
 
     public GameObject ProjectilePrefab;
-    public readonly float SlowCoolDownTime = 1;
+    public readonly float SlowCoolDownTime = .5f;
 
     public float BaseDuration { get; protected set; }
 

@@ -213,6 +213,11 @@ public abstract class Tower : MonoBehaviour
 
     //Store possible targets  
     protected List<Enemy> _targets;
+
+    public List<Enemy> Targets
+    {
+        get { return _targets; }
+    }
     
     /// <summary>
     /// CurrentState of tower before last state transition
