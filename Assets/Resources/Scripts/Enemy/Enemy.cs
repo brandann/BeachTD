@@ -23,7 +23,9 @@ public class Enemy : MonoBehaviour
 	public Global global;
     public int EnemyKillValue;
 
-	
+    public Sprite HealthSprite75;
+    public Sprite HealthSprite50;
+    public Sprite HealthSprite25;
 	
 	public bool HasEgg
 	{
@@ -35,11 +37,13 @@ public class Enemy : MonoBehaviour
     private Egg _carriedEgg;
     private GameObject _powPrefab;
     private EnemyMovement _movement;
+    private float ORG_HEALTH;
 	#endregion
 	
 	#region Unity
 	void Awake () 
 	{
+        ORG_HEALTH = Health;
 		CurrentEnemyState = EnemyState.Active;
 		global = GameObject.Find("Global").GetComponent<Global>();
         _powPrefab = Resources.Load("Prefabs/temp-pow") as GameObject;
@@ -84,6 +88,20 @@ public class Enemy : MonoBehaviour
 	public virtual void TakeDamage(float damage)
 	{
 		Health -= damage;
+
+        if (Health <= (ORG_HEALTH * .75f) && Health > (ORG_HEALTH * .5f))
+        {
+            this.GetComponent<SpriteRenderer>().sprite = HealthSprite75;
+        }
+        else if (Health <= (ORG_HEALTH * .5f) && Health > (ORG_HEALTH * .25f))
+        {
+            this.GetComponent<SpriteRenderer>().sprite = HealthSprite50;
+        }
+        else if (Health <= (ORG_HEALTH * .25f) && Health > (ORG_HEALTH * 0))
+        {
+            this.GetComponent<SpriteRenderer>().sprite = HealthSprite25;
+        }
+
 		if(Health <= 0)
 		{
 			KillThisEnemy ();			
