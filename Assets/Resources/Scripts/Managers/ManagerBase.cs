@@ -55,7 +55,7 @@ public abstract class ManagerBase{
 			GameObject.Destroy(go.gameObject);
 		}
 		
-		//_global.WinLoseCond();
+		_global.WinLoseCond();
 	}
 	
 	public void SetStartingPosition(Vector3 position)
