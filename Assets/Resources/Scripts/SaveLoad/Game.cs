@@ -5,6 +5,12 @@ using System.Collections;
 public class Game 
 {
 	public static Game CurrentGame;
+	
+	public Game()
+	{
+		Levels = new LevelStatus[Global.MaxLevels];
+	}
+	
     public int CurrentLevel
     {
         get
@@ -24,14 +30,21 @@ public class Game
 		{
 			if(Levels[i] == LevelStatus.Unlocked)
 			{
-				Levels[i + 1] = LevelStatus.Current;
+				Levels[i] = LevelStatus.Current;
 				_currentLevel = i;
 				return;
 			}
 		}
 		return;
     }
+    
+    public void reset()
+    {
+		Levels = new LevelStatus[Global.MaxLevels];
+		_currentLevel = 0;
+    }
+    
 	public enum LevelStatus{Unlocked, Current, Locked}
-	public LevelStatus[] Levels = new LevelStatus[Global.MaxLevels];
+	public LevelStatus[] Levels;// = new LevelStatus[Global.MaxLevels];
 	private int _currentLevel;
 }

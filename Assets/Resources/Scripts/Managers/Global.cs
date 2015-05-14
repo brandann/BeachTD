@@ -150,6 +150,7 @@ public class Global : MonoBehaviour
     {
         LoadMap(0);
         Game.CurrentGame = new Game();
+        SaveLoad.SavedGame.reset();
         SaveLoad.Save();
         Application.LoadLevel(0);
     }
