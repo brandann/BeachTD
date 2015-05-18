@@ -20,13 +20,13 @@ AnimationClip:
       m_Curve:
       - time: 0
         value: 0
-        inSlope: 1280
-        outSlope: 1280
+        inSlope: 1640
+        outSlope: 1640
         tangentMode: 10
       - time: .5
-        value: 640
-        inSlope: 1280
-        outSlope: 1280
+        value: 820
+        inSlope: 1640
+        outSlope: 1640
         tangentMode: 10
       m_PreInfinity: 2
       m_PostInfinity: 2
@@ -72,13 +72,13 @@ AnimationClip:
       m_Curve:
       - time: 0
         value: 0
-        inSlope: 1280
-        outSlope: 1280
+        inSlope: 1640
+        outSlope: 1640
         tangentMode: 10
       - time: .5
-        value: 640
-        inSlope: 1280
-        outSlope: 1280
+        value: 820
+        inSlope: 1640
+        outSlope: 1640
         tangentMode: 10
       m_PreInfinity: 2
       m_PostInfinity: 2
