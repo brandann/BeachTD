@@ -91,11 +91,11 @@ public class Audio : MonoBehaviour {
                 break;
             case 2:
                 _effectSource.PlayOneShot(LoseEffect);
-                _musicSource.clip = EndMusic;
+                _musicSource.clip = InGameMusic;
                 break;
             case 3:
                 _effectSource.PlayOneShot(WinEffect);
-                _musicSource.clip = EndMusic;
+                _musicSource.clip = InGameMusic;
                 //Debug.Log("Audio win");
                 break;
             default:

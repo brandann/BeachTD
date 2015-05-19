@@ -202,9 +202,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
-  m_Color: {r: 1, g: 1, b: 1, a: 1}
+  m_Color: {r: .635294139, g: .556862772, b: .415686309, a: 1}
   m_FontData:
-    m_Font: {fileID: 10102, guid: 0000000000000000e000000000000000, type: 0}
+    m_Font: {fileID: 12800000, guid: ffac91d7923384ca4922e364b322878c, type: 3}
     m_FontSize: 25
     m_FontStyle: 0
     m_BestFit: 0
@@ -215,10 +215,11 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: "-------------Credits-------------\r\nNybble Studios\r\nnybblestudios@gmail.com\r\n\r\nGary
-    Mixson - prevnode@gmail.com\r\nLead Developer\r\n\r\nBrandan Haertel - foilpudding@gmail.com\r\nLead
-    Developer\r\nArt\r\n\r\nJason Lantz - j.lantz87@gmail.com\r\nGame Design\r\n\r\nErick
-    House - erickhouse01@gmail.com\r\nDeveloper\r\n\r\nMiah McBride\r - jmcbride@northshoresheetmetal.com\nAudio\r\n"
+  m_Text: "\n\n\nNybble Studios\r * nybblestudios@gmail.com\r\n\n~~~Developers~~~\nGary
+    Mixson * prevnode@gmail.com\r\r\nBrandan Haertel * foilpudding@gmail.com\r\n\n~~~Art~~~\nBrandan
+    Haertel * foilpudding@gmail.com\r\n\n~~~Game Design~~~\nJason Lantz * j.lantz87@gmail.com\r\n\n~~~Audio~~\n\"Come
+    and Find Me\" @Eric Skiff ericskiff.com/music\n\n~~~Special Thanks~~~\nErick House,
+    Early development * erickhouse01@gmail.com\r\nCorey Haertel, Balancing * chaertel24@gmail.com"
 --- !u!222 &64504064
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -625,9 +626,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
-  m_Color: {r: .195999995, g: .195999995, b: .195999995, a: 1}
+  m_Color: {r: .482352972, g: .419607878, b: .301960796, a: 1}
   m_FontData:
-    m_Font: {fileID: 12800000, guid: ffac91d7923384ca4922e364b322878c, type: 3}
+    m_Font: {fileID: 12800000, guid: 1f5debd5b617f48439d78149d7031779, type: 3}
     m_FontSize: 60
     m_FontStyle: 0
     m_BestFit: 0
@@ -693,7 +694,7 @@ MonoBehaviour:
   m_Material: {fileID: 0}
   m_Color: {r: .635294139, g: .556862772, b: .415686309, a: 1}
   m_FontData:
-    m_Font: {fileID: 12800000, guid: ffac91d7923384ca4922e364b322878c, type: 3}
+    m_Font: {fileID: 12800000, guid: 1f5debd5b617f48439d78149d7031779, type: 3}
     m_FontSize: 60
     m_FontStyle: 0
     m_BestFit: 0
@@ -769,7 +770,11 @@ Prefab:
     - target: {fileID: 11400000, guid: 96008eb276a5db14baa0dacdb22a6bc4, type: 2}
       propertyPath: LoseEffect
       value: 
-      objectReference: {fileID: 8300000, guid: 826018ac9c621814199f152ed8ee2943, type: 3}
+      objectReference: {fileID: 8300000, guid: f6dafc04289211742b39fc921a39fda4, type: 3}
+    - target: {fileID: 11400000, guid: 96008eb276a5db14baa0dacdb22a6bc4, type: 2}
+      propertyPath: InGameMusic
+      value: 
+      objectReference: {fileID: 8300000, guid: 4dac7c83694b81b4fa44081c4a38df3f, type: 3}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 96008eb276a5db14baa0dacdb22a6bc4, type: 2}
   m_IsPrefabParent: 0
@@ -1098,9 +1103,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
-  m_Color: {r: .195999995, g: .195999995, b: .195999995, a: 1}
+  m_Color: {r: .482352972, g: .419607878, b: .301960796, a: 1}
   m_FontData:
-    m_Font: {fileID: 12800000, guid: ffac91d7923384ca4922e364b322878c, type: 3}
+    m_Font: {fileID: 12800000, guid: 1f5debd5b617f48439d78149d7031779, type: 3}
     m_FontSize: 60
     m_FontStyle: 0
     m_BestFit: 0
@@ -1169,9 +1174,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
-  m_Color: {r: .195999995, g: .195999995, b: .195999995, a: 1}
+  m_Color: {r: .482352972, g: .419607878, b: .301960796, a: 1}
   m_FontData:
-    m_Font: {fileID: 12800000, guid: ffac91d7923384ca4922e364b322878c, type: 3}
+    m_Font: {fileID: 12800000, guid: 1f5debd5b617f48439d78149d7031779, type: 3}
     m_FontSize: 60
     m_FontStyle: 0
     m_BestFit: 0
@@ -1245,9 +1250,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
-  m_Color: {r: .195999995, g: .195999995, b: .195999995, a: 1}
+  m_Color: {r: .482352972, g: .419607878, b: .301960796, a: 1}
   m_FontData:
-    m_Font: {fileID: 12800000, guid: ffac91d7923384ca4922e364b322878c, type: 3}
+    m_Font: {fileID: 12800000, guid: 1f5debd5b617f48439d78149d7031779, type: 3}
     m_FontSize: 60
     m_FontStyle: 0
     m_BestFit: 0
@@ -1377,9 +1382,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
-  m_Color: {r: .195999995, g: .195999995, b: .195999995, a: 1}
+  m_Color: {r: .482352972, g: .419607878, b: .301960796, a: 1}
   m_FontData:
-    m_Font: {fileID: 12800000, guid: ffac91d7923384ca4922e364b322878c, type: 3}
+    m_Font: {fileID: 12800000, guid: 1f5debd5b617f48439d78149d7031779, type: 3}
     m_FontSize: 60
     m_FontStyle: 0
     m_BestFit: 0
@@ -1604,8 +1609,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
-  m_Sprite: {fileID: 10905, guid: 0000000000000000f000000000000000, type: 0}
-  m_Type: 1
+  m_Sprite: {fileID: 21300000, guid: fe32375eaa7d98c40b56175afd61266a, type: 3}
+  m_Type: 0
   m_PreserveAspect: 0
   m_FillCenter: 1
   m_FillMethod: 4
@@ -1751,8 +1756,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
-  m_Sprite: {fileID: 10905, guid: 0000000000000000f000000000000000, type: 0}
-  m_Type: 1
+  m_Sprite: {fileID: 21300000, guid: fe32375eaa7d98c40b56175afd61266a, type: 3}
+  m_Type: 0
   m_PreserveAspect: 0
   m_FillCenter: 1
   m_FillMethod: 4
@@ -1833,9 +1838,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
-  m_Color: {r: .195999995, g: .195999995, b: .195999995, a: 1}
+  m_Color: {r: .482352972, g: .419607878, b: .301960796, a: 1}
   m_FontData:
-    m_Font: {fileID: 12800000, guid: ffac91d7923384ca4922e364b322878c, type: 3}
+    m_Font: {fileID: 12800000, guid: 1f5debd5b617f48439d78149d7031779, type: 3}
     m_FontSize: 60
     m_FontStyle: 0
     m_BestFit: 0
@@ -2058,9 +2063,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
-  m_Color: {r: .195999995, g: .195999995, b: .195999995, a: 1}
+  m_Color: {r: .482352972, g: .419607878, b: .301960796, a: 1}
   m_FontData:
-    m_Font: {fileID: 12800000, guid: ffac91d7923384ca4922e364b322878c, type: 3}
+    m_Font: {fileID: 12800000, guid: 1f5debd5b617f48439d78149d7031779, type: 3}
     m_FontSize: 60
     m_FontStyle: 0
     m_BestFit: 0
@@ -2236,8 +2241,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
-  m_Sprite: {fileID: 10905, guid: 0000000000000000f000000000000000, type: 0}
-  m_Type: 1
+  m_Sprite: {fileID: 21300000, guid: fe32375eaa7d98c40b56175afd61266a, type: 3}
+  m_Type: 0
   m_PreserveAspect: 0
   m_FillCenter: 1
   m_FillMethod: 4
@@ -2388,7 +2393,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
-  m_Sprite: {fileID: 21300000, guid: 95b2569b974ed044b91ee1b7b9e6dbcd, type: 3}
+  m_Sprite: {fileID: 0}
   m_Type: 0
   m_PreserveAspect: 0
   m_FillCenter: 1
@@ -2548,8 +2553,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
-  m_Sprite: {fileID: 10905, guid: 0000000000000000f000000000000000, type: 0}
-  m_Type: 1
+  m_Sprite: {fileID: 21300000, guid: fe32375eaa7d98c40b56175afd61266a, type: 3}
+  m_Type: 0
   m_PreserveAspect: 0
   m_FillCenter: 1
   m_FillMethod: 4
@@ -2791,8 +2796,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
-  m_Sprite: {fileID: 10905, guid: 0000000000000000f000000000000000, type: 0}
-  m_Type: 1
+  m_Sprite: {fileID: 21300000, guid: fe32375eaa7d98c40b56175afd61266a, type: 3}
+  m_Type: 0
   m_PreserveAspect: 0
   m_FillCenter: 1
   m_FillMethod: 4
@@ -2976,9 +2981,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
-  m_Color: {r: .195999995, g: .195999995, b: .195999995, a: 1}
+  m_Color: {r: .482352972, g: .419607878, b: .301960796, a: 1}
   m_FontData:
-    m_Font: {fileID: 12800000, guid: ffac91d7923384ca4922e364b322878c, type: 3}
+    m_Font: {fileID: 12800000, guid: 1f5debd5b617f48439d78149d7031779, type: 3}
     m_FontSize: 60
     m_FontStyle: 0
     m_BestFit: 0
@@ -3316,8 +3321,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
-  m_Sprite: {fileID: 10905, guid: 0000000000000000f000000000000000, type: 0}
-  m_Type: 1
+  m_Sprite: {fileID: 21300000, guid: fe32375eaa7d98c40b56175afd61266a, type: 3}
+  m_Type: 0
   m_PreserveAspect: 0
   m_FillCenter: 1
   m_FillMethod: 4
@@ -3466,7 +3471,7 @@ MonoBehaviour:
   m_Material: {fileID: 0}
   m_Color: {r: .635294139, g: .556862772, b: .415686309, a: 1}
   m_FontData:
-    m_Font: {fileID: 12800000, guid: ffac91d7923384ca4922e364b322878c, type: 3}
+    m_Font: {fileID: 12800000, guid: 1f5debd5b617f48439d78149d7031779, type: 3}
     m_FontSize: 60
     m_FontStyle: 0
     m_BestFit: 0
@@ -3789,9 +3794,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
-  m_Color: {r: .195999995, g: .195999995, b: .195999995, a: 1}
+  m_Color: {r: .482352972, g: .419607878, b: .301960796, a: 1}
   m_FontData:
-    m_Font: {fileID: 12800000, guid: ffac91d7923384ca4922e364b322878c, type: 3}
+    m_Font: {fileID: 12800000, guid: 1f5debd5b617f48439d78149d7031779, type: 3}
     m_FontSize: 60
     m_FontStyle: 0
     m_BestFit: 0
@@ -4212,8 +4217,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
-  m_Sprite: {fileID: 10905, guid: 0000000000000000f000000000000000, type: 0}
-  m_Type: 1
+  m_Sprite: {fileID: 21300000, guid: fe32375eaa7d98c40b56175afd61266a, type: 3}
+  m_Type: 0
   m_PreserveAspect: 0
   m_FillCenter: 1
   m_FillMethod: 4
@@ -4506,7 +4511,7 @@ MonoBehaviour:
   m_Material: {fileID: 0}
   m_Color: {r: .635294139, g: .556862772, b: .415686309, a: 1}
   m_FontData:
-    m_Font: {fileID: 12800000, guid: ffac91d7923384ca4922e364b322878c, type: 3}
+    m_Font: {fileID: 12800000, guid: 1f5debd5b617f48439d78149d7031779, type: 3}
     m_FontSize: 125
     m_FontStyle: 0
     m_BestFit: 0
@@ -4716,8 +4721,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
-  m_Sprite: {fileID: 10905, guid: 0000000000000000f000000000000000, type: 0}
-  m_Type: 1
+  m_Sprite: {fileID: 21300000, guid: fe32375eaa7d98c40b56175afd61266a, type: 3}
+  m_Type: 0
   m_PreserveAspect: 0
   m_FillCenter: 1
   m_FillMethod: 4
@@ -4863,8 +4868,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
-  m_Sprite: {fileID: 10905, guid: 0000000000000000f000000000000000, type: 0}
-  m_Type: 1
+  m_Sprite: {fileID: 21300000, guid: fe32375eaa7d98c40b56175afd61266a, type: 3}
+  m_Type: 0
   m_PreserveAspect: 0
   m_FillCenter: 1
   m_FillMethod: 4
@@ -5356,9 +5361,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
-  m_Color: {r: .195999995, g: .195999995, b: .195999995, a: 1}
+  m_Color: {r: .482352972, g: .419607878, b: .301960796, a: 1}
   m_FontData:
-    m_Font: {fileID: 12800000, guid: ffac91d7923384ca4922e364b322878c, type: 3}
+    m_Font: {fileID: 12800000, guid: 1f5debd5b617f48439d78149d7031779, type: 3}
     m_FontSize: 60
     m_FontStyle: 0
     m_BestFit: 0
@@ -5366,7 +5371,7 @@ MonoBehaviour:
     m_MaxSize: 40
     m_Alignment: 4
     m_RichText: 1
-    m_HorizontalOverflow: 0
+    m_HorizontalOverflow: 1
     m_VerticalOverflow: 0
     m_LineSpacing: 1
   m_Text: '10
@@ -5426,7 +5431,7 @@ MonoBehaviour:
   m_Material: {fileID: 0}
   m_Color: {r: .635294139, g: .556862772, b: .415686309, a: 1}
   m_FontData:
-    m_Font: {fileID: 12800000, guid: ffac91d7923384ca4922e364b322878c, type: 3}
+    m_Font: {fileID: 12800000, guid: 1f5debd5b617f48439d78149d7031779, type: 3}
     m_FontSize: 60
     m_FontStyle: 0
     m_BestFit: 1
@@ -5736,8 +5741,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
-  m_Sprite: {fileID: 10905, guid: 0000000000000000f000000000000000, type: 0}
-  m_Type: 1
+  m_Sprite: {fileID: 21300000, guid: fe32375eaa7d98c40b56175afd61266a, type: 3}
+  m_Type: 0
   m_PreserveAspect: 0
   m_FillCenter: 1
   m_FillMethod: 4
