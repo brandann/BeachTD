@@ -83,6 +83,7 @@ public class TowerUpgradeManager : MonoBehaviour
         Tower.onTowerTouched += TowerTouched;
         OpenAreaBehavior.onAreaTouched += OpenAreaTouched;
         Path.OnPathTouched += HandlePathTouched;
+        Seagull.OnGullKilled += HandleGullHit;
         
     }
 
@@ -91,6 +92,7 @@ public class TowerUpgradeManager : MonoBehaviour
         Tower.onTowerTouched -= TowerTouched;
         OpenAreaBehavior.onAreaTouched -= OpenAreaTouched;
         Path.OnPathTouched -= HandlePathTouched;
+        Seagull.OnGullKilled -= HandleGullHit;
     }
 
     #endregion
@@ -178,11 +180,12 @@ public class TowerUpgradeManager : MonoBehaviour
     private Collider2D[] _hitByButtons;
     private SandDollarBank _bank;
     private float _lastActivation;
+    private float _lastGullHitTime;
 
     public void Update()
     {
         if (MenuActive && Time.time >= _lastActivation + FADETIME)
-            DeselectAndHide();
+            DeselectAndHide();        
     }
 
 
@@ -318,6 +321,12 @@ public class TowerUpgradeManager : MonoBehaviour
        
     }
 
+    private void HandleGullHit(Seagull gull)
+    {
+        _lastGullHitTime = Time.time;
+        Debug.Log("logged gull hit: " + _lastGullHitTime);
+    }
+
 
     private void TowerTouched(Tower tower)
     {
@@ -339,7 +348,11 @@ public class TowerUpgradeManager : MonoBehaviour
             return;
         }
         else
-            SelectAndShow(tower);
+            if (_lastGullHitTime != Time.time)
+            {
+                SelectAndShow(tower);
+                Debug.Log("Show menu: " + Time.time);
+            }
                   
     }
 
@@ -353,7 +366,11 @@ public class TowerUpgradeManager : MonoBehaviour
                 DeselectAndHide();
         }
         else
-            SelectAndShow(area);
+            if (_lastGullHitTime != Time.time)
+            {
+                SelectAndShow(area);
+                Debug.Log("Show menu: " + Time.time);
+            }
         
         //Debug.Log("open area touched");      
     }

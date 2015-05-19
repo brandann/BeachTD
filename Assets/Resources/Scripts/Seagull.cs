@@ -10,9 +10,9 @@ public class Seagull : MonoBehaviour {
     public float Speed = 2;
 
     //How long before gull tries for an egg
-    public float Delay = 10;
+    public float Delay = 1;
 
-
+    #region MonoBehaviour
     public void OnTouchDown()
     {
         if(OnGullKilled != null)
@@ -22,7 +22,7 @@ public class Seagull : MonoBehaviour {
     }
     
 
-    #region MonoBehaviour
+    
 
     // Use this for initialization
 	void Start () {
@@ -56,8 +56,7 @@ public class Seagull : MonoBehaviour {
                 {
                     Initialize();
                 }
-                break;
-                
+                break;                
         } 
         
            
