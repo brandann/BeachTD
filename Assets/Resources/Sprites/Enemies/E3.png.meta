@@ -1,6 +1,6 @@
 fileFormatVersion: 2
 guid: 880acfe3781adf84393b1616850d8fb8
-timeCreated: 1431371064
+timeCreated: 1432003174
 licenseType: Free
 TextureImporter:
   fileIDToRecycleName:
@@ -47,7 +47,7 @@ TextureImporter:
   alignment: 0
   spritePivot: {x: .5, y: .5}
   spriteBorder: {x: 0, y: 0, z: 0, w: 0}
-  spritePixelsToUnits: 27
+  spritePixelsToUnits: 270
   alphaIsTransparency: 1
   textureType: 8
   buildTargetSettings: []
@@ -58,40 +58,40 @@ TextureImporter:
         serializedVersion: 2
         x: 0
         y: 0
-        width: 32
-        height: 27
+        width: 320
+        height: 270
       alignment: 0
-      pivot: {x: .5, y: .5}
+      pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
     - name: E3_1
       rect:
         serializedVersion: 2
-        x: 32
+        x: 320
         y: 0
-        width: 32
-        height: 27
+        width: 320
+        height: 270
       alignment: 0
-      pivot: {x: .5, y: .5}
+      pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
     - name: E3_2
       rect:
         serializedVersion: 2
-        x: 64
+        x: 640
         y: 0
-        width: 32
-        height: 27
+        width: 320
+        height: 270
       alignment: 0
-      pivot: {x: .5, y: .5}
+      pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
     - name: E3_3
       rect:
         serializedVersion: 2
-        x: 96
+        x: 960
         y: 0
-        width: 32
-        height: 27
+        width: 320
+        height: 270
       alignment: 0
-      pivot: {x: .5, y: .5}
+      pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
   spritePackingTag: 
   userData: 
