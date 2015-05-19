@@ -11,8 +11,8 @@ PlayerSettings:
   targetIOSGraphics: -1
   targetResolution: 0
   accelerometerFrequency: 60
-  companyName: NybbleStudios
-  productName: Defense Of Allende
+  companyName: nybblestudios
+  productName: defenseofallende
   cloudProjectId: 
   defaultCursor: {fileID: 0}
   cursorHotspot: {x: 0, y: 0}
@@ -137,7 +137,7 @@ PlayerSettings:
   m_BuildTargetIcons:
   - m_BuildTarget: 
     m_Icons:
-    - m_Icon: {fileID: 2800000, guid: edfce5fce4cbca64c9015f40ea192380, type: 3}
+    - m_Icon: {fileID: 2800000, guid: bfcfcb5bbc3bc4833aae52c18aeb8093, type: 3}
       m_Size: 128
   m_BuildTargetBatching:
   - m_BuildTarget: Android
