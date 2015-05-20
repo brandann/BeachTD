@@ -1,10 +1,9 @@
 fileFormatVersion: 2
-guid: fe32375eaa7d98c40b56175afd61266a
-timeCreated: 1432141721
+guid: c1ee11320de16d34fa02dd0881d091fa
+timeCreated: 1432142670
 licenseType: Free
 TextureImporter:
-  fileIDToRecycleName:
-    21300000: UIPixSprite_0
+  fileIDToRecycleName: {}
   serializedVersion: 2
   mipmaps:
     mipMapMode: 0
@@ -30,36 +29,26 @@ TextureImporter:
   textureFormat: -1
   maxTextureSize: 2048
   textureSettings:
-    filterMode: 0
-    aniso: 16
+    filterMode: -1
+    aniso: 1
     mipBias: -1
-    wrapMode: 1
-  nPOTScale: 0
+    wrapMode: 0
+  nPOTScale: 1
   lightmap: 0
   rGBM: 0
   compressionQuality: 50
-  spriteMode: 2
+  spriteMode: 0
   spriteExtrude: 1
   spriteMeshType: 1
   alignment: 0
   spritePivot: {x: .5, y: .5}
   spriteBorder: {x: 0, y: 0, z: 0, w: 0}
-  spritePixelsToUnits: 320
+  spritePixelsToUnits: 10
   alphaIsTransparency: 1
-  textureType: 8
+  textureType: 0
   buildTargetSettings: []
   spriteSheet:
-    sprites:
-    - name: UIPixSprite_0
-      rect:
-        serializedVersion: 2
-        x: 0
-        y: 0
-        width: 320
-        height: 320
-      alignment: 0
-      pivot: {x: .5, y: .5}
-      border: {x: 64, y: 64, z: 64, w: 64}
+    sprites: []
   spritePackingTag: 
   userData: 
   assetBundleName: 
