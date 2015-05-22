@@ -43,7 +43,7 @@ public class MapManager{
                 else if (map[i, j])
                 {
                     makeSpace(j, i);
-                    //makePath(j, i);
+                    makePath(j, i);
                 }
                 else
                     makePath(j, i);
