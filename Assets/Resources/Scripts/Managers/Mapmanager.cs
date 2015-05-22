@@ -4,14 +4,15 @@ using System.Collections.Generic;
 
 public class MapManager{
 
-	#region Public Accessors
-
+    #region Public Accessors
+    private GameObject grateSpace;
 	#endregion
 	
 	#region Public Methods
 	public MapManager()
 	{
 		OpenSpace = Resources.Load("Prefabs/OpenArea") as GameObject;
+        grateSpace = Resources.Load("Prefabs/GrateSpace") as GameObject;
         global = GameObject.Find("Global").GetComponent<Global>();
 	}
 	
@@ -31,14 +32,18 @@ public class MapManager{
 	{
 		bool[,] map = loadMap.TowerLocations();
 		
-		for (int i = 0; i < map.GetLength(0); i++)
+		for (int i = -1; i < map.GetLength(0) + 1; i++)
 		{
-			for (int j = 0; j < map.GetLength(1); j++)
+			for (int j = -1; j < map.GetLength(1) + 1; j++)
 			{
-                if (map[i, j])
+                if((i < 0) || (i >= map.GetLength(0)) || (j < 0) || (j >= map.GetLength(1)))
+                {
+                    makePath(j, i);
+                }
+                else if (map[i, j])
                 {
                     makeSpace(j, i);
-                    makePath(j, i);
+                    //makePath(j, i);
                 }
                 else
                     makePath(j, i);
@@ -49,7 +54,9 @@ public class MapManager{
 	private void makeSpace(int i, int j)
 	{
 		global.SpawnTower(OpenSpace, new Vector3(i + .5f, j + .5f, 0));
-	}
+        GameObject SpawnedPrefab = GameObject.Instantiate(grateSpace) as GameObject;
+        SpawnedPrefab.transform.position = new Vector3(i + .5f, j + .5f, 0);
+    }
 
     private void makePath(int i, int j)
     {
