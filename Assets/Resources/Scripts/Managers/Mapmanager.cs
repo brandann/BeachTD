@@ -38,6 +38,7 @@ public class MapManager{
                 if (map[i, j])
                 {
                     makeSpace(j, i);
+                    makePath(j, i);
                 }
                 else
                     makePath(j, i);
