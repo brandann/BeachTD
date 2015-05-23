@@ -6,17 +6,16 @@ using System.IO;
 
 public static class SaveLoad
 {
-	public static Game SavedGame;
+	public static Game SavedGame = new Game(10);
 	private const string FileName = "/SavedGame.gd";
 	
 	public static void Save()
 	{
-		SavedGame = Game.CurrentGame;
 		BinaryFormatter bf = new BinaryFormatter();
 		FileStream file = File.Create (Application.persistentDataPath + FileName);
 		bf.Serialize(file, SaveLoad.SavedGame);
 		file.Close();
-		Debug.Log("Saved: " + SavedGame.CurrentLevel);
+		//Debug.Log("Game Saved");
 	}
 	
 	public static void Load()
@@ -26,20 +25,33 @@ public static class SaveLoad
 			FileStream file = File.Open(Application.persistentDataPath + FileName, FileMode.Open);
 			SaveLoad.SavedGame = (Game)bf.Deserialize(file);
 			file.Close();
-			//Debug.Log ("Yay loaded");
+            //Debug.Log("Game Loaded");
 		}
+        else
+        {
+            //Debug.Log("Load File Does Not Exist");
+            NewGame();
+        }
 	}
 	
 	public static void Reset()
 	{
 		if(File.Exists(Application.persistentDataPath + FileName)) {
-			BinaryFormatter bf = new BinaryFormatter();
-			FileStream file = File.Open(Application.persistentDataPath + FileName, FileMode.Open);
-			SaveLoad.SavedGame = (Game)bf.Deserialize(file);
-			file.Close();
-			
-			Game.CurrentGame = new Game();
-			Save ();
+            SavedGame = new Game(10);
+            Save();
+            //Debug.Log("Game Reset");
 		}
+        else
+        {
+            //Debug.Log("reset File Does Not Exist");
+            NewGame();
+        }
 	}
+
+    public static void NewGame()
+    {
+        //Debug.Log("Creating new game...");
+        SavedGame = new Game(10);
+        Save();
+    }
 }

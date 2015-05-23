@@ -142,16 +142,23 @@ public class Global : MonoBehaviour
 
     public void Continue()
     {
-        LoadMap(Game.CurrentGame.CurrentLevel);
-        Application.LoadLevel(Global.Scenes.Game.ToString()); 
+        int HighestCompletedLevel = SaveLoad.SavedGame.HighestCompletedLevel();
+        if(HighestCompletedLevel == 9)
+        {
+            Debug.Log("all levels beat, cannot continue");
+            return;
+        }
+        else
+        {
+            LoadMap(HighestCompletedLevel++);
+            Application.LoadLevel(Global.Scenes.Game.ToString()); 
+        }
     }
 
     public void ResetGame()
     {
+        SaveLoad.Reset();
         LoadMap(0);
-        Game.CurrentGame = new Game();
-        SaveLoad.SavedGame.reset();
-        SaveLoad.Save();
         Application.LoadLevel(0);
     }
 
@@ -282,11 +289,9 @@ public class Global : MonoBehaviour
 	
 	private void Save()
 	{
-		Debug.Log ("Saving: " + LoadedLevel + " Unlocked");
-		
+		//Debug.Log ("Saving: " + LoadedLevel + " Unlocked");
 		LoadSavedGame();
-
-        Game.CurrentGame.UnlockLevel(LoadedLevel + 1);
+        SaveLoad.SavedGame.UnlockLevel(LoadedLevel + 1);
 		SaveLoad.Save();
 	}
 
@@ -294,12 +299,6 @@ public class Global : MonoBehaviour
     private void LoadSavedGame()
     {
         SaveLoad.Load();
-        Game g = SaveLoad.SavedGame;
-        if (g != null)
-            Game.CurrentGame = g;
-        else
-            Game.CurrentGame = new Game();
-
     }
 	#endregion
 }

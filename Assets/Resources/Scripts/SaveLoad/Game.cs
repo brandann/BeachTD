@@ -4,47 +4,39 @@ using System.Collections;
 [System.Serializable]
 public class Game 
 {
-	public static Game CurrentGame;
-	
-	public Game()
+    private bool[] Levels;
+	public Game(int maxlevels)
 	{
-		Levels = new LevelStatus[Global.MaxLevels];
-	}
-	
-    public int CurrentLevel
-    {
-        get
+        Levels = new bool[maxlevels];
+        for(int i = 0; i < Levels.Length; i++)
         {
-        	return _currentLevel;
+            Levels[i] = false;
         }
-    }
+        Levels[0] = true;
+	}
+
     public void UnlockLevel(int level)
     {
-    	Levels[level] = LevelStatus.Unlocked;
-    	for(int i = 0; i <= level; i++)
-    	{
-    		Levels[i] = LevelStatus.Unlocked;
-    	}
-    	
-		for(int i = Levels.Length - 1; i >= 0; i--)
-		{
-			if(Levels[i] == LevelStatus.Unlocked)
-			{
-				Levels[i] = LevelStatus.Current;
-				_currentLevel = i;
-				return;
-			}
-		}
-		return;
+    	if(level < 0 || level >= Levels.Length)
+        {
+            UnityEngine.Debug.LogError("Game:Level out of range");
+            return;
+        }
+
+        Levels[level] = true;
     }
-    
-    public void reset()
+
+    public int HighestCompletedLevel()
     {
-		Levels = new LevelStatus[Global.MaxLevels];
-		_currentLevel = 0;
+        int highest = 0;
+        for(int i = 0; i < Levels.Length; i++)
+        {
+            if(Levels[i])
+            {
+                highest = i;
+            }
+        }
+
+        return highest;
     }
-    
-	public enum LevelStatus{Unlocked, Current, Locked}
-	public LevelStatus[] Levels;// = new LevelStatus[Global.MaxLevels];
-	private int _currentLevel;
 }
