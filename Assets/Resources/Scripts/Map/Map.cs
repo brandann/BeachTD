@@ -94,6 +94,7 @@ public class Map {
 				}
 			}
 		}
+        FoundWaypoints[0].x -= 1;
 		return FoundWaypoints;
 	}
 	
