@@ -22,6 +22,11 @@ public class Reset : SlidingUI {
         OtherClicked();
 
         ResetPanel.SetActive(true);
+
+        //Slide();
+
+        //Animator _anim = gameObject.GetComponent<Animator>();
+        //_anim.SetTrigger("Slide");
         
     }
 
