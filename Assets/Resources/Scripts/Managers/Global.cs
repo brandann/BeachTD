@@ -140,19 +140,17 @@ public class Global : MonoBehaviour
             OnGamePaused();
     }
 
-    public void Continue()
+    public bool Continue()
     {
         int HighestCompletedLevel = SaveLoad.SavedGame.HighestCompletedLevel();
         if(HighestCompletedLevel == 9)
         {
             Debug.Log("all levels beat, cannot continue");
-            return;
+            return false;
         }
-        else
-        {
-            LoadMap(HighestCompletedLevel++);
-            Application.LoadLevel(Global.Scenes.Game.ToString()); 
-        }
+        LoadMap(HighestCompletedLevel++);
+        Application.LoadLevel(Global.Scenes.Game.ToString());
+        return true;
     }
 
     public void ResetGame()
@@ -184,6 +182,11 @@ public class Global : MonoBehaviour
     }
 	public void LoadMap(int index)
 	{
+        if (index > MaxLevels)
+        {
+            Application.LoadLevel(Global.Scenes.Menu.ToString());
+            return;
+        }
 		leveltoload = index;
 		_loadedlevel = index;
 	}

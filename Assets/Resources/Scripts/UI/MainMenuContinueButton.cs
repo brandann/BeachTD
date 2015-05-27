@@ -22,10 +22,10 @@ public class MainMenuContinueButton : SlidingUI{
 
 	public override void Clicked ()
 	{
-		base.Clicked ();
-        _global.Continue();
-		 
-        
+        if (!_global.Continue())
+        {
+            base.Clicked();
+        }        
 	}
 
 	
