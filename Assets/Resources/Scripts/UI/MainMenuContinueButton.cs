@@ -6,7 +6,6 @@ public class MainMenuContinueButton : SlidingUI{
 	public MainMenuCreditsButton Credits;
     public AnimationClip SlideAnimation;
    
-    
     private float _slideTime;
     private Global _global;
 
@@ -22,11 +21,7 @@ public class MainMenuContinueButton : SlidingUI{
 
 	public override void Clicked ()
 	{
-        if (!_global.Continue())
-        {
-            base.Clicked();
-        }        
+        _global.Continue();
+        //base.Clicked();
 	}
-
-	
 }

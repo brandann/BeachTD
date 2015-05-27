@@ -140,17 +140,17 @@ public class Global : MonoBehaviour
             OnGamePaused();
     }
 
-    public bool Continue()
+    public void Continue()
     {
         int HighestCompletedLevel = SaveLoad.SavedGame.HighestCompletedLevel();
         if(HighestCompletedLevel == 9)
         {
             Debug.Log("all levels beat, cannot continue");
-            return false;
+            return;
         }
         LoadMap(HighestCompletedLevel++);
         Application.LoadLevel(Global.Scenes.Game.ToString());
-        return true;
+        return;
     }
 
     public void ResetGame()
