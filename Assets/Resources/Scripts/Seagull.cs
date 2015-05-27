@@ -18,7 +18,7 @@ public class Seagull : MonoBehaviour {
         if(OnGullKilled != null)
             OnGullKilled(this);
 
-        Initialize();
+        Initialize(BirdBrain.Idle);
     }
     
 
@@ -26,7 +26,7 @@ public class Seagull : MonoBehaviour {
 
     // Use this for initialization
 	void Start () {
-        Initialize();
+        Initialize(BirdBrain.Init);
         Egg.EggPickedUp += EggGrabbed;
 	}    
 
@@ -54,7 +54,7 @@ public class Seagull : MonoBehaviour {
 				transform.right = _endPoint - transform.position;
                 if ((Time.time - _endTime) >= _restartDelay)
                 {
-                    Initialize();
+                    Initialize(BirdBrain.Idle);
                 }
                 break;                
         } 
@@ -104,21 +104,28 @@ public class Seagull : MonoBehaviour {
 
     void OnBecameInvisible()
     {
-        Initialize();
+        Initialize(BirdBrain.Idle);
     }
 
     
 
     #endregion
 
-
-
-    private void Initialize()
+    private void Initialize(BirdBrain bb)
     {
-        _state = BirdBrain.Idle;
+        _state = bb;
         _startPoint = new Vector3(-1, Random.Range(0, 10), 0);
         transform.position = _startPoint;
         _lastAttack = Time.time;
+    }
+
+    public void StartPlane()
+    {
+        if (_state == BirdBrain.Init)
+        {
+            _state = BirdBrain.Idle;
+            _lastAttack = Time.time;
+        }
     }
 
     private void FindTargetEgg()
@@ -176,7 +183,7 @@ public class Seagull : MonoBehaviour {
     private Vector3 _endPoint = new Vector3(18, 5, 0);
     private BirdBrain _state;
 
-    private enum BirdBrain { Idle, Attacking, Fleeing };
+    private enum BirdBrain { Idle, Attacking, Fleeing, Init };
 
    
    

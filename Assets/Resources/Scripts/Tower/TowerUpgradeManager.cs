@@ -266,6 +266,7 @@ public class TowerUpgradeManager : MonoBehaviour
         // call enemy manager and tell her a tower has been built
         Global go = GameObject.Find("Global").GetComponent<Global>();
         go.enemyManager.NotifyTowerBuilt();
+        GameObject.Find("Seagull").GetComponent<Seagull>().StartPlane();
     }
 
     private void DeselectAndHide()

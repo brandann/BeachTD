@@ -1550,48 +1550,6 @@ CanvasRenderer:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 447820559}
---- !u!1001 &471695892
-Prefab:
-  m_ObjectHideFlags: 0
-  serializedVersion: 2
-  m_Modification:
-    m_TransformParent: {fileID: 0}
-    m_Modifications:
-    - target: {fileID: 400000, guid: 77f5f423a6f6244019589da343170d08, type: 2}
-      propertyPath: m_LocalPosition.x
-      value: -9.54666901
-      objectReference: {fileID: 0}
-    - target: {fileID: 400000, guid: 77f5f423a6f6244019589da343170d08, type: 2}
-      propertyPath: m_LocalPosition.y
-      value: -1.63274717
-      objectReference: {fileID: 0}
-    - target: {fileID: 400000, guid: 77f5f423a6f6244019589da343170d08, type: 2}
-      propertyPath: m_LocalPosition.z
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 400000, guid: 77f5f423a6f6244019589da343170d08, type: 2}
-      propertyPath: m_LocalRotation.x
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 400000, guid: 77f5f423a6f6244019589da343170d08, type: 2}
-      propertyPath: m_LocalRotation.y
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 400000, guid: 77f5f423a6f6244019589da343170d08, type: 2}
-      propertyPath: m_LocalRotation.z
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 400000, guid: 77f5f423a6f6244019589da343170d08, type: 2}
-      propertyPath: m_LocalRotation.w
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 400000, guid: 77f5f423a6f6244019589da343170d08, type: 2}
-      propertyPath: m_RootOrder
-      value: 0
-      objectReference: {fileID: 0}
-    m_RemovedComponents: []
-  m_ParentPrefab: {fileID: 100100000, guid: 77f5f423a6f6244019589da343170d08, type: 2}
-  m_IsPrefabParent: 0
 --- !u!1 &479593047
 GameObject:
   m_ObjectHideFlags: 0
@@ -1810,7 +1768,7 @@ Transform:
   - {fileID: 733884541}
   - {fileID: 1708648770}
   m_Father: {fileID: 0}
-  m_RootOrder: 1
+  m_RootOrder: 0
 --- !u!95 &552145780
 Animator:
   serializedVersion: 3
@@ -2448,7 +2406,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 4
+  m_RootOrder: 3
 --- !u!1001 &801274314
 Prefab:
   m_ObjectHideFlags: 0
@@ -3595,7 +3553,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 2
+  m_RootOrder: 1
 --- !u!131 &1101648294
 GUITexture:
   m_ObjectHideFlags: 0
@@ -4288,7 +4246,7 @@ Transform:
   m_LocalScale: {x: 3, y: 3, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 5
+  m_RootOrder: 4
 --- !u!1001 &1331184313
 Prefab:
   m_ObjectHideFlags: 0
@@ -4434,7 +4392,7 @@ RectTransform:
   - {fileID: 1023032283}
   - {fileID: 1749871024}
   m_Father: {fileID: 0}
-  m_RootOrder: 3
+  m_RootOrder: 2
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 0, y: 0}
   m_AnchoredPosition: {x: 0, y: 0}
