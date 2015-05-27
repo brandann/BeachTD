@@ -14,6 +14,15 @@ public class PauseButton : ClickableUI {
         gameObject.SetActive(true); 
     }
 
+    void Update()
+    {
+        if (Input.GetKeyDown(KeyCode.Escape)) 
+        {
+            gameObject.SetActive(false);
+            Clicked();
+        }
+    }
+
     private void HandlePause()
     {
         gameObject.SetActive(false);            
