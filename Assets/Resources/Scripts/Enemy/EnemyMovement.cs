@@ -47,7 +47,7 @@ public class EnemyMovement : MonoBehaviour {
 		if (CurrentMovement != EnemyMovementSpeed.Normal && Time.time >= endModificationTime)
 		{
 			CurrentMovement = EnemyMovementSpeed.Normal;
-            //this.GetComponent<Renderer>().material.color = Color.white;
+            GetComponent<Enemy>().ChangeColor(Enemy.ColorState.Normal);
 		}
 		
 		//Speed mods from tower
@@ -103,17 +103,10 @@ public class EnemyMovement : MonoBehaviour {
 	/// <param name="duration">Lenght in seconds the modification should last</param>
 	public void UpdateSpeedMod(EnemyMovementSpeed mod, float duration)
 	{
-		/*
-		Color currentColor = this.GetComponent<Renderer>().material.color;
-		if(currentColor == Color.white)
-		{
-			this.GetComponent<Renderer>().material.color = Color.blue;
-		}
-		else if(currentColor == Color.red)
-		{
-			this.GetComponent<Renderer>().material.color = new Color(125/255, 50/255, 180/255);
-		}
-		*/
+		if(mod == EnemyMovementSpeed.Slow)
+        {
+            GetComponent<Enemy>().ChangeColor(Enemy.ColorState.Slow);
+        }
 		
 		CurrentMovement = mod;
 		SpeedMod = SpeedMods[(int) CurrentMovement];

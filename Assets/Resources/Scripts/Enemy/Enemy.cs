@@ -17,6 +17,7 @@ public class Enemy : MonoBehaviour
 
     #region Public Members
     public float Health;
+    public enum ColorState {Slow, Normal, Damage}
 	public enum EnemyState { Active, Stunned, Dying }
 	
 	public EnemyState CurrentEnemyState;
@@ -94,13 +95,31 @@ public class Enemy : MonoBehaviour
         _carriedEgg = null;
     }
 	
+    
+    public void ChangeColor(ColorState cs)
+    {
+        switch(cs)
+        {
+            case(ColorState.Damage):
+                spriteRenderer.material.color = Color.red;
+                _redColorActive = true;
+                _redColorTime = Time.timeSinceLevelLoad;
+                break;
+            case(ColorState.Normal):
+                spriteRenderer.material.color = Color.white;
+                _lastColor = Color.white;
+                break;
+            case(ColorState.Slow):
+                spriteRenderer.material.color = Color.blue;
+                _lastColor = Color.blue;
+                break;
+        }
+    }
+
 	public virtual void TakeDamage(float damage)
 	{
 		Health -= damage;
-        _lastColor = spriteRenderer.material.color;
-        spriteRenderer.material.color = Color.red;
-        _redColorTime = Time.timeSinceLevelLoad;
-        _redColorActive = true;
+        ChangeColor(ColorState.Damage);
 
         if (Health <= (ORG_HEALTH * .75f) && Health > (ORG_HEALTH * .5f))
         {
