@@ -26,6 +26,10 @@ public class Enemy : MonoBehaviour
     public Sprite HealthSprite75;
     public Sprite HealthSprite50;
     public Sprite HealthSprite25;
+    private Renderer spriteRenderer;
+    private float _redColorTime;
+    private bool _redColorActive;
+    private Color _lastColor = Color.white;
 	
 	public bool HasEgg
 	{
@@ -48,10 +52,15 @@ public class Enemy : MonoBehaviour
 		global = GameObject.Find("Global").GetComponent<Global>();
         _powPrefab = Resources.Load("Prefabs/temp-pow") as GameObject;
         _movement = gameObject.GetComponent<EnemyMovement>();
+        spriteRenderer = GetComponent<Renderer>();
 	}
 	
 	void Update () 
 	{
+        if (_redColorActive && Time.timeSinceLevelLoad - _redColorTime > .05f)
+        {
+            spriteRenderer.material.color = _lastColor;
+        }
 		if(CurrentEnemyState != EnemyState.Active)
 		{
 			Debug.Log("Enemy Not Active");
@@ -88,6 +97,10 @@ public class Enemy : MonoBehaviour
 	public virtual void TakeDamage(float damage)
 	{
 		Health -= damage;
+        _lastColor = spriteRenderer.material.color;
+        spriteRenderer.material.color = Color.red;
+        _redColorTime = Time.timeSinceLevelLoad;
+        _redColorActive = true;
 
         if (Health <= (ORG_HEALTH * .75f) && Health > (ORG_HEALTH * .5f))
         {
