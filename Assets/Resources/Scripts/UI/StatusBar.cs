@@ -6,6 +6,7 @@ public class StatusBar : MonoBehaviour {
 
     public Text DollarDisplay;
     public Text EggDisplay;
+    public Text GameOverEggDisplay;
 
     void OnEnable()
     {
@@ -33,6 +34,7 @@ public class StatusBar : MonoBehaviour {
     public void SetEggs(int eggs)
     {
         EggDisplay.text = eggs.ToString();
+        GameOverEggDisplay.text = eggs.ToString();
     }
 
 
