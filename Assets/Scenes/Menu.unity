@@ -1709,7 +1709,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 0
+  m_RootOrder: 1
 --- !u!114 &508570929
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1807,7 +1807,7 @@ Transform:
   - {fileID: 733884541}
   - {fileID: 1708648770}
   m_Father: {fileID: 0}
-  m_RootOrder: 1
+  m_RootOrder: 2
 --- !u!95 &552145780
 Animator:
   serializedVersion: 3
@@ -2387,7 +2387,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 4
+  m_RootOrder: 5
 --- !u!1001 &801274314
 Prefab:
   m_ObjectHideFlags: 0
@@ -3214,6 +3214,60 @@ Animator:
   m_WarningMessage: 
   m_HasTransformHierarchy: 1
   m_AllowConstantClipSamplingOptimization: 1
+--- !u!1001 &989012397
+Prefab:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    m_TransformParent: {fileID: 0}
+    m_Modifications:
+    - target: {fileID: 488216, guid: 16759b14245e82c459d24e20f90a4a0d, type: 2}
+      propertyPath: m_LocalPosition.x
+      value: -11.1721697
+      objectReference: {fileID: 0}
+    - target: {fileID: 488216, guid: 16759b14245e82c459d24e20f90a4a0d, type: 2}
+      propertyPath: m_LocalPosition.y
+      value: -3.9898324
+      objectReference: {fileID: 0}
+    - target: {fileID: 488216, guid: 16759b14245e82c459d24e20f90a4a0d, type: 2}
+      propertyPath: m_LocalPosition.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 488216, guid: 16759b14245e82c459d24e20f90a4a0d, type: 2}
+      propertyPath: m_LocalRotation.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 488216, guid: 16759b14245e82c459d24e20f90a4a0d, type: 2}
+      propertyPath: m_LocalRotation.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 488216, guid: 16759b14245e82c459d24e20f90a4a0d, type: 2}
+      propertyPath: m_LocalRotation.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 488216, guid: 16759b14245e82c459d24e20f90a4a0d, type: 2}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 488216, guid: 16759b14245e82c459d24e20f90a4a0d, type: 2}
+      propertyPath: m_RootOrder
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 488216, guid: 16759b14245e82c459d24e20f90a4a0d, type: 2}
+      propertyPath: m_LocalScale.x
+      value: .800000012
+      objectReference: {fileID: 0}
+    - target: {fileID: 488216, guid: 16759b14245e82c459d24e20f90a4a0d, type: 2}
+      propertyPath: m_LocalScale.y
+      value: .800000012
+      objectReference: {fileID: 0}
+    - target: {fileID: 488216, guid: 16759b14245e82c459d24e20f90a4a0d, type: 2}
+      propertyPath: m_LocalScale.z
+      value: .800000012
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+  m_ParentPrefab: {fileID: 100100000, guid: 16759b14245e82c459d24e20f90a4a0d, type: 2}
+  m_IsPrefabParent: 0
 --- !u!1001 &996734877
 Prefab:
   m_ObjectHideFlags: 0
@@ -3534,7 +3588,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 2
+  m_RootOrder: 3
 --- !u!131 &1101648294
 GUITexture:
   m_ObjectHideFlags: 0
@@ -5347,7 +5401,7 @@ Transform:
   m_LocalScale: {x: 3, y: 3, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 5
+  m_RootOrder: 6
 --- !u!1001 &1331184313
 Prefab:
   m_ObjectHideFlags: 0
@@ -5493,7 +5547,7 @@ RectTransform:
   - {fileID: 1023032283}
   - {fileID: 1749871024}
   m_Father: {fileID: 0}
-  m_RootOrder: 3
+  m_RootOrder: 4
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 0, y: 0}
   m_AnchoredPosition: {x: 0, y: 0}
@@ -5611,7 +5665,7 @@ Transform:
   m_Children:
   - {fileID: 1205146673}
   m_Father: {fileID: 0}
-  m_RootOrder: 6
+  m_RootOrder: 7
 --- !u!50 &1366952512
 Rigidbody2D:
   m_ObjectHideFlags: 0
@@ -8958,7 +9012,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
-  m_Sprite: {fileID: 10905, guid: 0000000000000000f000000000000000, type: 0}
+  m_Sprite: {fileID: 21300000, guid: fe32375eaa7d98c40b56175afd61266a, type: 3}
   m_Type: 1
   m_PreserveAspect: 0
   m_FillCenter: 1

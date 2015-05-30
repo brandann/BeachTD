@@ -1,10 +1,12 @@
 fileFormatVersion: 2
-guid: fe32375eaa7d98c40b56175afd61266a
-timeCreated: 1433003630
+guid: 96c87aa2e2374ea4ea1306f0ee10851b
+timeCreated: 1433005126
 licenseType: Free
 TextureImporter:
   fileIDToRecycleName:
-    21300000: UIPixSprite_0
+    21300000: MeleeTower_0
+    21300002: MeleeTower_1
+    21300004: MeleeTower_2
   serializedVersion: 2
   mipmaps:
     mipMapMode: 0
@@ -30,7 +32,7 @@ TextureImporter:
   textureFormat: -1
   maxTextureSize: 2048
   textureSettings:
-    filterMode: 0
+    filterMode: -1
     aniso: 16
     mipBias: -1
     wrapMode: 1
@@ -44,22 +46,42 @@ TextureImporter:
   alignment: 0
   spritePivot: {x: .5, y: .5}
   spriteBorder: {x: 0, y: 0, z: 0, w: 0}
-  spritePixelsToUnits: 320
+  spritePixelsToUnits: 240
   alphaIsTransparency: 1
   textureType: 8
   buildTargetSettings: []
   spriteSheet:
     sprites:
-    - name: UIPixSprite_0
+    - name: MeleeTower_0
       rect:
         serializedVersion: 2
         x: 0
         y: 0
-        width: 320
-        height: 320
+        width: 240
+        height: 240
       alignment: 0
-      pivot: {x: .5, y: .5}
-      border: {x: 58, y: 58, z: 58, w: 58}
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: MeleeTower_1
+      rect:
+        serializedVersion: 2
+        x: 240
+        y: 0
+        width: 240
+        height: 240
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: MeleeTower_2
+      rect:
+        serializedVersion: 2
+        x: 480
+        y: 0
+        width: 240
+        height: 240
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
   spritePackingTag: 
   userData: 
   assetBundleName: 
