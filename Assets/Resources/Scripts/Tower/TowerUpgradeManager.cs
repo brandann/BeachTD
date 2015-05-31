@@ -163,7 +163,7 @@ public class TowerUpgradeManager : MonoBehaviour
     private OpenAreaBehavior _touchedArea;
 
     private readonly Tower.Upgrade _specialUpgrade = new Tower.Upgrade(0, 0, 0, 1);
-    private readonly Tower.Upgrade _10percentSpeed = new Tower.Upgrade(0, .1f);
+    private readonly Tower.Upgrade _10percentSpeed = new Tower.Upgrade(0, .3f);
     private readonly Tower.Upgrade _10percentDamage = new Tower.Upgrade(0, 0, 0.1f);
     private readonly Tower.Upgrade _10percentRange = new Tower.Upgrade(0.1f);
 
@@ -192,20 +192,22 @@ public class TowerUpgradeManager : MonoBehaviour
     private void AssignButtons()
     {
         //Assign buttons
-        _buttons = new Button[8];
+        _buttons = new Button[5];
         _buttons[0] = BuildMeleeButton;
         _buttons[1] = BuildRangedButton;
         _buttons[2] = BuildSlowButton;
         _buttons[3] = SpeedUpButton;
-        _buttons[4] = RangeUpButton;
-        _buttons[5] = DamageUpButton;
-        _buttons[6] = SpecialUpButton;
-        _buttons[7] = SellButton;
+        //_buttons[4] = null; //_buttons[4] = RangeUpButton;
+        //_buttons[5] = null; //_buttons[5] = DamageUpButton;
+        //_buttons[6] = null; //_buttons[6] = SpecialUpButton;
+        _buttons[4] = SellButton;
 
         //Ensure all buttons have been added in the inspector
         foreach (Button b in _buttons)
             if (b.gameObject == null)
+            {
                 Debug.LogError("Missing button");
+            }
     }
 
     /// <summary>
@@ -494,10 +496,10 @@ public class TowerUpgradeManager : MonoBehaviour
     private void ShowUpgradeButtons(bool speed = false, bool range = false, bool damage = false, bool special = false, bool sell = false)
     {
         _buttons[3].gameObject.SetActive(speed);
-        _buttons[4].gameObject.SetActive(range);
-        _buttons[5].gameObject.SetActive(damage);
-        _buttons[6].gameObject.SetActive(special);
-        _buttons[7].gameObject.SetActive(sell);
+        //_buttons[4].gameObject.SetActive(range);
+        //_buttons[5].gameObject.SetActive(damage);
+        //_buttons[6].gameObject.SetActive(special);
+        _buttons[4].gameObject.SetActive(sell);
 
         CheckMenuActive();
 
