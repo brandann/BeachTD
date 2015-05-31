@@ -120,6 +120,7 @@ public class TowerUpgradeManager : MonoBehaviour
     public void UpgradeSpeed()
     {
         UpgradeTower(_10percentSpeed);
+        UpgradeTower(_10percentRange);
         _bank.SubtractDollars(SpeedUpgradeCost);
     }
 
@@ -165,7 +166,7 @@ public class TowerUpgradeManager : MonoBehaviour
     private readonly Tower.Upgrade _specialUpgrade = new Tower.Upgrade(0, 0, 0, 1);
     private readonly Tower.Upgrade _10percentSpeed = new Tower.Upgrade(0, .3f);
     private readonly Tower.Upgrade _10percentDamage = new Tower.Upgrade(0, 0, 0.1f);
-    private readonly Tower.Upgrade _10percentRange = new Tower.Upgrade(0.1f);
+    private readonly Tower.Upgrade _10percentRange = new Tower.Upgrade(0.3f);
 
     private Dictionary<Tower, int> _towerLookup;
 
