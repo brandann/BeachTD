@@ -21,49 +21,62 @@ public class TowerUpgradeManager : MonoBehaviour
     public Button BuildRangedButton;
     public Button BuildSlowButton;
     public Button SpeedUpButton;
-    public Button RangeUpButton;
-    public Button DamageUpButton;
-    public Button SpecialUpButton;
+    private Button RangeUpButton;
+    private Button DamageUpButton;
+    private Button SpecialUpButton;
     public Button SellButton;
 
     //Maximum number of upgrades available to each type of tower
-    public int MaxMeleeRange = 2;
-    public int MaxMeleeSpeed = 2;
-    public int MaxMeleeDamage = 2;
-    public int MaxMeleeSpecial = 2;
+    
 
-    public int MaxRangedRange = 2;
-    public int MaxRangedSpeed = 2;
-    public int MaxRangedDamage = 2;
-    public int MaxRangedSpecial = 2;
+    public int MeleeTowerCost;
+    public int RangedTowerCost;
+    public int SlowTowerCost;
 
-    public int MaxSlowRange = 2;
-    public int MaxSlowSpeed = 2;
-    public int MaxSlowDamage = 2;
-    public int MaxSlowSpecial = 2;
+    public int UpgradeCost;
 
-    public int MeleeTowerCost = -1;
-    public int RangedTowerCost = -1;
-    public int SlowTowerCost = -1;
-
-    public int SpeedUpgradeCost = -1;
-    public int RangeUpgradeCost = -1;
-    public int DamageUpgradeCost = -1;
-    public int SpecialUpgradeCost = -1;
+    public float SpeedUpgradePercentage;
+    public float DamageUpgradePercentage;
+    //public int RangeUpgradeCost = -1;
+    //public int DamageUpgradeCost = -1;
+    //public int SpecialUpgradeCost = -1;
     #endregion
+
+    private int MaxMeleeRange = 2;
+    private int MaxMeleeSpeed = 2;
+    private int MaxMeleeDamage = 2;
+    private int MaxMeleeSpecial = 2;
+
+    private int MaxRangedRange = 2;
+    private int MaxRangedSpeed = 2;
+    private int MaxRangedDamage = 2;
+    private int MaxRangedSpecial = 2;
+
+    private int MaxSlowRange = 2;
+    private int MaxSlowSpeed = 2;
+    private int MaxSlowDamage = 2;
+    private int MaxSlowSpecial = 2;
 
     public bool MenuActive { get; private set; }
 
     #region MonoBehaviour
     void Awake()
     {
+        _specialUpgrade = new Tower.Upgrade(0, 0, 0, 1);
+        _10percentSpeed = new Tower.Upgrade(0, SpeedUpgradePercentage);
+        _10percentDamage = new Tower.Upgrade(0, 0, DamageUpgradePercentage);
+        _10percentRange = new Tower.Upgrade(0.3f);
+
         AssignButtons();
         FillLookups();       
 
         if (MeleeTowerCost < 0 || RangedTowerCost < 0 || SlowTowerCost < 0)
             Debug.LogWarning("Forgot to set build costs in upgrade manager?");
 
-        if (RangeUpgradeCost < 0 || SpeedUpgradeCost < 0 || DamageUpgradeCost < 0 || SpecialUpgradeCost < 0)
+        //if (RangeUpgradeCost < 0 || UpgradeCost < 0 || DamageUpgradeCost < 0 || SpecialUpgradeCost < 0)
+        //    Debug.LogWarning("Forgot to set upgrade costs in upgrade manager?");
+
+        if (UpgradeCost < 0)
             Debug.LogWarning("Forgot to set upgrade costs in upgrade manager?");
 
         //with no params actually hides all buttons
@@ -121,25 +134,25 @@ public class TowerUpgradeManager : MonoBehaviour
     {
         UpgradeTower(_10percentSpeed);
         UpgradeTower(_10percentRange);
-        _bank.SubtractDollars(SpeedUpgradeCost);
+        _bank.SubtractDollars(UpgradeCost);
     }
 
     public void UpgradeRange()
     {
-        UpgradeTower(_10percentRange);
-        _bank.SubtractDollars(RangeUpgradeCost);
+        //UpgradeTower(_10percentRange);
+        //_bank.SubtractDollars(RangeUpgradeCost);
     }
 
     public void UpgradeDamage()
     {
-        UpgradeTower(_10percentDamage);
-        _bank.SubtractDollars(DamageUpgradeCost);
+        //UpgradeTower(_10percentDamage);
+        //_bank.SubtractDollars(DamageUpgradeCost);
     }
 
     public void UpgradeSpecial()
     {
-        UpgradeTower(_specialUpgrade);
-        _bank.SubtractDollars(SpecialUpgradeCost);
+        //UpgradeTower(_specialUpgrade);
+        //_bank.SubtractDollars(SpecialUpgradeCost);
     }
 
     public void SellTower()
@@ -153,6 +166,8 @@ public class TowerUpgradeManager : MonoBehaviour
         Instantiate(OpenAreaPrefab, _touchedTower.transform.position, Quaternion.identity);
         TowerFactory.Instance.RecycleTower(_touchedTower);
         ShowUpgradeButtons();
+
+        //TODO  give player money for selling tower
     }
 
     #endregion
@@ -163,10 +178,10 @@ public class TowerUpgradeManager : MonoBehaviour
     //Last open area that fired touch event
     private OpenAreaBehavior _touchedArea;
 
-    private readonly Tower.Upgrade _specialUpgrade = new Tower.Upgrade(0, 0, 0, 1);
-    private readonly Tower.Upgrade _10percentSpeed = new Tower.Upgrade(0, .3f);
-    private readonly Tower.Upgrade _10percentDamage = new Tower.Upgrade(0, 0, 0.1f);
-    private readonly Tower.Upgrade _10percentRange = new Tower.Upgrade(0.3f);
+    private Tower.Upgrade _specialUpgrade;
+    private Tower.Upgrade _10percentSpeed;
+    private Tower.Upgrade _10percentDamage;
+    private Tower.Upgrade _10percentRange;
 
     private Dictionary<Tower, int> _towerLookup;
 
@@ -439,7 +454,7 @@ public class TowerUpgradeManager : MonoBehaviour
         max = _maxUpgrades[index, SPEEDINDEX];
 
 
-        return (_touchedTower.SpeedUpgrades < max) && (SpeedUpgradeCost <= _bank.SandDollars);        
+        return (_touchedTower.SpeedUpgrades < max) && (UpgradeCost <= _bank.SandDollars);        
 
     }
 
@@ -451,7 +466,7 @@ public class TowerUpgradeManager : MonoBehaviour
       
         max = _maxUpgrades[index, RANGEINDEX];
 
-        return (_touchedTower.RangeUpgrades < max) && (RangeUpgradeCost <= _bank.SandDollars);
+        return false; // return (_touchedTower.RangeUpgrades < max) && (RangeUpgradeCost <= _bank.SandDollars);
     }
 
     private bool CanUpgradeDamage()
@@ -462,7 +477,7 @@ public class TowerUpgradeManager : MonoBehaviour
         
         max = _maxUpgrades[index, DAMAGEINDEX];
 
-        return (_touchedTower.DamageUpgrades < max) && (DamageUpgradeCost <= _bank.SandDollars);    
+        return false; // return (_touchedTower.DamageUpgrades < max) && (DamageUpgradeCost <= _bank.SandDollars);    
     }
 
     private bool CanUpgradeSpecial()
@@ -472,7 +487,7 @@ public class TowerUpgradeManager : MonoBehaviour
         
         max = _maxUpgrades[index, SPECIALINDEX];
 
-        return (_touchedTower.SpecialUpgrades < max) && (SpeedUpgradeCost <= _bank.SandDollars);
+        return false; // return (_touchedTower.SpecialUpgrades < max) && (UpgradeCost <= _bank.SandDollars);
     }
 
     private bool CanSellTower()

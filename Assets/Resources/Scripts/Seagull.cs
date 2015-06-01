@@ -6,11 +6,13 @@ public class Seagull : MonoBehaviour {
     public delegate void GullKilled(Seagull gull);
     public static event GullKilled OnGullKilled;
 
-    public int GullKillValue = 10;
-    public float Speed = 2;
+    public int GullKillValue;
+    public float Speed;
+    private float DelayMin = 5;
+    private float DelayMax = 12;
 
     //How long before gull tries for an egg
-    public float Delay = 1;
+    public float Delay;
 
     #region MonoBehaviour
     public void OnTouchDown()
@@ -98,7 +100,7 @@ public class Seagull : MonoBehaviour {
 
             _endPoint = new Vector3(18, Random.Range(-1, 20), 0);
             _endTime = Time.time;
-            _restartDelay = Random.Range(5, 12);
+            Delay = _restartDelay = Random.Range(DelayMin, DelayMax);
         }
     }
 
@@ -172,6 +174,8 @@ public class Seagull : MonoBehaviour {
             _target = null;
             FindTargetEgg();
         }
+
+        Delay = Random.Range(DelayMin, DelayMax);
     }
 
     private Transform _target;

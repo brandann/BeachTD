@@ -1026,29 +1026,13 @@ MonoBehaviour:
   BuildRangedButton: {fileID: 11400028}
   BuildSlowButton: {fileID: 11400020}
   SpeedUpButton: {fileID: 11400008}
-  RangeUpButton: {fileID: 11400000}
-  DamageUpButton: {fileID: 11400012}
-  SpecialUpButton: {fileID: 11400024}
   SellButton: {fileID: 11400004}
-  MaxMeleeRange: 2
-  MaxMeleeSpeed: 2
-  MaxMeleeDamage: 2
-  MaxMeleeSpecial: 2
-  MaxRangedRange: 2
-  MaxRangedSpeed: 2
-  MaxRangedDamage: 2
-  MaxRangedSpecial: 2
-  MaxSlowRange: 2
-  MaxSlowSpeed: 2
-  MaxSlowDamage: 2
-  MaxSlowSpecial: 2
-  MeleeTowerCost: 20
-  RangedTowerCost: 50
-  SlowTowerCost: 60
-  SpeedUpgradeCost: 10
-  RangeUpgradeCost: 10
-  DamageUpgradeCost: 10
-  SpecialUpgradeCost: 10
+  MeleeTowerCost: 30
+  RangedTowerCost: 40
+  SlowTowerCost: 40
+  UpgradeCost: 20
+  SpeedUpgradePercentage: .300000012
+  DamageUpgradePercentage: .300000012
 --- !u!114 &11404020
 MonoBehaviour:
   m_ObjectHideFlags: 1

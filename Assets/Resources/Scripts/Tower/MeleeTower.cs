@@ -11,14 +11,17 @@ public class MeleeTower : Tower
     
     #endregion 
 
+    public float speed;
+
     // Use this for initialization
 	public override void Initialize() {
+        
         base.Initialize();
 
-        CoolDownTime = 5;
+        CoolDownTime = speed;
         _tip = GetComponentInChildren<TipBarnacle>();
         //_tip.SetDamage(Damage);
-        Damage = 5;
+        Damage = 0;
         gameObject.SetActive(false);
 	}
 

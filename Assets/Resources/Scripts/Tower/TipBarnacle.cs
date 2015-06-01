@@ -12,10 +12,11 @@ public class TipBarnacle : MonoBehaviour {
     private float _kinematicSpeed = 2.0f;
     private Rigidbody2D[] _links;
     private bool _hitTarget;
+    public float damage;
 
 	// Use this for initialization
 	void Start () {
-        
+        Damage = damage;
         _base = gameObject.GetComponentInParent<Tower>().gameObject.transform;
         
         if (_base == null)
@@ -139,7 +140,7 @@ public class TipBarnacle : MonoBehaviour {
 
         _hitTarget = true;
         Enemy enemy = other.gameObject.GetComponent<Enemy>();
-        enemy.TakeDamage(7);
+        enemy.TakeDamage(Damage);
 
         PhysicsRetract();
     }
