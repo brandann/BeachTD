@@ -34,7 +34,7 @@ public class StatusBar : MonoBehaviour {
     public void SetEggs(int eggs)
     {
         EggDisplay.text = eggs.ToString();
-        GameOverEggDisplay.text = eggs.ToString();
+        GameOverEggDisplay.text = eggs.ToString() + "/10";
     }
 
 
