@@ -213,9 +213,6 @@ public class TowerUpgradeManager : MonoBehaviour
         _buttons[1] = BuildRangedButton;
         _buttons[2] = BuildSlowButton;
         _buttons[3] = SpeedUpButton;
-        //_buttons[4] = null; //_buttons[4] = RangeUpButton;
-        //_buttons[5] = null; //_buttons[5] = DamageUpButton;
-        //_buttons[6] = null; //_buttons[6] = SpecialUpButton;
         _buttons[4] = SellButton;
 
         //Ensure all buttons have been added in the inspector
@@ -507,14 +504,14 @@ public class TowerUpgradeManager : MonoBehaviour
         _buttons[2].gameObject.SetActive(slow);
 
         CheckMenuActive();
+
+        if (MenuActive)
+            _lastActivation = Time.time;
     }
 
     private void ShowUpgradeButtons(bool speed = false, bool range = false, bool damage = false, bool special = false, bool sell = false)
     {
-        _buttons[3].gameObject.SetActive(speed);
-        //_buttons[4].gameObject.SetActive(range);
-        //_buttons[5].gameObject.SetActive(damage);
-        //_buttons[6].gameObject.SetActive(special);
+        _buttons[3].gameObject.SetActive(speed);        
         _buttons[4].gameObject.SetActive(sell);
 
         CheckMenuActive();
