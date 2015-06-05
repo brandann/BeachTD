@@ -57,6 +57,8 @@ public class TowerUpgradeManager : MonoBehaviour
     private int MaxSlowDamage = 2;
     private int MaxSlowSpecial = 2;
 
+     
+
     public bool MenuActive { get; private set; }
 
     #region MonoBehaviour
@@ -197,6 +199,8 @@ public class TowerUpgradeManager : MonoBehaviour
     private SandDollarBank _bank;
     private float _lastActivation;
     private float _lastGullHitTime;
+    private Vector2[] _defaultButtonPositions;
+    private Vector2 _buttonOffset;
 
     public void Update()
     {
@@ -209,11 +213,24 @@ public class TowerUpgradeManager : MonoBehaviour
     {
         //Assign buttons
         _buttons = new Button[5];
-        _buttons[0] = BuildMeleeButton;
+        _defaultButtonPositions = new Vector2[5];
+        
+
+        _buttons[0] = BuildMeleeButton;       
         _buttons[1] = BuildRangedButton;
         _buttons[2] = BuildSlowButton;
         _buttons[3] = SpeedUpButton;
         _buttons[4] = SellButton;
+
+        for (int i = 0; i < _buttons.Length; ++i)
+            _defaultButtonPositions[i] = _buttons[i].transform.position;
+
+        Vector2 centerOfBuilder = transform.position;
+
+        //Assume that buildmelee button starts off to the right and above
+        _buttonOffset = new Vector2(1.5f, 0.9f);
+        
+        
 
         //Ensure all buttons have been added in the inspector
         foreach (Button b in _buttons)
@@ -299,6 +316,7 @@ public class TowerUpgradeManager : MonoBehaviour
 
         //Move to tower that was touched
         transform.position = t.transform.position;
+        ShiftButtons();
 
         bool showSpeed = CanUpgradeSpeed();
         bool showRange = CanUpgradeRange();
@@ -316,6 +334,7 @@ public class TowerUpgradeManager : MonoBehaviour
 
         //Move to open area that was touched
         transform.position = _touchedArea.transform.position;
+        ShiftButtons();
 
         bool showMelee = CanBuildMelee();
         bool showRanged = CanBuildRanged();
@@ -385,7 +404,7 @@ public class TowerUpgradeManager : MonoBehaviour
             if (_lastGullHitTime != Time.time)
             {
                 SelectAndShow(area);
-                Debug.Log("Show menu: " + Time.time);
+                //Debug.Log("Show menu: " + Time.time);
             }
         
         //Debug.Log("open area touched");      
@@ -499,6 +518,7 @@ public class TowerUpgradeManager : MonoBehaviour
     {
         //Debug.Log("show buttons");
 
+        
         _buttons[0].gameObject.SetActive(melee);
         _buttons[1].gameObject.SetActive(ranged);
         _buttons[2].gameObject.SetActive(slow);
@@ -510,7 +530,8 @@ public class TowerUpgradeManager : MonoBehaviour
     }
 
     private void ShowUpgradeButtons(bool speed = false, bool range = false, bool damage = false, bool special = false, bool sell = false)
-    {
+    {        
+
         _buttons[3].gameObject.SetActive(speed);        
         _buttons[4].gameObject.SetActive(sell);
 
@@ -520,6 +541,99 @@ public class TowerUpgradeManager : MonoBehaviour
             _lastActivation = Time.time;
 
     }
+
+    //Moves buttons away from edge of world
+    private void ShiftButtons()
+    {
+        Debug.Log("Menu at x: " + transform.position.x + " y: " + transform.position.y);
+
+        if (transform.position.x > 13.5)
+        {            
+            SlideButtonsLeft();
+        }
+        else
+        {            
+            ButonsToDefaultXPos();
+        }
+
+        if (transform.position.y > 7)
+        {
+            SlideButtonsDown();
+        }
+        else
+        {
+            if (transform.position.y < 0.8)
+                SlideButtonsUp();
+            else
+                ButonsToDefaultYPos();
+        }
+
+    }
+
+    private void SlideButtonsLeft()
+    {
+        /*
+        for (int i = 0; i < _buttons.Length; ++i)
+        {
+            _buttons[i].transform.position = new Vector2(_defaultButtonPositions[i].x - _buttonOffset.x, _defaultButtonPositions[i].y); 
+        }
+         */
+        transform.position = (Vector2)transform.position - new Vector2(_buttonOffset.x, 0);
+
+        Debug.Log("slid left");
+    }
+
+    private void SlideButtonsDown()
+    {
+        /*
+        for (int i = 0; i < _buttons.Length; ++i)
+        {
+            _buttons[i].transform.position = new Vector2(_defaultButtonPositions[i].x, _defaultButtonPositions[i].y - _buttonOffset.y);
+        }
+        
+         */
+        Debug.Log("slid down");
+        transform.position = (Vector2)transform.position - new Vector2(0, _buttonOffset.y);
+    }
+
+    private void SlideButtonsUp()
+    {
+        /*
+        for (int i = 0; i < _buttons.Length; ++i)
+        {
+            _buttons[i].transform.position = new Vector2(_defaultButtonPositions[i].x, _defaultButtonPositions[i].y + _buttonOffset.y);
+        }
+        
+         */
+        Debug.Log("slid down");
+        transform.position = (Vector2)transform.position + new Vector2(0, _buttonOffset.y);
+    }
+
+
+
+    private void ButonsToDefaultXPos()
+    { 
+        /*
+        Debug.Log("Default X Positions");
+        for (int i = 0; i < _buttons.Length; ++i)
+        {
+            _buttons[i].transform.position = new Vector2(_defaultButtonPositions[i].x, transform.position.y);
+        }
+         */
+
+    }
+
+    private void ButonsToDefaultYPos()
+    {
+        /*
+        Debug.Log("Default Y Positions");
+        for (int i = 0; i < _buttons.Length; ++i)
+        {
+            _buttons[i].transform.position = new Vector2(transform.position.x, _defaultButtonPositions[i].y);
+        }
+         */
+    }
+
 
     private void CheckMenuActive()
     {
