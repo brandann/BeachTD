@@ -29,6 +29,7 @@ public class SandDollarBank : MonoBehaviour {
     public void AddDollars(int dollars)
     {
         SandDollars += dollars;
+
     }
 
     public void SubtractDollars(int dollars)

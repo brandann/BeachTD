@@ -21,11 +21,11 @@ public class TowerUpgradeManager : MonoBehaviour
 
     //Maximum number of upgrades available to each type of tower
     
-
+        
     public int MeleeTowerCost;
     public int RangedTowerCost;
     public int SlowTowerCost;
-
+    
     public int UpgradeCost;
 
     public float SpeedUpgradePercentage;
@@ -127,12 +127,14 @@ public class TowerUpgradeManager : MonoBehaviour
     }
 
     public void SellTower(Tower touchedTower)
-    {
-        
+    {       
 
         Instantiate(OpenAreaPrefab, touchedTower.transform.position, Quaternion.identity);
-        TowerFactory.Instance.RecycleTower(touchedTower);        
-        _bank.AddDollars(touchedTower.Cost);
+        TowerFactory.Instance.RecycleTower(touchedTower);
+
+        int index = -1;
+        _towerLookup.TryGetValue(touchedTower, out index);
+        _bank.AddDollars(_towerCosts[index]);
     }
 
     #endregion    
@@ -146,6 +148,7 @@ public class TowerUpgradeManager : MonoBehaviour
     private Dictionary<Tower, int> _towerLookup;
 
     private int[,] _maxUpgrades;
+    private int[] _towerCosts;
     
     private readonly int RANGEINDEX = 0;
     private readonly int SPEEDINDEX = 1;
@@ -182,6 +185,13 @@ public class TowerUpgradeManager : MonoBehaviour
         _maxUpgrades[2, SPEEDINDEX] = MaxSlowSpeed;
         _maxUpgrades[2, DAMAGEINDEX] = MaxSlowDamage;
         _maxUpgrades[2, SPECIALINDEX] = MaxSlowSpecial;
+
+        _towerCosts = new int[3];
+        _towerCosts[0] = MeleeTowerCost;
+        _towerCosts[1] = RangedTowerCost;
+        _towerCosts[2] = SlowTowerCost;
+
+        
     }   
 
     

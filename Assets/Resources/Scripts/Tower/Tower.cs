@@ -9,6 +9,14 @@ using System.Collections.Generic;
 
 public abstract class Tower : MonoBehaviour
 {
+    #region InspectorSet
+
+    //Cost of building 
+    public int Cost;
+
+    #endregion
+
+
     #region Public Region
 
     public delegate void TowerEventHandler(Tower t);
@@ -34,8 +42,7 @@ public abstract class Tower : MonoBehaviour
         }
     }
 
-    //Cost of building 
-    public int Cost { get; protected set; }
+    
 
     //Damage done per hit
     public float Damage { get; protected set; }
