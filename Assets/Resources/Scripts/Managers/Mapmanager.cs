@@ -54,8 +54,8 @@ public class MapManager{
 	private void makeSpace(int i, int j)
 	{
 		global.SpawnTower(OpenSpace, new Vector3(i + .5f, j + .5f, 0));
-        GameObject SpawnedPrefab = GameObject.Instantiate(grateSpace) as GameObject;
-        SpawnedPrefab.transform.position = new Vector3(i + .5f, j + .5f, 0);
+        //GameObject SpawnedPrefab = GameObject.Instantiate(grateSpace) as GameObject;
+        //SpawnedPrefab.transform.position = new Vector3(i + .5f, j + .5f, 0);
     }
 
     private void makePath(int i, int j)

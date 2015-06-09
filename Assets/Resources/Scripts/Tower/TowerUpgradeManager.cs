@@ -17,14 +17,7 @@ public class TowerUpgradeManager : MonoBehaviour
     public GameObject SlowPrefab;
     public GameObject OpenAreaPrefab;
 
-    public Button BuildMeleeButton;
-    public Button BuildRangedButton;
-    public Button BuildSlowButton;
-    public Button SpeedUpButton;
-    private Button RangeUpButton;
-    private Button DamageUpButton;
-    private Button SpecialUpButton;
-    public Button SellButton;
+    
 
     //Maximum number of upgrades available to each type of tower
     
@@ -55,11 +48,9 @@ public class TowerUpgradeManager : MonoBehaviour
     private int MaxSlowRange = 2;
     private int MaxSlowSpeed = 2;
     private int MaxSlowDamage = 2;
-    private int MaxSlowSpecial = 2;
+    private int MaxSlowSpecial = 2;     
 
-     
-
-    public bool MenuActive { get; private set; }
+    
 
     #region MonoBehaviour
     void Awake()
@@ -69,7 +60,7 @@ public class TowerUpgradeManager : MonoBehaviour
         _10percentDamage = new Tower.Upgrade(0, 0, DamageUpgradePercentage);
         _10percentRange = new Tower.Upgrade(0.3f);
 
-        AssignButtons();
+        
         FillLookups();       
 
         if (MeleeTowerCost < 0 || RangedTowerCost < 0 || SlowTowerCost < 0)
@@ -81,9 +72,7 @@ public class TowerUpgradeManager : MonoBehaviour
         if (UpgradeCost < 0)
             Debug.LogWarning("Forgot to set upgrade costs in upgrade manager?");
 
-        //with no params actually hides all buttons
-        ShowBuildButtons();
-        ShowUpgradeButtons();
+        
     }
 
     void Start()
@@ -93,93 +82,62 @@ public class TowerUpgradeManager : MonoBehaviour
             Debug.LogError("Can't find bank");
     }
 
-    void OnEnable()
-    {
-        Tower.onTowerTouched += TowerTouched;
-        OpenAreaBehavior.onAreaTouched += OpenAreaTouched;
-        Path.OnPathTouched += HandlePathTouched;
-        Seagull.OnGullKilled += HandleGullHit;
-        
-    }
 
-    void OnDestroy()
-    {
-        Tower.onTowerTouched -= TowerTouched;
-        OpenAreaBehavior.onAreaTouched -= OpenAreaTouched;
-        Path.OnPathTouched -= HandlePathTouched;
-        Seagull.OnGullKilled -= HandleGullHit;
-    }
 
     #endregion
 
     #region Buttons
 
-    public void BuildMelee()
+    public void BuildMeleeFromArea(OpenAreaBehavior openArea)
     {
-        BuildTower(MeleePrefab.GetComponent<MeleeTower>());
+        BuildTower(MeleePrefab.GetComponent<MeleeTower>(), openArea);
         _bank.SubtractDollars(MeleeTowerCost);
     }
 
-    public void BuildRanged()
+    public void BuildRangedFromArea(OpenAreaBehavior openArea)
     {
-        BuildTower(RangedPrefab.GetComponent<RangedTower>());
+        BuildTower(RangedPrefab.GetComponent<RangedTower>(), openArea);
         _bank.SubtractDollars(RangedTowerCost);
     }
 
-    public void BuildSlow()
+    public void BuildSlowFromArea(OpenAreaBehavior openArea)
     {
-        BuildTower(SlowPrefab.GetComponent<SlowTower>());
+        BuildTower(SlowPrefab.GetComponent<SlowTower>(), openArea);
         _bank.SubtractDollars(SlowTowerCost);
     }
 
-    public void UpgradeSpeed()
+    public void UpgradeTower(Tower tower)
     {
-        UpgradeTower(_10percentSpeed);
-        UpgradeTower(_10percentRange);
+        UpgradeTower(tower, _10percentSpeed);
+        UpgradeTower(tower, _10percentRange);
         _bank.SubtractDollars(UpgradeCost);
     }
 
-    public void UpgradeRange()
+    private void UpgradeTower(Tower tower, Tower.Upgrade up)
     {
-        //UpgradeTower(_10percentRange);
-        //_bank.SubtractDollars(RangeUpgradeCost);
-    }
+        
 
-    public void UpgradeDamage()
-    {
-        //UpgradeTower(_10percentDamage);
-        //_bank.SubtractDollars(DamageUpgradeCost);
-    }
-
-    public void UpgradeSpecial()
-    {
-        //UpgradeTower(_specialUpgrade);
-        //_bank.SubtractDollars(SpecialUpgradeCost);
-    }
-
-    public void SellTower()
-    {
-        if (_touchedTower == null)
+        if (tower == null)
         {
-            Debug.LogWarning("Missing tower");
+            Debug.LogWarning("missing tower");
             return;
         }
 
-        Instantiate(OpenAreaPrefab, _touchedTower.transform.position, Quaternion.identity);
-        TowerFactory.Instance.RecycleTower(_touchedTower);
-        ShowUpgradeButtons();
-
-        //TODO  give player money for selling tower
+        tower.UpgradeTower(up);
     }
 
-    #endregion
+    public void SellTower(Tower touchedTower)
+    {
+        
 
-    //Last tower that fired touch event
-    private Tower _touchedTower;
+        Instantiate(OpenAreaPrefab, touchedTower.transform.position, Quaternion.identity);
+        TowerFactory.Instance.RecycleTower(touchedTower);        
+        _bank.AddDollars(touchedTower.Cost);
+    }
+
+    #endregion    
     
-    //Last open area that fired touch event
-    private OpenAreaBehavior _touchedArea;
-
+    
     private Tower.Upgrade _specialUpgrade;
     private Tower.Upgrade _10percentSpeed;
     private Tower.Upgrade _10percentDamage;
@@ -188,58 +146,16 @@ public class TowerUpgradeManager : MonoBehaviour
     private Dictionary<Tower, int> _towerLookup;
 
     private int[,] _maxUpgrades;
-    private readonly float FADETIME = 5f;
+    
     private readonly int RANGEINDEX = 0;
     private readonly int SPEEDINDEX = 1;
     private readonly int DAMAGEINDEX = 2;
     private readonly int SPECIALINDEX = 3;
-    private Button[] _buttons;
-    private Vector2 _buttonSizeRect = new Vector2(0.5f, 0.5f);
-    private Collider2D[] _hitByButtons;
+    
+    
+    
     private SandDollarBank _bank;
-    private float _lastActivation;
-    private float _lastGullHitTime;
-    private Vector2[] _defaultButtonPositions;
-    private Vector2 _buttonOffset;
-
-    public void Update()
-    {
-        if (MenuActive && Time.time >= _lastActivation + FADETIME)
-            DeselectAndHide();        
-    }
-
-
-    private void AssignButtons()
-    {
-        //Assign buttons
-        _buttons = new Button[5];
-        _defaultButtonPositions = new Vector2[5];
-        
-
-        _buttons[0] = BuildMeleeButton;       
-        _buttons[1] = BuildRangedButton;
-        _buttons[2] = BuildSlowButton;
-        _buttons[3] = SpeedUpButton;
-        _buttons[4] = SellButton;
-
-        for (int i = 0; i < _buttons.Length; ++i)
-            _defaultButtonPositions[i] = _buttons[i].transform.position;
-
-        Vector2 centerOfBuilder = transform.position;
-
-        //Assume that buildmelee button starts off to the right and above
-        _buttonOffset = new Vector2(1.5f, 0.9f);
-        
-        
-
-        //Ensure all buttons have been added in the inspector
-        foreach (Button b in _buttons)
-            if (b.gameObject == null)
-            {
-                Debug.LogError("Missing button");
-            }
-    }
-
+    
     /// <summary>
     /// Makes it a bit easier to look up the max upgrade level of tower by attribute
     /// </summary>
@@ -268,191 +184,37 @@ public class TowerUpgradeManager : MonoBehaviour
         _maxUpgrades[2, SPECIALINDEX] = MaxSlowSpecial;
     }   
 
-    private void UpgradeTower(Tower.Upgrade up)
-    {
-        //Clear UI 
-        ShowUpgradeButtons();
+    
 
-        if (_touchedTower == null)
-        {
-            Debug.LogWarning("missing tower");
-            return;
-        }
-
-        _touchedTower.UpgradeTower(up);
-    }
-
-    private void BuildTower(Tower t)
+    private void BuildTower(Tower t, OpenAreaBehavior touchedArea)
     {
         //In with the new
         Tower tower = TowerFactory.Instance.CreateTower(t);
-        tower.transform.position = _touchedArea.transform.position;
+        tower.transform.position = touchedArea.transform.position;
 
         //Out with the old
-        Destroy(_touchedArea.gameObject);
-        _touchedArea = null;
+        Destroy(touchedArea.gameObject);
+        touchedArea = null;
 
-        //Clear UI
-        ShowBuildButtons();
+   
         
         // call enemy manager and tell her a tower has been built
         Global go = GameObject.Find("Global").GetComponent<Global>();
         go.enemyManager.NotifyTowerBuilt();
         GameObject.Find("Seagull").GetComponent<Seagull>().StartPlane();
     }
-
-    private void DeselectAndHide()
-    {
-        ShowBuildButtons();
-        ShowUpgradeButtons();
-        _touchedTower = null;
-        _touchedArea = null;
-    }
-
-    private void SelectAndShow(Tower t)
-    {
-        //Cache reference to tower 
-        _touchedTower = t;
-
-        //Move to tower that was touched
-        transform.position = t.transform.position;
-        ShiftButtons();
-
-        bool showSpeed = CanUpgradeSpeed();
-        bool showRange = CanUpgradeRange();
-        bool showDamage = CanUpgradeDamage();
-        bool showSpecial = CanUpgradeSpecial();
-        bool showSell = CanSellTower();
-
-        ShowUpgradeButtons(showSpeed, showRange, showDamage, showSpecial, showSell);
-        _lastActivation = Time.time;
-    }
-
-    private void SelectAndShow(OpenAreaBehavior a)
-    {
-        _touchedArea = a;
-
-        //Move to open area that was touched
-        transform.position = _touchedArea.transform.position;
-        ShiftButtons();
-
-        bool showMelee = CanBuildMelee();
-        bool showRanged = CanBuildRanged();
-        bool showSlow = CanBuildSlow();
-        ShowBuildButtons(showMelee, showRanged, showSlow);
-        _lastActivation = Time.time;
-    }
-
-    private void HandlePathTouched(Path path)
-    {
-        if (MenuActive)
-        {
-            //Ignore hitting path when trying to select button
-            if (IsBelowButton(path.gameObject))
-                return;
-            else
-                DeselectAndHide();
-        }           
-       
-    }
-
-    private void HandleGullHit(Seagull gull)
-    {
-        _lastGullHitTime = Time.time;
-        Debug.Log("logged gull hit: " + _lastGullHitTime);
-    }
-
-
-    private void TowerTouched(Tower tower)
-    {
-
-        //Ignore disabled towers
-        if (tower.CurrentState == Tower.TowerState.Disabled)
-            return;        
-
-        if(MenuActive)
-        {           
-            //Tower was touched when user was clicking on an active button
-            if ( IsBelowButton(tower.gameObject) )
-                return;
-            else                         //Menu up but user chose something else
-            {
-                DeselectAndHide();               
-            }
-
-            return;
-        }
-        else
-            if (_lastGullHitTime != Time.time)
-            {
-                SelectAndShow(tower);
-                Debug.Log("Show menu: " + Time.time);
-            }
-                  
-    }
-
-    private void OpenAreaTouched(OpenAreaBehavior area)
-    {
-        if (MenuActive)
-        {
-            if (IsBelowButton(area.gameObject))
-                return;
-            else
-                DeselectAndHide();
-        }
-        else
-            if (_lastGullHitTime != Time.time)
-            {
-                SelectAndShow(area);
-                //Debug.Log("Show menu: " + Time.time);
-            }
-        
-        //Debug.Log("open area touched");      
-    }
-
-    /// <summary>
-    /// Checks worldspace below each active button for passed in gameobject
-    /// </summary>
-    /// <param name="go"></param>
-    /// <returns>true if object is below any active button false otherwise</returns>
-    private bool IsBelowButton(GameObject go)
-    {
-        foreach (Button b in _buttons)
-        {
-            //Ignore buttons that aren't active
-            if (!b.gameObject.activeSelf)
-                continue;
-
-            Renderer r = go.GetComponent<Renderer>();
-            Bounds target;
-
-            if(r != null)
-            {
-                target = r.bounds;
-            }
-            else
-            {
-                target =  go.GetComponent<Collider2D>().bounds;
-            }           
-                                    
-            if (b.GetComponent<Collider2D>().bounds.Intersects(target) )            
-                return true;           
-        }
-
-        return false;
-    }
-
-    private  bool CanBuildMelee()
+    
+    public  bool CanBuildMelee()
     {
         return _bank.SandDollars >= MeleeTowerCost;
     }
 
-    private bool CanBuildRanged()
+    public bool CanBuildRanged()
     {
         return _bank.SandDollars >= RangedTowerCost;
     }
 
-    private bool CanBuildSlow()
+    public bool CanBuildSlow()
     {
         return _bank.SandDollars >= SlowTowerCost;
     }
@@ -462,22 +224,22 @@ public class TowerUpgradeManager : MonoBehaviour
     /// Determines if _touched tower's speed attribute can be upgraded further
     /// </summary>
     /// <returns></returns>
-    private bool CanUpgradeSpeed()
+    public bool CanUpgradeSpeed(Tower tower)
     {
         int index = -1, max = -1;
-        _towerLookup.TryGetValue(_touchedTower, out index);
+        _towerLookup.TryGetValue(tower, out index);
         
         max = _maxUpgrades[index, SPEEDINDEX];
 
 
-        return (_touchedTower.SpeedUpgrades < max) && (UpgradeCost <= _bank.SandDollars);        
+        return (tower.SpeedUpgrades < max) && (UpgradeCost <= _bank.SandDollars);        
 
     }
 
-    private bool CanUpgradeRange()
+    public bool CanUpgradeRange(Tower tower)
     {
         int index = -1, max = -1;
-        _towerLookup.TryGetValue(_touchedTower, out index);
+        _towerLookup.TryGetValue(tower, out index);
 
       
         max = _maxUpgrades[index, RANGEINDEX];
@@ -485,10 +247,10 @@ public class TowerUpgradeManager : MonoBehaviour
         return false; // return (_touchedTower.RangeUpgrades < max) && (RangeUpgradeCost <= _bank.SandDollars);
     }
 
-    private bool CanUpgradeDamage()
+    public bool CanUpgradeDamage(Tower tower)
     {
         int index = -1, max = -1;
-        _towerLookup.TryGetValue(_touchedTower, out index);
+        _towerLookup.TryGetValue(tower, out index);
 
         
         max = _maxUpgrades[index, DAMAGEINDEX];
@@ -496,160 +258,20 @@ public class TowerUpgradeManager : MonoBehaviour
         return false; // return (_touchedTower.DamageUpgrades < max) && (DamageUpgradeCost <= _bank.SandDollars);    
     }
 
-    private bool CanUpgradeSpecial()
-    {
-        int index = -1, max = -1;
-        _towerLookup.TryGetValue(_touchedTower, out index);
-        
-        max = _maxUpgrades[index, SPECIALINDEX];
-
-        return false; // return (_touchedTower.SpecialUpgrades < max) && (UpgradeCost <= _bank.SandDollars);
-    }
-
-    private bool CanSellTower()
-    {
-        return true;
-    }
-
     /// <summary>
-    /// Displays the appropriate UI buttons to the user.
+    /// Hook for special abilities upgrade
     /// </summary>
-    private void ShowBuildButtons(bool melee = false, bool ranged = false, bool slow = false)
+    /// <param name="tower"></param>
+    /// <returns></returns>
+    public bool CanUpgradeSpecial(Tower tower)
     {
-        //Debug.Log("show buttons");
-
-        
-        _buttons[0].gameObject.SetActive(melee);
-        _buttons[1].gameObject.SetActive(ranged);
-        _buttons[2].gameObject.SetActive(slow);
-
-        CheckMenuActive();
-
-        if (MenuActive)
-            _lastActivation = Time.time;
+        return false;   
     }
 
-    private void ShowUpgradeButtons(bool speed = false, bool range = false, bool damage = false, bool special = false, bool sell = false)
-    {        
-
-        _buttons[3].gameObject.SetActive(speed);        
-        _buttons[4].gameObject.SetActive(sell);
-
-        CheckMenuActive();
-
-        if (MenuActive)
-            _lastActivation = Time.time;
-
-    }
-
-    //Moves buttons away from edge of world
-    private void ShiftButtons()
+    public bool CanSellTower(Tower tower)
     {
-        Debug.Log("Menu at x: " + transform.position.x + " y: " + transform.position.y);
-
-        if (transform.position.x > 13.5)
-        {            
-            SlideButtonsLeft();
-        }
-        else
-        {            
-            ButonsToDefaultXPos();
-        }
-
-        if (transform.position.y > 7)
-        {
-            SlideButtonsDown();
-        }
-        else
-        {
-            if (transform.position.y < 0.8)
-                SlideButtonsUp();
-            else
-                ButonsToDefaultYPos();
-        }
-
-    }
-
-    private void SlideButtonsLeft()
-    {
-        /*
-        for (int i = 0; i < _buttons.Length; ++i)
-        {
-            _buttons[i].transform.position = new Vector2(_defaultButtonPositions[i].x - _buttonOffset.x, _defaultButtonPositions[i].y); 
-        }
-         */
-        transform.position = (Vector2)transform.position - new Vector2(_buttonOffset.x, 0);
-
-        Debug.Log("slid left");
-    }
-
-    private void SlideButtonsDown()
-    {
-        /*
-        for (int i = 0; i < _buttons.Length; ++i)
-        {
-            _buttons[i].transform.position = new Vector2(_defaultButtonPositions[i].x, _defaultButtonPositions[i].y - _buttonOffset.y);
-        }
-        
-         */
-        Debug.Log("slid down");
-        transform.position = (Vector2)transform.position - new Vector2(0, _buttonOffset.y);
-    }
-
-    private void SlideButtonsUp()
-    {
-        /*
-        for (int i = 0; i < _buttons.Length; ++i)
-        {
-            _buttons[i].transform.position = new Vector2(_defaultButtonPositions[i].x, _defaultButtonPositions[i].y + _buttonOffset.y);
-        }
-        
-         */
-        Debug.Log("slid down");
-        transform.position = (Vector2)transform.position + new Vector2(0, _buttonOffset.y);
-    }
-
-
-
-    private void ButonsToDefaultXPos()
-    { 
-        /*
-        Debug.Log("Default X Positions");
-        for (int i = 0; i < _buttons.Length; ++i)
-        {
-            _buttons[i].transform.position = new Vector2(_defaultButtonPositions[i].x, transform.position.y);
-        }
-         */
-
-    }
-
-    private void ButonsToDefaultYPos()
-    {
-        /*
-        Debug.Log("Default Y Positions");
-        for (int i = 0; i < _buttons.Length; ++i)
-        {
-            _buttons[i].transform.position = new Vector2(transform.position.x, _defaultButtonPositions[i].y);
-        }
-         */
-    }
-
-
-    private void CheckMenuActive()
-    {
-        foreach (Button b in _buttons)
-        {
-            if (b.gameObject.activeSelf)
-            {
-                MenuActive = true;
-                return;
-            }
-        }
-
-        MenuActive = false;
-    }
-
-   
+        return true; 
+    }   
     
 	
 }

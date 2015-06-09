@@ -112,6 +112,7 @@ GameObject:
   - 114: {fileID: 11400034}
   - 114: {fileID: 11400032}
   - 114: {fileID: 11400036}
+  - 114: {fileID: 11447564}
   m_Layer: 5
   m_Name: Builder
   m_TagString: Untagged
@@ -235,8 +236,8 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
-      - m_Target: {fileID: 0}
-        m_MethodName: Clicked
+      - m_Target: {fileID: 11447564}
+        m_MethodName: SellTower
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -321,8 +322,8 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
-      - m_Target: {fileID: 0}
-        m_MethodName: Clicked
+      - m_Target: {fileID: 11447564}
+        m_MethodName: Upgrade
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -407,8 +408,8 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
-      - m_Target: {fileID: 11400036}
-        m_MethodName: BuildMelee
+      - m_Target: {fileID: 11447564}
+        m_MethodName: BuildMeleeClicked
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -493,8 +494,8 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
-      - m_Target: {fileID: 0}
-        m_MethodName: Clicked
+      - m_Target: {fileID: 11447564}
+        m_MethodName: BuildSlowClicked
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -567,8 +568,8 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 11400036}
-        m_MethodName: BuildRanged
+      - m_Target: {fileID: 11462090}
+        m_MethodName: Clicked
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -579,8 +580,8 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
-      - m_Target: {fileID: 0}
-        m_MethodName: Clicked
+      - m_Target: {fileID: 11447564}
+        m_MethodName: BuildRangedClicked
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -666,11 +667,6 @@ MonoBehaviour:
   RangedPrefab: {fileID: 100000, guid: 77f5f423a6f6244019589da343170d08, type: 2}
   SlowPrefab: {fileID: 100000, guid: 16cd5ec2a267bbe46add22942a75c962, type: 2}
   OpenAreaPrefab: {fileID: 100000, guid: 7ce3379c6383be94cbcac5f4687ef827, type: 2}
-  BuildMeleeButton: {fileID: 11400016}
-  BuildRangedButton: {fileID: 11400028}
-  BuildSlowButton: {fileID: 11400020}
-  SpeedUpButton: {fileID: 11400008}
-  SellButton: {fileID: 11400004}
   MeleeTowerCost: 20
   RangedTowerCost: 50
   SlowTowerCost: 60
@@ -710,6 +706,23 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 23d783abfa8e9da4aa6b269c49383100, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!114 &11447564
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 100016}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 6a3192adc50eaf348a0e1d4fa240e153, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  BuildMeleeButton: {fileID: 11400016}
+  BuildRangedButton: {fileID: 11400028}
+  BuildSlowButton: {fileID: 11400020}
+  SpeedUpButton: {fileID: 11400008}
+  SellButton: {fileID: 11400004}
+  FADETIME: 5
 --- !u!114 &11462090
 MonoBehaviour:
   m_ObjectHideFlags: 1
