@@ -239,13 +239,11 @@ public class TowerBuildUpgradePanelUI : MonoBehaviour
         transform.position = t.transform.position;
         ShiftButtons();
 
-        bool showSpeed = _towerManager.CanUpgradeSpeed(t);
-        bool showRange = _towerManager.CanUpgradeRange(t);
-        bool showDamage = _towerManager.CanUpgradeDamage(t);
-        bool showSpecial = _towerManager.CanUpgradeSpecial(t);
+        bool showSpeed = _towerManager.CanUpgrade(t);
+        
         bool showSell = _towerManager.CanSellTower(t);
 
-        ShowUpgradeButtons(showSpeed, showRange, showDamage, showSpecial, showSell);
+        ShowUpgradeButtons(showSpeed, false, false, false, showSell);
         _lastActivation = Time.time;
     }
 

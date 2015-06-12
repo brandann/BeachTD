@@ -684,7 +684,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e48539c47e7c12d40a47f1e0cffc628f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  Damage: 5
+  CoolDownTime: 3
   ProjectilePrefab: {fileID: 129612, guid: 528cf842538d61e45b21f8bb5c979a05, type: 2}
+  SlowCoolDownTime: .5
 --- !u!114 &11400002
 MonoBehaviour:
   m_ObjectHideFlags: 1

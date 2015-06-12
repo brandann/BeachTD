@@ -124,7 +124,7 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 22499882, guid: ba384aac1fb188542a5da8445031f18d, type: 2}
       propertyPath: m_RootOrder
-      value: 11
+      value: 10
       objectReference: {fileID: 0}
     - target: {fileID: 22499882, guid: ba384aac1fb188542a5da8445031f18d, type: 2}
       propertyPath: m_AnchoredPosition.x
@@ -309,7 +309,7 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 22499882, guid: ba384aac1fb188542a5da8445031f18d, type: 2}
       propertyPath: m_RootOrder
-      value: 17
+      value: 16
       objectReference: {fileID: 0}
     - target: {fileID: 22499882, guid: ba384aac1fb188542a5da8445031f18d, type: 2}
       propertyPath: m_AnchoredPosition.x
@@ -643,7 +643,7 @@ SpriteRenderer:
   m_SortingOrder: 2
   m_Sprite: {fileID: 21300000, guid: 8908afb3bd46e3441a9f5ffea2e85cd4, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
---- !u!224 &192411549 stripped
+--- !u!224 &192411549
 RectTransform:
   m_PrefabParentObject: {fileID: 22499882, guid: ba384aac1fb188542a5da8445031f18d,
     type: 2}
@@ -685,7 +685,7 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 22499882, guid: ba384aac1fb188542a5da8445031f18d, type: 2}
       propertyPath: m_RootOrder
-      value: 6
+      value: 5
       objectReference: {fileID: 0}
     - target: {fileID: 22499882, guid: ba384aac1fb188542a5da8445031f18d, type: 2}
       propertyPath: m_AnchoredPosition.x
@@ -1040,7 +1040,7 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 22499882, guid: ba384aac1fb188542a5da8445031f18d, type: 2}
       propertyPath: m_RootOrder
-      value: 8
+      value: 7
       objectReference: {fileID: 0}
     - target: {fileID: 22499882, guid: ba384aac1fb188542a5da8445031f18d, type: 2}
       propertyPath: m_AnchoredPosition.x
@@ -1348,7 +1348,7 @@ CanvasRenderer:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 358171069}
---- !u!224 &378328244 stripped
+--- !u!224 &378328244
 RectTransform:
   m_PrefabParentObject: {fileID: 22499882, guid: ba384aac1fb188542a5da8445031f18d,
     type: 2}
@@ -1419,7 +1419,7 @@ CanvasRenderer:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 380163400}
---- !u!224 &395784564 stripped
+--- !u!224 &395784564
 RectTransform:
   m_PrefabParentObject: {fileID: 22499882, guid: ba384aac1fb188542a5da8445031f18d,
     type: 2}
@@ -1479,7 +1479,7 @@ SpriteRenderer:
   m_SortingOrder: 2
   m_Sprite: {fileID: 21300000, guid: 8908afb3bd46e3441a9f5ffea2e85cd4, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
---- !u!224 &447316261 stripped
+--- !u!224 &447316261
 RectTransform:
   m_PrefabParentObject: {fileID: 22499882, guid: ba384aac1fb188542a5da8445031f18d,
     type: 2}
@@ -1611,7 +1611,7 @@ CanvasRenderer:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 479593047}
---- !u!224 &491261772 stripped
+--- !u!224 &491261772
 RectTransform:
   m_PrefabParentObject: {fileID: 22499882, guid: ba384aac1fb188542a5da8445031f18d,
     type: 2}
@@ -1826,7 +1826,7 @@ Animator:
   m_WarningMessage: 
   m_HasTransformHierarchy: 1
   m_AllowConstantClipSamplingOptimization: 1
---- !u!224 &622955442 stripped
+--- !u!224 &622955442
 RectTransform:
   m_PrefabParentObject: {fileID: 22499882, guid: ba384aac1fb188542a5da8445031f18d,
     type: 2}
@@ -1868,7 +1868,7 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 22499882, guid: ba384aac1fb188542a5da8445031f18d, type: 2}
       propertyPath: m_RootOrder
-      value: 16
+      value: 15
       objectReference: {fileID: 0}
     - target: {fileID: 22499882, guid: ba384aac1fb188542a5da8445031f18d, type: 2}
       propertyPath: m_AnchoredPosition.x
@@ -2244,7 +2244,7 @@ Transform:
   - {fileID: 260762568}
   m_Father: {fileID: 552145776}
   m_RootOrder: 2
---- !u!224 &761768088 stripped
+--- !u!224 &761768088
 RectTransform:
   m_PrefabParentObject: {fileID: 22499882, guid: ba384aac1fb188542a5da8445031f18d,
     type: 2}
@@ -2425,7 +2425,7 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 22499882, guid: ba384aac1fb188542a5da8445031f18d, type: 2}
       propertyPath: m_RootOrder
-      value: 9
+      value: 8
       objectReference: {fileID: 0}
     - target: {fileID: 22499882, guid: ba384aac1fb188542a5da8445031f18d, type: 2}
       propertyPath: m_AnchoredPosition.x
@@ -2791,7 +2791,7 @@ Animator:
   m_WarningMessage: 
   m_HasTransformHierarchy: 1
   m_AllowConstantClipSamplingOptimization: 1
---- !u!224 &949092410 stripped
+--- !u!224 &949092410
 RectTransform:
   m_PrefabParentObject: {fileID: 22499882, guid: ba384aac1fb188542a5da8445031f18d,
     type: 2}
@@ -3251,7 +3251,7 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 22499882, guid: ba384aac1fb188542a5da8445031f18d, type: 2}
       propertyPath: m_RootOrder
-      value: 15
+      value: 14
       objectReference: {fileID: 0}
     - target: {fileID: 22499882, guid: ba384aac1fb188542a5da8445031f18d, type: 2}
       propertyPath: m_AnchoredPosition.x
@@ -3300,12 +3300,12 @@ Prefab:
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: ba384aac1fb188542a5da8445031f18d, type: 2}
   m_IsPrefabParent: 0
---- !u!224 &1023032283 stripped
+--- !u!224 &1023032283
 RectTransform:
   m_PrefabParentObject: {fileID: 22499882, guid: ba384aac1fb188542a5da8445031f18d,
     type: 2}
   m_PrefabInternal: {fileID: 675360708}
---- !u!224 &1056896917 stripped
+--- !u!224 &1056896917
 RectTransform:
   m_PrefabParentObject: {fileID: 22499882, guid: ba384aac1fb188542a5da8445031f18d,
     type: 2}
@@ -4951,7 +4951,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!224 &1268817991
 RectTransform:
   m_ObjectHideFlags: 0
@@ -4966,7 +4966,7 @@ RectTransform:
   - {fileID: 1151184753}
   - {fileID: 1668417068}
   m_Father: {fileID: 1347506215}
-  m_RootOrder: 5
+  m_RootOrder: 17
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 1, y: 1}
   m_AnchoredPosition: {x: 0, y: 0}
@@ -4995,7 +4995,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
-  m_Color: {r: .854901969, g: .854901969, b: .854901969, a: 1}
+  m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_Sprite: {fileID: 21300000, guid: 1624fb8704139d84895788fa76147d60, type: 3}
   m_Type: 0
   m_PreserveAspect: 0
@@ -5385,7 +5385,7 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 22499882, guid: ba384aac1fb188542a5da8445031f18d, type: 2}
       propertyPath: m_RootOrder
-      value: 7
+      value: 6
       objectReference: {fileID: 0}
     - target: {fileID: 22499882, guid: ba384aac1fb188542a5da8445031f18d, type: 2}
       propertyPath: m_AnchoredPosition.x
@@ -5479,7 +5479,6 @@ RectTransform:
   - {fileID: 966539839}
   - {fileID: 1462656662}
   - {fileID: 1694264162}
-  - {fileID: 1268817991}
   - {fileID: 192411549}
   - {fileID: 949092410}
   - {fileID: 447316261}
@@ -5492,6 +5491,7 @@ RectTransform:
   - {fileID: 761768088}
   - {fileID: 1023032283}
   - {fileID: 1749871024}
+  - {fileID: 1268817991}
   m_Father: {fileID: 0}
   m_RootOrder: 3
   m_AnchorMin: {x: 0, y: 0}
@@ -5870,7 +5870,7 @@ Animator:
   m_WarningMessage: 
   m_HasTransformHierarchy: 1
   m_AllowConstantClipSamplingOptimization: 1
---- !u!114 &1521159078 stripped
+--- !u!114 &1521159078
 MonoBehaviour:
   m_PrefabParentObject: {fileID: 11400000, guid: d928fea4b3cce4f21adf979d1bfc7528,
     type: 2}
@@ -6276,7 +6276,7 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 22499882, guid: ba384aac1fb188542a5da8445031f18d, type: 2}
       propertyPath: m_RootOrder
-      value: 12
+      value: 11
       objectReference: {fileID: 0}
     - target: {fileID: 22499882, guid: ba384aac1fb188542a5da8445031f18d, type: 2}
       propertyPath: m_AnchoredPosition.x
@@ -7777,12 +7777,12 @@ CanvasRenderer:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 1721489401}
---- !u!224 &1742679797 stripped
+--- !u!224 &1742679797
 RectTransform:
   m_PrefabParentObject: {fileID: 22499882, guid: ba384aac1fb188542a5da8445031f18d,
     type: 2}
   m_PrefabInternal: {fileID: 1942543225}
---- !u!224 &1749871024 stripped
+--- !u!224 &1749871024
 RectTransform:
   m_PrefabParentObject: {fileID: 22499882, guid: ba384aac1fb188542a5da8445031f18d,
     type: 2}
@@ -8228,7 +8228,7 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 22499882, guid: ba384aac1fb188542a5da8445031f18d, type: 2}
       propertyPath: m_RootOrder
-      value: 13
+      value: 12
       objectReference: {fileID: 0}
     - target: {fileID: 22499882, guid: ba384aac1fb188542a5da8445031f18d, type: 2}
       propertyPath: m_AnchoredPosition.x
@@ -8314,7 +8314,7 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 22499882, guid: ba384aac1fb188542a5da8445031f18d, type: 2}
       propertyPath: m_RootOrder
-      value: 10
+      value: 9
       objectReference: {fileID: 0}
     - target: {fileID: 22499882, guid: ba384aac1fb188542a5da8445031f18d, type: 2}
       propertyPath: m_AnchoredPosition.x
@@ -8587,7 +8587,7 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 22499882, guid: ba384aac1fb188542a5da8445031f18d, type: 2}
       propertyPath: m_RootOrder
-      value: 14
+      value: 13
       objectReference: {fileID: 0}
     - target: {fileID: 22499882, guid: ba384aac1fb188542a5da8445031f18d, type: 2}
       propertyPath: m_AnchoredPosition.x

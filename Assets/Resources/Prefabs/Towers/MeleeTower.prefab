@@ -400,7 +400,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 70b2b516d493da247bf7aca2599652fc, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  speed: .5
+  Damage: 3
+  CoolDownTime: .5
 --- !u!114 &11488216
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -602,7 +603,7 @@ HingeJoint2D:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 188214}
   m_Enabled: 1
-  m_EnableCollision: 0
+  m_CollideConnected: 0
   m_ConnectedRigidBody: {fileID: 5088218}
   m_Anchor: {x: 0, y: .370000005}
   m_ConnectedAnchor: {x: 0, y: -.400000006}
@@ -621,7 +622,7 @@ HingeJoint2D:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 188218}
   m_Enabled: 1
-  m_EnableCollision: 0
+  m_CollideConnected: 0
   m_ConnectedRigidBody: {fileID: 5088220}
   m_Anchor: {x: 0, y: .439999998}
   m_ConnectedAnchor: {x: 0, y: -.5}
@@ -640,7 +641,7 @@ HingeJoint2D:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 188220}
   m_Enabled: 1
-  m_EnableCollision: 0
+  m_CollideConnected: 0
   m_ConnectedRigidBody: {fileID: 5088216}
   m_Anchor: {x: 0, y: 1.08000004}
   m_ConnectedAnchor: {x: 0, y: -.209999993}
@@ -659,7 +660,7 @@ HingeJoint2D:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 188222}
   m_Enabled: 1
-  m_EnableCollision: 0
+  m_CollideConnected: 0
   m_ConnectedRigidBody: {fileID: 5088214}
   m_Anchor: {x: 0, y: .560000002}
   m_ConnectedAnchor: {x: 0, y: -.400000006}

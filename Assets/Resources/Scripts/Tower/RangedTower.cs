@@ -8,16 +8,14 @@ public class RangedTower : Tower
     
     public static event RangedFired OnRangedFired;
 
-    #endregion
-    public float speed;
+    #endregion    
     public GameObject ProjectilePrefab;
 
     protected int _spinesPerShot;
 
     public override void Initialize()
     {
-        base.Initialize(); 
-        CoolDownTime = speed;
+        base.Initialize();         
         _spinesPerShot = 1;
         gameObject.SetActive(false);
     }    
@@ -51,7 +49,7 @@ public class RangedTower : Tower
 
         if (OnRangedFired != null)
             OnRangedFired();
-        //Debug.Log("Act");
+        
     }
 
     protected override void UpgradeSpecial(int level)

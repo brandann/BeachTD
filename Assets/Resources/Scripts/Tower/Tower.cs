@@ -8,13 +8,7 @@ using System.Collections;
 using System.Collections.Generic;
 
 public abstract class Tower : MonoBehaviour
-{
-    #region InspectorSet
-
-    //Cost of building 
-    public int Cost;
-
-    #endregion
+{    
 
 
     #region Public Region
@@ -41,14 +35,13 @@ public abstract class Tower : MonoBehaviour
             Special = special;
         }
     }
-
     
 
     //Damage done per hit
-    public float Damage { get; protected set; }
+    public float Damage;
 
     //Time between firing in seconds, higher number == slower firing
-    public float CoolDownTime { get; protected set; }
+    public float CoolDownTime;
 
     public enum TowerState { Idle, Acting, Disabled };
     
@@ -91,36 +84,36 @@ public abstract class Tower : MonoBehaviour
         if (upgrade.Range != 0)
         {
             _collider.radius *= (1 + upgrade.Range);
-            RangeUpgrades++;
+            NumRangeUpgradesApplied++;
         }
 
         if (upgrade.Speed != 0)
         {
             //Debug.Log("Change cooldown from: " + CoolDownTime);
-            CoolDownTime -= (CoolDownTime * upgrade.Speed)  ;
+            CoolDownTime -= (CoolDownTime * upgrade.Speed);
             //Debug.Log("Change cooldown to: " + CoolDownTime);
-            SpeedUpgrades++;
+            NumSpeedUpgradesApplied++;
         }
 
         if (upgrade.Damage != 0)
         {
             Damage *= (1 + upgrade.Damage);
-            DamageUpgrades++;
+            NumDamageUpgradesApplied++;
         }
 
         if(upgrade.Special != 0){
             UpgradeSpecial(upgrade.Special);
-            SpecialUpgrades++;
+            NumSpecialUpgradesApplied++;
         }
     }
 
-    public int RangeUpgrades { get; protected set; }
+    public int NumRangeUpgradesApplied { get; protected set; }
 
-    public int SpeedUpgrades { get; protected set; }
+    public int NumSpeedUpgradesApplied { get; protected set; }
 
-    public int DamageUpgrades { get; protected set; }
+    public int NumDamageUpgradesApplied { get; protected set; }
 
-    public int SpecialUpgrades { get; protected set; }
+    public int NumSpecialUpgradesApplied { get; protected set; }
 
     #endregion
 
@@ -203,10 +196,10 @@ public abstract class Tower : MonoBehaviour
         _targets = new List<Enemy>();
 
         //Reset upgrade counters
-        SpeedUpgrades = 0;
-        DamageUpgrades = 0;
-        RangeUpgrades = 0;
-        SpecialUpgrades = 0;      
+        NumSpeedUpgradesApplied = 0;
+        NumDamageUpgradesApplied = 0;
+        NumRangeUpgradesApplied = 0;
+        NumSpecialUpgradesApplied = 0;      
     }
        
     //Timestamp of last action

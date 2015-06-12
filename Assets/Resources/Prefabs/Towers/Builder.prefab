@@ -310,18 +310,6 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 11400036}
-        m_MethodName: UpgradeSpeed
-        m_Mode: 1
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine, Version=0.0.0.0,
-            Culture=neutral, PublicKeyToken=null
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 0
-        m_CallState: 2
       - m_Target: {fileID: 11447564}
         m_MethodName: Upgrade
         m_Mode: 1
@@ -667,12 +655,13 @@ MonoBehaviour:
   RangedPrefab: {fileID: 100000, guid: 77f5f423a6f6244019589da343170d08, type: 2}
   SlowPrefab: {fileID: 100000, guid: 16cd5ec2a267bbe46add22942a75c962, type: 2}
   OpenAreaPrefab: {fileID: 100000, guid: 7ce3379c6383be94cbcac5f4687ef827, type: 2}
+  MaximumNumberOfUpgrades: 3
   MeleeTowerCost: 20
   RangedTowerCost: 50
   SlowTowerCost: 60
   UpgradeCost: 10
-  SpeedUpgradePercentage: 0
-  DamageUpgradePercentage: 0
+  SpeedUpgradePercentage: .0500000007
+  DamageUpgradePercentage: .0500000007
 --- !u!114 &11404020
 MonoBehaviour:
   m_ObjectHideFlags: 1
