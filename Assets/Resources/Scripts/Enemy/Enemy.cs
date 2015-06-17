@@ -142,7 +142,7 @@ public class Enemy : MonoBehaviour
 	
 	public void OnTouchDown()
 	{
-		KillThisEnemy();
+		//KillThisEnemy();
 	}
 	
 	public void KillThisEnemy()
