@@ -28,7 +28,7 @@ public class StatusBar : MonoBehaviour {
 
     private void SetDollars(int dollars)
     {
-        DollarDisplay.text = dollars.ToString();
+        DollarDisplay.text = "$" + dollars.ToString();
     }
 
     public void SetEggs(int eggs)
