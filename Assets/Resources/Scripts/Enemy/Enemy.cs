@@ -80,7 +80,6 @@ public class Enemy : MonoBehaviour
     {
         egg.Grab(gameObject);
         _carriedEgg = egg;
-        //this.GetComponent<Renderer>().material.color = Color.red;
     }
 
     private void DropCarriedEgg()

@@ -43,7 +43,6 @@ public class MapManager{
                 else if (map[i, j])
                 {
                     makeSpace(j, i);
-                    //makePath(j, i); <- make path below tower
                 }
                 else
                     makePath(j, i);
