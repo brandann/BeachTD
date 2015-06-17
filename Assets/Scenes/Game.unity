@@ -960,7 +960,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!224 &668747219
 RectTransform:
   m_ObjectHideFlags: 0
@@ -1424,7 +1424,7 @@ CanvasRenderer:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 869821048}
---- !u!1 &945101241
+--- !u!1 &945101241 stripped
 GameObject:
   m_PrefabParentObject: {fileID: 144394, guid: 289a0b66f20cf994a90d00a142e17e18, type: 2}
   m_PrefabInternal: {fileID: 2124150031}
