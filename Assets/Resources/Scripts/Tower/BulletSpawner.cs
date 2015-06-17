@@ -14,6 +14,7 @@ public class BulletSpawner : MonoBehaviour {
 	
 	// Update is called once per frame
 	void Update () {
+		/*
         if (Input.GetButton("Fire2"))
         {
             if(Time.timeSinceLevelLoad - timeElapsed > SpawnTime)
@@ -23,5 +24,6 @@ public class BulletSpawner : MonoBehaviour {
             }
             
         }
+        */
 	}
 }

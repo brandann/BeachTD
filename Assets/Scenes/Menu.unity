@@ -643,7 +643,7 @@ SpriteRenderer:
   m_SortingOrder: 2
   m_Sprite: {fileID: 21300000, guid: 8908afb3bd46e3441a9f5ffea2e85cd4, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
---- !u!224 &192411549
+--- !u!224 &192411549 stripped
 RectTransform:
   m_PrefabParentObject: {fileID: 22499882, guid: ba384aac1fb188542a5da8445031f18d,
     type: 2}
@@ -1348,7 +1348,7 @@ CanvasRenderer:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 358171069}
---- !u!224 &378328244
+--- !u!224 &378328244 stripped
 RectTransform:
   m_PrefabParentObject: {fileID: 22499882, guid: ba384aac1fb188542a5da8445031f18d,
     type: 2}
@@ -1419,7 +1419,7 @@ CanvasRenderer:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 380163400}
---- !u!224 &395784564
+--- !u!224 &395784564 stripped
 RectTransform:
   m_PrefabParentObject: {fileID: 22499882, guid: ba384aac1fb188542a5da8445031f18d,
     type: 2}
@@ -1479,7 +1479,7 @@ SpriteRenderer:
   m_SortingOrder: 2
   m_Sprite: {fileID: 21300000, guid: 8908afb3bd46e3441a9f5ffea2e85cd4, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
---- !u!224 &447316261
+--- !u!224 &447316261 stripped
 RectTransform:
   m_PrefabParentObject: {fileID: 22499882, guid: ba384aac1fb188542a5da8445031f18d,
     type: 2}
@@ -1611,7 +1611,7 @@ CanvasRenderer:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 479593047}
---- !u!224 &491261772
+--- !u!224 &491261772 stripped
 RectTransform:
   m_PrefabParentObject: {fileID: 22499882, guid: ba384aac1fb188542a5da8445031f18d,
     type: 2}
@@ -1826,7 +1826,7 @@ Animator:
   m_WarningMessage: 
   m_HasTransformHierarchy: 1
   m_AllowConstantClipSamplingOptimization: 1
---- !u!224 &622955442
+--- !u!224 &622955442 stripped
 RectTransform:
   m_PrefabParentObject: {fileID: 22499882, guid: ba384aac1fb188542a5da8445031f18d,
     type: 2}
@@ -2244,7 +2244,7 @@ Transform:
   - {fileID: 260762568}
   m_Father: {fileID: 552145776}
   m_RootOrder: 2
---- !u!224 &761768088
+--- !u!224 &761768088 stripped
 RectTransform:
   m_PrefabParentObject: {fileID: 22499882, guid: ba384aac1fb188542a5da8445031f18d,
     type: 2}
@@ -2791,7 +2791,7 @@ Animator:
   m_WarningMessage: 
   m_HasTransformHierarchy: 1
   m_AllowConstantClipSamplingOptimization: 1
---- !u!224 &949092410
+--- !u!224 &949092410 stripped
 RectTransform:
   m_PrefabParentObject: {fileID: 22499882, guid: ba384aac1fb188542a5da8445031f18d,
     type: 2}
@@ -3300,12 +3300,12 @@ Prefab:
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: ba384aac1fb188542a5da8445031f18d, type: 2}
   m_IsPrefabParent: 0
---- !u!224 &1023032283
+--- !u!224 &1023032283 stripped
 RectTransform:
   m_PrefabParentObject: {fileID: 22499882, guid: ba384aac1fb188542a5da8445031f18d,
     type: 2}
   m_PrefabInternal: {fileID: 675360708}
---- !u!224 &1056896917
+--- !u!224 &1056896917 stripped
 RectTransform:
   m_PrefabParentObject: {fileID: 22499882, guid: ba384aac1fb188542a5da8445031f18d,
     type: 2}
@@ -5870,7 +5870,7 @@ Animator:
   m_WarningMessage: 
   m_HasTransformHierarchy: 1
   m_AllowConstantClipSamplingOptimization: 1
---- !u!114 &1521159078
+--- !u!114 &1521159078 stripped
 MonoBehaviour:
   m_PrefabParentObject: {fileID: 11400000, guid: d928fea4b3cce4f21adf979d1bfc7528,
     type: 2}
@@ -7777,12 +7777,12 @@ CanvasRenderer:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 1721489401}
---- !u!224 &1742679797
+--- !u!224 &1742679797 stripped
 RectTransform:
   m_PrefabParentObject: {fileID: 22499882, guid: ba384aac1fb188542a5da8445031f18d,
     type: 2}
   m_PrefabInternal: {fileID: 1942543225}
---- !u!224 &1749871024
+--- !u!224 &1749871024 stripped
 RectTransform:
   m_PrefabParentObject: {fileID: 22499882, guid: ba384aac1fb188542a5da8445031f18d,
     type: 2}

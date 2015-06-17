@@ -34,7 +34,7 @@ public class TurretShootBounce : MonoBehaviour {
 	
 	// Update is called once per frame
 	void Update () {
-	    if (Input.GetButton("Fire2"))
+	    /*if (Input.GetButton("Fire2"))
         {
             if (Time.timeSinceLevelLoad - timeElapsed > SpawnTime)
             {
@@ -46,7 +46,7 @@ public class TurretShootBounce : MonoBehaviour {
             }
             
             
-        }
+        }*/
 
         /*
         switch (currentState)
