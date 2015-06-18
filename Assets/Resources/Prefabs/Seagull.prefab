@@ -388,9 +388,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4d100c96090a88b4eb37769b04a02b92, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  GullKillValue: 10
+  GullKillValue: 15
   Speed: 2
-  Delay: 5
+  Delay: 15
 --- !u!114 &11458624
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -591,7 +591,15 @@ Prefab:
   serializedVersion: 2
   m_Modification:
     m_TransformParent: {fileID: 0}
-    m_Modifications: []
+    m_Modifications:
+    - target: {fileID: 0}
+      propertyPath: Delay
+      value: 15
+      objectReference: {fileID: 0}
+    - target: {fileID: 0}
+      propertyPath: GullKillValue
+      value: 15
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 0}
   m_RootGameObject: {fileID: 144394}

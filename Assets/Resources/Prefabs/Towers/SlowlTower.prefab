@@ -617,6 +617,7 @@ MeshFilter:
   m_Mesh: {fileID: 4300000, guid: 785489ff833a95d4ebcf28b030cf29d5, type: 3}
 --- !u!50 &5084248
 Rigidbody2D:
+  serializedVersion: 2
   m_ObjectHideFlags: 1
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
@@ -625,11 +626,11 @@ Rigidbody2D:
   m_LinearDrag: 0
   m_AngularDrag: .0500000007
   m_GravityScale: 1
-  m_FixedAngle: 1
   m_IsKinematic: 1
   m_Interpolate: 0
   m_SleepingMode: 1
   m_CollisionDetection: 0
+  m_Constraints: 4
 --- !u!58 &5800000
 CircleCollider2D:
   m_ObjectHideFlags: 1
@@ -655,7 +656,7 @@ CircleCollider2D:
   m_UsedByEffector: 0
   m_Offset: {x: 0, y: 0}
   serializedVersion: 2
-  m_Radius: 2
+  m_Radius: 3
 --- !u!95 &9525654
 Animator:
   serializedVersion: 3
@@ -687,7 +688,7 @@ MonoBehaviour:
   Damage: 5
   CoolDownTime: 3
   ProjectilePrefab: {fileID: 129612, guid: 528cf842538d61e45b21f8bb5c979a05, type: 2}
-  SlowCoolDownTime: .5
+  SlowCoolDownTime: .400000006
 --- !u!114 &11400002
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -711,7 +712,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b0ed0bb68b4032541b7084a98fdf8d14, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  bullet: {fileID: 184118, guid: 2b464e3d5a1267c4d88bd96e34c7b03d, type: 2}
 --- !u!114 &11440920
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -736,7 +736,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b0ed0bb68b4032541b7084a98fdf8d14, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  bullet: {fileID: 184118, guid: 2b464e3d5a1267c4d88bd96e34c7b03d, type: 2}
 --- !u!114 &11450716
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -748,7 +747,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b0ed0bb68b4032541b7084a98fdf8d14, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  bullet: {fileID: 184118, guid: 2b464e3d5a1267c4d88bd96e34c7b03d, type: 2}
 --- !u!114 &11468102
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -760,7 +758,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b0ed0bb68b4032541b7084a98fdf8d14, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  bullet: {fileID: 184118, guid: 2b464e3d5a1267c4d88bd96e34c7b03d, type: 2}
 --- !u!114 &11476562
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -2103,7 +2100,15 @@ Prefab:
   serializedVersion: 2
   m_Modification:
     m_TransformParent: {fileID: 0}
-    m_Modifications: []
+    m_Modifications:
+    - target: {fileID: 0}
+      propertyPath: m_Radius
+      value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 0}
+      propertyPath: SlowCoolDownTime
+      value: .400000006
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 0}
   m_RootGameObject: {fileID: 100000}
