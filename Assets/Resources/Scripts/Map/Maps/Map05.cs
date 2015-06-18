@@ -19,7 +19,7 @@ public class Map05 : GameMap {
 		Map map = new Map(intmap);																												
 		
 		Wave wave01 = new Wave();	
-		wave01.AddScheduleItem(new EnemySchedule(EnemySchedule.Token.WAIT, 5f));
+		wave01.AddScheduleItem(new EnemySchedule(EnemySchedule.Token.WAIT, 0f));
 		wave01.AddScheduleItem(new EnemySchedule(EnemySchedule.Token.A0, .75f));																												
 		wave01.AddScheduleItem(new EnemySchedule(EnemySchedule.Token.A0, .75f));																												
 		wave01.AddScheduleItem(new EnemySchedule(EnemySchedule.Token.B0, 2.5f));																												
@@ -29,7 +29,7 @@ public class Map05 : GameMap {
 		map.AddWave(wave01);	
 		
 		Wave wave02 = new Wave();
-		wave02.AddScheduleItem(new EnemySchedule(EnemySchedule.Token.WAIT, 5f));																			
+		wave02.AddScheduleItem(new EnemySchedule(EnemySchedule.Token.WAIT, 0f));																			
 		wave02.AddScheduleItem(new EnemySchedule(EnemySchedule.Token.A0, .75f));
 		wave02.AddScheduleItem(new EnemySchedule(EnemySchedule.Token.B0, .75f));
 		wave02.AddScheduleItem(new EnemySchedule(EnemySchedule.Token.A0, .75f));

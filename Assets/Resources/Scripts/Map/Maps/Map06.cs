@@ -19,7 +19,7 @@ public class Map06 : GameMap {
 		Map map = new Map(intmap);																												
 		
 		Wave wave01 = new Wave();
-		wave01.AddScheduleItem(new EnemySchedule(EnemySchedule.Token.WAIT, 5f));
+		wave01.AddScheduleItem(new EnemySchedule(EnemySchedule.Token.WAIT, 0f));
 		wave01.AddScheduleItem(new EnemySchedule(EnemySchedule.Token.B0, 2.5f));																												
 		wave01.AddScheduleItem(new EnemySchedule(EnemySchedule.Token.B0, 2.5f));																												
 		wave01.AddScheduleItem(new EnemySchedule(EnemySchedule.Token.B0, 2.5f));																												
@@ -58,7 +58,7 @@ public class Map06 : GameMap {
 		map.AddWave(wave03);
 		
 		Wave wave04 = new Wave();
-		wave04.AddScheduleItem(new EnemySchedule(EnemySchedule.Token.WAIT, 5f));																			
+		wave04.AddScheduleItem(new EnemySchedule(EnemySchedule.Token.WAIT, 0f));																			
 		wave04.AddScheduleItem(new EnemySchedule(EnemySchedule.Token.A0, .25f));
 		wave04.AddScheduleItem(new EnemySchedule(EnemySchedule.Token.A0, .25f));
 		wave04.AddScheduleItem(new EnemySchedule(EnemySchedule.Token.A0, .25f));																		
