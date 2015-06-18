@@ -15,7 +15,7 @@ public class TurretShootBounce : MonoBehaviour {
     private enum State { DIP, RISE, ENDING, WAITING}
     private State currentState;
 
-        private float timeElapsed = 0;
+    private float timeElapsed = 0;
     private float SpawnTime = .1f;
 
     public void Shoot()
@@ -34,49 +34,6 @@ public class TurretShootBounce : MonoBehaviour {
 	
 	// Update is called once per frame
 	void Update () {
-	    if (Input.GetButton("Fire2"))
-        {
-            if (Time.timeSinceLevelLoad - timeElapsed > SpawnTime)
-            {
-                if(currentState == State.WAITING)
-                {
-                    currentState = State.DIP;
-                }
-                timeElapsed = Time.timeSinceLevelLoad;
-            }
-            
-            
-        }
-
-        /*
-        switch (currentState)
-        {
-            case (State.WAITING):
-                break;
-            case (State.DIP):
-                transform.position = new Vector3(0, transform.position.y - SPEED, 0);
-                if (transform.position.y <= MINPOS)
-                {
-                    currentState = State.RISE;
-                }
-                break;
-            case (State.RISE):
-                transform.position = new Vector3(0, transform.position.y + SPEED, 0);
-                if (transform.position.y >= MAXPOS)
-                {
-                    currentState = State.ENDING;
-                }
-                break;
-            case (State.ENDING):
-                transform.position = new Vector3(0, transform.position.y - SPEED, 0);
-                if (transform.position.y <= STARTPOS)
-                {
-                    currentState = State.WAITING;
-                    transform.position = new Vector3(0, 0, 0);
-                }
-                break;
-        }
-        */
         switch (currentState)
         {
             case (State.WAITING):
@@ -103,7 +60,6 @@ public class TurretShootBounce : MonoBehaviour {
                 if(MOVE <= 0)
                 {
                     currentState = State.WAITING;
-                    //transform.position = new Vector3(0, 0, 0);
                 }
                 break;
         }
