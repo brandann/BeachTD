@@ -87,7 +87,14 @@ public class TipBarnacle : MonoBehaviour {
 
     protected void KinematicMoveTowardTarget()
     {
-        
+
+        if (null == Target)
+        {
+            PhysicsRetract();
+            return;
+        }
+            
+
         if (!GetComponent<Rigidbody2D>().isKinematic)
         {
             GetComponent<Rigidbody2D>().velocity = Vector2.zero;
