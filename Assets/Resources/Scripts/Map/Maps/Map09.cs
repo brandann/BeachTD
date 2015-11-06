@@ -25,7 +25,7 @@ public class Map09 : GameMap {
 		wave01.AddScheduleItem(new EnemySchedule(EnemySchedule.Token.B0, 1.75f));																												
 		wave01.AddScheduleItem(new EnemySchedule(EnemySchedule.Token.A0, .75f));																												
 		wave01.AddScheduleItem(new EnemySchedule(EnemySchedule.Token.B0, .75f));																												
-		wave01.AddScheduleItem(new EnemySchedule(EnemySchedule.Token.A0, 5.75f));																												
+		wave01.AddScheduleItem(new EnemySchedule(EnemySchedule.Token.A0, 1f));																												
 		map.AddWave(wave01);																												
 		
 		Wave wave02 = new Wave();
@@ -37,11 +37,11 @@ public class Map09 : GameMap {
 		wave02.AddScheduleItem(new EnemySchedule(EnemySchedule.Token.B0,    1));																		
 		wave02.AddScheduleItem(new EnemySchedule(EnemySchedule.Token.C0, .75f));
 		wave02.AddScheduleItem(new EnemySchedule(EnemySchedule.Token.A0,    1));																		
-		wave02.AddScheduleItem(new EnemySchedule(EnemySchedule.Token.B0,   5f));
-		wave02.AddScheduleItem(new EnemySchedule(EnemySchedule.Token.B0,   5f));
-		wave02.AddScheduleItem(new EnemySchedule(EnemySchedule.Token.B0,   5f));
-		wave02.AddScheduleItem(new EnemySchedule(EnemySchedule.Token.C0,   5f));
-		wave02.AddScheduleItem(new EnemySchedule(EnemySchedule.Token.C0,   5f));
+		wave02.AddScheduleItem(new EnemySchedule(EnemySchedule.Token.B0,   1f));
+		wave02.AddScheduleItem(new EnemySchedule(EnemySchedule.Token.B0,   1f));
+		wave02.AddScheduleItem(new EnemySchedule(EnemySchedule.Token.B0,   1f));
+		wave02.AddScheduleItem(new EnemySchedule(EnemySchedule.Token.C0,   1f));
+		wave02.AddScheduleItem(new EnemySchedule(EnemySchedule.Token.C0,   1f));
 		map.AddWave(wave02);
 		
 		Wave wave03 = new Wave();
@@ -52,10 +52,10 @@ public class Map09 : GameMap {
 		wave03.AddScheduleItem(new EnemySchedule(EnemySchedule.Token.B0, .75f));
 		wave03.AddScheduleItem(new EnemySchedule(EnemySchedule.Token.B0, .75f));
 		wave03.AddScheduleItem(new EnemySchedule(EnemySchedule.Token.B0, .75f));
-		wave03.AddScheduleItem(new EnemySchedule(EnemySchedule.Token.A0,   3f));
-		wave03.AddScheduleItem(new EnemySchedule(EnemySchedule.Token.C0,   3f));
-		wave03.AddScheduleItem(new EnemySchedule(EnemySchedule.Token.C0,   3f));
-		wave03.AddScheduleItem(new EnemySchedule(EnemySchedule.Token.C0,   3f));
+		wave03.AddScheduleItem(new EnemySchedule(EnemySchedule.Token.A0,   .9f));
+		wave03.AddScheduleItem(new EnemySchedule(EnemySchedule.Token.C0,   .9f));
+		wave03.AddScheduleItem(new EnemySchedule(EnemySchedule.Token.C0,   .9f));
+		wave03.AddScheduleItem(new EnemySchedule(EnemySchedule.Token.C0,   .9f));
 		map.AddWave(wave03);
 		
 		Wave wave04 = new Wave();
@@ -63,13 +63,13 @@ public class Map09 : GameMap {
 		wave04.AddScheduleItem(new EnemySchedule(EnemySchedule.Token.A0, .25f));
 		wave04.AddScheduleItem(new EnemySchedule(EnemySchedule.Token.A0, .25f));
 		wave04.AddScheduleItem(new EnemySchedule(EnemySchedule.Token.A0, .25f));																		
-		wave04.AddScheduleItem(new EnemySchedule(EnemySchedule.Token.B0,  10f));
-		wave04.AddScheduleItem(new EnemySchedule(EnemySchedule.Token.B0,  10f));
-		wave04.AddScheduleItem(new EnemySchedule(EnemySchedule.Token.B0,  10f));
-		wave04.AddScheduleItem(new EnemySchedule(EnemySchedule.Token.B0,  10f));
-		wave04.AddScheduleItem(new EnemySchedule(EnemySchedule.Token.B0,  10f));
-		wave04.AddScheduleItem(new EnemySchedule(EnemySchedule.Token.C0,  10f));
-		wave04.AddScheduleItem(new EnemySchedule(EnemySchedule.Token.C0,  10f));
+		wave04.AddScheduleItem(new EnemySchedule(EnemySchedule.Token.B0,  1.25f));
+        wave04.AddScheduleItem(new EnemySchedule(EnemySchedule.Token.B0, 1.25f));
+        wave04.AddScheduleItem(new EnemySchedule(EnemySchedule.Token.B0, 1.25f));
+        wave04.AddScheduleItem(new EnemySchedule(EnemySchedule.Token.B0, 1.25f));
+        wave04.AddScheduleItem(new EnemySchedule(EnemySchedule.Token.B0, 1.25f));
+        wave04.AddScheduleItem(new EnemySchedule(EnemySchedule.Token.C0, 1.25f));
+        wave04.AddScheduleItem(new EnemySchedule(EnemySchedule.Token.C0, 1.25f));
 		map.AddWave(wave04);
 		
 		Wave wave05 = new Wave();
@@ -85,19 +85,19 @@ public class Map09 : GameMap {
 		
 		Wave wave06 = new Wave();
 		wave06.AddScheduleItem(new EnemySchedule(EnemySchedule.Token.WAIT, 0f));
-		wave06.AddScheduleItem(new EnemySchedule(EnemySchedule.Token.A0, .75f));																												
-		wave06.AddScheduleItem(new EnemySchedule(EnemySchedule.Token.B0,  10f));
-		wave06.AddScheduleItem(new EnemySchedule(EnemySchedule.Token.B0,  10f));
-		wave06.AddScheduleItem(new EnemySchedule(EnemySchedule.Token.B0,  10f));
-		wave06.AddScheduleItem(new EnemySchedule(EnemySchedule.Token.C0,  10f));
-		wave06.AddScheduleItem(new EnemySchedule(EnemySchedule.Token.C0,  10f));																												
+		wave06.AddScheduleItem(new EnemySchedule(EnemySchedule.Token.A0, .75f));
+        wave06.AddScheduleItem(new EnemySchedule(EnemySchedule.Token.B0, 1.25f));
+        wave06.AddScheduleItem(new EnemySchedule(EnemySchedule.Token.B0, 1.25f));
+        wave06.AddScheduleItem(new EnemySchedule(EnemySchedule.Token.B0, 1.25f));
+        wave06.AddScheduleItem(new EnemySchedule(EnemySchedule.Token.C0, 1.25f));
+        wave06.AddScheduleItem(new EnemySchedule(EnemySchedule.Token.C0, 1.25f));																												
 		wave06.AddScheduleItem(new EnemySchedule(EnemySchedule.Token.B0, .75f));
 		wave06.AddScheduleItem(new EnemySchedule(EnemySchedule.Token.B0, .75f));
 		wave06.AddScheduleItem(new EnemySchedule(EnemySchedule.Token.B0, .75f));
 		wave06.AddScheduleItem(new EnemySchedule(EnemySchedule.Token.B0, .75f));
 		wave06.AddScheduleItem(new EnemySchedule(EnemySchedule.Token.B0, .75f));
-		wave06.AddScheduleItem(new EnemySchedule(EnemySchedule.Token.A0,   3f));
-		wave06.AddScheduleItem(new EnemySchedule(EnemySchedule.Token.C0,   3f));
+		wave06.AddScheduleItem(new EnemySchedule(EnemySchedule.Token.A0,   .9f));
+		wave06.AddScheduleItem(new EnemySchedule(EnemySchedule.Token.C0,   .9f));
 		map.AddWave(wave06);	
 		return map;																												
 	}																													

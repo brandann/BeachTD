@@ -12,6 +12,7 @@ GameObject:
   - 58: {fileID: 5800000}
   - 50: {fileID: 5000000}
   - 114: {fileID: 11480890}
+  - 60: {fileID: 6053224}
   m_Layer: 0
   m_Name: egg
   m_TagString: egg
@@ -43,7 +44,7 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 100000}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -8.7990818, y: -6.8376832, z: 0}
+  m_LocalPosition: {x: -.915810406, y: -3.55876255, z: 0}
   m_LocalScale: {x: .5, y: .5, z: 1}
   m_Children:
   - {fileID: 465362}
@@ -89,7 +90,26 @@ CircleCollider2D:
   m_UsedByEffector: 0
   m_Offset: {x: 0, y: 0}
   serializedVersion: 2
-  m_Radius: .0500000007
+  m_Radius: .400000006
+--- !u!60 &6053224
+PolygonCollider2D:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 100000}
+  m_Enabled: 0
+  m_Material: {fileID: 0}
+  m_IsTrigger: 1
+  m_UsedByEffector: 0
+  m_Offset: {x: 0, y: 0}
+  m_Points:
+    m_Paths:
+    - - {x: -.21876657, y: .368452549}
+      - {x: -.445046067, y: .120263577}
+      - {x: .00487923622, y: -.368452549}
+      - {x: .0015860796, y: -.361987591}
+      - {x: .470906854, y: .104759216}
+      - {x: .209068656, y: .36522007}
 --- !u!114 &11480890
 MonoBehaviour:
   m_ObjectHideFlags: 1

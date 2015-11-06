@@ -22,10 +22,10 @@ public class Map05 : GameMap {
 		wave01.AddScheduleItem(new EnemySchedule(EnemySchedule.Token.WAIT, 0f));
 		wave01.AddScheduleItem(new EnemySchedule(EnemySchedule.Token.A0, .75f));																												
 		wave01.AddScheduleItem(new EnemySchedule(EnemySchedule.Token.A0, .75f));																												
-		wave01.AddScheduleItem(new EnemySchedule(EnemySchedule.Token.B0, 2.5f));																												
-		wave01.AddScheduleItem(new EnemySchedule(EnemySchedule.Token.B0, 2.5f));																												
-		wave01.AddScheduleItem(new EnemySchedule(EnemySchedule.Token.B0, 2.5f));																												
-		wave01.AddScheduleItem(new EnemySchedule(EnemySchedule.Token.B0, 2.5f));																												
+		wave01.AddScheduleItem(new EnemySchedule(EnemySchedule.Token.B0, .9f));
+        wave01.AddScheduleItem(new EnemySchedule(EnemySchedule.Token.B0, .9f));
+        wave01.AddScheduleItem(new EnemySchedule(EnemySchedule.Token.B0, .9f));
+        wave01.AddScheduleItem(new EnemySchedule(EnemySchedule.Token.B0, .9f));																												
 		map.AddWave(wave01);	
 		
 		Wave wave02 = new Wave();
@@ -50,10 +50,10 @@ public class Map05 : GameMap {
 		wave03.AddScheduleItem(new EnemySchedule(EnemySchedule.Token.B0, .75f));
 		wave03.AddScheduleItem(new EnemySchedule(EnemySchedule.Token.B0, .75f));
 		wave03.AddScheduleItem(new EnemySchedule(EnemySchedule.Token.B0, .75f));
-		wave03.AddScheduleItem(new EnemySchedule(EnemySchedule.Token.A0,   3f));
-		wave03.AddScheduleItem(new EnemySchedule(EnemySchedule.Token.C0,   3f));
-		wave03.AddScheduleItem(new EnemySchedule(EnemySchedule.Token.C0,   3f));
-		wave03.AddScheduleItem(new EnemySchedule(EnemySchedule.Token.C0,   3f));
+		wave03.AddScheduleItem(new EnemySchedule(EnemySchedule.Token.A0,   1f));
+		wave03.AddScheduleItem(new EnemySchedule(EnemySchedule.Token.C0,   1f));
+		wave03.AddScheduleItem(new EnemySchedule(EnemySchedule.Token.C0,   1f));
+		wave03.AddScheduleItem(new EnemySchedule(EnemySchedule.Token.C0,   1f));
 		map.AddWave(wave03);																											
 		
 		return map;																												

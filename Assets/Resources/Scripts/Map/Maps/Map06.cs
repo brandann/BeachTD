@@ -20,9 +20,9 @@ public class Map06 : GameMap {
 		
 		Wave wave01 = new Wave();
 		wave01.AddScheduleItem(new EnemySchedule(EnemySchedule.Token.WAIT, 0f));
-		wave01.AddScheduleItem(new EnemySchedule(EnemySchedule.Token.B0, 2.5f));																												
-		wave01.AddScheduleItem(new EnemySchedule(EnemySchedule.Token.B0, 2.5f));																												
-		wave01.AddScheduleItem(new EnemySchedule(EnemySchedule.Token.B0, 2.5f));																												
+		wave01.AddScheduleItem(new EnemySchedule(EnemySchedule.Token.B0, .9f));																												
+		wave01.AddScheduleItem(new EnemySchedule(EnemySchedule.Token.B0, .9f));																												
+		wave01.AddScheduleItem(new EnemySchedule(EnemySchedule.Token.B0, .9f));																												
 		wave01.AddScheduleItem(new EnemySchedule(EnemySchedule.Token.B0, .75f));																												
 		wave01.AddScheduleItem(new EnemySchedule(EnemySchedule.Token.A0, .75f));																												
 		wave01.AddScheduleItem(new EnemySchedule(EnemySchedule.Token.A0, .75f));																												
@@ -36,10 +36,10 @@ public class Map06 : GameMap {
 		wave02.AddScheduleItem(new EnemySchedule(EnemySchedule.Token.B0,   1f));
 		wave02.AddScheduleItem(new EnemySchedule(EnemySchedule.Token.B0,   1f));
 		wave02.AddScheduleItem(new EnemySchedule(EnemySchedule.Token.C0, .75f));
-		wave02.AddScheduleItem(new EnemySchedule(EnemySchedule.Token.A0,   5f));
-		wave02.AddScheduleItem(new EnemySchedule(EnemySchedule.Token.A0,   5f));
-		wave02.AddScheduleItem(new EnemySchedule(EnemySchedule.Token.B0, 5.5f));																		
-		wave02.AddScheduleItem(new EnemySchedule(EnemySchedule.Token.C0, 5.5f));																					
+		wave02.AddScheduleItem(new EnemySchedule(EnemySchedule.Token.A0,   1f));
+		wave02.AddScheduleItem(new EnemySchedule(EnemySchedule.Token.A0,   1f));
+		wave02.AddScheduleItem(new EnemySchedule(EnemySchedule.Token.B0, 1.125f));																		
+		wave02.AddScheduleItem(new EnemySchedule(EnemySchedule.Token.C0, 1.125f));																					
 		map.AddWave(wave02);
 		
 		Wave wave03 = new Wave();
@@ -51,10 +51,10 @@ public class Map06 : GameMap {
 		wave03.AddScheduleItem(new EnemySchedule(EnemySchedule.Token.B0, .75f));
 		wave03.AddScheduleItem(new EnemySchedule(EnemySchedule.Token.B0, .75f));
 		wave03.AddScheduleItem(new EnemySchedule(EnemySchedule.Token.B0, .75f));
-		wave03.AddScheduleItem(new EnemySchedule(EnemySchedule.Token.A0,   3f));
-		wave03.AddScheduleItem(new EnemySchedule(EnemySchedule.Token.A0,   3f));
-		wave03.AddScheduleItem(new EnemySchedule(EnemySchedule.Token.B0,   3f));
-		wave03.AddScheduleItem(new EnemySchedule(EnemySchedule.Token.C0,   3f));																					
+		wave03.AddScheduleItem(new EnemySchedule(EnemySchedule.Token.A0,   1f));
+		wave03.AddScheduleItem(new EnemySchedule(EnemySchedule.Token.A0,   1f));
+		wave03.AddScheduleItem(new EnemySchedule(EnemySchedule.Token.B0,   1f));
+		wave03.AddScheduleItem(new EnemySchedule(EnemySchedule.Token.C0,   1f));																					
 		map.AddWave(wave03);
 		
 		Wave wave04 = new Wave();
@@ -62,13 +62,13 @@ public class Map06 : GameMap {
 		wave04.AddScheduleItem(new EnemySchedule(EnemySchedule.Token.A0, .25f));
 		wave04.AddScheduleItem(new EnemySchedule(EnemySchedule.Token.A0, .25f));
 		wave04.AddScheduleItem(new EnemySchedule(EnemySchedule.Token.A0, .25f));																		
-		wave04.AddScheduleItem(new EnemySchedule(EnemySchedule.Token.B0,  10f));
-		wave04.AddScheduleItem(new EnemySchedule(EnemySchedule.Token.B0,  10f));
-		wave04.AddScheduleItem(new EnemySchedule(EnemySchedule.Token.B0,  10f));
-		wave04.AddScheduleItem(new EnemySchedule(EnemySchedule.Token.B0,  10f));
-		wave04.AddScheduleItem(new EnemySchedule(EnemySchedule.Token.B0,  10f));
-		wave04.AddScheduleItem(new EnemySchedule(EnemySchedule.Token.C0,  10f));
-		wave04.AddScheduleItem(new EnemySchedule(EnemySchedule.Token.C0,  10f));
+		wave04.AddScheduleItem(new EnemySchedule(EnemySchedule.Token.B0, 1.25f));
+        wave04.AddScheduleItem(new EnemySchedule(EnemySchedule.Token.B0, 1.25f));
+        wave04.AddScheduleItem(new EnemySchedule(EnemySchedule.Token.B0, 1.25f));
+        wave04.AddScheduleItem(new EnemySchedule(EnemySchedule.Token.B0, 1.25f));
+        wave04.AddScheduleItem(new EnemySchedule(EnemySchedule.Token.B0, 1.25f));
+        wave04.AddScheduleItem(new EnemySchedule(EnemySchedule.Token.C0, 1.25f));
+        wave04.AddScheduleItem(new EnemySchedule(EnemySchedule.Token.C0, 1.25f));
 		map.AddWave(wave04);																											
 		
 		return map;																												
