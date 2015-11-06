@@ -31,6 +31,8 @@ public class Enemy : MonoBehaviour
     private float _redColorTime;
     private bool _redColorActive;
     private Color _lastColor = Color.white;
+
+    public CameraShake mCameraShake;
 	
 	public bool HasEgg
 	{
@@ -141,7 +143,7 @@ public class Enemy : MonoBehaviour
 	
 	public void OnTouchDown()
 	{
-		KillThisEnemy();
+		//KillThisEnemy();
 	}
 	
 	public void KillThisEnemy()
@@ -167,6 +169,13 @@ public class Enemy : MonoBehaviour
             KillCarriedEgg();
         
         global.enemyManager.Remove(this.gameObject);
+
+        if (mCameraShake == null)
+        {
+            mCameraShake = GameObject.Find("Main Camera").GetComponent<CameraShake>();
+        }
+
+        mCameraShake.Shake();
 
     }
 	#endregion

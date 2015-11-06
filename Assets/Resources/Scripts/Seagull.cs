@@ -5,6 +5,7 @@ public class Seagull : MonoBehaviour {
 
     public delegate void GullKilled(Seagull gull);
     public static event GullKilled OnGullKilled;
+    public CameraShake mCameraShake;
 
     public int GullKillValue;
     public float Speed;
@@ -101,6 +102,13 @@ public class Seagull : MonoBehaviour {
             _endPoint = new Vector3(18, Random.Range(-1, 20), 0);
             _endTime = Time.time;
             Delay = _restartDelay = Random.Range(DelayMin, DelayMax);
+
+            if (mCameraShake == null)
+            {
+                mCameraShake = GameObject.Find("Main Camera").GetComponent<CameraShake>();
+            }
+
+            mCameraShake.Shake();
         }
     }
 
@@ -116,7 +124,7 @@ public class Seagull : MonoBehaviour {
     private void Initialize(BirdBrain bb)
     {
         _state = bb;
-        _startPoint = new Vector3(-1, Random.Range(0, 10), 0);
+        _startPoint = new Vector3(-4, Random.Range(0, 10), 0);
         transform.position = _startPoint;
         _lastAttack = Time.time;
     }
