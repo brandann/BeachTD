@@ -29,7 +29,7 @@ public class Egg : MonoBehaviour {
         //Bigger radius makes more likely that enemies will collide when they reach the end of path
         _collider.radius = _largeRadius;
         
-        int i = Random.Range(1,5);
+        int i = Random.Range(1,6);
         SpriteRenderer sr = this.GetComponent<SpriteRenderer>();
         switch(i)
         {

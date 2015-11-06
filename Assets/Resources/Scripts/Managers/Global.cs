@@ -16,18 +16,13 @@ public class Global : MonoBehaviour
     #endregion
 
   
-    public const int MaxLevels = 10;
+    public const int MaxLevels = 15;
 
     public int LoadedLevel{get{return _loadedlevel;}}
 
 
 	#region Private Memebers
-    //private EnemyManager enemyManager;
-/*	private const int STARTING_EGG_COUNT = 10;
-	private List<GameObject> _eggsAtGoal;
 
-
-	private int _eggsStillActive;*/
     private static bool GlobalCreated;
 	
 	private MapManager _mapManager;
@@ -46,7 +41,7 @@ public class Global : MonoBehaviour
 	public EnemyManager enemyManager;
 	public EggManager eggManager;
 	
-	[Range (0, 10)]
+	[Range (0, 15)]
 	public int StartingLevel;
 	public float RandomEnemySpawnLow;
 	public float RandomEnemySpawnHigh;

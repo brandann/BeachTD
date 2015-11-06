@@ -5,9 +5,9 @@ using System.Collections;
 public class Game 
 {
     private bool[] Levels;
-	public Game(int maxlevels)
+	public Game()
 	{
-        Levels = new bool[maxlevels];
+        Levels = new bool[15 /*MAX LEVELS*/];
         for(int i = 0; i < Levels.Length; i++)
         {
             Levels[i] = false;

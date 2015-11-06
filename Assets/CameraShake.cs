@@ -46,7 +46,7 @@ public class CameraShake : MonoBehaviour
 
     public void Shake()
     {
-        Shake(0.2f);
+        Shake(0.1f);
     }
 
     public void Shake(float f)

@@ -62,16 +62,6 @@ public class CameraBehavior : MonoBehaviour {
 			//this.camera.orthographicSize += 1;
 			this.transform.position = new Vector3(((GetComponent<Camera>().orthographicSize * 2) * GetComponent<Camera>().aspect) / 2f, GetComponent<Camera>().orthographicSize, -10f);
 			
-			
-			
-			//this.transform.position = new Vector3(transform.position.x, this.camera.orthographicSize, -10);
-			//Debug.Log(camera.aspect);
-			/*
-			this.transform.position = new Vector3(
-				(this.camera.orthographic * 2 * this.camera.aspect) / 2,
-				this.camera.orthographicSize,
-				-10f);
-			*/
 			zoom = !zoom;
 
 		}

@@ -6,7 +6,7 @@ using System.IO;
 
 public static class SaveLoad
 {
-	public static Game SavedGame = new Game(10);
+	public static Game SavedGame = new Game();
 	private const string FileName = "/SavedGame.gd";
 	
 	public static void Save()
@@ -37,7 +37,7 @@ public static class SaveLoad
 	public static void Reset()
 	{
 		if(File.Exists(Application.persistentDataPath + FileName)) {
-            SavedGame = new Game(10);
+            SavedGame = new Game();
             Save();
             //Debug.Log("Game Reset");
 		}
@@ -51,7 +51,7 @@ public static class SaveLoad
     public static void NewGame()
     {
         //Debug.Log("Creating new game...");
-        SavedGame = new Game(10);
+        SavedGame = new Game();
         Save();
     }
 }
