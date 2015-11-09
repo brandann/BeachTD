@@ -9,6 +9,9 @@ public class GameMap {
 
 	protected int P = (int) Global.MapToken.Path;
 	protected int T = (int) Global.MapToken.Tower;
+    protected int A = 'a';
+    protected int B = 'b';
+    protected int C = 'c';
 	
 	public virtual Map GetMap()
 	{

@@ -67,7 +67,39 @@ public class Map {
 	protected int[,]		_map;		// int array of map w/ paths
 	protected Vector3[] 	_waypoints;	// enemys path for map
 	protected int			_hitpoints = 10;	// "lives" for level
+    protected int A = 'a';
+    protected int B = 'b';
+    protected int C = 'c';
 	#endregion
+
+    public void setWaves(int[,] waves)
+    {
+        for (int i = 0; i < waves.GetLength(0); i++)
+        {
+            // create new wave and add a wait of 0
+            Wave wave = new Wave();
+            wave.AddScheduleItem(new EnemySchedule(EnemySchedule.Token.WAIT, 0f));
+
+            // add eneimes
+            for (int j = 0; j < waves.GetLength(1); j++)
+            {
+                if (waves[i, j] == A)
+                {
+                    wave.AddScheduleItem(new EnemySchedule(EnemySchedule.Token.A0, 1f - (i * 0.07f)));
+                }
+                else if (waves[i, j] == B)
+                {
+                    wave.AddScheduleItem(new EnemySchedule(EnemySchedule.Token.B0, 1f - (i * 0.05f)));
+                }
+                else if (waves[i, j] == C)
+                {
+                    wave.AddScheduleItem(new EnemySchedule(EnemySchedule.Token.C0, 1f - (i * 0.04f)));
+                }
+            }
+            // add wave to map
+            AddWave(wave);
+        }
+    }
 	
 	#region Private Methods
 	private Vector3[] FindWayPoints(int[,] m)

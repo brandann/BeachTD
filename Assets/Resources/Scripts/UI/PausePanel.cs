@@ -6,13 +6,13 @@ public class PausePanel : MonoBehaviour {
 	// Use this for initialization
 	void Start () {
         gameObject.SetActive(false);
-	
+        Global.OnGamePaused += HandlePause;
+        Global.OnGameResumed += HandleResume;
 	}
 
     void OnEnable()
     {
-        Global.OnGamePaused += HandlePause;
-        Global.OnGameResumed += HandleResume;
+        
     }
 
     void OnDestroy()

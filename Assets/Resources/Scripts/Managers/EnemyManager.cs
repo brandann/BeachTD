@@ -15,7 +15,7 @@ public class EnemyManager : ManagerBase
 	private Queue<EnemySchedule> _enemyQueue;
 	
     private float delay;
-    private float delay_multiplyer = 6;
+    private float delay_multiplyer = 4;
     
     private GameObject EnemyA0Prefab;
     private GameObject EnemyB0Prefab;
@@ -124,6 +124,7 @@ public class EnemyManager : ManagerBase
 			_spawntimedinterval = Time.time;
 			if(_enemyQueue.Peek().token == EnemySchedule.Token.WAIT)
 			{
+                delay *= 2;
 				_currentManagerState = ManagerState.WaitForPrevWave;
 			}
 		}

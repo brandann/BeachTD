@@ -1,12 +1,13 @@
 fileFormatVersion: 2
 guid: cc3ae9f227498234d88ff9765835ec95
-timeCreated: 1446765545
+timeCreated: 1447095331
 licenseType: Free
 TextureImporter:
   fileIDToRecycleName:
     21300000: FloorTiles_0
     21300002: FloorTiles_1
     21300004: FloorTiles_2
+    21300006: FloorTiles_3
   serializedVersion: 2
   mipmaps:
     mipMapMode: 0
@@ -40,6 +41,7 @@ TextureImporter:
   lightmap: 0
   rGBM: 0
   compressionQuality: 50
+  allowsAlphaSplitting: 0
   spriteMode: 2
   spriteExtrude: 1
   spriteMeshType: 1
@@ -76,6 +78,16 @@ TextureImporter:
       rect:
         serializedVersion: 2
         x: 640
+        y: 0
+        width: 320
+        height: 320
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: FloorTiles_3
+      rect:
+        serializedVersion: 2
+        x: 960
         y: 0
         width: 320
         height: 320

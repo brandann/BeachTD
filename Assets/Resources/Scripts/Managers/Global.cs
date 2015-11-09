@@ -16,7 +16,7 @@ public class Global : MonoBehaviour
     #endregion
 
     public GameObject mWarning;
-    public const int MaxLevels = 15;
+    public const int MaxLevels = 10;
 
     public int LoadedLevel{get{return _loadedlevel;}}
 
@@ -41,7 +41,7 @@ public class Global : MonoBehaviour
 	public EnemyManager enemyManager;
 	public EggManager eggManager;
 	
-	[Range (0, 15)]
+	[Range (0, 10)]
 	public int StartingLevel;
 	public float RandomEnemySpawnLow;
 	public float RandomEnemySpawnHigh;

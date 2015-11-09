@@ -7,7 +7,7 @@ public class Game
     private bool[] Levels;
 	public Game()
 	{
-        Levels = new bool[15 /*MAX LEVELS*/];
+        Levels = new bool[Global.MaxLevels /*MAX LEVELS*/];
         for(int i = 0; i < Levels.Length; i++)
         {
             Levels[i] = false;

@@ -44,6 +44,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e297a0e06ff1346b1b0d3c057aab6111, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  mWarning: {fileID: 0}
   EggPrefab: {fileID: 100000, guid: 60120948cf0bd439da6e22f973d49f3e, type: 2}
   StartingLevel: 5
   RandomEnemySpawnLow: 1.5

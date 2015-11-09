@@ -60,6 +60,7 @@ GameObject:
   - 95: {fileID: 9572654}
   - 58: {fileID: 5827904}
   - 114: {fileID: 11457090}
+  - 61: {fileID: 6149606}
   m_Layer: 0
   m_Name: Seagull
   m_TagString: enemy
@@ -278,7 +279,7 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 144394}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -2.93448448, y: -3.04641628, z: 0}
+  m_LocalPosition: {x: 4.2772398, y: 3.63035488, z: 0}
   m_LocalScale: {x: 2, y: 2, z: 1}
   m_Children:
   - {fileID: 411054}
@@ -327,13 +328,26 @@ CircleCollider2D:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 144394}
-  m_Enabled: 1
+  m_Enabled: 0
   m_Material: {fileID: 0}
   m_IsTrigger: 0
   m_UsedByEffector: 0
   m_Offset: {x: 0, y: 0}
   serializedVersion: 2
   m_Radius: .335000008
+--- !u!61 &6149606
+BoxCollider2D:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 144394}
+  m_Enabled: 1
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_UsedByEffector: 0
+  m_Offset: {x: 0, y: 0}
+  serializedVersion: 2
+  m_Size: {x: .400000006, y: .400000006}
 --- !u!95 &9572654
 Animator:
   serializedVersion: 3
@@ -388,6 +402,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4d100c96090a88b4eb37769b04a02b92, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  mCameraShake: {fileID: 0}
   GullKillValue: 15
   Speed: 2
   Delay: 15
