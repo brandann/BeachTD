@@ -155,6 +155,7 @@ MeshFilter:
   m_Mesh: {fileID: 4300000, guid: 8811064fd7b1e4048849530bbbaddf89, type: 3}
 --- !u!50 &5000000
 Rigidbody2D:
+  serializedVersion: 2
   m_ObjectHideFlags: 1
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
@@ -163,11 +164,11 @@ Rigidbody2D:
   m_LinearDrag: 0
   m_AngularDrag: .0500000007
   m_GravityScale: 0
-  m_FixedAngle: 0
   m_IsKinematic: 1
   m_Interpolate: 0
   m_SleepingMode: 1
   m_CollisionDetection: 0
+  m_Constraints: 0
 --- !u!58 &5868162
 CircleCollider2D:
   m_ObjectHideFlags: 1
@@ -223,9 +224,11 @@ MonoBehaviour:
   CurrentEnemyState: 0
   global: {fileID: 0}
   EnemyKillValue: 30
+  mBurstPrefab: {fileID: 189462, guid: 6889075f140bf0c479735b1a4c5837f7, type: 2}
   HealthSprite75: {fileID: 21300002, guid: 0f66f896469e4194280add76b2f9c58d, type: 3}
   HealthSprite50: {fileID: 21300004, guid: 0f66f896469e4194280add76b2f9c58d, type: 3}
   HealthSprite25: {fileID: 21300006, guid: 0f66f896469e4194280add76b2f9c58d, type: 3}
+  mCameraShake: {fileID: 0}
 --- !u!114 &11400004
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -1359,7 +1362,11 @@ Prefab:
   serializedVersion: 2
   m_Modification:
     m_TransformParent: {fileID: 0}
-    m_Modifications: []
+    m_Modifications:
+    - target: {fileID: 0}
+      propertyPath: mBurstPrefab
+      value: 
+      objectReference: {fileID: 189462, guid: 6889075f140bf0c479735b1a4c5837f7, type: 2}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 0}
   m_RootGameObject: {fileID: 100000}

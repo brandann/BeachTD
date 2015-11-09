@@ -24,6 +24,8 @@ public class Enemy : MonoBehaviour
 	public Global global;
     public int EnemyKillValue;
 
+    public GameObject mBurstPrefab;
+
     public Sprite HealthSprite75;
     public Sprite HealthSprite50;
     public Sprite HealthSprite25;
@@ -121,6 +123,9 @@ public class Enemy : MonoBehaviour
 	{
 		Health -= damage;
         ChangeColor(ColorState.Damage);
+
+        var go = GameObject.Instantiate(mBurstPrefab);
+        go.transform.position = this.transform.position;
 
         if (Health <= (ORG_HEALTH * .75f) && Health > (ORG_HEALTH * .5f))
         {

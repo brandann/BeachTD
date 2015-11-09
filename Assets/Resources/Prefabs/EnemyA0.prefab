@@ -194,7 +194,7 @@ Animation:
   m_Animations:
   - {fileID: 7400000, guid: b409e6f76aeaa4fa28f9d10659fd8e12, type: 2}
   m_WrapMode: 0
-  m_PlayAutomatically: 1
+  m_PlayAutomatically: 0
   m_AnimatePhysics: 0
   m_CullingType: 0
 --- !u!114 &11400000
@@ -224,9 +224,11 @@ MonoBehaviour:
   CurrentEnemyState: 0
   global: {fileID: 0}
   EnemyKillValue: 20
+  mBurstPrefab: {fileID: 189462, guid: 6889075f140bf0c479735b1a4c5837f7, type: 2}
   HealthSprite75: {fileID: 21300002, guid: dc163eaf1525078468251355d8939f35, type: 3}
   HealthSprite50: {fileID: 21300004, guid: dc163eaf1525078468251355d8939f35, type: 3}
   HealthSprite25: {fileID: 21300006, guid: dc163eaf1525078468251355d8939f35, type: 3}
+  mCameraShake: {fileID: 0}
 --- !u!114 &11400004
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -1365,6 +1367,14 @@ Prefab:
       propertyPath: speed
       value: 1.25
       objectReference: {fileID: 0}
+    - target: {fileID: 0}
+      propertyPath: m_PlayAutomatically
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 0}
+      propertyPath: mBurstPrefab
+      value: 
+      objectReference: {fileID: 189462, guid: 6889075f140bf0c479735b1a4c5837f7, type: 2}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 0}
   m_RootGameObject: {fileID: 100002}

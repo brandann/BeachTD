@@ -8,7 +8,7 @@ public class SplashScript : MonoBehaviour {
 	
 	// Use this for initialization
 	void Start () {
-		delay = 3;
+		delay = 1.5f;
 		_spawntimedinterval = Time.realtimeSinceStartup;
 	}
 	

@@ -15,7 +15,7 @@ public class Global : MonoBehaviour
 
     #endregion
 
-  
+    public GameObject mWarning;
     public const int MaxLevels = 15;
 
     public int LoadedLevel{get{return _loadedlevel;}}
@@ -166,6 +166,15 @@ public class Global : MonoBehaviour
     
     public void WinLoseCond()
     {
+        //mWarning = GameObject.Find("Warning");
+        if (eggManager.EggCount == 1)
+        {
+            //mWarning.SetActive(true);
+        }
+        else
+        {
+            //mWarning.SetActive(false);
+        }
 		if(eggManager.EggCount == 0)
 		{
 			LoseCond();
