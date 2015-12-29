@@ -40,11 +40,11 @@ public class PointsDispensor : MonoBehaviour {
 	
 	private void HandleEnemyDeath(Enemy enemy)
     {
-        GameObject points = _points.Dequeue();
-        points.SetActive(true);
-        points.transform.position = enemy.transform.position;
-        points.GetComponentInChildren<Text>().text = "+" + enemy.EnemyKillValue.ToString();
-        _points.Enqueue(points);
+        //GameObject points = _points.Dequeue();
+        //points.SetActive(true);
+        //points.transform.position = enemy.transform.position;
+        //points.GetComponentInChildren<Text>().text = "+" + enemy.EnemyKillValue.ToString();
+        //_points.Enqueue(points);
 
     }
 

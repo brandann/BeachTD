@@ -315,7 +315,6 @@ public class TowerBuildUpgradePanelUI : MonoBehaviour
     private void HandleGullHit(Seagull gull)
     {
         _lastGullHitTime = Time.time;
-        Debug.Log("logged gull hit: " + _lastGullHitTime);
     }
 
     private void DeselectAndHide()

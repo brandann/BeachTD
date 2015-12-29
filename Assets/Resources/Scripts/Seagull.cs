@@ -24,13 +24,11 @@ public class Seagull : MonoBehaviour {
         Initialize(BirdBrain.Idle);
     }
     
-
-    
-
     // Use this for initialization
 	void Start () {
         Initialize(BirdBrain.Init);
         Egg.EggPickedUp += EggGrabbed;
+        mCameraShake = GameObject.Find("Main Camera").GetComponent<CameraShake>();
 	}    
 
 	
@@ -48,11 +46,19 @@ public class Seagull : MonoBehaviour {
                 break;
             case BirdBrain.Attacking:
                 if( _target != null)
+                {
                     transform.position += (_target.position - transform.position).normalized * Speed * Time.deltaTime;
+                }
+                    
                 else
+                {
+                    print("GULL");
                     FindTargetEgg();
+                }
+                    
                 break;
             case BirdBrain.Fleeing:
+                print("GULL");
                 transform.position += (_endPoint - transform.position).normalized * Speed * Time.deltaTime;
 				transform.right = _endPoint - transform.position;
                 if ((Time.time - _endTime) >= _restartDelay)
@@ -61,37 +67,38 @@ public class Seagull : MonoBehaviour {
                 }
                 break;                
         } 
-        
-           
 	}
 
     void OnDestroy()
     {
         Egg.EggPickedUp -= EggGrabbed;
-
     }
 
     private void OnTriggerEnter2D(Collider2D col)
     {
+        print("GULL");
         HandleEggCollision(col);
     }
     private void OnTriggerStay2D(Collider2D col)
     {
+        print("GULL");
         HandleEggCollision(col);
     }
 
     private void HandleEggCollision(Collider2D col)
     {
+        print("GULL");
         if (_state == BirdBrain.Fleeing)
             return;
-
+        print("GULL");
         if (col.gameObject.tag == "egg")
         {
+            print("GULL");
             Egg hit = col.GetComponent<Egg>();
 
             if (hit != _targetEgg)
                 return;
-
+            print("GULL");
             _targetEgg.Kill();
 
             _target = null;
@@ -103,21 +110,15 @@ public class Seagull : MonoBehaviour {
             _endTime = Time.time;
             Delay = _restartDelay = Random.Range(DelayMin, DelayMax);
 
-            if (mCameraShake == null)
-            {
-                mCameraShake = GameObject.Find("Main Camera").GetComponent<CameraShake>();
-            }
-
             mCameraShake.Shake();
         }
     }
 
     void OnBecameInvisible()
     {
+        print("GULL");
         Initialize(BirdBrain.Idle);
     }
-
-    
 
     #endregion
 
@@ -140,6 +141,7 @@ public class Seagull : MonoBehaviour {
 
     private void FindTargetEgg()
     {
+        //print("GULL");
         Egg egg;
         GameObject[] eggs = GameObject.FindGameObjectsWithTag("egg");        
         for(int i = 0; i < eggs.Length; ++i){
@@ -156,10 +158,12 @@ public class Seagull : MonoBehaviour {
         switch (_state)
         {
             case BirdBrain.Attacking:
+                print("GULL");
                 if (_target == null)
                     _state = BirdBrain.Fleeing;
                 break;
             case BirdBrain.Idle:
+                //print("GULL");
                 if (_target != null)
                     _state = BirdBrain.Attacking;
                 break;
@@ -172,13 +176,15 @@ public class Seagull : MonoBehaviour {
 
     private void EggGrabbed(Egg egg)
     {
+        //print("GULL");
         //Can't be our egg if we don't have a target
         if (_target == null)
             return;
-
+        //print("GULL");
         Egg target = _target.GetComponent<Egg>();
         if(target == egg)
         {
+            print("GULL");
             _target = null;
             FindTargetEgg();
         }

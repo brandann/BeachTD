@@ -45,6 +45,7 @@ public class Enemy : MonoBehaviour
 	#region Private Members
     private Egg _carriedEgg;
     private GameObject _powPrefab;
+    private GameObject _coinPrefab;
     private EnemyMovement _movement;
     private float ORG_HEALTH;
 	#endregion
@@ -56,6 +57,7 @@ public class Enemy : MonoBehaviour
 		CurrentEnemyState = EnemyState.Active;
 		global = GameObject.Find("Global").GetComponent<Global>();
         _powPrefab = Resources.Load("Prefabs/temp-pow") as GameObject;
+        _coinPrefab = Resources.Load("Prefabs/Coin") as GameObject;
         _movement = gameObject.GetComponent<EnemyMovement>();
         spriteRenderer = GetComponent<Renderer>();
 	}
@@ -148,16 +150,19 @@ public class Enemy : MonoBehaviour
 	
 	public void OnTouchDown()
 	{
-		//KillThisEnemy();
+		KillThisEnemy();
 	}
 	
 	public void KillThisEnemy()
 	{		
-		//Debug.Log("Enemy Dead");
 		if(HasEgg)
             DropCarriedEgg();	
 			
-		Instantiate(_powPrefab, this.transform.position, Quaternion.identity );	
+		Instantiate(_powPrefab, this.transform.position, Quaternion.identity );
+
+        GameObject obj = Instantiate(_coinPrefab, this.transform.position, Quaternion.identity) as GameObject;
+        obj.GetComponent<CoinBehavior>().setValue(this.EnemyKillValue);
+        
 		
 		if (ThisEnemyDied != null)
 			ThisEnemyDied(this);
