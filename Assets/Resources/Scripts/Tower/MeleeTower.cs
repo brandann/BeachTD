@@ -27,7 +27,7 @@ public class MeleeTower : Tower
         if (_targets.Count == 0)
             return;
 
-        Enemy target = _targets[0];
+        Enemy target = this.getTarget();
 
         if(target == null)
             return;

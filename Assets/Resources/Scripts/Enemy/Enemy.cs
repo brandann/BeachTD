@@ -48,6 +48,7 @@ public class Enemy : MonoBehaviour
     private GameObject _coinPrefab;
     private EnemyMovement _movement;
     private float ORG_HEALTH;
+    private int mTargetedCount = 0;
 	#endregion
 	
 	#region Unity
@@ -187,6 +188,29 @@ public class Enemy : MonoBehaviour
 
         mCameraShake.Shake();
 
+    }
+
+    public int getTargetedCount() 
+    { 
+        return this.mTargetedCount; 
+    }
+
+    public void deltaTargetedCount(int d)
+    {
+        bool show = (this.mTargetedCount == 0)? true:false;
+        this.mTargetedCount += d;
+
+        if(this.mTargetedCount == 0)
+        {
+            // decremented to 0, hide target
+            this.gameObject.GetComponentInChildren<TargetBehavior>().hide();
+        }
+        else if(show)
+        {
+            // target count is above 0 and it started at 0, show target
+            //this.gameObject.GetComponent<TargetBehavior>().show();
+            this.gameObject.GetComponentInChildren<TargetBehavior>().show();
+        }
     }
 	#endregion
 	

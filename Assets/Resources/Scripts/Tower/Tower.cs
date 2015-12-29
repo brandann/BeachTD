@@ -270,6 +270,7 @@ public abstract class Tower : MonoBehaviour
             return;
 
         _targets.Remove(eb);
+        eb.deltaTargetedCount(-1);
         //Debug.Log("Removed Enemy from targets");
     }
 
@@ -316,4 +317,19 @@ public abstract class Tower : MonoBehaviour
         return (_targets.Count > 0);
     }
 
+    protected Enemy getTarget()
+    {
+        // check for enemies without targets
+        for (int i = 0; i < _targets.Count; i++)
+        {
+            if (_targets[i].getTargetedCount() == 0)
+            {
+                _targets[i].deltaTargetedCount(1);
+                return _targets[i];
+            }
+        }
+
+        // return the first if all eneimies have targets
+        return _targets[0];
+    }
 }
