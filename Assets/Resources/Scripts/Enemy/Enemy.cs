@@ -161,10 +161,22 @@ public class Enemy : MonoBehaviour
 			
 		Instantiate(_powPrefab, this.transform.position, Quaternion.identity );
 
-        GameObject obj = Instantiate(_coinPrefab, this.transform.position, Quaternion.identity) as GameObject;
-        obj.GetComponent<CoinBehavior>().setValue(this.EnemyKillValue);
+        if (this.gameObject.name.Contains("EnemyA"))
+        {
+            DropCoin(0, 0, 5);
+        }
+        else if (this.gameObject.name.Contains("EnemyB"))
+        {
+            DropCoin(.25f, 0, 5);
+            DropCoin(-.25f, 0, 5);
+        }
+        else if (this.gameObject.name.Contains("EnemyC"))
+        {
+            DropCoin(-.25f, .25f, 5);
+            DropCoin(.25f, .25f, 5);
+            DropCoin(0, -.25f, 5);
+        }
         
-		
 		if (ThisEnemyDied != null)
 			ThisEnemyDied(this);
 		
@@ -173,6 +185,13 @@ public class Enemy : MonoBehaviour
 		
 		global.enemyManager.Remove(this.gameObject);
 	}
+
+    private void DropCoin(float x, float y, int value)
+    {
+        Vector3 vec = new Vector3(x + this.transform.position.x, y + this.transform.position.y, 0);
+        GameObject obj = Instantiate(_coinPrefab, vec, Quaternion.identity) as GameObject;
+        obj.GetComponent<CoinBehavior>().setValue(value);
+    }
 
     public void RemoveAfterReachedStart()
     {
