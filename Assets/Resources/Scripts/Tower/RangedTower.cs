@@ -10,7 +10,7 @@ public class RangedTower : Tower
 
     #endregion    
     public GameObject ProjectilePrefab;
-
+    private GameObject target;
     protected int _spinesPerShot;
 
     public override void Initialize()
@@ -31,12 +31,9 @@ public class RangedTower : Tower
         //Create a spine for each enemy in rane up to spines per shot
         int spinesToCreate = Mathf.Min(_targets.Count, _spinesPerShot);
 
-        for(int i = 0; i < spinesToCreate; ++i)
+        if(_targets.Count > 0)
         {
-            if (_targets[i] == null)
-                continue;
-
-            GameObject target = _targets[i].gameObject;
+            target = this.getTarget().gameObject;
 
             GameObject arrow = GameObject.Instantiate(ProjectilePrefab, gameObject.transform.position, Quaternion.identity) as GameObject;
 
@@ -50,6 +47,11 @@ public class RangedTower : Tower
         if (OnRangedFired != null)
             OnRangedFired();
         
+    }
+
+    public GameObject getCurrentTarget()
+    {
+        return target;
     }
 
     protected override void UpgradeSpecial(int level)

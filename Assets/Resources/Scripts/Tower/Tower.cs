@@ -322,8 +322,13 @@ public abstract class Tower : MonoBehaviour
         return (_targets.Count > 0);
     }
 
-    protected Enemy getTarget()
+    public Enemy getTarget()
     {
+        if(_targets == null)
+        {
+            return null;
+        }
+
         Enemy temp = null;
 
         //--------------------------------------------------------------
@@ -344,10 +349,10 @@ public abstract class Tower : MonoBehaviour
         //--------------------------------------------------------------
         // if temp is null then no enemies are with eggs
         // stick with the current enemy
-        /*if (null == temp)
+        if (null == temp)
         {
             temp = mCurrentTargetedEnemy;
-        }*/
+        }
 
         //--------------------------------------------------------------
         // check for enemies without targets
@@ -363,8 +368,6 @@ public abstract class Tower : MonoBehaviour
                 }
             }
         }
-
-        
         
         //--------------------------------------------------------------
         // if temp is null then no enemies are un targeted

@@ -36,7 +36,7 @@ public class SlowTower : Tower
         if (_targets.Count == 0)
             return;
 
-        GameObject target = _targets[0].gameObject;
+        GameObject target = this.getTarget().gameObject;
 
         if (target == null)
             return;
