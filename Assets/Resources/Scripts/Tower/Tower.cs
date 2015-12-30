@@ -270,7 +270,12 @@ public abstract class Tower : MonoBehaviour
             return;
 
         _targets.Remove(eb);
-        eb.deltaTargetedCount(-1);
+        //eb.deltaTargetedCount(-1);
+        if (eb == mCurrentTargetedEnemy)
+        {
+            mCurrentTargetedEnemy.deltaTargetedCount(-1);
+            mCurrentTargetedEnemy = null;
+        }
         //Debug.Log("Removed Enemy from targets");
     }
 
@@ -319,17 +324,75 @@ public abstract class Tower : MonoBehaviour
 
     protected Enemy getTarget()
     {
-        // check for enemies without targets
-        for (int i = 0; i < _targets.Count; i++)
+        Enemy temp = null;
+
+        //--------------------------------------------------------------
+        // check for enemies with eggs
+        // look for the front most enemy first and work backwards
+        if (null == temp)
         {
-            if (_targets[i].getTargetedCount() == 0)
+            for (int i = 0; i < _targets.Count; i++)
             {
-                _targets[i].deltaTargetedCount(1);
-                return _targets[i];
+                if (_targets[i].HasEgg)
+                {
+                    temp = _targets[i];
+                    break;
+                }
             }
         }
 
-        // return the first if all eneimies have targets
-        return _targets[0];
+        //--------------------------------------------------------------
+        // if temp is null then no enemies are with eggs
+        // stick with the current enemy
+        /*if (null == temp)
+        {
+            temp = mCurrentTargetedEnemy;
+        }*/
+
+        //--------------------------------------------------------------
+        // check for enemies without targets
+        // look for the front most enemy first and work backwards
+        if (null == temp)
+        {
+            for (int i = 0; i < _targets.Count; i++)
+            {
+                if (_targets[i].getTargetedCount() == 0)
+                {
+                    temp = _targets[i];
+                    break;
+                }
+            }
+        }
+
+        
+        
+        //--------------------------------------------------------------
+        // if temp is null then no enemies are un targeted
+        // get the front most enemy at this point
+        if(null == temp)
+        {
+            temp = _targets[0];
+        }
+
+        //--------------------------------------------------------------
+        // if temp and current are not the same enemy then:
+        //      - deselect current
+        //      - select temp
+        //      - set current as temp
+        if(temp != mCurrentTargetedEnemy)
+        {
+            if(null != mCurrentTargetedEnemy)
+            {
+                mCurrentTargetedEnemy.deltaTargetedCount(-1);
+            }
+            mCurrentTargetedEnemy = temp;
+            mCurrentTargetedEnemy.deltaTargetedCount(1);
+        }
+
+        //--------------------------------------------------------------
+        // return the current enemy
+        return mCurrentTargetedEnemy;
     }
+
+    private Enemy mCurrentTargetedEnemy;
 }

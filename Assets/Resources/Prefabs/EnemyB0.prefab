@@ -298,9 +298,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7e658ebe24a241c47a73cd0b91f9adb2, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  mStartSize: 20
+  mStartSize: 3
   mEndSize: 1
-  mStartSpeed: 500
+  mStartSpeed: 1000
   mEndSpeed: 100
   mActive: 0
 --- !u!198 &19817296
@@ -1464,6 +1464,14 @@ Prefab:
     - target: {fileID: 0}
       propertyPath: EnemyKillValue
       value: 10
+      objectReference: {fileID: 0}
+    - target: {fileID: 0}
+      propertyPath: mStartSize
+      value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 0}
+      propertyPath: mStartSpeed
+      value: 1000
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 0}

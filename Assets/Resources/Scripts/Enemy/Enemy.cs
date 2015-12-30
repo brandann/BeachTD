@@ -197,6 +197,7 @@ public class Enemy : MonoBehaviour
 
     public void deltaTargetedCount(int d)
     {
+        if (this.mTargetedCount < 0) { this.mTargetedCount = 0; }
         bool show = (this.mTargetedCount == 0)? true:false;
         this.mTargetedCount += d;
 
