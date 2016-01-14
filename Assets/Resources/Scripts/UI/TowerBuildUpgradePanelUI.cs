@@ -32,6 +32,7 @@ public class TowerBuildUpgradePanelUI : MonoBehaviour
         
         _towerManager.SellTower(_touchedTower);
         ShowUpgradeButtons();
+        print("SellTower");
     }
 
     public void Upgrade()
@@ -39,6 +40,7 @@ public class TowerBuildUpgradePanelUI : MonoBehaviour
         //Clear UI 
         ShowUpgradeButtons();
         _towerManager.UpgradeTower(_touchedTower);
+        print("Upgrade");
     }
 
     public void BuildMeleeClicked(){
@@ -46,6 +48,7 @@ public class TowerBuildUpgradePanelUI : MonoBehaviour
         ShowBuildButtons();
 
         _towerManager.BuildMeleeFromArea(_touchedArea);
+        print("BuildMeleeClicked");
     }
 
     public void BuildRangedClicked()
@@ -53,7 +56,7 @@ public class TowerBuildUpgradePanelUI : MonoBehaviour
         //Clear UI
         ShowBuildButtons();
         _towerManager.BuildRangedFromArea(_touchedArea);
-
+        print("BuildRangedClicked");
     }
 
     public void BuildSlowClicked()
@@ -61,6 +64,7 @@ public class TowerBuildUpgradePanelUI : MonoBehaviour
         //Clear UI
         ShowBuildButtons();
         _towerManager.BuildSlowFromArea(_touchedArea);
+        print("BuildSlowClicked");
     }
 
     #endregion
@@ -124,7 +128,7 @@ public class TowerBuildUpgradePanelUI : MonoBehaviour
     {
         //Assign buttons
         _buttons = new Button[5];
-        _defaultButtonPositions = new Vector2[5];
+        //_defaultButtonPositions = new Vector2[5];
 
 
         _buttons[0] = BuildMeleeButton;
@@ -133,10 +137,10 @@ public class TowerBuildUpgradePanelUI : MonoBehaviour
         _buttons[3] = SpeedUpButton;
         _buttons[4] = SellButton;
 
-        for (int i = 0; i < _buttons.Length; ++i)
-            _defaultButtonPositions[i] = _buttons[i].transform.position;
+        //for (int i = 0; i < _buttons.Length; ++i)
+        //    _defaultButtonPositions[i] = _buttons[i].transform.position;
 
-        Vector2 centerOfBuilder = transform.position;
+        //Vector2 centerOfBuilder = transform.position;
 
         //Assume that buildmelee button starts off to the right and above
         _buttonOffset = new Vector2(1.5f, 0.9f);
@@ -328,7 +332,7 @@ public class TowerBuildUpgradePanelUI : MonoBehaviour
     private void ShiftButtons()
     {
         //Debug.Log("Menu at x: " + transform.position.x + " y: " + transform.position.y);
-
+        /*
         if (transform.position.x > 13.5)
         {
             SlideButtonsLeft();
@@ -349,7 +353,7 @@ public class TowerBuildUpgradePanelUI : MonoBehaviour
             else
                 ButonsToDefaultYPos();
         }
-
+        */
     }
 
     private void SlideButtonsLeft()
