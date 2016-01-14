@@ -100,6 +100,11 @@ public class Map {
             AddWave(wave);
         }
     }
+
+    public int getWaveCount()
+    {
+        return waves.Count;
+    }
 	
 	#region Private Methods
 	private Vector3[] FindWayPoints(int[,] m)

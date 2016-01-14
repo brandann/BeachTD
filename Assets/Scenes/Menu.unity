@@ -1461,7 +1461,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
-  m_Color: {r: .105882362, g: .0941176564, b: .0666666701, a: 1}
+  m_Color: {r: .411764741, g: .392156899, b: .392156899, a: 1}
   m_RaycastTarget: 1
   m_OnCullStateChanged:
     m_PersistentCalls:
@@ -5046,7 +5046,7 @@ RectTransform:
   m_AnchorMin: {x: .5, y: .5}
   m_AnchorMax: {x: .5, y: .5}
   m_AnchoredPosition: {x: -168, y: -149}
-  m_SizeDelta: {x: 160, y: 60}
+  m_SizeDelta: {x: 300, y: 200}
   m_Pivot: {x: .5, y: .5}
 --- !u!114 &1151184754
 MonoBehaviour:
@@ -6492,7 +6492,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!224 &1268817991
 RectTransform:
   m_ObjectHideFlags: 0
@@ -6536,14 +6536,14 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
-  m_Color: {r: 1, g: 1, b: 1, a: 1}
+  m_Color: {r: .10980393, g: .10980393, b: .10980393, a: 1}
   m_RaycastTarget: 1
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
     m_TypeName: UnityEngine.UI.MaskableGraphic+CullStateChangedEvent, UnityEngine.UI,
       Version=1.0.0.0, Culture=neutral, PublicKeyToken=null
-  m_Sprite: {fileID: 21300000, guid: 1624fb8704139d84895788fa76147d60, type: 3}
+  m_Sprite: {fileID: 21300000, guid: 56f15afa502a51e49afde404e4f447b3, type: 3}
   m_Type: 0
   m_PreserveAspect: 0
   m_FillCenter: 1
@@ -7445,7 +7445,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
-  m_Color: {r: .105882362, g: .0941176564, b: .0666666701, a: 1}
+  m_Color: {r: .411764741, g: .392156899, b: .392156899, a: 1}
   m_RaycastTarget: 1
   m_OnCullStateChanged:
     m_PersistentCalls:
@@ -7454,7 +7454,7 @@ MonoBehaviour:
       Version=1.0.0.0, Culture=neutral, PublicKeyToken=null
   m_FontData:
     m_Font: {fileID: 12800000, guid: ffac91d7923384ca4922e364b322878c, type: 3}
-    m_FontSize: 14
+    m_FontSize: 30
     m_FontStyle: 0
     m_BestFit: 1
     m_MinSize: 10
@@ -8009,7 +8009,7 @@ RectTransform:
   m_AnchorMin: {x: .5, y: .5}
   m_AnchorMax: {x: .5, y: .5}
   m_AnchoredPosition: {x: 168, y: -147}
-  m_SizeDelta: {x: 160, y: 60}
+  m_SizeDelta: {x: 300, y: 200}
   m_Pivot: {x: .5, y: .5}
 --- !u!114 &1668417069
 MonoBehaviour:
@@ -9421,7 +9421,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
-  m_Color: {r: .105882362, g: .0941176564, b: .0666666701, a: 1}
+  m_Color: {r: .411764741, g: .392156899, b: .392156899, a: 1}
   m_RaycastTarget: 1
   m_OnCullStateChanged:
     m_PersistentCalls:
@@ -9430,7 +9430,7 @@ MonoBehaviour:
       Version=1.0.0.0, Culture=neutral, PublicKeyToken=null
   m_FontData:
     m_Font: {fileID: 12800000, guid: ffac91d7923384ca4922e364b322878c, type: 3}
-    m_FontSize: 14
+    m_FontSize: 30
     m_FontStyle: 0
     m_BestFit: 1
     m_MinSize: 10

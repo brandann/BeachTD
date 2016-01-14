@@ -6,8 +6,9 @@ public class Map02 : GameMap {
 	{
         int[,] waves = new int[,] {
             {A,A,A,A,B},
-            {A,B,B,B,C},
-            {B,B,B,C,C}
+            {A,A,A,B,B},
+            {A,A,B,B,B},
+            {C}
         };
 
         int[,] intmap = new int[,] {

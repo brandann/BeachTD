@@ -151,7 +151,7 @@ public class Enemy : MonoBehaviour
 	
 	public void OnTouchDown()
 	{
-		KillThisEnemy();
+		//KillThisEnemy();
 	}
 	
 	public void KillThisEnemy()
@@ -163,18 +163,18 @@ public class Enemy : MonoBehaviour
 
         if (this.gameObject.name.Contains("EnemyA"))
         {
-            DropCoin(0, 0, 5);
+            DropCoin(0, 0, 15);
         }
         else if (this.gameObject.name.Contains("EnemyB"))
         {
-            DropCoin(.25f, 0, 5);
-            DropCoin(-.25f, 0, 5);
+            DropCoin(.25f, 0, 15);
+            DropCoin(-.25f, 0, 15);
         }
         else if (this.gameObject.name.Contains("EnemyC"))
         {
-            DropCoin(-.25f, .25f, 5);
-            DropCoin(.25f, .25f, 5);
-            DropCoin(0, -.25f, 5);
+            DropCoin(-.25f, .25f, 15);
+            DropCoin(.25f, .25f, 15);
+            DropCoin(0, -.25f, 15);
         }
         
 		if (ThisEnemyDied != null)

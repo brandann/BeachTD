@@ -40,9 +40,13 @@ public class WaveDisplay : MonoBehaviour {
         //hackish way to deal with fact that wave count may not have been initialized before awake
 
         // can we move it OnEnable()? <- Brandan
-        if (_totalWaves == 0)
-            _totalWaves = GameObject.Find("Global").GetComponent<Global>().WaveCount;
+         _totalWaves = GameObject.Find("Global").GetComponent<Global>().WaveCount;
 
         _text.text = "Wave: " + _currentWave + " of " + _totalWaves;
+    }
+
+    void Update()
+    {
+        UpdateDisplay();
     }
 }
