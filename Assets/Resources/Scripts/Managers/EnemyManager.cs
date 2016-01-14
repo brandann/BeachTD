@@ -15,7 +15,7 @@ public class EnemyManager : ManagerBase
 	private Queue<EnemySchedule> _enemyQueue;
 	
     private float delay;
-    private float delay_multiplyer = 4;
+    private float delay_multiplyer = 2;
     
     private GameObject EnemyA0Prefab;
     private GameObject EnemyB0Prefab;
