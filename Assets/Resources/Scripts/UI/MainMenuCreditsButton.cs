@@ -12,7 +12,9 @@ public class MainMenuCreditsButton : SlidingUI {
  	    base.Clicked();
         StartButton.Slide();
         CreditsScript.Slide();
+        LevelScript.Clicked();
         LevelScript.Slide();
+        
     }
 
 }
