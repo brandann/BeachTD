@@ -31,7 +31,11 @@ public class CameraShake : MonoBehaviour
 
     void Update()
     {
-        if (mShake > 0)
+        if(mShake != 0 && Time.deltaTime == 0)
+        {
+        	mShake = 0;
+        }
+        else if (mShake > 0)
         {
             mCameraTransform.localPosition = _mOriginalPos + Random.insideUnitSphere * mShakeAmount;
 
