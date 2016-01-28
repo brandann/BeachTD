@@ -17,7 +17,7 @@ PlayerSettings:
   defaultScreenWidth: 1024
   defaultScreenHeight: 768
   defaultScreenWidthWeb: 960
-  defaultScreenHeightWeb: 600
+  defaultScreenHeightWeb: 540
   m_RenderingPath: 1
   m_MobileRenderingPath: 1
   m_ActiveColorSpace: 0
@@ -79,7 +79,7 @@ PlayerSettings:
   xboxOneDisableKinectGpuReservation: 0
   virtualRealitySupported: 0
   productGUID: 25f00c9df93fb4674a8433bf66915a5d
-  AndroidBundleVersionCode: 9
+  AndroidBundleVersionCode: 11
   AndroidMinSdkVersion: 16
   AndroidPreferredInstallLocation: 0
   aotOptions: 
