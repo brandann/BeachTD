@@ -236,7 +236,7 @@ public class TowerBuildUpgradePanelUI : MonoBehaviour
         _touchedTower = t;
 
         //Move to tower that was touched
-        transform.position = t.transform.position;
+        //transform.position = t.transform.position;
         ShiftButtons();
 
         bool showSpeed = _towerManager.CanUpgrade(t);
