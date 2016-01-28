@@ -94,7 +94,7 @@ public class TowerUpgradeManager : MonoBehaviour
         Instantiate(OpenAreaPrefab, touchedTower.transform.position, Quaternion.identity);
         TowerFactory.Instance.RecycleTower(touchedTower);
 
-        int index = -1;
+        int index = 1; //Todo: fix this lookup
         
         _bank.AddDollars(_towerCosts[index]);
     }
@@ -126,7 +126,7 @@ public class TowerUpgradeManager : MonoBehaviour
     {
         //In with the new
         Tower tower = TowerFactory.Instance.CreateTower(t);
-        //tower.transform.position = touchedArea.transform.position;
+        tower.transform.position = touchedArea.transform.position;
 
         //Out with the old
         Destroy(touchedArea.gameObject);
