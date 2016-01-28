@@ -237,7 +237,7 @@ public class TowerBuildUpgradePanelUI : MonoBehaviour
 
         //Move to tower that was touched
         //transform.position = t.transform.position;
-        ShiftButtons();
+        //ShiftButtons();
 
         bool showSpeed = _towerManager.CanUpgrade(t);
         
@@ -252,8 +252,8 @@ public class TowerBuildUpgradePanelUI : MonoBehaviour
         _touchedArea = a;
 
         //Move to open area that was touched
-        transform.position = _touchedArea.transform.position;
-        ShiftButtons();
+        //transform.position = _touchedArea.transform.position;
+        //ShiftButtons();
 
         bool showMelee = _towerManager.CanBuildMelee();
         bool showRanged = _towerManager.CanBuildRanged();

@@ -126,7 +126,7 @@ public class TowerUpgradeManager : MonoBehaviour
     {
         //In with the new
         Tower tower = TowerFactory.Instance.CreateTower(t);
-        tower.transform.position = touchedArea.transform.position;
+        //tower.transform.position = touchedArea.transform.position;
 
         //Out with the old
         Destroy(touchedArea.gameObject);

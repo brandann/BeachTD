@@ -20,25 +20,27 @@ public class CameraBehavior : MonoBehaviour {
 		if(Input.GetKey(KeyCode.E))
 		{
 			//zoom = true;
-		}	
-		
-		if (Input.touchCount > 0 && Input.GetTouch(0).phase == TouchPhase.Moved) {
-			Vector2 trans = Input.GetTouch(0).deltaPosition - lasttouch;
-			trans = trans * speed * Time.deltaTime;
-			lasttouch = Input.GetTouch(0).deltaPosition;
-			transform.Translate(trans.x, trans.y * speed, 0);
 		}
-		else if (Input.GetMouseButton(0)) {
-			Vector2 pos = Input.mousePosition;
-			Vector2 trans = pos - lasttouch;
-			trans = trans * speed * Time.deltaTime;
-			lasttouch = Input.mousePosition;
-			transform.Translate(-trans.x, -trans.y * speed, 0);
-			//Vector2 touchDeltaPosition = Input.mousePosition;
-			//transform.Translate(-touchDeltaPosition.x * speed, -touchDeltaPosition.y * speed, 0);
-		}
-		
-		if(zoom)
+
+        if (Input.touchCount > 0 && Input.GetTouch(0).phase == TouchPhase.Moved)
+        {
+            Vector2 trans = Input.GetTouch(0).deltaPosition - lasttouch;
+            trans = trans * speed * Time.deltaTime;
+            lasttouch = Input.GetTouch(0).deltaPosition;
+            transform.Translate(trans.x, trans.y * speed, 0);
+        }
+        else if (Input.GetMouseButton(0))
+        {
+            Vector2 pos = Input.mousePosition;
+            Vector2 trans = pos - lasttouch;
+            trans = trans * speed * Time.deltaTime;
+            lasttouch = Input.mousePosition;
+            transform.Translate(-trans.x, -trans.y * speed, 0);
+            //Vector2 touchDeltaPosition = Input.mousePosition;
+            //transform.Translate(-touchDeltaPosition.x * speed, -touchDeltaPosition.y * speed, 0);
+        }
+
+        if (zoom)
 		{
 			float m_height = 9;
 			float m_width = 9 * 1.77f;
