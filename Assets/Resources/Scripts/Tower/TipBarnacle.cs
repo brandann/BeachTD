@@ -7,7 +7,8 @@ public class TipBarnacle : MonoBehaviour {
     private TipState State;
     public float Damage { get; protected set; }
     public Transform Target { get; protected set; }
-    private Transform _base;
+    private Transform _baseTransform;
+    private MeleeTower _baseTower;
     private float _locationEpsilon = 0.15f;
     private float _kinematicSpeed = 2.0f;
     private Rigidbody2D[] _links;
@@ -17,9 +18,10 @@ public class TipBarnacle : MonoBehaviour {
 	// Use this for initialization
 	void Start () {
         Damage = damage;
-        _base = gameObject.GetComponentInParent<Tower>().gameObject.transform;
+        _baseTower = gameObject.GetComponentInParent<MeleeTower>();
+        _baseTransform = _baseTower.gameObject.transform;
         
-        if (_base == null)
+        if (_baseTransform == null)
             Debug.LogWarning("Missing base");
         GetComponent<Rigidbody2D>().isKinematic = true;
         PhysicsRetract();
@@ -58,7 +60,7 @@ public class TipBarnacle : MonoBehaviour {
     private void PhysicsFinishRetracting()
     {
         if (State == TipState.Retracting &&
-           (transform.position - _base.position).magnitude <= _locationEpsilon)
+           (transform.position - _baseTransform.position).magnitude <= _locationEpsilon)
         {
             //Debug.Log("Retraction complete");
             gameObject.GetComponent<Rigidbody2D>().velocity = Vector2.zero;
@@ -67,7 +69,7 @@ public class TipBarnacle : MonoBehaviour {
         }
         else
         {
-            Vector2 dir2Target = _base.position - transform.position;
+            Vector2 dir2Target = _baseTransform.position - transform.position;
             dir2Target.Normalize();
             GetComponent<Rigidbody2D>().AddForce(dir2Target * 10, ForceMode2D.Impulse);
             //Debug.Log("retracting force: " + dir2Target * 10);
@@ -90,6 +92,14 @@ public class TipBarnacle : MonoBehaviour {
 
         if (null == Target)
         {
+            PhysicsRetract();
+            return;
+        }
+
+        Vector2 distFromBase = transform.position - _baseTransform.transform.position;
+        if (distFromBase.magnitude > _baseTower.Range)
+        {
+            Target = null;
             PhysicsRetract();
             return;
         }
@@ -131,7 +141,7 @@ public class TipBarnacle : MonoBehaviour {
         }
 
         gameObject.GetComponent<Rigidbody2D>().velocity = Vector2.zero;
-        Vector2 dir2Base =  _base.position - transform.position;
+        Vector2 dir2Base =  _baseTransform.position - transform.position;
         dir2Base.Normalize();
         dir2Base *= 100;
         //Debug.Log("Rectract Apply: " + dir2Base); 
