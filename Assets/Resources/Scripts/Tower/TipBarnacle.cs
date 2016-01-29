@@ -137,6 +137,7 @@ public class TipBarnacle : MonoBehaviour {
         //Debug.Log("Rectract Apply: " + dir2Base); 
         gameObject.GetComponent<Rigidbody2D>().AddForce(dir2Base);
         State = TipState.Retracting;
+
     }
 
 
@@ -150,5 +151,7 @@ public class TipBarnacle : MonoBehaviour {
         enemy.TakeDamage(Damage);
 
         PhysicsRetract();
+        Target = null;
+
     }
 }
