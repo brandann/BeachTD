@@ -36,6 +36,7 @@ public abstract class Tower : MonoBehaviour
         }
     }
     
+    public float Range { get { return _collider.radius; } }
 
     //Damage done per hit
     public float Damage;
