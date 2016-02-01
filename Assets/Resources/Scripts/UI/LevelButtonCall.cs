@@ -32,6 +32,14 @@ public class LevelButtonCall : SlidingUI {
 
 	public void LoadLevel()
 	{
+        // DEV
+        if (-1 == lvl)
+        {
+            _global.unlockalllevels();
+            Application.LoadLevel(Global.Scenes.Menu.ToString());
+            return;
+        }
+
 		int level = lvl - 1;
 		_global.LoadMap(level);
 		Application.LoadLevel(Global.Scenes.Game.ToString()); 

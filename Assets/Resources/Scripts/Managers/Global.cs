@@ -302,6 +302,13 @@ public class Global : MonoBehaviour
 		SaveLoad.Save();
 	}
 
+    public void unlockalllevels()
+    {
+        LoadSavedGame();
+        SaveLoad.SavedGame.UnlockLevel(9);
+        SaveLoad.Save();
+    }
+
     //Lo
     private void LoadSavedGame()
     {
