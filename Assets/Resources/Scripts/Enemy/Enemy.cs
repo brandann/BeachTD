@@ -155,7 +155,8 @@ public class Enemy : MonoBehaviour
 	}
 	
 	public void KillThisEnemy()
-	{		
+	{
+        int eggValue = 10;
 		if(HasEgg)
             DropCarriedEgg();	
 			
@@ -163,18 +164,18 @@ public class Enemy : MonoBehaviour
 
         if (this.gameObject.name.Contains("EnemyA"))
         {
-            DropCoin(0, 0, 15);
+            DropCoin(0, 0, eggValue);
         }
         else if (this.gameObject.name.Contains("EnemyB"))
         {
-            DropCoin(.25f, 0, 15);
-            DropCoin(-.25f, 0, 15);
+            DropCoin(.25f, 0, eggValue);
+            DropCoin(-.25f, 0, eggValue);
         }
         else if (this.gameObject.name.Contains("EnemyC"))
         {
-            DropCoin(-.25f, .25f, 15);
-            DropCoin(.25f, .25f, 15);
-            DropCoin(0, -.25f, 15);
+            DropCoin(-.25f, .25f, eggValue);
+            DropCoin(.25f, .25f, eggValue);
+            DropCoin(0, -.25f, eggValue);
         }
         
 		if (ThisEnemyDied != null)
