@@ -102,7 +102,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   Speed: 7
-  Damage: .479999989
+  Damage: .400000006
 --- !u!198 &19891294
 ParticleSystem:
   m_ObjectHideFlags: 1
@@ -1231,7 +1231,7 @@ Prefab:
     m_Modifications:
     - target: {fileID: 0}
       propertyPath: Damage
-      value: .479999989
+      value: .400000006
       objectReference: {fileID: 0}
     - target: {fileID: 0}
       propertyPath: m_StartWidth
