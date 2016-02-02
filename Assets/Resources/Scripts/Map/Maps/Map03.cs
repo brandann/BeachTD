@@ -4,10 +4,11 @@ using System.Collections;
 public class Map03 : GameMap {																				
 	public override Map GetMap ()																			
 	{
-        int[,] waves = new int[,] {
-            {A,A,A,A,0},
-            {A,A,A,A,B},
-            {C,0,0,0,0}
+		 int[,] waves = new int[,] {
+            {A,A,A,0,0,0},
+            {A,A,A,B,0,0},
+            {A,A,A,B,B,0},
+            {A,A,A,A,B,C}
         };
 
         int[,] intmap = new int[,] {
