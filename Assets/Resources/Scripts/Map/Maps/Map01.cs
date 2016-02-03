@@ -1,9 +1,10 @@
-﻿using UnityEngine;																				
-using System.Collections;																				
+﻿using UnityEngine;																														
+using System.Collections;																														
 
-public class Map01 : GameMap {																				
-	public override Map GetMap ()																			
+public class Map01 : GameMap {																														
+	public override Map GetMap ()																													
 	{
+       
         int[,] waves = new int[,] {
             {A,A,A,A,0},
             {A,A,A,A,B},
@@ -11,13 +12,13 @@ public class Map01 : GameMap {
         };
 
         int[,] intmap = new int[,] {
-            {P,T,T,T,T,T,T,T,T,T,T,T,P},
-            {0,P,P,P,P,P,P,P,P,P,P,1,T},
-            {T,T,T,T,T,T,T,T,T,T,T,P,T},
-            {4,P,P,P,P,P,P,P,P,5,T,P,T},
-            {P,T,T,T,T,T,T,T,T,T,T,P,T},
+            {4,P,5,T,8,P,9,T,12,P,13,T,P},
+            {P,T,P,T,P,T,P,T,P,T,P,T,T},
+            {P,T,6,P,7,T,10,P,11,T,14,P,15},
+            {P,T,T,T,T,T,T,T,T,T,T,T,T},
             {3,P,P,P,P,P,P,P,P,P,P,2,T},
-            {P,T,T,T,T,T,T,T,T,T,T,T,P}
+            {T,T,T,T,T,T,T,T,T,T,T,P,T},
+            {0,P,P,P,P,P,P,P,P,P,P,1,P}
         };
 
         Map map = new Map(intmap);

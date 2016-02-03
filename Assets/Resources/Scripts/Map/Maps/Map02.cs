@@ -4,21 +4,23 @@ using System.Collections;
 public class Map02 : GameMap {																														
 	public override Map GetMap ()																													
 	{
-        int[,] waves = new int[,] {
+		int[,] waves = new int[,] {
             {A,A,A,0,0},
             {A,A,A,B,0},
             {A,A,A,A,B},
             {A,C,0,0,0}
         };
 
+        
+
         int[,] intmap = new int[,] {
-            {P,T,T,T,T,T,T,T,T,T,T,T,P},
-            {T,2,P,P,3,T,T,T,T,T,T,T,T},
-            {T,P,T,T,P,8,P,P,9,T,T,T,T},
-            {0,1,T,T,P,P,T,T,P,T,T,T,T},
-            {T,T,5,P,4,P,T,T,10,P,P,P,11},
-            {T,T,P,T,T,P,T,T,T,T,T,T,T},
-            {P,T,6,P,P,7,T,T,T,T,T,T,P}
+            {P,2,P,P,P,P,P,P,P,P,P,3,P},
+            {T,P,T,T,T,T,T,T,T,T,T,P,T},
+            {T,P,T,6,P,P,P,P,P,7,T,P,T},
+            {0,1,T,P,T,T,T,T,T,P,T,P,T},
+            {T,T,T,P,T,9,P,P,P,8,T,P,T},
+            {T,T,T,P,T,T,T,T,T,T,T,P,T},
+            {P,T,T,5,P,P,P,P,P,P,P,4,P}
         };
 
         Map map = new Map(intmap);
