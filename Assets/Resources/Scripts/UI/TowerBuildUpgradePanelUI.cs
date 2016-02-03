@@ -288,7 +288,6 @@ public class TowerBuildUpgradePanelUI : MonoBehaviour
     {
         //Debug.Log("show buttons");
 
-
         _buttons[0].gameObject.SetActive(melee);
         _buttons[1].gameObject.SetActive(ranged);
         _buttons[2].gameObject.SetActive(slow);
