@@ -15,6 +15,8 @@ public class TowerBuildUpgradePanelUI : MonoBehaviour
     private Button DamageUpButton;
     private Button SpecialUpButton;
     public Button SellButton;
+    public Text SellValue;
+
     public float FADETIME;
 
     #endregion
@@ -239,12 +241,20 @@ public class TowerBuildUpgradePanelUI : MonoBehaviour
         //transform.position = t.transform.position;
         //ShiftButtons();
 
-        bool showSpeed = _towerManager.CanUpgrade(t);
-        
+        bool showSpeed = _towerManager.CanUpgrade(t);        
         bool showSell = _towerManager.CanSellTower(t);
+
+        SetSellValue(t);
 
         ShowUpgradeButtons(showSpeed, false, false, false, showSell);
         _lastActivation = Time.time;
+    }
+
+    //Set the price displayed on the sell buton
+    private void SetSellValue(Tower t)
+    {
+
+        SellValue.text = "$" + _towerManager.GetTowerCost(t).ToString();
     }
 
     private void SelectAndShow(OpenAreaBehavior a)

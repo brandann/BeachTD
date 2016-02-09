@@ -97,7 +97,7 @@ public class TowerUpgradeManager : MonoBehaviour
         _bank.AddDollars(GetTowerCost(touchedTower));
     }
 
-    private int GetTowerCost(Tower tower)
+    public int GetTowerCost(Tower tower)
     {
         int cost = -999;
         _towerCosts.TryGetValue(tower.GetType(), out cost);
