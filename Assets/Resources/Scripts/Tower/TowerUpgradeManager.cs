@@ -1,8 +1,6 @@
 ﻿using UnityEngine;
-using UnityEngine.UI;
-using System.Collections;
 using System.Collections.Generic;
-
+using System;
 
 /// <summary>
 /// Determines the availabilty of upgrades based on tower selection and funds available etc.
@@ -38,7 +36,7 @@ public class TowerUpgradeManager : MonoBehaviour
     {        
         FillLookups();     
 
-        if (UpgradeCost < 0)
+        if (UpgradeCost <= 0)
             Debug.LogWarning("Forgot to set upgrade costs in upgrade manager?");        
     }
 
@@ -94,9 +92,17 @@ public class TowerUpgradeManager : MonoBehaviour
         Instantiate(OpenAreaPrefab, touchedTower.transform.position, Quaternion.identity);
         TowerFactory.Instance.RecycleTower(touchedTower);
 
-        int index = 1; //Todo: fix this lookup
+        touchedTower.GetType();        
         
-        _bank.AddDollars(_towerCosts[index]);
+        _bank.AddDollars(GetTowerCost(touchedTower));
+    }
+
+    public int GetTowerCost(Tower tower)
+    {
+        int cost = -999;
+        _towerCosts.TryGetValue(tower.GetType(), out cost);
+        return cost;
+
     }
 
     #endregion    
@@ -104,9 +110,10 @@ public class TowerUpgradeManager : MonoBehaviour
     private Tower.Upgrade _specialUpgrade;
     private Tower.Upgrade _10percentSpeed;
     private Tower.Upgrade _10percentDamage;
-    private Tower.Upgrade _10percentRange;    
+    private Tower.Upgrade _10percentRange;
 
-    private int[] _towerCosts;      
+    //private int[] _towerCosts;
+    private Dictionary<Type, int> _towerCosts;
     
     
     private SandDollarBank _bank;
@@ -116,10 +123,10 @@ public class TowerUpgradeManager : MonoBehaviour
     /// </summary>
     private void FillLookups()
     {
-        _towerCosts = new int[3];
-        _towerCosts[0] = MeleeTowerCost;
-        _towerCosts[1] = RangedTowerCost;
-        _towerCosts[2] = SlowTowerCost;        
+        _towerCosts = new Dictionary<Type, int>();
+        _towerCosts.Add(typeof(MeleeTower), MeleeTowerCost);        
+        _towerCosts.Add(typeof(RangedTower), RangedTowerCost);        
+        _towerCosts.Add(typeof(SlowTower), SlowTowerCost);    
     }       
 
     private void BuildTower(Tower t, OpenAreaBehavior touchedArea)

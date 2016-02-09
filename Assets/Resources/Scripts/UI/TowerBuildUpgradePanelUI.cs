@@ -15,6 +15,8 @@ public class TowerBuildUpgradePanelUI : MonoBehaviour
     private Button DamageUpButton;
     private Button SpecialUpButton;
     public Button SellButton;
+    public Text SellValue;
+
     public float FADETIME;
 
     #endregion
@@ -93,6 +95,7 @@ public class TowerBuildUpgradePanelUI : MonoBehaviour
         Tower.onTowerTouched += TowerTouched;
         OpenAreaBehavior.onAreaTouched += OpenAreaTouched;
         Seagull.OnGullKilled += HandleGullHit;
+        SandDollarBank.OnSandDollarsChanged += HandleBalanceChange;
     }
 
     void OnDestroy()
@@ -101,6 +104,7 @@ public class TowerBuildUpgradePanelUI : MonoBehaviour
         Tower.onTowerTouched -= TowerTouched;
         OpenAreaBehavior.onAreaTouched -= OpenAreaTouched;
         Seagull.OnGullKilled -= HandleGullHit;
+        SandDollarBank.OnSandDollarsChanged -= HandleBalanceChange;
     }
 
     #endregion
@@ -119,6 +123,7 @@ public class TowerBuildUpgradePanelUI : MonoBehaviour
     private Vector2 _buttonSizeRect = new Vector2(0.5f, 0.5f);
     private Collider2D[] _hitByButtons;
     private float _lastGullHitTime;
+    private bool _displayForTowerTouched;
 
     private void CacheButtons()
     {
@@ -234,26 +239,23 @@ public class TowerBuildUpgradePanelUI : MonoBehaviour
     {
         //Cache reference to tower 
         _touchedTower = t;
+        _displayForTowerTouched = true;
 
-        //Move to tower that was touched
-        //transform.position = t.transform.position;
-        //ShiftButtons();
-
-        bool showSpeed = _towerManager.CanUpgrade(t);
-        
+        bool showSpeed = _towerManager.CanUpgrade(t);        
         bool showSell = _towerManager.CanSellTower(t);
+
+        SetSellValue(t);
 
         ShowUpgradeButtons(showSpeed, false, false, false, showSell);
         _lastActivation = Time.time;
     }
 
+
     private void SelectAndShow(OpenAreaBehavior a)
     {
         _touchedArea = a;
+        _displayForTowerTouched = false;
 
-        //Move to open area that was touched
-        //transform.position = _touchedArea.transform.position;
-        //ShiftButtons();
 
         bool showMelee = _towerManager.CanBuildMelee();
         bool showRanged = _towerManager.CanBuildRanged();
@@ -261,7 +263,13 @@ public class TowerBuildUpgradePanelUI : MonoBehaviour
         ShowBuildButtons(showMelee, showRanged, showSlow);
         _lastActivation = Time.time;
     }
+    
+    //Set the price displayed on the sell buton
+    private void SetSellValue(Tower t)
+    {
 
+        SellValue.text = "$" + _towerManager.GetTowerCost(t).ToString();
+    }
     private void OpenAreaTouched(OpenAreaBehavior area)
     {
         if (MenuActive)
@@ -288,7 +296,6 @@ public class TowerBuildUpgradePanelUI : MonoBehaviour
     {
         //Debug.Log("show buttons");
 
-
         _buttons[0].gameObject.SetActive(melee);
         _buttons[1].gameObject.SetActive(ranged);
         _buttons[2].gameObject.SetActive(slow);
@@ -312,6 +319,28 @@ public class TowerBuildUpgradePanelUI : MonoBehaviour
 
     }
 
+    /// <summary>
+    /// Keeps the menu options inline with the players balance as it changes
+    /// </summary>
+    /// <param name="dollars"></param>
+    private void HandleBalanceChange(int dollars)
+    {
+        if (false == MenuActive)
+        {
+            return;
+        }
+
+        if (true == _displayForTowerTouched)
+        {
+            SelectAndShow(_touchedTower);
+        }
+        else
+        {
+            SelectAndShow(_touchedArea);
+        }
+
+    }
+
     private void HandleGullHit(Seagull gull)
     {
         _lastGullHitTime = Time.time;
@@ -324,98 +353,6 @@ public class TowerBuildUpgradePanelUI : MonoBehaviour
         _touchedTower = null;
         _touchedArea = null;
     }
-    //Moves buttons away from edge of world
-    private void ShiftButtons()
-    {
-        //Debug.Log("Menu at x: " + transform.position.x + " y: " + transform.position.y);
-
-        if (transform.position.x > 13.5)
-        {
-            SlideButtonsLeft();
-        }
-        else
-        {
-            ButonsToDefaultXPos();
-        }
-
-        if (transform.position.y > 7)
-        {
-            SlideButtonsDown();
-        }
-        else
-        {
-            if (transform.position.y < 0.8)
-                SlideButtonsUp();
-            else
-                ButonsToDefaultYPos();
-        }
-
-    }
-
-    private void SlideButtonsLeft()
-    {
-        /*
-        for (int i = 0; i < _buttons.Length; ++i)
-        {
-            _buttons[i].transform.position = new Vector2(_defaultButtonPositions[i].x - _buttonOffset.x, _defaultButtonPositions[i].y); 
-        }
-         */
-        transform.position = (Vector2)transform.position - new Vector2(_buttonOffset.x, 0);
-
-        //Debug.Log("slid left");
-    }
-
-    private void SlideButtonsDown()
-    {
-        /*
-        for (int i = 0; i < _buttons.Length; ++i)
-        {
-            _buttons[i].transform.position = new Vector2(_defaultButtonPositions[i].x, _defaultButtonPositions[i].y - _buttonOffset.y);
-        }
-        
-         */
-        //Debug.Log("slid down");
-        transform.position = (Vector2)transform.position - new Vector2(0, _buttonOffset.y);
-    }
-
-    private void SlideButtonsUp()
-    {
-        /*
-        for (int i = 0; i < _buttons.Length; ++i)
-        {
-            _buttons[i].transform.position = new Vector2(_defaultButtonPositions[i].x, _defaultButtonPositions[i].y + _buttonOffset.y);
-        }
-        
-         */
-        //Debug.Log("slid down");
-        transform.position = (Vector2)transform.position + new Vector2(0, _buttonOffset.y);
-    }
-
-
-
-    private void ButonsToDefaultXPos()
-    {
-        /*
-        Debug.Log("Default X Positions");
-        for (int i = 0; i < _buttons.Length; ++i)
-        {
-            _buttons[i].transform.position = new Vector2(_defaultButtonPositions[i].x, transform.position.y);
-        }
-         */
-
-    }
-
-    private void ButonsToDefaultYPos()
-    {
-        /*
-        Debug.Log("Default Y Positions");
-        for (int i = 0; i < _buttons.Length; ++i)
-        {
-            _buttons[i].transform.position = new Vector2(transform.position.x, _defaultButtonPositions[i].y);
-        }
-         */
-    }
-
 
     private void CheckMenuActive()
     {
