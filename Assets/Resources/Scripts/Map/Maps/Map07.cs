@@ -5,12 +5,12 @@ public class Map07 : GameMap {
 	public override Map GetMap ()																													
 	{
         int[,] waves = new int[,] {
-            {A,A,A,A,A,0,0,0,0,0,0},
-            {A,A,A,A,B,B,0,0,0,0,0},
-            {A,A,A,A,A,A,A,A,A,A,0},
-            {B,A,A,A,A,A,B,0,0,0,0},
-            {A,A,A,A,A,A,A,A,A,A,C},
-            {A,A,A,A,A,A,A,A,A,A,C}
+{A,	A,	A,	A,	A,	0,	0,	0,	0,	0,	0,	0,	0,	0,	0,	0,	0,	0,	0,	0},
+{A,	A,	B,	B,	A,	0,	0,	0,	0,	0,	0,	0,	0,	0,	0,	0,	0,	0,	0,	0},
+{A,	A,	A,	A,	A,	A,	A,	A,	A,	A,	0,	0,	0,	0,	0,	0,	0,	0,	0,	0},
+{B,	A,	A,	A,	A,	A,	B,	B,	0,	0,	0,	0,	0,	0,	0,	0,	0,	0,	0,	0},
+{A,	A,	A,	A,	A,	A,	A,	A,	A,	A,	C,	0,	0,	0,	0,	0,	0,	0,	0,	0},
+{A,	A,	A,	A,	A,	A,	A,	A,	A,	A,	C,	0,	0,	0,	0,	0,	0,	0,	0,	0}
         };
 		
         int[,] intmap = new int[,] {
