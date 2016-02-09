@@ -235,11 +235,7 @@ public class TowerBuildUpgradePanelUI : MonoBehaviour
     private void SelectAndShow(Tower t)
     {
         //Cache reference to tower 
-        _touchedTower = t;
-
-        //Move to tower that was touched
-        //transform.position = t.transform.position;
-        //ShiftButtons();
+        _touchedTower = t;      
 
         bool showSpeed = _towerManager.CanUpgrade(t);        
         bool showSell = _towerManager.CanSellTower(t);
@@ -259,11 +255,7 @@ public class TowerBuildUpgradePanelUI : MonoBehaviour
 
     private void SelectAndShow(OpenAreaBehavior a)
     {
-        _touchedArea = a;
-
-        //Move to open area that was touched
-        //transform.position = _touchedArea.transform.position;
-        //ShiftButtons();
+        _touchedArea = a;        
 
         bool showMelee = _towerManager.CanBuildMelee();
         bool showRanged = _towerManager.CanBuildRanged();
@@ -333,98 +325,6 @@ public class TowerBuildUpgradePanelUI : MonoBehaviour
         _touchedTower = null;
         _touchedArea = null;
     }
-    //Moves buttons away from edge of world
-    private void ShiftButtons()
-    {
-        //Debug.Log("Menu at x: " + transform.position.x + " y: " + transform.position.y);
-
-        if (transform.position.x > 13.5)
-        {
-            SlideButtonsLeft();
-        }
-        else
-        {
-            ButonsToDefaultXPos();
-        }
-
-        if (transform.position.y > 7)
-        {
-            SlideButtonsDown();
-        }
-        else
-        {
-            if (transform.position.y < 0.8)
-                SlideButtonsUp();
-            else
-                ButonsToDefaultYPos();
-        }
-
-    }
-
-    private void SlideButtonsLeft()
-    {
-        /*
-        for (int i = 0; i < _buttons.Length; ++i)
-        {
-            _buttons[i].transform.position = new Vector2(_defaultButtonPositions[i].x - _buttonOffset.x, _defaultButtonPositions[i].y); 
-        }
-         */
-        transform.position = (Vector2)transform.position - new Vector2(_buttonOffset.x, 0);
-
-        //Debug.Log("slid left");
-    }
-
-    private void SlideButtonsDown()
-    {
-        /*
-        for (int i = 0; i < _buttons.Length; ++i)
-        {
-            _buttons[i].transform.position = new Vector2(_defaultButtonPositions[i].x, _defaultButtonPositions[i].y - _buttonOffset.y);
-        }
-        
-         */
-        //Debug.Log("slid down");
-        transform.position = (Vector2)transform.position - new Vector2(0, _buttonOffset.y);
-    }
-
-    private void SlideButtonsUp()
-    {
-        /*
-        for (int i = 0; i < _buttons.Length; ++i)
-        {
-            _buttons[i].transform.position = new Vector2(_defaultButtonPositions[i].x, _defaultButtonPositions[i].y + _buttonOffset.y);
-        }
-        
-         */
-        //Debug.Log("slid down");
-        transform.position = (Vector2)transform.position + new Vector2(0, _buttonOffset.y);
-    }
-
-
-
-    private void ButonsToDefaultXPos()
-    {
-        /*
-        Debug.Log("Default X Positions");
-        for (int i = 0; i < _buttons.Length; ++i)
-        {
-            _buttons[i].transform.position = new Vector2(_defaultButtonPositions[i].x, transform.position.y);
-        }
-         */
-
-    }
-
-    private void ButonsToDefaultYPos()
-    {
-        /*
-        Debug.Log("Default Y Positions");
-        for (int i = 0; i < _buttons.Length; ++i)
-        {
-            _buttons[i].transform.position = new Vector2(transform.position.x, _defaultButtonPositions[i].y);
-        }
-         */
-    }
-
 
     private void CheckMenuActive()
     {
