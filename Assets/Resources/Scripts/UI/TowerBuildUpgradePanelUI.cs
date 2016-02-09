@@ -95,6 +95,7 @@ public class TowerBuildUpgradePanelUI : MonoBehaviour
         Tower.onTowerTouched += TowerTouched;
         OpenAreaBehavior.onAreaTouched += OpenAreaTouched;
         Seagull.OnGullKilled += HandleGullHit;
+        SandDollarBank.OnSandDollarsChanged += HandleBalanceChange;
     }
 
     void OnDestroy()
@@ -103,6 +104,7 @@ public class TowerBuildUpgradePanelUI : MonoBehaviour
         Tower.onTowerTouched -= TowerTouched;
         OpenAreaBehavior.onAreaTouched -= OpenAreaTouched;
         Seagull.OnGullKilled -= HandleGullHit;
+        SandDollarBank.OnSandDollarsChanged -= HandleBalanceChange;
     }
 
     #endregion
@@ -121,6 +123,7 @@ public class TowerBuildUpgradePanelUI : MonoBehaviour
     private Vector2 _buttonSizeRect = new Vector2(0.5f, 0.5f);
     private Collider2D[] _hitByButtons;
     private float _lastGullHitTime;
+    private bool _displayForTowerTouched;
 
     private void CacheButtons()
     {
@@ -235,7 +238,8 @@ public class TowerBuildUpgradePanelUI : MonoBehaviour
     private void SelectAndShow(Tower t)
     {
         //Cache reference to tower 
-        _touchedTower = t;      
+        _touchedTower = t;
+        _displayForTowerTouched = true;
 
         bool showSpeed = _towerManager.CanUpgrade(t);        
         bool showSell = _towerManager.CanSellTower(t);
@@ -246,16 +250,12 @@ public class TowerBuildUpgradePanelUI : MonoBehaviour
         _lastActivation = Time.time;
     }
 
-    //Set the price displayed on the sell buton
-    private void SetSellValue(Tower t)
-    {
-
-        SellValue.text = "$" + _towerManager.GetTowerCost(t).ToString();
-    }
 
     private void SelectAndShow(OpenAreaBehavior a)
     {
-        _touchedArea = a;        
+        _touchedArea = a;
+        _displayForTowerTouched = false;
+
 
         bool showMelee = _towerManager.CanBuildMelee();
         bool showRanged = _towerManager.CanBuildRanged();
@@ -263,7 +263,13 @@ public class TowerBuildUpgradePanelUI : MonoBehaviour
         ShowBuildButtons(showMelee, showRanged, showSlow);
         _lastActivation = Time.time;
     }
+    
+    //Set the price displayed on the sell buton
+    private void SetSellValue(Tower t)
+    {
 
+        SellValue.text = "$" + _towerManager.GetTowerCost(t).ToString();
+    }
     private void OpenAreaTouched(OpenAreaBehavior area)
     {
         if (MenuActive)
@@ -310,6 +316,28 @@ public class TowerBuildUpgradePanelUI : MonoBehaviour
 
         if (MenuActive)
             _lastActivation = Time.time;
+
+    }
+
+    /// <summary>
+    /// Keeps the menu options inline with the players balance as it changes
+    /// </summary>
+    /// <param name="dollars"></param>
+    private void HandleBalanceChange(int dollars)
+    {
+        if (false == MenuActive)
+        {
+            return;
+        }
+
+        if (true == _displayForTowerTouched)
+        {
+            SelectAndShow(_touchedTower);
+        }
+        else
+        {
+            SelectAndShow(_touchedArea);
+        }
 
     }
 
