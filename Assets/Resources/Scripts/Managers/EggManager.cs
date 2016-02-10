@@ -73,6 +73,10 @@ public class EggManager : ManagerBase {
             OnEggCountChanged(EggCount);
     }
 
+	public bool iseggAvail()
+	{
+		return false;
+	}
 	
 	#endregion
 	
