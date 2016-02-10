@@ -283,6 +283,7 @@ public class Global : MonoBehaviour
 
         if (OnGameWon != null)
             OnGameWon();
+
         Save ();
 	}
 	

@@ -96,6 +96,7 @@ public class TowerBuildUpgradePanelUI : MonoBehaviour
         OpenAreaBehavior.onAreaTouched += OpenAreaTouched;
         Seagull.OnGullKilled += HandleGullHit;
         SandDollarBank.OnSandDollarsChanged += HandleBalanceChange;
+        Global.OnGameWon += DeselectAndHide;
     }
 
     void OnDestroy()
@@ -105,6 +106,7 @@ public class TowerBuildUpgradePanelUI : MonoBehaviour
         OpenAreaBehavior.onAreaTouched -= OpenAreaTouched;
         Seagull.OnGullKilled -= HandleGullHit;
         SandDollarBank.OnSandDollarsChanged -= HandleBalanceChange;
+        Global.OnGameWon -= DeselectAndHide;
     }
 
     #endregion
