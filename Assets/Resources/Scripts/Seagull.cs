@@ -9,8 +9,8 @@ public class Seagull : MonoBehaviour {
 
     public int GullKillValue;
     public float Speed;
-    private float DelayMin = 5;
-    private float DelayMax = 12;
+    private float DelayMin = 15;
+    private float DelayMax = 30;
 
     //How long before gull tries for an egg
     public float Delay;
