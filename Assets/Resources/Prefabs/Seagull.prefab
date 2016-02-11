@@ -403,9 +403,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   mCameraShake: {fileID: 0}
-  GullKillValue: 15
+  GullKillValue: 5
   Speed: 2
-  Delay: 15
+  Delay: 30
 --- !u!114 &11458624
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -609,11 +609,11 @@ Prefab:
     m_Modifications:
     - target: {fileID: 0}
       propertyPath: Delay
-      value: 15
+      value: 30
       objectReference: {fileID: 0}
     - target: {fileID: 0}
       propertyPath: GullKillValue
-      value: 15
+      value: 5
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 0}

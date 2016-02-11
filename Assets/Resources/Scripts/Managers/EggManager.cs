@@ -51,7 +51,7 @@ public class EggManager : ManagerBase {
             Vector3 loc;
 
             // -- RANDOM
-            Vector3 randloc = new Vector3(Random.Range(-1f, 0f), Random.Range(-0.30f, 0.30f), 0);
+			Vector3 randloc = new Vector3(Random.Range(-0.30f, 0.30f), Random.Range(-0.30f, 0.30f), 0);
             randloc.x -= 0;
             loc = randloc;
             // -- END RANDOM
