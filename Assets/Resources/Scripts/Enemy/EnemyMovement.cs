@@ -26,7 +26,7 @@ public class EnemyMovement : MonoBehaviour {
 	#region Unity
 	// Use this for initialization
 	void Start () {
-		DistanceFromWaypoint = speed * 0.02f;
+		DistanceFromWaypoint = 0.035f;
 		global = GameObject.Find("Global").GetComponent<Global>();
 		CurrentMovement = EnemyMovementSpeed.Normal;
 		SpeedMod = SpeedMods[(int) CurrentMovement];
@@ -57,6 +57,7 @@ public class EnemyMovement : MonoBehaviour {
 		Vector3 currentPos = nextPoint - transform.position;
 		if(currentPos.magnitude < DistanceFromWaypoint)
 		{
+			this.transform.position = new Vector3(nextPoint.x, nextPoint.y, this.transform.position.z);
 			SetCurrentWaypoint(direction);
 		}
 		

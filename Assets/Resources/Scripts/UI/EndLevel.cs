@@ -34,7 +34,7 @@ public class EndLevel : MonoBehaviour {
     {
         gameObject.SetActive(true);
         NextLevel.gameObject.SetActive(false);
-        _message.text = "You Play Bad And You Should Feel Bad.";
+        _message.text = "Game Over!";
     }
 
     void OnDestroy()
