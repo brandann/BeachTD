@@ -9,10 +9,7 @@ public class Map02 : GameMap {
 			{B,	A,	A,	A,	A,	A,	A,	A,	B,	0,	0,	0,	0,	0,	0,	0,	0,	0,	0,	0},
 			{B,	B,	A,	A,	B,	B,	A,	A,	B,	B,	0,	0,	0,	0,	0,	0,	0,	0,	0,	0},
 			{A,	B,	B,	B,	A,	B,	B,	B,	A,	B,	B,	B,	A,	B,	B,	0,	0,	0,	0,	0},
-			{C,	C,	A,	A,	A,	B,	B,	B,	B,	B,	B,	B,	B,	A,	A,	A,	C,	C,	0,	0},
-			{C,	C,	C,	A,	B,	B,	B,	B,	C,	C,	C,	C,	B,	B,	B,	A,	C,	C,	C,	0},
-			{C,	C,	C,	C,	C,	B,	C,	B,	C,	C,	C,	C,	C,	B,	C,	B,	C,	C,	C,	C},
-			{C,	A,	A,	A,	A,	A,	A,	A,	A,	A,	A,	A,	A,	A,	A,	A,	A,	A,	A,	A},
+			{C,	C,	A,	A,	A,	B,	B,	B,	B,	B,	B,	B,	B,	A,	A,	A,	C,	C,	0,	0}
         };
 
         
