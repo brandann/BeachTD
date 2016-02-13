@@ -20,12 +20,13 @@ public class EnemyMovement : MonoBehaviour {
 	private float SpeedMod;
 	private float endModificationTime;
 	private float DistanceFromWaypoint;
+	private float mEggSpeedMod = 1;
 	#endregion
 	
 	#region Unity
 	// Use this for initialization
 	void Start () {
-		DistanceFromWaypoint = speed * 0.02f;
+		DistanceFromWaypoint = 0.035f;
 		global = GameObject.Find("Global").GetComponent<Global>();
 		CurrentMovement = EnemyMovementSpeed.Normal;
 		SpeedMod = SpeedMods[(int) CurrentMovement];
@@ -56,10 +57,11 @@ public class EnemyMovement : MonoBehaviour {
 		Vector3 currentPos = nextPoint - transform.position;
 		if(currentPos.magnitude < DistanceFromWaypoint)
 		{
+			this.transform.position = new Vector3(nextPoint.x, nextPoint.y, this.transform.position.z);
 			SetCurrentWaypoint(direction);
 		}
 		
-		Vector3 moveDelta = (speed * SpeedMod * Time.smoothDeltaTime) * transform.up;
+		Vector3 moveDelta = (speed * SpeedMod * mEggSpeedMod * Time.smoothDeltaTime) * transform.up;
 		transform.position += moveDelta;
 		DistanceTraveled += moveDelta.magnitude;
 		
@@ -80,6 +82,14 @@ public class EnemyMovement : MonoBehaviour {
 		}
 		else if(listPos >= waypoints.Length)
 		{			
+			// enemy is at the end of the track. 
+			// check to see if any jewels are available buy not picked up
+			EggManager eggManager = global.eggManager;
+			if(eggManager.iseggAvail())
+			{
+				// TODO: try to pick up an egg
+			}
+			
 			direction = -1;
 			listPos -= 2;
 			transform.Rotate (Vector3.forward, 180);
@@ -123,6 +133,11 @@ public class EnemyMovement : MonoBehaviour {
 			nextPoint = waypoints[listPos];
 			transform.up = nextPoint - transform.position;
 		}
+	}
+	
+	public void SetEggSpeedMod()
+	{
+		mEggSpeedMod = 1.5f;
 	}
 
 	#endregion

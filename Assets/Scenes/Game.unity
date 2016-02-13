@@ -147,7 +147,7 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: $25
+  m_Text: $20
 --- !u!222 &967053
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -2434,6 +2434,10 @@ Prefab:
       propertyPath: SellValue
       value: 
       objectReference: {fileID: 292835180}
+    - target: {fileID: 11400036, guid: 2b89ff16d2a468b46a2e6e89680c8e73, type: 2}
+      propertyPath: MeleeTowerCost
+      value: 20
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 2b89ff16d2a468b46a2e6e89680c8e73, type: 2}
   m_IsPrefabParent: 0
@@ -3307,7 +3311,7 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 472054, guid: 289a0b66f20cf994a90d00a142e17e18, type: 2}
       propertyPath: m_RootOrder
-      value: 5
+      value: 4
       objectReference: {fileID: 0}
     - target: {fileID: 144394, guid: 289a0b66f20cf994a90d00a142e17e18, type: 2}
       propertyPath: m_IsActive

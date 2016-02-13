@@ -87,6 +87,7 @@ public class Enemy : MonoBehaviour
     {
         egg.Grab(gameObject);
         _carriedEgg = egg;
+        this.GetComponent<EnemyMovement>().SetEggSpeedMod();
     }
 
     private void DropCarriedEgg()
@@ -156,7 +157,7 @@ public class Enemy : MonoBehaviour
 	
 	public void KillThisEnemy()
 	{
-        int eggValue = 10;
+        int eggValue = 5;
 		if(HasEgg)
             DropCarriedEgg();	
 			
