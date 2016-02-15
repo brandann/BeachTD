@@ -23,5 +23,5 @@ EditorBuildSettings:
     path: Assets/Scenes/Lose.unity
   - enabled: 0
     path: Assets/Scenes/Win.unity
-  - enabled: 1
+  - enabled: 0
     path: Assets/Scenes/Levels.unity

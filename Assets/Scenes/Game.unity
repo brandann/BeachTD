@@ -1874,9 +1874,9 @@ BoxCollider2D:
   m_Material: {fileID: 0}
   m_IsTrigger: 0
   m_UsedByEffector: 0
-  m_Offset: {x: 0, y: -.0900000036}
+  m_Offset: {x: 0, y: 0}
   serializedVersion: 2
-  m_Size: {x: .5, y: .270000011}
+  m_Size: {x: .5, y: .5}
 --- !u!1 &1018961988
 GameObject:
   m_ObjectHideFlags: 0
@@ -3311,7 +3311,7 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 472054, guid: 289a0b66f20cf994a90d00a142e17e18, type: 2}
       propertyPath: m_RootOrder
-      value: 4
+      value: 5
       objectReference: {fileID: 0}
     - target: {fileID: 144394, guid: 289a0b66f20cf994a90d00a142e17e18, type: 2}
       propertyPath: m_IsActive
@@ -3319,10 +3319,21 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 11457090, guid: 289a0b66f20cf994a90d00a142e17e18, type: 2}
       propertyPath: m_Enabled
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 21291686, guid: 289a0b66f20cf994a90d00a142e17e18, type: 2}
+      propertyPath: m_Enabled
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 9572654, guid: 289a0b66f20cf994a90d00a142e17e18, type: 2}
+      propertyPath: m_Enabled
       value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents:
     - {fileID: 5827904, guid: 289a0b66f20cf994a90d00a142e17e18, type: 2}
+    - {fileID: 21291686, guid: 289a0b66f20cf994a90d00a142e17e18, type: 2}
+    - {fileID: 9572654, guid: 289a0b66f20cf994a90d00a142e17e18, type: 2}
+    - {fileID: 6149606, guid: 289a0b66f20cf994a90d00a142e17e18, type: 2}
   m_ParentPrefab: {fileID: 100100000, guid: 289a0b66f20cf994a90d00a142e17e18, type: 2}
   m_IsPrefabParent: 0
 --- !u!1 &2143498964

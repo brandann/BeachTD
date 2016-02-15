@@ -10,7 +10,7 @@ GameObject:
   - 4: {fileID: 483454}
   - 212: {fileID: 21295144}
   - 114: {fileID: 11476540}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: Fan2
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -25,7 +25,7 @@ GameObject:
   serializedVersion: 4
   m_Component:
   - 4: {fileID: 471138}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: Fan 2
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -41,7 +41,7 @@ GameObject:
   m_Component:
   - 4: {fileID: 411054}
   - 114: {fileID: 11468744}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: Copter
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -61,7 +61,7 @@ GameObject:
   - 58: {fileID: 5827904}
   - 114: {fileID: 11457090}
   - 61: {fileID: 6149606}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: Seagull
   m_TagString: enemy
   m_Icon: {fileID: 0}
@@ -77,7 +77,7 @@ GameObject:
   m_Component:
   - 4: {fileID: 484590}
   - 212: {fileID: 21297222}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: C-Shell
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -92,7 +92,7 @@ GameObject:
   serializedVersion: 4
   m_Component:
   - 4: {fileID: 403476}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: Fan
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -109,7 +109,7 @@ GameObject:
   - 4: {fileID: 461750}
   - 212: {fileID: 21206268}
   - 114: {fileID: 11404880}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: Fan2
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -124,7 +124,7 @@ GameObject:
   serializedVersion: 4
   m_Component:
   - 4: {fileID: 480412}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: Fan 3
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -139,7 +139,7 @@ GameObject:
   serializedVersion: 4
   m_Component:
   - 4: {fileID: 420778}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: Fan 1
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -156,7 +156,7 @@ GameObject:
   - 4: {fileID: 441074}
   - 212: {fileID: 21265820}
   - 114: {fileID: 11458624}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: Fan2
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -173,7 +173,7 @@ GameObject:
   - 4: {fileID: 467122}
   - 212: {fileID: 21211698}
   - 114: {fileID: 11414342}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: Fan2
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -614,6 +614,10 @@ Prefab:
     - target: {fileID: 0}
       propertyPath: GullKillValue
       value: 5
+      objectReference: {fileID: 0}
+    - target: {fileID: 0}
+      propertyPath: m_Layer
+      value: 8
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 0}
