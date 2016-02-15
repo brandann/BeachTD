@@ -52,13 +52,13 @@ public class Seagull : MonoBehaviour {
                     
                 else
                 {
-                    print("GULL");
+                    //print("GULL");
                     FindTargetEgg();
                 }
                     
                 break;
             case BirdBrain.Fleeing:
-                print("GULL");
+                //print("GULL");
                 transform.position += (_endPoint - transform.position).normalized * Speed * Time.deltaTime;
 				transform.right = _endPoint - transform.position;
                 if ((Time.time - _endTime) >= _restartDelay)
@@ -77,14 +77,10 @@ public class Seagull : MonoBehaviour {
     private void OnTriggerEnter2D(Collider2D col)
     {
 
-        print("GULL");
+        //print("GULL");
         HandleEggCollision(col);
     }
-    private void OnTriggerStay2D(Collider2D col)
-    {
-        print("GULL");
-        HandleEggCollision(col);
-    }
+
 
     private void HandleEggCollision(Collider2D col)
     {
@@ -117,7 +113,7 @@ public class Seagull : MonoBehaviour {
 
     void OnBecameInvisible()
     {
-        print("GULL");
+        //print("GULL");
         Initialize(BirdBrain.Idle);
     }
 
@@ -159,7 +155,7 @@ public class Seagull : MonoBehaviour {
         switch (_state)
         {
             case BirdBrain.Attacking:
-                print("GULL");
+                //print("GULL");
                 if (_target == null)
                     _state = BirdBrain.Fleeing;
                 break;
@@ -185,7 +181,7 @@ public class Seagull : MonoBehaviour {
         Egg target = _target.GetComponent<Egg>();
         if(target == egg)
         {
-            print("GULL");
+            //print("GULL");
             _target = null;
             FindTargetEgg();
         }
