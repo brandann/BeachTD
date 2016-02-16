@@ -64,6 +64,7 @@ public class Global : MonoBehaviour
 	
 	void Awake()
 	{	
+		_enemyManager = null;
 		CurrentGameState = GameState.Menu;
         //Only one global needed
         if (GlobalCreated)

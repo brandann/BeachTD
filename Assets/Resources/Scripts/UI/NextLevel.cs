@@ -15,6 +15,7 @@ public class NextLevel : ClickableUI {
     public override void Clicked()
     {
         base.Clicked();
+		turnOffAllTowers();
         _global.LoadMap(_global.LoadedLevel + 1);
         Application.LoadLevel(Global.Scenes.Game.ToString());
     }
