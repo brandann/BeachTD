@@ -10,8 +10,9 @@ public class SlidingUI : ClickableUI
     protected virtual void Awake()
     {
         ButtonAnimController = gameObject.GetComponent<Animator>();
-        if (ButtonAnimController == null)
-            Debug.LogError("missing animator");
+        if (ButtonAnimController == null){
+            Debug.LogError("GARY:: missing animator");
+        }
     }
 
 
