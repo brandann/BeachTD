@@ -38,7 +38,7 @@ public class Global : MonoBehaviour
 	
 	#region Public Memebers
 	public GameObject EggPrefab;
-	public EnemyManager enemyManager;
+	private EnemyManager _enemyManager;
 	public EggManager eggManager;
 	
 	[Range (0, 10)]
@@ -53,12 +53,18 @@ public class Global : MonoBehaviour
 
     public static float SLOW_FACTOR = .5f;
     public int WaveCount { get { return (_currentMap != null) ? _currentMap.getWaveCount() : 999; } }
+    public EnemyManager enemyManager{get {
+    	if(null == _enemyManager){
+    		_enemyManager = new EnemyManager();
+    	}
+    	return _enemyManager;}}
 	#endregion
 	
 	#region Unity
 	
 	void Awake()
-	{
+	{	
+		_enemyManager = null;
 		CurrentGameState = GameState.Menu;
         //Only one global needed
         if (GlobalCreated)
@@ -228,7 +234,7 @@ public class Global : MonoBehaviour
 		_mapManager = new MapManager();
 		
 		// Enemies ------------------------------------------------------------
-		enemyManager = new EnemyManager();
+		_enemyManager = new EnemyManager();
 		
 		// Eggs ------------------------------------------------------------
 		eggManager = new EggManager();

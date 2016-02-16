@@ -21,4 +21,12 @@ public class ClickableUI : MonoBehaviour {
         if (OnButtonClicked != null)
             OnButtonClicked();
     }
+    
+    protected void turnOffAllTowers()
+    {
+    	var gos = GameObject.FindGameObjectsWithTag("tower");
+    	for(int i = 0; i < gos.Length; i++){
+    		gos[i].SetActive(false);
+    	}
+    }
 }
