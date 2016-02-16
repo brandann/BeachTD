@@ -84,31 +84,39 @@ public class Seagull : MonoBehaviour {
 
     private void HandleEggCollision(Collider2D col)
     {
-        print("GULL");
-        if (_state == BirdBrain.Fleeing)
-            return;
-        print("GULL");
-        if (col.gameObject.tag == "egg")
+        //Legacy: this shouldn't happen any more as collider layer should enforce
+        if (col.gameObject.tag != "egg")
         {
-            print("GULL");
-            Egg hit = col.GetComponent<Egg>();
-
-            if (hit != _targetEgg)
-                return;
-            print("GULL");
-            _targetEgg.Kill();
-
-            _target = null;
-            _targetEgg = null;
-
-            _state = BirdBrain.Fleeing;
-
-            _endPoint = new Vector3(18, Random.Range(-1, 20), 0);
-            _endTime = Time.time;
-            Delay = _restartDelay = Random.Range(DelayMin, DelayMax);
-
-            mCameraShake.Shake();
+            return;
         }
+        
+        if (_state == BirdBrain.Fleeing)
+        {
+            return;
+        }  
+
+        
+        Egg hit = col.GetComponent<Egg>();
+
+        //These are not the eggs you are looking for...
+        if (hit != _targetEgg)
+        {
+            return;
+        }
+            
+        _targetEgg.Kill();
+
+        _target = null;
+        _targetEgg = null;
+
+        _state = BirdBrain.Fleeing;
+
+        _endPoint = new Vector3(18, Random.Range(-1, 20), 0);
+        _endTime = Time.time;
+        Delay = _restartDelay = Random.Range(DelayMin, DelayMax);
+
+        mCameraShake.Shake();
+        
     }
 
     void OnBecameInvisible()
@@ -171,13 +179,16 @@ public class Seagull : MonoBehaviour {
 
     }
 
+    //Enemies grabbing jewels can be a problem if that is the one we were after
     private void EggGrabbed(Egg egg)
-    {
-        //print("GULL");
+    {        
         //Can't be our egg if we don't have a target
         if (_target == null)
+        {
             return;
-        //print("GULL");
+        }
+        
+
         Egg target = _target.GetComponent<Egg>();
         if(target == egg)
         {

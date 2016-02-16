@@ -91,22 +91,37 @@ public class TowerBuildUpgradePanelUI : MonoBehaviour
 
     void OnEnable()
     {
+        SubscribeToBuildEvents();        
+        Global.OnGameWon += DeselectAndHide;
+        Global.OnGamePaused += DeselectAndHide;
+        Global.OnGamePaused += UnSubscribeToBuildEvents;
+        Global.OnGameResumed += SubscribeToBuildEvents;
+    }
+
+    void OnDestroy()
+    {
+        UnSubscribeToBuildEvents();
+        Global.OnGameWon -= DeselectAndHide;
+        Global.OnGamePaused -= DeselectAndHide;
+    }
+
+    private void SubscribeToBuildEvents()
+    {
         Path.OnPathTouched += HandlePathTouched;
         Tower.onTowerTouched += TowerTouched;
         OpenAreaBehavior.onAreaTouched += OpenAreaTouched;
         Seagull.OnGullKilled += HandleGullHit;
         SandDollarBank.OnSandDollarsChanged += HandleBalanceChange;
-        Global.OnGameWon += DeselectAndHide;
+
     }
 
-    void OnDestroy()
+    private void UnSubscribeToBuildEvents()
     {
         Path.OnPathTouched -= HandlePathTouched;
         Tower.onTowerTouched -= TowerTouched;
         OpenAreaBehavior.onAreaTouched -= OpenAreaTouched;
         Seagull.OnGullKilled -= HandleGullHit;
         SandDollarBank.OnSandDollarsChanged -= HandleBalanceChange;
-        Global.OnGameWon -= DeselectAndHide;
     }
 
     #endregion
