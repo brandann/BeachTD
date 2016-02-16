@@ -11,7 +11,7 @@ public class SlidingUI : ClickableUI
     {
         ButtonAnimController = gameObject.GetComponent<Animator>();
         if (ButtonAnimController == null){
-            Debug.LogError("GARY:: missing animator");
+            Debug.LogWarning("This class is designed to trigger UI Animations using Mecanim this object doesn't have an animator");
         }
     }
 
@@ -37,7 +37,10 @@ public class SlidingUI : ClickableUI
 	}
 	
 	public void Slide(){
-		ButtonAnimController.SetTrigger ("Slide");
+        if (null != ButtonAnimController)
+        {
+            ButtonAnimController.SetTrigger("Slide");
+        }
 	}
 
     public override void Clicked()
