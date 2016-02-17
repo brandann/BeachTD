@@ -168,7 +168,7 @@ public class TowerUpgradeManager : MonoBehaviour
     public bool CanUpgrade(Tower tower)
     {
         //May as well use speed upgrades since we're always upgrading speed and damage now no reason to check both
-        return (tower.NumSpeedUpgradesApplied < MaximumNumberOfUpgrades) && (UpgradeCost <= _bank.SandDollars);
+        return (tower.NumUpgradesApplied < MaximumNumberOfUpgrades) && (UpgradeCost <= _bank.SandDollars);
     }
 
 
