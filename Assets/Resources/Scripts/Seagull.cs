@@ -5,15 +5,20 @@ public class Seagull : MonoBehaviour {
 
     public delegate void GullKilled(Seagull gull);
     public static event GullKilled OnGullKilled;
-    public CameraShake mCameraShake;
-
-    public int GullKillValue;
-    public float Speed;
+    
     private float DelayMin = 15;
     private float DelayMax = 30;
 
-    //How long before gull tries for an egg
+    #region PublicMembers
+    public CameraShake mCameraShake;
+    public int GullKillValue;
+    public float Speed;
     public float Delay;
+    public GameObject mWarning;
+    #endregion
+
+    //How long before gull tries for an egg
+    
 
     #region MonoBehaviour
     public void OnTouchDown()
@@ -171,6 +176,8 @@ public class Seagull : MonoBehaviour {
                 //print("GULL");
                 if (_target != null)
                     _state = BirdBrain.Attacking;
+                mWarning.SetActive(true);
+                mWarning.GetComponent<WarningUI>().setWarningActive();
                 break;
             default:
                 Debug.LogWarning("Should be called");
