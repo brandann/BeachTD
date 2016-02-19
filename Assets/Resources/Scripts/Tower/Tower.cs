@@ -140,6 +140,11 @@ public abstract class Tower : MonoBehaviour
 
     void Awake()
     {
+        
+    }
+
+    void Start()
+    {
         Initialize();
     }
 

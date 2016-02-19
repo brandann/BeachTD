@@ -99,8 +99,13 @@ public class TowerFactory : MonoBehaviour
     
     void Awake()
     {
-        InitializeFactory();
+        
         //Debug.Log("initialize factory");
+    }
+
+    void Start()
+    {
+        InitializeFactory();
     }
 
     //The towerfactory singleton
@@ -173,7 +178,9 @@ public class TowerFactory : MonoBehaviour
     private void RecycleAllDeployed()
     {
         foreach (Tower t in _deployedTowers)
+        {
             RecycleTower(t);
+        }
 
         _deployedTowers.Clear();
     }
