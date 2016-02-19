@@ -82,39 +82,37 @@ public abstract class Tower : MonoBehaviour
     /// <param name="upgrade">Attributes of upgrade == 0 will not be applied</param>
     public virtual void UpgradeTower(Upgrade upgrade)
     {
+        bool upgradeapplied = false;
         if (upgrade.Range != 0)
         {
             _collider.radius *= (1 + upgrade.Range);
-            NumRangeUpgradesApplied++;
+            upgradeapplied = true;
         }
 
         if (upgrade.Speed != 0)
         {
-            //Debug.Log("Change cooldown from: " + CoolDownTime);
             CoolDownTime -= (CoolDownTime * upgrade.Speed);
-            //Debug.Log("Change cooldown to: " + CoolDownTime);
-            NumSpeedUpgradesApplied++;
+            upgradeapplied = true;
         }
 
         if (upgrade.Damage != 0)
         {
             Damage *= (1 + upgrade.Damage);
-            NumDamageUpgradesApplied++;
+            upgradeapplied = true;
         }
 
         if(upgrade.Special != 0){
             UpgradeSpecial(upgrade.Special);
-            NumSpecialUpgradesApplied++;
+            upgradeapplied = true;
+        }
+        if(upgradeapplied)
+        {
+            NumUpgradesApplied++;
+            incrementUpgradeUI();
         }
     }
 
-    public int NumRangeUpgradesApplied { get; protected set; }
-
-    public int NumSpeedUpgradesApplied { get; protected set; }
-
-    public int NumDamageUpgradesApplied { get; protected set; }
-
-    public int NumSpecialUpgradesApplied { get; protected set; }
+    public int NumUpgradesApplied { get; protected set; }
 
     #endregion
 
@@ -202,10 +200,7 @@ public abstract class Tower : MonoBehaviour
         _targets = new List<Enemy>();
 
         //Reset upgrade counters
-        NumSpeedUpgradesApplied = 0;
-        NumDamageUpgradesApplied = 0;
-        NumRangeUpgradesApplied = 0;
-        NumSpecialUpgradesApplied = 0;      
+        NumUpgradesApplied = 0;    
     }
        
     //Timestamp of last action
@@ -284,10 +279,6 @@ public abstract class Tower : MonoBehaviour
         }
         //Debug.Log("Removed Enemy from targets");
     }
-
-
-
-
 
     /// <summary>
     /// Decide which target to attack; Default behavior is to target enemy that has traveled the furthest
@@ -404,4 +395,44 @@ public abstract class Tower : MonoBehaviour
     }
 
     private Enemy mCurrentTargetedEnemy;
+
+    public Sprite ToggleOnSprite;
+    public GameObject Toggle1;
+    public GameObject Toggle2;
+
+    private void incrementUpgradeUI()
+    {
+        if(NumUpgradesApplied == 1)
+        {
+            // first upgrade
+            Toggle1.SetActive(true);
+            Toggle2.SetActive(true);
+        }
+        else if(NumUpgradesApplied == 2)
+        {
+            //second upgrade
+            Toggle2.GetComponent<SpriteRenderer>().sprite = ToggleOnSprite;
+        }
+
+        //different way to do it
+        /*
+        if (NumUpgradesApplied == 1)
+        {
+            // first upgrade
+            Toggle1.SetActive(true);
+        }
+        else if (NumUpgradesApplied == 2)
+        {
+            //second upgrade
+            Toggle2.SetActive(true);
+        }
+        */
+    }
+
+    public void SetTowerInactive()
+    {
+        Toggle1.SetActive(false);
+        Toggle2.SetActive(false);
+        this.gameObject.SetActive(false);
+    }
 }

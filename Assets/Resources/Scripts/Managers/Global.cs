@@ -146,7 +146,9 @@ public class Global : MonoBehaviour
         int HighestCompletedLevel = SaveLoad.SavedGame.HighestCompletedLevel();
         if(HighestCompletedLevel == 9)
         {
-            Debug.Log("all levels beat, cannot continue");
+            Debug.Log("all levels beat, restarting at level 1");
+            LoadMap(0);
+            Application.LoadLevel(Global.Scenes.Game.ToString());
             return;
         }
         LoadMap(HighestCompletedLevel++);

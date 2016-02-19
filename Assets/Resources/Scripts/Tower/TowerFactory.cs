@@ -40,7 +40,7 @@ public class TowerFactory : MonoBehaviour
 
         int eIndex = -1;
         _TypeIndex.TryGetValue(tower.GetType(), out eIndex);
-        tower.gameObject.SetActive(false);
+        tower.SetTowerInactive();
         _Pool [eIndex].Enqueue(tower.gameObject);
     }
     
