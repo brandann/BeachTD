@@ -177,6 +177,12 @@ public class TowerFactory : MonoBehaviour
 
     private void RecycleAllDeployed()
     {
+        //nothing to recycle should only happen on loading menu
+        if( null == _deployedTowers)
+        {
+            return;
+        }
+
         foreach (Tower t in _deployedTowers)
         {
             RecycleTower(t);
