@@ -23,6 +23,7 @@ public class TowerFactory : MonoBehaviour
             return _instance;
         }
     }
+    
 
     /// <summary>
     /// Recycles the tower.
@@ -40,7 +41,7 @@ public class TowerFactory : MonoBehaviour
 
         int eIndex = -1;
         _TypeIndex.TryGetValue(tower.GetType(), out eIndex);
-        tower.SetTowerInactive();
+        //tower.SetTowerInactive();
         _Pool [eIndex].Enqueue(tower.gameObject);
     }
     
@@ -94,17 +95,18 @@ public class TowerFactory : MonoBehaviour
 
     public GameObject CreatePathSquare()
     {
-        return Instantiate(PathPrefab);
+        return GameObject.Instantiate(PathPrefab);
     }
     
     void Awake()
     {
         
-        //Debug.Log("initialize factory");
+        //Debug.Log("Awake factory");
     }
 
     void Start()
     {
+        //Debug.Log("start factory");
         InitializeFactory();
     }
 
@@ -149,7 +151,9 @@ public class TowerFactory : MonoBehaviour
             {
                 GameObject tmp = GameObject.Instantiate(_Prefabs[i]) as GameObject;
                 if (tmp == null)
+                {
                     Debug.LogError("Shouldn't insert null into queue");
+                }
 
                 _Pool[i].Enqueue(tmp);
                 DontDestroyOnLoad(tmp); 
@@ -177,8 +181,8 @@ public class TowerFactory : MonoBehaviour
 
     private void RecycleAllDeployed()
     {
-        //nothing to recycle should only happen on loading menu
-        if( null == _deployedTowers)
+        //Nothing to recycle should only happen on loading menu
+        if (_deployedTowers == null || _deployedTowers.Count < 1)
         {
             return;
         }

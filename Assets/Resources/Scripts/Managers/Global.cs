@@ -23,7 +23,7 @@ public class Global : MonoBehaviour
 
 	#region Private Memebers
 
-    private static bool GlobalCreated;
+    private static Global GlobalCreated;
 	
 	private MapManager _mapManager;
 	private Map _currentMap;
@@ -63,19 +63,20 @@ public class Global : MonoBehaviour
 	#region Unity
 	
 	void Awake()
-	{	
+	{
+        Debug.Log("Global awake");
 		_enemyManager = null;
 		CurrentGameState = GameState.Menu;
         //Only one global needed
-        if (GlobalCreated)
+        if (null != GlobalCreated && this != GlobalCreated)
         {
-            Destroy(this.gameObject);
+            Destroy(transform.gameObject);
             return;
         }
         else
         {
-            DontDestroyOnLoad(this);
-            GlobalCreated = true;          
+            DontDestroyOnLoad(transform.gameObject);
+            GlobalCreated = this;          
         }
 
         //Not starting from main menu
@@ -144,15 +145,18 @@ public class Global : MonoBehaviour
     public void Continue()
     {
         int HighestCompletedLevel = SaveLoad.SavedGame.HighestCompletedLevel();
-        if(HighestCompletedLevel == 9)
+        if (HighestCompletedLevel == 9)
         {
-            Debug.Log("all levels beat, restarting at level 1");
+            //Debug.Log("all levels beat, restarting at level 1");
             LoadMap(0);
             Application.LoadLevel(Global.Scenes.Game.ToString());
             return;
         }
-        LoadMap(HighestCompletedLevel++);
-        Application.LoadLevel(Global.Scenes.Game.ToString());
+        else
+        {
+            LoadMap(HighestCompletedLevel++);
+            Application.LoadLevel(Global.Scenes.Game.ToString());
+        }
         return;
     }
 

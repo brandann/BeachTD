@@ -26,6 +26,16 @@ public class TipBarnacle : MonoBehaviour {
         GetComponent<Rigidbody2D>().isKinematic = true;
         PhysicsRetract();
 	}
+
+    void OnDestroy()
+    {
+        //Debug.Log("shouldn't be destroyed");
+    }
+
+    void OnDisable()
+    {
+        //Debug.Log("tip disabled");
+    }
 	
 	// Update is called once per frame
 	void Update () {

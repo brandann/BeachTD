@@ -6,7 +6,7 @@ public class TowerBuildUpgradePanelUI : MonoBehaviour
 {
 
     #region InspectorAssigned
-
+    
     public Button BuildMeleeButton;
     public Button BuildRangedButton;
     public Button BuildSlowButton;
@@ -73,13 +73,17 @@ public class TowerBuildUpgradePanelUI : MonoBehaviour
     {
         _towerManager = gameObject.GetComponent<TowerUpgradeManager>();
         if (_towerManager == null)
+        {
             Debug.LogWarning("Missing towermanager");
+        }
 
         CacheButtons();
 
         //with no params actually hides all buttons
         ShowBuildButtons();
         ShowUpgradeButtons();
+        _counter++;
+        Debug.Log("awake");
     }
 
     private void Update()
@@ -93,16 +97,28 @@ public class TowerBuildUpgradePanelUI : MonoBehaviour
     {
         SubscribeToBuildEvents();        
         Global.OnGameWon += DeselectAndHide;
-        Global.OnGamePaused += DeselectAndHide;
-        Global.OnGamePaused += UnSubscribeToBuildEvents;
-        Global.OnGameResumed += SubscribeToBuildEvents;
+        Global.OnGamePaused += OnPause;
+        Global.OnGameResumed += OnResume;   
     }
+
+    void OnPause()
+    {
+        DeselectAndHide();
+        _paused = true;
+    }
+
+    void OnResume()
+    {
+        _paused = false;
+    }
+
 
     void OnDestroy()
     {
         UnSubscribeToBuildEvents();
         Global.OnGameWon -= DeselectAndHide;
         Global.OnGamePaused -= DeselectAndHide;
+        Debug.Log("panel destroyed");
     }
 
     private void SubscribeToBuildEvents()
@@ -122,11 +138,10 @@ public class TowerBuildUpgradePanelUI : MonoBehaviour
         OpenAreaBehavior.onAreaTouched -= OpenAreaTouched;
         Seagull.OnGullKilled -= HandleGullHit;
         SandDollarBank.OnSandDollarsChanged -= HandleBalanceChange;
+        //Debug.Log("unsubscribed");
     }
 
     #endregion
-
-
 
     private Button[] _buttons;
     private Vector2[] _defaultButtonPositions;
@@ -141,6 +156,9 @@ public class TowerBuildUpgradePanelUI : MonoBehaviour
     private Collider2D[] _hitByButtons;
     private float _lastGullHitTime;
     private bool _displayForTowerTouched;
+    private bool _paused;
+    private int _counter;
+
 
     private void CacheButtons()
     {
@@ -213,7 +231,7 @@ public class TowerBuildUpgradePanelUI : MonoBehaviour
     /// <param name="path"></param>
     private void HandlePathTouched(Path path)
     {
-        if (MenuActive)
+        if (MenuActive && !_paused)
         {
             //Ignore hitting path when trying to select button
             if (IsBelowButton(path.gameObject))
@@ -231,7 +249,7 @@ public class TowerBuildUpgradePanelUI : MonoBehaviour
         if (tower.CurrentState == Tower.TowerState.Disabled)
             return;
 
-        if (MenuActive)
+        if (MenuActive && !_paused)
         {
             //Tower was touched when user was clicking on an active button
             if (IsBelowButton(tower.gameObject))
@@ -289,7 +307,7 @@ public class TowerBuildUpgradePanelUI : MonoBehaviour
     }
     private void OpenAreaTouched(OpenAreaBehavior area)
     {
-        if (MenuActive)
+        if (MenuActive && !_paused)
         {
             if (IsBelowButton(area.gameObject))
                 return;
@@ -319,7 +337,7 @@ public class TowerBuildUpgradePanelUI : MonoBehaviour
 
         CheckMenuActive();
 
-        if (MenuActive)
+        if (MenuActive && !_paused)
             _lastActivation = Time.time;
     }
 
@@ -331,7 +349,7 @@ public class TowerBuildUpgradePanelUI : MonoBehaviour
 
         CheckMenuActive();
 
-        if (MenuActive)
+        if (MenuActive && !_paused)
             _lastActivation = Time.time;
 
     }
@@ -342,7 +360,7 @@ public class TowerBuildUpgradePanelUI : MonoBehaviour
     /// <param name="dollars"></param>
     private void HandleBalanceChange(int dollars)
     {
-        if (false == MenuActive)
+        if (false == MenuActive || _paused)
         {
             return;
         }
