@@ -83,7 +83,7 @@ public class TowerBuildUpgradePanelUI : MonoBehaviour
         ShowBuildButtons();
         ShowUpgradeButtons();
         _counter++;
-        Debug.Log("awake");
+        //Debug.Log("awake");
     }
 
     private void Update()
@@ -118,7 +118,7 @@ public class TowerBuildUpgradePanelUI : MonoBehaviour
         UnSubscribeToBuildEvents();
         Global.OnGameWon -= DeselectAndHide;
         Global.OnGamePaused -= DeselectAndHide;
-        Debug.Log("panel destroyed");
+        //Debug.Log("panel destroyed");
     }
 
     private void SubscribeToBuildEvents()
@@ -265,7 +265,7 @@ public class TowerBuildUpgradePanelUI : MonoBehaviour
             if (_lastGullHitTime != Time.time)
             {
                 SelectAndShow(tower);
-                Debug.Log("Show menu: " + Time.time);
+                //Debug.Log("Show menu: " + Time.time);
             }
 
     }

@@ -16,7 +16,10 @@ public class MeleeTower : Tower
         
         base.Initialize();
         _tip = GetComponentInChildren<TipBarnacle>();
-        _tip.SetDamage(Damage);
+        if (null != _tip)
+        {
+            _tip.SetDamage(Damage);
+        }
         gameObject.SetActive(false);
 	}
 
