@@ -78,5 +78,10 @@ public class SandDollarBank : MonoBehaviour {
     {
         SandDollars += gull.GullKillValue;
     }
+
+    void OnDestroy()
+    {
+        Debug.LogWarning("");
+    }
 	
 }

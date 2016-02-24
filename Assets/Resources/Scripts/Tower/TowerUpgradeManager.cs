@@ -42,9 +42,8 @@ public class TowerUpgradeManager : MonoBehaviour
 
     void Start()
     {
-        _bank = GameObject.Find("Global").GetComponent<SandDollarBank>();
-        if (_bank == null)
-            Debug.LogError("Can't find bank");
+        FindBank();
+      
     }
 
     #endregion
@@ -144,19 +143,30 @@ public class TowerUpgradeManager : MonoBehaviour
         go.enemyManager.NotifyTowerBuilt();
         GameObject.Find("Seagull").GetComponent<Seagull>().StartPlane();
     }
+
+    private void FindBank()
+    {
+        if (_bank == null)
+        {
+            _bank = GameObject.Find("Global").GetComponent<SandDollarBank>();
+        }
+    }
     
     public  bool CanBuildMelee()
     {
+        FindBank();
         return _bank.SandDollars >= MeleeTowerCost;
     }
 
     public bool CanBuildRanged()
     {
+        FindBank();
         return _bank.SandDollars >= RangedTowerCost;
     }
 
     public bool CanBuildSlow()
     {
+        FindBank();
         return _bank.SandDollars >= SlowTowerCost;
     }
 
