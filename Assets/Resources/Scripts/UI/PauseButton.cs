@@ -11,7 +11,10 @@ public class PauseButton : ClickableUI {
         if (_global == null)
             Debug.LogError("Can't find _global");
 
-        gameObject.SetActive(true); 
+        gameObject.SetActive(true);
+
+        Global.OnGamePaused += HandlePause;
+        Global.OnGameResumed += HandleResume;
     }
 
     void Update()
@@ -25,7 +28,10 @@ public class PauseButton : ClickableUI {
 
     private void HandlePause()
     {
-        gameObject.SetActive(false);            
+        if (null != gameObject)
+        {
+            gameObject.SetActive(false);
+        }
     }
 
     private void HandleResume()
@@ -35,8 +41,7 @@ public class PauseButton : ClickableUI {
 
     void OnEnable()
     {
-        Global.OnGamePaused += HandlePause;
-        Global.OnGameResumed += HandleResume;
+        
     }
 
     void OnDestroy()
