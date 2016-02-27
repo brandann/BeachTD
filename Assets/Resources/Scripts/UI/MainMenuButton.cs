@@ -6,7 +6,7 @@ public class MainMenuButton : ClickableUI {
     public override void Clicked()
     {
         base.Clicked();
-		turnOffAllTowers();
+		//turnOffAllTowers();
         Application.LoadLevel(Global.Scenes.Menu.ToString());
     }
 }

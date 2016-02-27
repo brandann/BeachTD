@@ -163,20 +163,19 @@ public class TowerBuildUpgradePanelUI : MonoBehaviour
     private void CacheButtons()
     {
         //Assign buttons
-        _buttons = new Button[5];
-        _defaultButtonPositions = new Vector2[5];
+        _buttons = new Button[5];        
 
-
+        if(null == BuildMeleeButton)
+        {
+            Debug.LogError("can't cache null");
+            return;
+        }
         _buttons[0] = BuildMeleeButton;
         _buttons[1] = BuildRangedButton;
         _buttons[2] = BuildSlowButton;
         _buttons[3] = SpeedUpButton;
         _buttons[4] = SellButton;
 
-        for (int i = 0; i < _buttons.Length; ++i)
-            _defaultButtonPositions[i] = _buttons[i].transform.position;
-
-        Vector2 centerOfBuilder = transform.position;
 
         //Assume that buildmelee button starts off to the right and above
         _buttonOffset = new Vector2(1.5f, 0.9f);
@@ -185,10 +184,18 @@ public class TowerBuildUpgradePanelUI : MonoBehaviour
 
         //Ensure all buttons have been added in the inspector
         foreach (Button b in _buttons)
+        {
+            if(false == b.gameObject.activeSelf)
+            {
+                b.gameObject.SetActive(true);
+            }
+
             if (b.gameObject == null)
             {
                 Debug.LogError("Missing button");
+
             }
+        }
     }
 
 
@@ -224,6 +231,7 @@ public class TowerBuildUpgradePanelUI : MonoBehaviour
 
         return false;
     }
+
 
     /// <summary>
     /// 
@@ -324,12 +332,15 @@ public class TowerBuildUpgradePanelUI : MonoBehaviour
         //Debug.Log("open area touched");      
     }
 
+
+
     /// <summary>
     /// Displays the appropriate UI buttons to the user.
     /// </summary>
     private void ShowBuildButtons(bool melee = false, bool ranged = false, bool slow = false)
     {
         //Debug.Log("show buttons");
+
 
         _buttons[0].gameObject.SetActive(melee);
         _buttons[1].gameObject.SetActive(ranged);
