@@ -1,5 +1,6 @@
 ﻿using UnityEngine;
 using System.Collections;
+using UnityEngine.Advertisements;
 
 public class MainMenuContinueButton : SlidingUI{
 
@@ -24,4 +25,14 @@ public class MainMenuContinueButton : SlidingUI{
         _global.Continue();
         //base.Clicked();
 	}
+
+    public void ShowAdSimple()
+    {
+        if (Advertisement.IsReady())
+        {
+            print("Ads should be showing - Brandan");
+            Advertisement.Show();
+        }
+        Clicked();
+    }
 }
