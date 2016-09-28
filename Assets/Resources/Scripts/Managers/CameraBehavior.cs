@@ -12,6 +12,13 @@ public class CameraBehavior : MonoBehaviour {
 	void Start () 
 	{
 		//_global = GameObject.Find("Global").GetComponent<Global>();
+#if UNITY_IOS
+        GetComponent<Camera>().orthographicSize = 5.3f;
+        //GetComponent<Camera>().aspect = 4f / 3f;
+#else
+        GetComponent<Camera>().orthographicSize = 4;
+        //GetComponent<Camera>().aspect = 16f / 9f;
+#endif
 	}
 	
 	// Update is called once per frame

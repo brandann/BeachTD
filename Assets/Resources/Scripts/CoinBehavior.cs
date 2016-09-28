@@ -12,8 +12,13 @@ public class CoinBehavior : MonoBehaviour {
 
 	// Use this for initialization
 	void Start () {
-        mDestination = new Vector3(4.5f, 0f, 0);
-        //this.transform.LookAt(mDestination);
+
+        
+#if UNITY_IOS
+        mDestination = new Vector3(4.5f, -1.7f, 0); //4:3 ratio
+#else
+        mDestination = new Vector3(4.5f, 0f, 0); //16:9 ratio
+#endif
         _move = false;
         setRotation();
         
